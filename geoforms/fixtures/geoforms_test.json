@@ -1,0 +1,137 @@
+[
+    {
+        "pk": 2,
+        "model": "geoforms.geoformelement",
+        "fields": {
+            "etype": "text",
+            "ename": "text",
+            "evalue": "",
+            "emax": 100,
+            "emin": 0
+        }
+    },
+    {
+        "pk": 3,
+        "model": "geoforms.geoformelement",
+        "fields": {
+            "etype": "email",
+            "ename": "email",
+            "evalue": "",
+            "emax": 100,
+            "emin": 0
+        }
+    },
+    {
+        "pk": 4,
+        "model": "geoforms.geoformelement",
+        "fields": {
+            "etype": "datetime",
+            "ename": "date_time",
+            "evalue": "",
+            "emax": 100,
+            "emin": 0
+        }
+    },
+    {
+        "pk": 5,
+        "model": "geoforms.geoformelement",
+        "fields": {
+            "etype": "date",
+            "ename": "date",
+            "evalue": "",
+            "emax": 100,
+            "emin": 0
+        }
+    },
+    {
+        "pk": 6,
+        "model": "geoforms.geoformelement",
+        "fields": {
+            "etype": "number",
+            "ename": "number",
+            "evalue": "",
+            "emax": 100,
+            "emin": 0
+        }
+    },
+    {
+        "pk": 7,
+        "model": "geoforms.geoformelement",
+        "fields": {
+            "etype": "range",
+            "ename": "range",
+            "evalue": "",
+            "emax": 100,
+            "emin": 0
+        }
+    },
+    {
+        "pk": 8,
+        "model": "geoforms.geoformelement",
+        "fields": {
+            "etype": "checkbox",
+            "ename": "checkbox",
+            "evalue": "",
+            "emax": 100,
+            "emin": 0
+        }
+    },
+    {
+        "pk": 9,
+        "model": "geoforms.geoformelement",
+        "fields": {
+            "etype": "radio",
+            "ename": "radiobutton",
+            "evalue": "",
+            "emax": 100,
+            "emin": 0
+        }
+    },
+    {
+        "pk": 10,
+        "model": "geoforms.geoformelement",
+        "fields": {
+            "etype": "button",
+            "ename": "just a button",
+            "evalue": "",
+            "emax": 100,
+            "emin": 0
+        }
+    },
+    {
+        "pk": 2,
+        "model": "geoforms.geoform",
+        "fields": {
+            "elements": [
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10
+            ],
+            "fname": "Profile"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "geoforms.questionnaire",
+        "fields": {
+            "site": 1,
+            "name": "test",
+            "slug": "test"
+        }
+    },
+    {
+        "pk": 4,
+        "model": "geoforms.questionnaireform",
+        "fields": {
+            "questionnaire": 1,
+            "geoform": 2,
+            "order": 1
+        }
+    }
+]
