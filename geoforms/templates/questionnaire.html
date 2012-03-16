@@ -6,9 +6,15 @@
 
 {% block content %}
 
-questionnaire object:
-{{ questionnaire }}
-{{ questionnaire.geoforms }}
+form_list:
+
+{% for form in form_list %}
+    {% for elem in form.elements.all %}
+        {{ elem.input|safe }}
+        {{ elem.label|safe }}
+    {% endfor %}
+{% endfor %}
+    
 
 
 {% endblock %}

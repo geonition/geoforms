@@ -27,6 +27,8 @@ class GeoformElement(models.Model):
                             choices = ELEMENT_TYPES)
     ename = models.CharField(default = "",
                             max_length = 30)
+    eplaceholder = models.CharField(default = "",
+                                    max_length = 30)
     evalue = models.CharField(default = "",
                              blank = True,
                              max_length = 30)
@@ -35,6 +37,22 @@ class GeoformElement(models.Model):
 
     def __unicode__(self):
         return u'%s' % self.ename
+    
+    def input(self):
+        if self.etype == 'text':
+            return '<input type="text" '
+            'name="%s" '
+            'value="%s" '
+            'placeholder="%s" />' % (self.ename,
+                                     self.evalue,
+                                     self.eplaceholder)
+        else:
+            return '<input type="%s" name="%s" value="%s" />' % (self.etype,
+                                                                 self.ename,
+                                                                 self.evalue)
+    
+    def label(self):
+        return "this is the label"
 
 class Geoform(models.Model):
     """
@@ -48,14 +66,14 @@ class Geoform(models.Model):
 
     def __unicode__(self):
         return u'%s' % self.fname
-
+    
 class Questionnaire(models.Model):
     """
     This is one questionnaire,
     """
     geoforms = models.ManyToManyField(Geoform,
                                       through = 'QuestionnaireForm',
-                                      related_name='geoforms')
+                                      related_name = 'geoforms')
     name = models.CharField(max_length = 100)
     slug = models.SlugField(max_length = 100,
                             editable=False)
