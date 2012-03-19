@@ -6,14 +6,24 @@
 
 {% block content %}
 
-form_list:
-
+<div id="forms">
 {% for form in form_list %}
-    {% for elem in form.elements.all %}
-        {{ elem.input|safe }}
-        {{ elem.label|safe }}
-    {% endfor %}
+    <h3 class="next section{{ forloop.counter }}">
+        <a href="#">{{ form.header }}</a>
+    </h3>
+    <h3 class="current section{{ forloop.counter }}">
+        <a href="#">{{ form.header }}</a>
+    </h3>
+    <div>
+        <form name="{{ form.name }}" action="post">
+            <p>{{ form.text }}</p>
+            {% for field in form %}
+                {{ field }}
+            {% endfor %}
+        </form>
+    </div>
 {% endfor %}
+</div>
     
 
 

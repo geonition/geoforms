@@ -2,6 +2,9 @@ from django.contrib.sites.managers import CurrentSiteManager
 from django.contrib.sites.models import Site
 from django.db import models
 from django.template.defaultfilters import slugify
+from forms import Geoform as Geoform_form
+from django.forms.fields import CharField
+from fields import ButtonField
 
 class GeoformElement(models.Model):
     """
@@ -12,47 +15,64 @@ class GeoformElement(models.Model):
     HTML element
     """
     ELEMENT_TYPES = (
-        ('text', 'Text'),
-        ('email', 'E-mail'),
-        ('datetime', 'Date and Time'),
-        ('date', 'Date'),
-        ('number', 'Number'),
-        ('range', 'Range'),
-        ('checkbox', 'Checkbox'),
-        ('radio', 'Radio button'),
+        ('text', 'TextInput'),
         ('button', 'Button'),
+    )
+    
+    GEOMETRY_TYPES = (
+        ('POINT', 'point'),
+        ('POLYGON', 'polygon'),
+        ('POLYLINE', 'polyline'),
     )
 
     etype = models.CharField(max_length = 30,
                             choices = ELEMENT_TYPES)
-    ename = models.CharField(default = "",
-                            max_length = 30)
+    ename = models.SlugField(default = "",
+                            max_length = 30,
+                            unique=True)
     eplaceholder = models.CharField(default = "",
-                                    max_length = 30)
+                                    max_length = 30,
+                                    blank = True)
     evalue = models.CharField(default = "",
                              blank = True,
                              max_length = 30)
-    emin = models.IntegerField(default = 0)
-    emax = models.IntegerField(default = 100)
+    emin = models.IntegerField(blank = True,
+                               default = 0)
+    emax = models.IntegerField(blank = True,
+                               default = 100)
+    color = models.CharField(max_length = 7)
+    geometry_type = models.CharField(max_length = 8,
+                                     blank = True,
+                                     choices = GEOMETRY_TYPES)
+    label = models.CharField(max_length = 50)
 
     def __unicode__(self):
         return u'%s' % self.ename
     
-    def input(self):
+    def get_field_instance(self):
+        definition = {}
         if self.etype == 'text':
-            return '<input type="text" '
-            'name="%s" '
-            'value="%s" '
-            'placeholder="%s" />' % (self.ename,
-                                     self.evalue,
-                                     self.eplaceholder)
+            return CharField()
+        elif self.etype == 'button':
+            definition['widget_attrs'] = {
+                'label': self.label
+            }
+            #classes that are used to connect with javascript and css
+            classes = ''
+            if self.geometry_type == 'POINT':
+                classes = 'drawbutton point'
+            elif self.geometry_type == 'POLYLINE':
+                classes = 'drawbutton route'
+            elif self.geometry_type == 'POLYGON':
+                classes = 'drawbutton area'
+            
+            definition['widget_attrs']['class'] = classes
+                
+            return ButtonField(self.ename,
+                               self.evalue,
+                               attrs=definition)
         else:
-            return '<input type="%s" name="%s" value="%s" />' % (self.etype,
-                                                                 self.ename,
-                                                                 self.evalue)
-    
-    def label(self):
-        return "this is the label"
+            return CharField()
 
 class Geoform(models.Model):
     """
@@ -61,11 +81,20 @@ class Geoform(models.Model):
     fields starting with small f is for the
     form html element.
     """
-    fname = models.CharField(max_length=50)
+    fname = models.SlugField(max_length = 50)
+    form_header = models.CharField(max_length = 50)
+    form_text = models.TextField(blank=True)
     elements = models.ManyToManyField(GeoformElement)
 
     def __unicode__(self):
         return u'%s' % self.fname
+    
+    def get_form_instance(self):
+        return Geoform_form(elements = self.elements.all(),
+                            name = self.fname,
+                            header = self.form_header,
+                            text = self.form_text)
+        
     
 class Questionnaire(models.Model):
     """
@@ -109,6 +138,8 @@ class QuestionnaireForm(models.Model):
                               self.questionnaire.name,
                               self.geoform.fname,
                               self.order,)
+    class Meta:
+        ordering = ['order']
 
 
 
