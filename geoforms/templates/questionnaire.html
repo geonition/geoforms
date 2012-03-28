@@ -8,10 +8,7 @@
 
 <div id="forms">
 {% for form in form_list %}
-    <h3 class="next section{{ forloop.counter }}">
-        <a href="#">{{ form.header }}</a>
-    </h3>
-    <h3 class="current section{{ forloop.counter }}">
+    <h3 class="section{{ forloop.counter }}">
         <a href="#">{{ form.header }}</a>
     </h3>
     <div>
@@ -20,6 +17,8 @@
             {% for field in form %}
                 {{ field }}
             {% endfor %}
+            <button type="button" class="previous">{% trans 'previous' %}</button>
+            <button type="button" class="next">{% trans 'next' %}</button>
         </form>
     </div>
 {% endfor %}
@@ -30,5 +29,15 @@
 {% endblock %}
 
 {% block javascript %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+<script src="https://softgis.org.aalto.fi/OpenLayers/OpenLayers.js"></script>
+<script type="text/javascript" src="{% url api_javascript %}"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.ui.drawbutton.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/questionniare.js"></script>
+<script type="text/javascript">
+var questionnaire_area = {{ proposal_details.project.area.json|safe }};
+var feature_group = 'Q-{{ proposal_details.project.slug }}-{{ proposal_details.slug }}';
+</script>
 {% endblock javascript %}
 
