@@ -5,23 +5,52 @@
 {% endblock %}
 
 {% block content %}
+    
+<ul class="breadcrumb base_bgcolor">
+    <li class="disk hover" onclick="window.location = '{% url dashboard %}'">
+    </li>
+    <li class="separator">
+    </li>
+    <li class="active">
+        <h3>
+            {{ questionnaire.name }}
+        </h3>
+    </li>
+</ul>
 
 <div id="forms">
-{% for form in form_list %}
-    <h3 class="section{{ forloop.counter }}">
-        <a href="#">{{ form.header }}</a>
-    </h3>
-    <div>
-        <form name="{{ form.name }}" action="post">
-            <p>{{ form.text }}</p>
-            {% for field in form %}
-                {{ field }}
+    {% for form in form_list %}
+        <h3 class="section{{ forloop.counter }}">
+            <a href="#">{{ form.name }} {{ forloop.counter }}/{{ form_list|length }}</a>
+        </h3>
+        <div>
+            <form name={{ form.slug }} method="post" action="#">
+
+            {% for element in form.elements.all %}
+                {{ element.html|safe }}
             {% endfor %}
-            <button type="button" class="previous">{% trans 'previous' %}</button>
-            <button type="button" class="next">{% trans 'next' %}</button>
+            
+            {% if form_list|length == 1 %}
+            {% elif forloop.first %}
+                <button type="button" class="next">
+                    {% trans 'next' %}
+                </button>
+            {% elif forloop.last %}
+                <button type="button" class="previous">
+                    {% trans 'previous' %}
+                </button>
+            {% else %}
+                <button type="button" class="next">
+                    {% trans 'next' %}
+                </button>
+                <button type="button" class="previous">
+                    {% trans 'previous' %}
+                </button>
+            {% endif %}
+            
         </form>
     </div>
-{% endfor %}
+    {% endfor %}
 </div>
     
 
@@ -34,10 +63,10 @@
 <script src="https://softgis.org.aalto.fi/OpenLayers/OpenLayers.js"></script>
 <script type="text/javascript" src="{% url api_javascript %}"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.ui.drawbutton.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/questionniare.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/questionnaire.js"></script>
 <script type="text/javascript">
-var questionnaire_area = {{ proposal_details.project.area.json|safe }};
 var feature_group = 'Q-{{ proposal_details.project.slug }}-{{ proposal_details.slug }}';
+var questionnaire_area = {{ questionnaire.area.json|safe }};
 </script>
 {% endblock javascript %}
 

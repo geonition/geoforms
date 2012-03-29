@@ -13,6 +13,7 @@ setup(
             "templates/*.html",
             "locale/*/LC_MESSAGES/*.po",
             "locale/*/LC_MESSAGES/*.mo",
+            "static/js/*"
         ],
     },
     zip_safe=False,

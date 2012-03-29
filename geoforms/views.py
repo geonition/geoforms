@@ -10,7 +10,14 @@ from django.contrib.formtools.wizard.views import SessionWizardView
 def questionnaire(request, questionnaire_slug):
     
     quest = Questionnaire.on_site.select_related().get(slug = questionnaire_slug)
-    form_list = [form.get_form_instance() for form in quest.geoforms.all().order_by('questionnaireform__order')]
+    form_list = quest.geoforms.all().order_by('questionnaireform__order')
+    print form_list
+    elements = {}
+    for form in form_list:
+        elements[form.slug] = form.elements.all().order_by('formelement__order')
+    print elements
     return render_to_response('questionnaire.html',
-                             {'form_list': form_list},
+                             {'form_list': form_list,
+                              'elements': elements,
+                              'questionnaire': quest},
                              context_instance = RequestContext(request))
