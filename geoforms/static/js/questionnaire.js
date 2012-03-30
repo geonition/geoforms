@@ -1,7 +1,8 @@
 jQuery(document).ready(function() {
     //create widgets and add event listeners
     $( '#forms' ).accordion({
-        autoHeight: false
+        autoHeight: false,
+        collapsible: true
         });
     
     $('#forms button.next').click(function(event) {
@@ -24,7 +25,10 @@ jQuery(document).ready(function() {
         });
     });
     
+    $('.drawbutton').drawButton();
+    
     // MAP RELATED CODE BELOW
+    /*
     OpenLayers.Lang.setCode('fi');
     var mapOptions = {
         maxExtent: new OpenLayers.Bounds(89949.504,
@@ -51,71 +55,72 @@ jQuery(document).ready(function() {
             6709752.84725),
         buffer: 0}
     );
-
-    var pointLayer = new OpenLayers.Layer.Vector(
-                "Point Layer",
-                {
-                    styleMap: new OpenLayers.StyleMap({
-                        'default': {
-                            externalGraphic: "/images/needle?color=ee9900",
-                            graphicHeight: 36,
-                            graphicWidth: 23,
-                            graphicYOffset: -30,
-                            cursor: 'pointer'
-                        },
-                        'temporary': {
-                            externalGraphic: "/images/needle?color=ee9900",
-                            graphicHeight: 36,
-                            graphicWidth: 23,
-                            graphicYOffset: -30
-                        }
-                    })
-                });
-    var routeLayer = new OpenLayers.Layer.Vector(
-                "Route Layer",
-                {
-                    styleMap: new OpenLayers.StyleMap({
-                        'default': {
-                            strokeWidth: 2,
-                            strokeColor: '#ee9900',
-                            cursor: 'pointer'
-                        }
-                    })
-                });
-    var areaLayer = new OpenLayers.Layer.Vector(
-                "Area Layer",
-                {
-                    styleMap: new OpenLayers.StyleMap({
-                        'default': {
-                            strokeWidth: 2,
-                            strokeColor: '#ee9900',
-                            cursor: 'pointer',
-                            fillColor: '#ee9900',
-                            fillOpacity: 0.3
-                        }
-                    })
-                });
-
-    map.addLayers([arcgisLayer,
-                   areaLayer,
-                   routeLayer,
-                   pointLayer]);
-
-    var pointcontrol = new OpenLayers.Control.DrawFeature(pointLayer,
-                                OpenLayers.Handler.Point,
-                                {'id': 'pointcontrol'});
-    var routecontrol = new OpenLayers.Control.DrawFeature(routeLayer,
-                                OpenLayers.Handler.Path,
-                                {'id': 'routecontrol'})
-    var areacontrol = new OpenLayers.Control.DrawFeature(areaLayer,
-                                OpenLayers.Handler.Polygon,
-                                {'id': 'areacontrol'})
+    */
+    create_map('map', function(map) {
+        var pointLayer = new OpenLayers.Layer.Vector(
+                    "Point Layer",
+                    {
+                        styleMap: new OpenLayers.StyleMap({
+                            'default': {
+                                externalGraphic: "/images/needle?color=ee9900",
+                                graphicHeight: 36,
+                                graphicWidth: 23,
+                                graphicYOffset: -30,
+                                cursor: 'pointer'
+                            },
+                            'temporary': {
+                                externalGraphic: "/images/needle?color=ee9900",
+                                graphicHeight: 36,
+                                graphicWidth: 23,
+                                graphicYOffset: -30
+                            }
+                        })
+                    });
+        var routeLayer = new OpenLayers.Layer.Vector(
+                    "Route Layer",
+                    {
+                        styleMap: new OpenLayers.StyleMap({
+                            'default': {
+                                strokeWidth: 2,
+                                strokeColor: '#ee9900',
+                                cursor: 'pointer'
+                            }
+                        })
+                    });
+        var areaLayer = new OpenLayers.Layer.Vector(
+                    "Area Layer",
+                    {
+                        styleMap: new OpenLayers.StyleMap({
+                            'default': {
+                                strokeWidth: 2,
+                                strokeColor: '#ee9900',
+                                cursor: 'pointer',
+                                fillColor: '#ee9900',
+                                fillOpacity: 0.3
+                            }
+                        })
+                    });
     
-    map.addControls([pointcontrol, routecontrol, areacontrol ]);
+        map.addLayers([areaLayer,
+                       routeLayer,
+                       pointLayer]);
     
-    var gf = new OpenLayers.Format.GeoJSON();
-    var questionnaire_area_feature = gf.read(questionnaire_area);
-    map.setCenter(questionnaire_area_feature[0].geometry.getBounds().getCenterLonLat(), 0);
-    map.zoomToScale(492159825);
+        var pointcontrol = new OpenLayers.Control.DrawFeature(pointLayer,
+                                    OpenLayers.Handler.Point,
+                                    {'id': 'pointcontrol'});
+        var routecontrol = new OpenLayers.Control.DrawFeature(routeLayer,
+                                    OpenLayers.Handler.Path,
+                                    {'id': 'routecontrol'})
+        var areacontrol = new OpenLayers.Control.DrawFeature(areaLayer,
+                                    OpenLayers.Handler.Polygon,
+                                    {'id': 'areacontrol'})
+        
+        map.addControls([pointcontrol, routecontrol, areacontrol ]);
+        
+        var gf = new OpenLayers.Format.GeoJSON();
+        var questionnaire_area_feature = gf.read(questionnaire_area);
+        map.setCenter(questionnaire_area_feature[0].geometry.getBounds().getCenterLonLat(), 0);
+        map.zoomTo(5);
+    });
     
 });

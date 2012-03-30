@@ -19,5 +19,6 @@ def questionnaire(request, questionnaire_slug):
     return render_to_response('questionnaire.html',
                              {'form_list': form_list,
                               'elements': elements,
-                              'questionnaire': quest},
+                              'questionnaire': quest,
+                              'map_slug': 'questionnaire-map'},
                              context_instance = RequestContext(request))

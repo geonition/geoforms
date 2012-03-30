@@ -2,6 +2,7 @@
 {% load i18n %}
 
 {% block stylesheet %}
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/questionnaire.css" />
 {% endblock %}
 
 {% block content %}
@@ -32,18 +33,18 @@
             
             {% if form_list|length == 1 %}
             {% elif forloop.first %}
-                <button type="button" class="next">
+                <button type="button" class="next section{{ forloop.counter|add:'1' }}">
                     {% trans 'next' %}
                 </button>
             {% elif forloop.last %}
-                <button type="button" class="previous">
+                <button type="button" class="previous section{{ forloop.counter|add:'-1' }}">
                     {% trans 'previous' %}
                 </button>
             {% else %}
-                <button type="button" class="next">
+                <button type="button" class="next section{{ forloop.counter|add:'1' }}">
                     {% trans 'next' %}
                 </button>
-                <button type="button" class="previous">
+                <button type="button" class="previous section{{ forloop.counter|add:'-1' }}">
                     {% trans 'previous' %}
                 </button>
             {% endif %}
@@ -62,6 +63,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
 <script src="https://softgis.org.aalto.fi/OpenLayers/OpenLayers.js"></script>
 <script type="text/javascript" src="{% url api_javascript %}"></script>
+<script type="text/javascript" src="{% url map_js map_slug_name=map_slug %}"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.ui.drawbutton.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/questionnaire.js"></script>
 <script type="text/javascript">
