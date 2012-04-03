@@ -25,7 +25,7 @@
             <a href="#">{{ form.name }} {{ forloop.counter }}/{{ form_list|length }}</a>
         </h3>
         <div>
-            <form name={{ form.slug }} method="post" action="#">
+            <form name="{{ form.slug }}" method="post" action="#">
 
             {% for element in form.elements.all %}
                 {{ element.html|safe }}
@@ -49,11 +49,28 @@
                 </button>
             {% endif %}
             
-        </form>
-    </div>
+            </form>
+        </div>
     {% endfor %}
 </div>
-    
+
+<div id="popups">
+    {% for form in popup_list %}
+        <div id="{{ form.slug }}">
+            <form name="{{ form.slug }}" method="post" action="#" class="popupform">
+                {% for element in form.elements.all %}
+                    {{ element.html|safe }}
+                {% endfor %}
+                <button type="button" class="remove">
+                    {% trans 'Remove' %}
+                </button>
+                <button type="button" class="save">
+                    {% trans 'Save' %}
+                </button>
+            </form>
+        </div>
+    {% endfor %}
+</div>
 
 
 {% endblock %}
@@ -67,7 +84,7 @@
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.ui.drawbutton.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/questionnaire.js"></script>
 <script type="text/javascript">
-var feature_group = 'Q-{{ proposal_details.project.slug }}-{{ proposal_details.slug }}';
+var feature_group = 'Q-{{ questionnaire.slug }}';
 var questionnaire_area = {{ questionnaire.area.json|safe }};
 </script>
 {% endblock javascript %}

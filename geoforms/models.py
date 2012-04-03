@@ -48,6 +48,11 @@ class Geoform(models.Model):
                                       editable = False,
                                       unique = True)
     name = models.CharField(max_length = 50)
+    type = models.CharField(max_length = 5,
+                            choices = (
+                                ('popup', 'popup'),
+                                ('form','form')),
+                            default = 'form')
     elements = models.ManyToManyField(GeoformElement,
                                       through = 'FormElement')
 
@@ -57,7 +62,8 @@ class Geoform(models.Model):
         super(Geoform, self).save(*args, **kwargs)
 
     def __unicode__(self):
-        return u'%s' % self.name
+        return u'%s - %s' % (self.name,
+                             self.type)
 
 
 class FormElement(models.Model):
