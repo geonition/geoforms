@@ -40,14 +40,10 @@ function save_handler(evt) {
     $('form.popupform.active').removeClass('active');
 
     //build new attributes for the features
-    var new_attributes = {};
     for(var val in popup_values) {
-        new_attributes[popup_values[val]['name']] =
+        evt.data[0].attributes[popup_values[val]['name']] =
             popup_values[val]['value'];
     }
-
-    evt.data[0].attributes = new_attributes;
-    console.log(evt.data);
 
     //save the geojson
     var gf = new OpenLayers.Format.GeoJSON();
@@ -167,23 +163,25 @@ function show_popup_for_feature(feature, popup_name) {
  to be shown as the content in popup.
 */
 function feature_added(evt) {
-
+    
     //get the right lonlat for the popup position
     evt.lonlat = get_popup_lonlat(evt.geometry);
 
     //get the active buttons popup name
-    var draw_button_name = $('button.ui-state-active').data('featurePopup');
+    var name = $('button.ui-state-active').attr('name');
+    var popup_name = $('button.ui-state-active').data('popup');
     var popupcontent = " default info content ";
 
     //get the right content for the popup
-    if( draw_button_name !== undefined ) {
-        popupcontent = $('#' + draw_button_name).html();
+    if( popup_name !== undefined ) {
+        popupcontent = $('#' + popup_name).html();
     }
     evt.popupClass = OpenLayers.Popup.FramedCloud;
     evt.data = {
-        popupSize: null,
-        popupContentHTML: popupcontent
+        'popupSize': null,
+        'popupContentHTML': popupcontent
     };
+    evt.attributes.name = name;
 
     //the createPopup function did not seem to work so here
     evt.popup = new OpenLayers.Popup.FramedCloud(
@@ -194,12 +192,14 @@ function feature_added(evt) {
                         null,
                         false);
 
-    show_popup_for_feature(evt, draw_button_name);
+    show_popup_for_feature(evt, popup_name);
 
     //deactivate the map and the drawing
     //unselect the button
     $(".drawbutton.ui-state-active")
         .drawButton( 'deactivate' );
+        
+    evt.layer.redraw();
 }
 
 function on_feature_select_handler(evt) {

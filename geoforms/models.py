@@ -123,9 +123,10 @@ class QuestionnaireForm(models.Model):
     order = models.IntegerField(default=1)
 
     def __unicode__(self):
-        return u'questionnaire %s form %s order %s' % (
+        return u'questionnaire %s form %s type %s order %s' % (
                               self.questionnaire.name,
                               self.geoform.name,
+                              self.geoform.type,
                               self.order,)
     class Meta:
         ordering = ['order']
