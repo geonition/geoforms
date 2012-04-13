@@ -23,9 +23,12 @@ class GeoformElement(models.Model):
     below.
     """
     slug = models.SlugField(max_length = 50,
-                                    editable = False,
-                                    unique = True)
-    name = models.CharField(max_length = 100)
+                            editable = False,
+                            unique = True)
+    name = models.CharField(max_length = 50)
+    lang = models.CharField(max_length = 5,
+                            choices = settings.LANGUAGES,
+                            default = settings.LANGUAGE_CODE)
     html = models.TextField()
 
     def save(self, *args, **kwargs):
@@ -76,10 +79,11 @@ class FormElement(models.Model):
     order = models.IntegerField(default=1)
 
     def __unicode__(self):
-        return u'form: %s element: %s order %s' % (
-                              self.geoform.name,
-                              self.element.name,
-                              self.order,)
+        return u'%s. %s element in form %s' % (
+                            self.order,
+                            self.element.name,
+                            self.geoform.name,
+                            )
     class Meta:
         ordering = ['order']
         

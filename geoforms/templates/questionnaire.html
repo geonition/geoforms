@@ -59,7 +59,9 @@
         <div id="{{ form.slug }}">
             <form name="{{ form.slug }}" method="post" action="#" class="popupform">
                 {% for element in form.elements.all %}
-                    {{ element.html|safe }}
+                    <div class="form_element">
+                        {{ element.html|safe }}
+                    </div>        
                 {% endfor %}
                 <button type="button" class="remove">
                     {% trans 'Remove' %}

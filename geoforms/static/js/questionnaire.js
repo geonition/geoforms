@@ -32,25 +32,23 @@ function get_popup_lonlat(geometry) {
  connected to the save button in the popup form
 */
 function save_handler(evt) {
+    console.log("in save handler");
+    console.log(evt);
     
     //get the form data
     var popup_values = $('form.popupform.active').serializeArray();
 
-    //set the popup form as not active
-    $('form.popupform.active').removeClass('active');
-
-    //build new attributes for the features
-    for(var val in popup_values) {
-        evt.data[0].attributes[popup_values[val]['name']] =
-            popup_values[val]['value'];
-    }
+    //set form value attributes for feature
+    console.log(popup_values);
+    evt.data[0].attributes.form_values = popup_values;
 
     //save the geojson
     var gf = new OpenLayers.Format.GeoJSON();
     var geojson = gf.write(evt.data[0]);
+    console.log(geojson);
 
     if (evt.data[0].fid === undefined || evt.data[0].fid === null) {
-
+        console.log("create feature");
         gnt.geo.create_feature('@me', feature_group, geojson, {
             'success': function(data, textStatus, jqXHR) {
                 var new_feature = null;
@@ -63,10 +61,11 @@ function save_handler(evt) {
                     new_feature = map.getLayersByName('Area Layer')[0].getFeatureByFid(undefined);
                 }
                 new_feature.fid = data.id;
-        }
-    });
-
+            }
+        });
+        
     } else {
+        console.log("update feature");
         //update the feature
         gnt.geo.update_feature(undefined,
                                feature_group,
@@ -75,8 +74,11 @@ function save_handler(evt) {
     }
 
     //unselect feature
-    map.getControlsByClass( 'OpenLayers.Control.SelectFeature' )[0].unselectAll(evt);
+   map.getControlsByClass( 'OpenLayers.Control.SelectFeature' )[0].unselectAll(evt);
 
+    //set the popup form as not active
+    $('form.popupform.active').removeClass('active');
+    
     //remove popup from map
     if(popup !== undefined) {
         map.removePopup(popup);
@@ -115,7 +117,10 @@ Expects there to be a feature.popup created
 that can be called.
 */
 function show_popup_for_feature(feature, popup_name) {
-
+    console.log("show popup for feature");
+    console.log(popup_name);
+    console.log(feature);
+    console.log(feature.popup);
     if ( feature.popup !== undefined ) {
         
         //remove old popup if existing
@@ -129,15 +134,35 @@ function show_popup_for_feature(feature, popup_name) {
         map.addPopup(popup);
 
         //add a class to the form to recognize it as active
+        console.log("add class active to form[name=" + popup_name + "]");
         $('.olFramedCloudPopupContent form[name="' + popup_name + '"]').addClass('active');
         
         // add values to the form the values are connected but the form element name
         // and the name value in the feature attributes
-        var input_elements = $('div#' + feature.id + ' form[name="' + popup_name + '"] :input');
-        input_elements.each(function() {
-            $(this).val( feature.attributes[ $(this).attr( 'name' ) ] );
-        });
-
+        
+        for(var val in feature.attributes.form_values) {
+            var form_value = feature.attributes.form_values[val];
+            console.log(form_value);
+            $('form.popupform.active :input[name="' +
+              form_value['name'] +
+              '"]').val(function (index, value) {
+                 
+                if (this.type === 'checkbox' &&
+                    form_value['value'] === this.value) {
+                    $(this).attr('checked', true);
+                } else {
+                    $(this).val(form_value['value']);
+                }
+                return value;
+            });
+        }
+        
+        
+        if(popup_name === undefined) {
+            popup_name = $('.drawbutton[name=' +
+                           feature.attributes.name +
+                           ']').data('popup');
+        }
         //connect the event to the infowindow buttons
         $('form[name="' + popup_name + '"] button.save').click([feature],
                                                                save_handler);
@@ -202,12 +227,26 @@ function feature_added(evt) {
     evt.layer.redraw();
 }
 
-function on_feature_select_handler(evt) {
-    
+/*
+This function handles the on feature select
+where it shows the popup with the correct
+values from the feature attributes.
+*/
+function on_feature_select_handler(evt, popup_name) {
+    console.log("on feature select handler");
+    console.log(evt);
+    console.log(evt.attributes.name);
+    show_popup_for_feature(evt, evt.attributes.name);
 }
 
+/*
+This function handles the on feature unselect
+where it closes the popup.
+*/
 function on_feature_unselect_handler(evt) {
-    
+    //remove popup from map
+    map.removePopup(popup);
+    popup = undefined;
 }
 
 jQuery(document).ready(function() {
@@ -235,17 +274,6 @@ jQuery(document).ready(function() {
                                         item.slice(7) - 1);
             }
         });
-    });
-    
-    // create the form specific element widgets
-    $( ".drawbutton.point" ).drawButton({
-        drawcontrol: "pointcontrol"
-    });
-    $( ".drawbutton.route" ).drawButton({
-        drawcontrol: "routecontrol"
-    });
-    $( ".drawbutton.area" ).drawButton({
-        drawcontrol: "areacontrol"
     });
     
     create_map('map', function(map) {
@@ -327,12 +355,68 @@ jQuery(document).ready(function() {
                          pointcontrol,
                          routecontrol,
                          areacontrol ]);
+        
+        // create the form specific element widgets
+        $( ".drawbutton.point" ).drawButton({
+            drawcontrol: "pointcontrol"
+        });
+        $( ".drawbutton.route" ).drawButton({
+            drawcontrol: "routecontrol"
+        });
+        $( ".drawbutton.area" ).drawButton({
+            drawcontrol: "areacontrol"
+        });
+        
         select_feature_control.activate();
         
         var gf = new OpenLayers.Format.GeoJSON();
         var questionnaire_area_feature = gf.read(questionnaire_area);
         map.setCenter(questionnaire_area_feature[0].geometry.getBounds().getCenterLonLat(), 0);
         map.zoomTo(5);
+        
+        //get the users feature if any
+        gnt.geo.get_features(undefined,
+                             feature_group,
+                             '',
+            {
+               'success': function(data) {
+                   if (data.features) {
+                       var pl = map.getLayersByName('Point Layer')[0];
+                       var rl = map.getLayersByName('Route Layer')[0];
+                       var al = map.getLayersByName('Area Layer')[0];
+                       var gf = new OpenLayers.Format.GeoJSON();
+                       var popupcontent = " default content ";
+           
+                        for(var i = 0; i < data.features.length; i++) {
+                            var feature = gf.parseFeature(data.features[i]);
+                            feature.lonlat = get_popup_lonlat(feature.geometry);
+                            
+                            var popup_name = $('.drawbutton[name=' +
+                                            feature.attributes.name +
+                                            ']').data('popup');
+
+                            pl.addFeatures(feature);
+                            popupcontent = $('#' + popup_name).html();
+                            
+                            feature.popupClass = OpenLayers.Popup.FramedCloud;
+                            feature.data = {
+                                popupSize: null,
+                                popupContentHTML: popupcontent
+                            };
+
+                           //the createPopup function did not seem to work so here
+                           feature.popup = new OpenLayers.Popup.FramedCloud(
+                                               feature.id,
+                                               feature.lonlat,
+                                               feature.data.popupSize,
+                                               feature.data.popupContentHTML,
+                                               null,
+                                               false);
+           
+                       }
+                   }
+               }
+           });
     });
     
 });
