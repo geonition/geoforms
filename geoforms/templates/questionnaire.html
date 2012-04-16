@@ -26,11 +26,18 @@
         </h3>
         <div>
             <form name="{{ form.slug }}" method="post" action="#">
-
-            {% for element in form.elements.all %}
-                {{ element.html|safe }}
-            {% endfor %}
+                {% for key, value in elements.items %}
+                    {% if key == form.slug %}
+                        {% for element in value %}
+                        <div class="form_element">
+                            {{ element.html|safe }}
+                        </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endfor %}
             
+            
+            <div class="form_element">
             {% if form_list|length == 1 %}
             {% elif forloop.first %}
                 <button type="button" class="next section{{ forloop.counter|add:'1' }}">
@@ -48,6 +55,7 @@
                     {% trans 'previous' %}
                 </button>
             {% endif %}
+            </div>
             
             </form>
         </div>
@@ -58,11 +66,17 @@
     {% for form in popup_list %}
         <div id="{{ form.slug }}">
             <form name="{{ form.slug }}" method="post" action="#" class="popupform">
-                {% for element in form.elements.all %}
-                    <div class="form_element">
-                        {{ element.html|safe }}
-                    </div>        
+                
+                {% for key, value in elements.items %}
+                    {% if key == form.slug %}
+                        {% for element in value %}
+                        <div class="form_element">
+                            {{ element.html|safe }}
+                        </div>
+                        {% endfor %}
+                    {% endif %}
                 {% endfor %}
+                
                 <button type="button" class="remove">
                     {% trans 'Remove' %}
                 </button>

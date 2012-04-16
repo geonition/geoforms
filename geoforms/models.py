@@ -37,7 +37,8 @@ class GeoformElement(models.Model):
         super(GeoformElement, self).save(*args, **kwargs)
     
     def __unicode__(self):
-        return u'%s' % self.name
+        return u'%s %s' % (self.name,
+                           self.lang)
     
 
 class Geoform(models.Model):
@@ -79,13 +80,12 @@ class FormElement(models.Model):
     order = models.IntegerField(default=1)
 
     def __unicode__(self):
-        return u'%s. %s element in form %s' % (
+        return u'%s. %s element in %s %s' % (
                             self.order,
                             self.element.name,
                             self.geoform.name,
+                            self.geoform.type,
                             )
-    class Meta:
-        ordering = ['order']
         
 class Questionnaire(models.Model):
     """
@@ -132,8 +132,6 @@ class QuestionnaireForm(models.Model):
                               self.geoform.name,
                               self.geoform.type,
                               self.order,)
-    class Meta:
-        ordering = ['order']
 
 
 
