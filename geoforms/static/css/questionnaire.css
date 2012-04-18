@@ -7,6 +7,9 @@
 #content .form_element {
     text-align: center;
 }
+#content button.drawbutton {
+    width: 150px;
+}
 .left_align {
     text-align: left;
 }
