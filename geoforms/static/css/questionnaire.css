@@ -4,3 +4,9 @@
 #popups {
     display: none;
 }
+#content .form_element {
+    text-align: center;
+}
+.left_align {
+    text-align: left;
+}
