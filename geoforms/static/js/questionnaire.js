@@ -111,8 +111,17 @@ Expects there to be a feature.popup created
 that can be called.
 */
 function show_popup_for_feature(feature, popup_name) {
+    console.log("show popup for feature");
+    console.log(feature);
+    console.log(popup_name);
     if ( feature.popup !== undefined ) {
         
+        if(popup_name === undefined) {
+            popup_name = $('.drawbutton[name=' +
+                           feature.attributes.name +
+                           ']').data('popup');
+        }
+        console.log(popup_name);
         //remove old popup if existing
         if(popup !== undefined) {
             map.removePopup(popup);
@@ -125,7 +134,7 @@ function show_popup_for_feature(feature, popup_name) {
 
         //add a class to the form to recognize it as active
         $('.olFramedCloudPopupContent form[name="' + popup_name + '"]').addClass('active');
-        
+        console.log($('.olFramedCloudPopupContent form[name="' + popup_name + '"]'));
         // add values to the form the values are connected but the form element name
         // and the name value in the feature attributes
         if(feature.attributes.form_values === undefined) {
@@ -155,12 +164,6 @@ function show_popup_for_feature(feature, popup_name) {
             return value;
         });
         
-        
-        if(popup_name === undefined) {
-            popup_name = $('.drawbutton[name=' +
-                           feature.attributes.name +
-                           ']').data('popup');
-        }
         //connect the event to the infowindow buttons
         $('form[name="' + popup_name + '"] button.save').click([feature],
                                                                save_handler);
@@ -214,7 +217,7 @@ function feature_added(evt) {
                         evt.data.popupContentHTML,
                         null,
                         false);
-
+    
     show_popup_for_feature(evt, popup_name);
 
     //deactivate the map and the drawing
@@ -230,8 +233,10 @@ This function handles the on feature select
 where it shows the popup with the correct
 values from the feature attributes.
 */
-function on_feature_select_handler(evt, popup_name) {
-    show_popup_for_feature(evt, evt.attributes.name);
+function on_feature_select_handler(evt) {
+    console.log("on feature select");
+    console.log(evt);
+    show_popup_for_feature(evt);
 }
 
 /*
