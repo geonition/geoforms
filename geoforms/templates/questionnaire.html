@@ -49,11 +49,11 @@
                     {% trans 'previous' %}
                 </button>
             {% else %}
-                <button type="button" class="next section{{ forloop.counter|add:'1' }}">
-                    {% trans 'next' %}
-                </button>
                 <button type="button" class="previous section{{ forloop.counter|add:'-1' }}">
                     {% trans 'previous' %}
+                </button>
+                <button type="button" class="next section{{ forloop.counter|add:'1' }}">
+                    {% trans 'next' %}
                 </button>
             {% endif %}
             </div>
