@@ -250,30 +250,24 @@ function on_feature_unselect_handler(evt) {
 }
 
 jQuery(document).ready(function() {
+    
+    var origHash = location.hash.split('#')[1];
+    var active_section = 0;
+    if(origHash) {
+        active_section = origHash.slice(7) - 1;
+    }
+    
     //create widgets and add event listeners
     $( '#forms' ).accordion({
         autoHeight: false,
-        collapsible: true
-        });
-    
-    $('#forms button.next').click(function(event) {
-        var classlist = $(event.currentTarget).attr('class').split(/\s+/);
-        $.each( classlist, function(index, item) {
-            if(item.match(/section./) !== null) {
-                $( '#forms' ).accordion( 'activate',
-                                        item.slice(7) - 1);
-            }
-        });
+        collapsible: true,
+        active: active_section
     });
     
-    $('#forms button.previous').click(function(event) {
-        var classlist = $(event.currentTarget).attr('class').split(/\s+/);
-        $.each( classlist, function(index, item) {
-            if(item.match(/section./) !== null) {
-                $( '#forms' ).accordion( 'activate',
-                                        item.slice(7) - 1);
-            }
-        });
+    $(window).bind('hashchange', function(event) {
+        var newHash = location.hash.split('#')[1];
+        $( '#forms' ).accordion( 'activate',
+                                newHash.slice(7) - 1);
     });
     
     create_map('map', function(map) {

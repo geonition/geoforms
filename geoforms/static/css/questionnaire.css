@@ -6,12 +6,30 @@
 }
 #content .form_element {
     text-align: center;
+    width: 100%;
 }
 #content .form_element p {
     text-align: left;
+    min-height: 1em;
 }
 #content button.drawbutton {
     width: 150px;
+}
+#content .next, #content .previous {
+    margin: 1em;
+}
+#content a.next {
+    float: right;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+#content a.previous {
+    float: left;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+#content input {
+    max-width: 120px;
 }
 .left_align {
     text-align: left;

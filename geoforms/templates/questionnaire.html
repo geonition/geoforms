@@ -39,24 +39,19 @@
             
             
             <div class="form_element">
-            {% if form_list|length == 1 %}
-            {% elif forloop.first %}
-                <button type="button" class="next section{{ forloop.counter|add:'1' }}">
-                    {% trans 'next' %}
-                </button>
-            {% elif forloop.last %}
-                <p>{% trans "You have now reached the end of the questionnaire. Thank you for your answers! You can still continue modifying your answers by following the previous links or clicking the sections of this questionnaire." %}</p>
-                <button type="button" class="previous section{{ forloop.counter|add:'-1' }}">
-                    {% trans 'previous' %}
-                </button>
-            {% else %}
-                <button type="button" class="previous section{{ forloop.counter|add:'-1' }}">
-                    {% trans 'previous' %}
-                </button>
-                <button type="button" class="next section{{ forloop.counter|add:'1' }}">
-                    {% trans 'next' %}
-                </button>
-            {% endif %}
+                <p>
+                {% if form_list|length == 1 %}
+                {% elif forloop.first %}
+                    <a class="next" href="#section{{ forloop.counter|add:'1' }}">{% trans 'Next' %}&rarr;</a>
+                {% elif forloop.last %}
+                    {% trans "You have now reached the end of the questionnaire. Thank you for your answers! You can still continue modifying your answers by following the previous links or clicking the sections of this questionnaire." %}
+                    <br />
+                    <a class="previous" href="#section{{ forloop.counter|add:'-1' }}">&larr;{% trans 'Previous' %}</a>
+                {% else %}
+                    <a class="previous" href="#section{{ forloop.counter|add:'-1' }}">&larr;{% trans 'Previous' %}</a>
+                    <a class="next" href="#section{{ forloop.counter|add:'1' }}">{% trans 'Next' %}&rarr;</a>
+                {% endif %}
+                </p>
             </div>
             
             </form>
