@@ -1,5 +1,6 @@
 
 var popup; //only one popup at the time
+var property_id;
 
 /*
 This is a helper function that returns
@@ -111,9 +112,6 @@ Expects there to be a feature.popup created
 that can be called.
 */
 function show_popup_for_feature(feature, popup_name) {
-    console.log("show popup for feature");
-    console.log(feature);
-    console.log(popup_name);
     if ( feature.popup !== undefined ) {
         
         if(popup_name === undefined) {
@@ -121,7 +119,6 @@ function show_popup_for_feature(feature, popup_name) {
                            feature.attributes.name +
                            ']').data('popup');
         }
-        console.log(popup_name);
         //remove old popup if existing
         if(popup !== undefined) {
             map.removePopup(popup);
@@ -134,7 +131,7 @@ function show_popup_for_feature(feature, popup_name) {
 
         //add a class to the form to recognize it as active
         $('.olFramedCloudPopupContent form[name="' + popup_name + '"]').addClass('active');
-        console.log($('.olFramedCloudPopupContent form[name="' + popup_name + '"]'));
+        
         // add values to the form the values are connected but the form element name
         // and the name value in the feature attributes
         if(feature.attributes.form_values === undefined) {
@@ -234,8 +231,6 @@ where it shows the popup with the correct
 values from the feature attributes.
 */
 function on_feature_select_handler(evt) {
-    console.log("on feature select");
-    console.log(evt);
     show_popup_for_feature(evt);
 }
 
@@ -262,6 +257,27 @@ jQuery(document).ready(function() {
         autoHeight: false,
         collapsible: true,
         active: active_section
+    });
+    
+    //bind on value change to save the values
+    $('#forms input').change(function(evt) {
+        var property = {};
+        property[evt.currentTarget.name] = evt.currentTarget.value;
+        if(property_id === undefined) {
+            gnt.geo.create_property('@me',
+                                    feature_group,
+                                    '@null',
+                                    property,
+                                    {'success': function(data) {
+                                        property_id = data.id;
+                                    }});
+        } else {
+            property['id'] = property_id;
+            gnt.geo.update_property('@me',
+                                    feature_group,
+                                    '@null',
+                                    property);
+        }
     });
     
     $(window).bind('hashchange', function(event) {
