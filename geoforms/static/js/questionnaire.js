@@ -259,26 +259,52 @@ jQuery(document).ready(function() {
         active: active_section
     });
     
-    //bind on value change to save the values
-    $('#forms input').change(function(evt) {
-        var property = {};
-        property[evt.currentTarget.name] = evt.currentTarget.value;
-        if(property_id === undefined) {
-            gnt.geo.create_property('@me',
-                                    feature_group,
-                                    '@null',
-                                    property,
-                                    {'success': function(data) {
-                                        property_id = data.id;
-                                    }});
-        } else {
-            property['id'] = property_id;
-            gnt.geo.update_property('@me',
-                                    feature_group,
-                                    '@null',
-                                    property);
-        }
-    });
+    //get the properties and set them to the inputs
+    gnt.geo.get_properties('@me',
+                           feature_group,
+                           '@null',
+                           '@all',
+                           {'success': function(data) {
+                                console.log(data);
+                                property_id = data.id;
+                                $('#forms input').each(function(i) {
+                                    console.log(i);
+                                    console.log(this);
+                                    console.log(this.name);
+                                    console.log(data[this.name]);
+                                    if(data[this.name] !== undefined) {
+                                        if(this.type === 'radio') {
+                                            if(this.value === data[this.name]) {
+                                                $(this).attr('checked', true);
+                                            }
+                                        } else {
+                                            this.value = data[this.name];
+                                        }
+                                    }
+                                });
+                           },
+                           'complete': function() {
+                                //bind on value change to save the values
+                                $('#forms input').change(function(evt) {
+                                    var property = {};
+                                    property[evt.currentTarget.name] = evt.currentTarget.value;
+                                    if(property_id === undefined) {
+                                        gnt.geo.create_property('@me',
+                                                                feature_group,
+                                                                '@null',
+                                                                property,
+                                                                {'success': function(data) {
+                                                                    property_id = data.id;
+                                                                }});
+                                    } else {
+                                        property['id'] = property_id;
+                                        gnt.geo.update_property('@me',
+                                                                feature_group,
+                                                                '@null',
+                                                                property);
+                                    }
+                                });
+                            }});
     
     $(window).bind('hashchange', function(event) {
         var newHash = location.hash.split('#')[1];
