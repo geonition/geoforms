@@ -256,7 +256,17 @@ jQuery(document).ready(function() {
     $( '#forms' ).accordion({
         autoHeight: false,
         collapsible: true,
-        active: active_section
+        active: active_section,
+        change: function(event, ui) {
+            console.log(event);
+            console.log(ui);
+            var oldHash = location.hash.split('#')[1];
+            var sectionNr = ui.options.active + 1;
+            var newHash = 'section' + sectionNr;
+            if(oldHash !== newHash) {
+                location.hash = newHash;
+            }
+        }
     });
     
     //get the properties and set them to the inputs
@@ -265,13 +275,10 @@ jQuery(document).ready(function() {
                            '@null',
                            '@all',
                            {'success': function(data) {
-                                console.log(data);
+                            
                                 property_id = data.id;
                                 $('#forms input').each(function(i) {
-                                    console.log(i);
-                                    console.log(this);
-                                    console.log(this.name);
-                                    console.log(data[this.name]);
+                                    
                                     if(data[this.name] !== undefined) {
                                         if(this.type === 'radio') {
                                             if(this.value === data[this.name]) {
@@ -306,10 +313,14 @@ jQuery(document).ready(function() {
                                 });
                             }});
     
-    $(window).bind('hashchange', function(event) {
-        var newHash = location.hash.split('#')[1];
-        $( '#forms' ).accordion( 'activate',
-                                newHash.slice(7) - 1);
+    $(window).bind( 'hashchange', function(event) {
+        var newHash = location.hash.split( '#' )[1];
+        var newActive = newHash.slice(7) - 1;
+        var curActive = $( '#forms' ).accordion( 'option', 'active' );
+        if(curActive !== newActive) {
+            $( '#forms' ).accordion( 'activate',
+                                    newActive);
+        }
     });
     
     create_map('map', function(map) {
