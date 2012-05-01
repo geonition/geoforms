@@ -1,6 +1,15 @@
+/*
+ Questionnaire UI namespace
+ 
+ gnt.questionnaire
+*/
+if(gnt === undefined) {
+    gnt = {};
+}
+gnt.questionnaire = {};
 
-var popup; //only one popup at the time
-var property_id;
+gnt.questionnaire.popup; //only one popup at the time
+gnt.questionnaire.property_id;
 
 /*
 This is a helper function that returns
@@ -10,7 +19,7 @@ to the geometry that is given to it.
 This function should bring some consistency
 on where to show a popup for each feature.
 */
-function get_popup_lonlat(geometry) {
+gnt.questionnaire.get_popup_lonlat = function(geometry) {
     var lonlat;
     if ( geometry.id.contains("Point") ) {
         lonlat = new OpenLayers.LonLat(
@@ -32,7 +41,7 @@ function get_popup_lonlat(geometry) {
  popup save feature event handler
  connected to the save button in the popup form
 */
-function save_handler(evt) {
+gnt.questionnaire.save_handler = function(evt) {
     
     //get the form data
     var popup_values = $('form.popupform.active').serializeArray();
@@ -75,9 +84,9 @@ function save_handler(evt) {
     $('form.popupform.active').removeClass('active');
     
     //remove popup from map
-    if(popup !== undefined) {
-        map.removePopup(popup);
-        popup = undefined;
+    if(gnt.questionnaire.popup !== undefined) {
+        map.removePopup(gnt.questionnaire.popup);
+        gnt.questionnaire.popup = undefined;
     }
 }
 
@@ -85,7 +94,7 @@ function save_handler(evt) {
  popup remove feature event handler,
  connected to the remove button in the popup form.
 */
-function remove_handler(evt) {
+gnt.questionnaire.remove_handler = function(evt) {
 
     evt.data[0].layer.removeFeatures([evt.data[0]]);
     //unselect feature
@@ -99,9 +108,9 @@ function remove_handler(evt) {
         gnt.geo.delete_feature(undefined, feature_group, geojson);
     }
 
-    if(popup !== undefined) {
-        map.removePopup(popup);
-        popup = undefined;
+    if(gnt.questionnaire.popup !== undefined) {
+        map.removePopup(gnt.questionnaire.popup);
+        gnt.questionnaire.popup = undefined;
     }
 }
 
@@ -111,7 +120,7 @@ This function makes the popup and shows it for the feature given.
 Expects there to be a feature.popup created
 that can be called.
 */
-function show_popup_for_feature(feature, popup_name) {
+gnt.questionnaire.show_popup_for_feature = function(feature, popup_name) {
     if ( feature.popup !== undefined ) {
         
         if(popup_name === undefined) {
@@ -120,14 +129,14 @@ function show_popup_for_feature(feature, popup_name) {
                            ']').data('popup');
         }
         //remove old popup if existing
-        if(popup !== undefined) {
-            map.removePopup(popup);
-            popup = undefined;
+        if(gnt.questionnaire.popup !== undefined) {
+            map.removePopup(gnt.questionnaire.popup);
+            gnt.questionnaire.popup = undefined;
         }
         
         //create popup and put it on the map
-        popup = feature.popup;
-        map.addPopup(popup);
+        gnt.questionnaire.popup = feature.popup;
+        map.addPopup(gnt.questionnaire.popup);
 
         //add a class to the form to recognize it as active
         $('.olFramedCloudPopupContent form[name="' + popup_name + '"]').addClass('active');
@@ -163,9 +172,9 @@ function show_popup_for_feature(feature, popup_name) {
         
         //connect the event to the infowindow buttons
         $('form[name="' + popup_name + '"] button.save').click([feature],
-                                                               save_handler);
+                                                               gnt.questionnaire.save_handler);
         $('form[name="' + popup_name + '"] button.remove').click([feature],
-                                                                 remove_handler);
+                                                                 gnt.questionnaire.remove_handler);
 
         return true;
 
@@ -185,10 +194,10 @@ function show_popup_for_feature(feature, popup_name) {
  the same as the popup id that is supposed
  to be shown as the content in popup.
 */
-function feature_added(evt) {
+gnt.questionnaire.feature_added = function(evt) {
     
     //get the right lonlat for the popup position
-    evt.lonlat = get_popup_lonlat(evt.geometry);
+    evt.lonlat = gnt.questionnaire.get_popup_lonlat(evt.geometry);
 
     //get the active buttons popup name
     var name = $('button.ui-state-active').attr('name');
@@ -215,7 +224,7 @@ function feature_added(evt) {
                         null,
                         false);
     
-    show_popup_for_feature(evt, popup_name);
+    gnt.questionnaire.show_popup_for_feature(evt, popup_name);
 
     //deactivate the map and the drawing
     //unselect the button
@@ -230,21 +239,25 @@ This function handles the on feature select
 where it shows the popup with the correct
 values from the feature attributes.
 */
-function on_feature_select_handler(evt) {
-    show_popup_for_feature(evt);
+gnt.questionnaire.on_feature_select_handler = function(evt) {
+    gnt.questionnaire.show_popup_for_feature(evt);
 }
 
 /*
 This function handles the on feature unselect
 where it closes the popup.
 */
-function on_feature_unselect_handler(evt) {
+gnt.questionnaire.on_feature_unselect_handler = function(evt) {
     //remove popup from map
-    map.removePopup(popup);
-    popup = undefined;
+    map.removePopup(gnt.questionnaire.popup);
+    gnt.questionnaire.popup = undefined;
 }
 
 jQuery(document).ready(function() {
+    
+    //create a session for the anonymoususer
+    gnt.auth.create_session();
+    
     
     var origHash = location.hash.split('#')[1];
     var active_section = 0;
@@ -274,7 +287,7 @@ jQuery(document).ready(function() {
                            '@all',
                            {'success': function(data) {
                             
-                                property_id = data.id;
+                                gnt.questionnaire.property_id = data.id;
                                 $('#forms input').each(function(i) {
                                     
                                     if(data[this.name] !== undefined) {
@@ -293,16 +306,16 @@ jQuery(document).ready(function() {
                                 $('#forms input').change(function(evt) {
                                     var property = {};
                                     property[evt.currentTarget.name] = evt.currentTarget.value;
-                                    if(property_id === undefined) {
+                                    if(gnt.questionnaire.property_id === undefined) {
                                         gnt.geo.create_property('@me',
                                                                 feature_group,
                                                                 '@null',
                                                                 property,
                                                                 {'success': function(data) {
-                                                                    property_id = data.id;
+                                                                    gnt.questionnaire.property_id = data.id;
                                                                 }});
                                     } else {
-                                        property['id'] = property_id;
+                                        property['id'] = gnt.questionnaire.property_id;
                                         gnt.geo.update_property('@me',
                                                                 feature_group,
                                                                 '@null',
@@ -373,23 +386,23 @@ jQuery(document).ready(function() {
         var pointcontrol = new OpenLayers.Control.DrawFeature(pointLayer,
                                     OpenLayers.Handler.Point,
                                     {'id': 'pointcontrol',
-                                    'featureAdded': feature_added});
+                                    'featureAdded': gnt.questionnaire.feature_added});
         var routecontrol = new OpenLayers.Control.DrawFeature(routeLayer,
                                     OpenLayers.Handler.Path,
                                     {'id': 'routecontrol',
-                                    'featureAdded': feature_added})
+                                    'featureAdded': gnt.questionnaire.feature_added})
         var areacontrol = new OpenLayers.Control.DrawFeature(areaLayer,
                                     OpenLayers.Handler.Polygon,
                                     {'id': 'areacontrol',
-                                    'featureAdded': feature_added})
+                                    'featureAdded': gnt.questionnaire.feature_added})
         
         //select feature control
         var select_feature_control = new OpenLayers.Control.SelectFeature(
                 [pointLayer, routeLayer, areaLayer],
                 {
                 id: 'selectcontrol',
-                onSelect: on_feature_select_handler,
-                onUnselect: on_feature_unselect_handler,
+                onSelect: gnt.questionnaire.on_feature_select_handler,
+                onUnselect: gnt.questionnaire.on_feature_unselect_handler,
                 toggle: false,
                 clickout: true,
                 multiple: false,
@@ -434,7 +447,7 @@ jQuery(document).ready(function() {
            
                         for(var i = 0; i < data.features.length; i++) {
                             var feature = gf.parseFeature(data.features[i]);
-                            feature.lonlat = get_popup_lonlat(feature.geometry);
+                            feature.lonlat = gnt.questionnaire.get_popup_lonlat(feature.geometry);
                             
                             var popup_name = $('.drawbutton[name=' +
                                             feature.attributes.name +
@@ -462,6 +475,5 @@ jQuery(document).ready(function() {
                    }
                }
            });
-    });
-    
+    }); 
 });
