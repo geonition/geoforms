@@ -258,8 +258,6 @@ jQuery(document).ready(function() {
         collapsible: true,
         active: active_section,
         change: function(event, ui) {
-            console.log(event);
-            console.log(ui);
             var oldHash = location.hash.split('#')[1];
             var sectionNr = ui.options.active + 1;
             var newHash = 'section' + sectionNr;
