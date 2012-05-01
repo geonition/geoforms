@@ -95,10 +95,13 @@
 <script type="text/javascript" src="{% url api_javascript %}"></script>
 <script type="text/javascript" src="{% url map_js map_slug_name=map_slug %}"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.ui.drawbutton.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/questionnaire.js"></script>
 <script type="text/javascript">
-var feature_group = 'Q-{{ questionnaire.slug }}';
+var data_group = 'Q-{{ questionnaire.slug }}';
 var questionnaire_area = {{ questionnaire.area.json|safe }};
+
+jQuery(document).ready(function() {
+    gnt.questionnaire.init('#forms', '', '#forms', questionnaire_area, data_group);
+});
 </script>
 {% endblock javascript %}
 

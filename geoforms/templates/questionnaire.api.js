@@ -3,9 +3,6 @@
  
  gnt.questionnaire
 */
-if(gnt === undefined) {
-    gnt = {};
-}
 gnt.questionnaire = {};
 
 gnt.questionnaire.popup; //only one popup at the time
@@ -54,7 +51,7 @@ gnt.questionnaire.save_handler = function(evt) {
     var geojson = gf.write(evt.data[0]);
 
     if (evt.data[0].fid === undefined || evt.data[0].fid === null) {
-        gnt.geo.create_feature('@me', feature_group, geojson, {
+        gnt.geo.create_feature('@me', data_group, geojson, {
             'success': function(data, textStatus, jqXHR) {
                 var new_feature = null;
                 // retrieve feature without fid and give it the id from the right layer
@@ -72,7 +69,7 @@ gnt.questionnaire.save_handler = function(evt) {
     } else {
         //update the feature
         gnt.geo.update_feature(undefined,
-                               feature_group,
+                               data_group,
                                geojson,
                                undefined);
     }
@@ -105,7 +102,7 @@ gnt.questionnaire.remove_handler = function(evt) {
     var geojson = gf.write(evt.data[0]);
 
     if (evt.data[0].fid !== undefined && evt.data[0].fid !== null) {
-        gnt.geo.delete_feature(undefined, feature_group, geojson);
+        gnt.geo.delete_feature(undefined, data_group, geojson);
     }
 
     if(gnt.questionnaire.popup !== undefined) {
@@ -253,42 +250,70 @@ gnt.questionnaire.on_feature_unselect_handler = function(evt) {
     gnt.questionnaire.popup = undefined;
 }
 
-jQuery(document).ready(function() {
+/*
+ This function should be called onload to initialize a questionnaire
+ 
+ forms -- jQuery selector to all the forms that should be created/handled
+ popups -- JQuery selector to all popup forms used
+ accordion -- jquery selector for the accordion,
+              if undefined no accordion is used
+ questionnaire_area -- geojson geometry polygon describint the area of the
+                       questionnaire
+ data_group -- the group that should be used and where the data is stored
+ 
+*/
+gnt.questionnaire.init = function(forms,
+                                  popups,
+                                  accordion,
+                                  questionnaire_area,
+                                  data_group) {
     
     //create a session for the anonymoususer
     gnt.auth.create_session();
     
     
-    var origHash = location.hash.split('#')[1];
-    var active_section = 0;
-    if(origHash) {
-        active_section = origHash.slice(7) - 1;
-    }
-    
-    //create widgets and add event listeners
-    $( '#forms' ).accordion({
-        autoHeight: false,
-        collapsible: true,
-        active: active_section,
-        change: function(event, ui) {
-            var oldHash = location.hash.split('#')[1];
-            var sectionNr = ui.options.active + 1;
-            var newHash = 'section' + sectionNr;
-            if(oldHash !== newHash) {
-                location.hash = newHash;
-            }
+    if( accordion !== undefined ) {
+        var origHash = location.hash.split('#')[1];
+        var active_section = 0;
+        if(origHash) {
+            active_section = origHash.slice(7) - 1;
         }
-    });
+        
+        //create accordion
+        $( accordion ).accordion({
+            autoHeight: false,
+            collapsible: true,
+            active: active_section,
+            change: function(event, ui) {
+                var oldHash = location.hash.split('#')[1];
+                var sectionNr = ui.options.active + 1;
+                var newHash = 'section' + sectionNr;
+                if(oldHash !== newHash) {
+                    location.hash = newHash;
+                }
+            }
+        });
+        
+        $(window).bind( 'hashchange', function(event) {
+            var newHash = location.hash.split( '#' )[1];
+            var newActive = newHash.slice(7) - 1;
+            var curActive = $( accordion ).accordion( 'option', 'active' );
+            if(curActive !== newActive) {
+                $( accordion ).accordion( 'activate',
+                                         newActive);
+            }
+        });
+    }
     
     //get the properties and set them to the inputs
     gnt.geo.get_properties('@me',
-                           feature_group,
+                           data_group,
                            '@null',
                            '@all',
                            {'success': function(data) {
                             
                                 gnt.questionnaire.property_id = data.id;
-                                $('#forms input').each(function(i) {
+                                $(forms + ' input').each(function(i) {
                                     
                                     if(data[this.name] !== undefined) {
                                         if(this.type === 'radio') {
@@ -303,36 +328,26 @@ jQuery(document).ready(function() {
                            },
                            'complete': function() {
                                 //bind on value change to save the values
-                                $('#forms input').change(function(evt) {
+                                $(forms + ' input').change(function(evt) {
                                     var property = {};
                                     property[evt.currentTarget.name] = evt.currentTarget.value;
                                     if(gnt.questionnaire.property_id === undefined) {
                                         gnt.geo.create_property('@me',
-                                                                feature_group,
+                                                                data_group,
                                                                 '@null',
                                                                 property,
                                                                 {'success': function(data) {
                                                                     gnt.questionnaire.property_id = data.id;
                                                                 }});
                                     } else {
-                                        property['id'] = gnt.questionnaire.property_id;
+                                        property.id = gnt.questionnaire.property_id;
                                         gnt.geo.update_property('@me',
-                                                                feature_group,
+                                                                data_group,
                                                                 '@null',
                                                                 property);
                                     }
                                 });
                             }});
-    
-    $(window).bind( 'hashchange', function(event) {
-        var newHash = location.hash.split( '#' )[1];
-        var newActive = newHash.slice(7) - 1;
-        var curActive = $( '#forms' ).accordion( 'option', 'active' );
-        if(curActive !== newActive) {
-            $( '#forms' ).accordion( 'activate',
-                                    newActive);
-        }
-    });
     
     create_map('map', function(map) {
         var pointLayer = new OpenLayers.Layer.Vector(
@@ -434,7 +449,7 @@ jQuery(document).ready(function() {
         
         //get the users feature if any
         gnt.geo.get_features(undefined,
-                             feature_group,
+                             data_group,
                              '',
             {
                'success': function(data) {
@@ -475,5 +490,5 @@ jQuery(document).ready(function() {
                    }
                }
            });
-    }); 
-});
+    });
+};

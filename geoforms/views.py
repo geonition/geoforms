@@ -7,22 +7,19 @@ from django.utils.decorators import classonlymethod
 from django.utils import translation
 from django.forms import formsets
 from django.contrib.formtools.wizard.views import SessionWizardView
+from django.views.decorators.csrf import ensure_csrf_cookie
 
+@ensure_csrf_cookie
 def questionnaire(request, questionnaire_slug):
     
     quest = Questionnaire.on_site.select_related().get(slug = questionnaire_slug)
     form_list = quest.geoforms.all().order_by('questionnaireform__order')
     elements = {}
-    print form_list
     for form in form_list:
         elements[form.slug] = form.elements.filter(lang = translation.get_language()).order_by('formelement__order', '?')
     
     popup_list = form_list.filter(type = 'popup')
     form_list = form_list.filter(type = 'form')
-    
-    print elements
-    print form_list
-    print popup_list
     
     return render_to_response('questionnaire.html',
                              {'form_list': form_list,
