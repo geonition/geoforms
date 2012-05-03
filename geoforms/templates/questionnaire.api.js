@@ -69,7 +69,7 @@ active_class: the class to use when a button is activated
                         });
                     var drawcontrol_id = this.options['drawcontrol'];
                     var drawcontrol = map.getControl(drawcontrol_id);
-                    drawcontrol.layer.styleMap.styles.default.addRules([rule]);
+                    drawcontrol.layer.styleMap.styles['default'].addRules([rule]);
                     this.options.rule_added = true;
                 }
             
