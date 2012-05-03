@@ -576,8 +576,7 @@ gnt.questionnaire.init = function(forms,
         
         var gf = new OpenLayers.Format.GeoJSON();
         var questionnaire_area_feature = gf.read(questionnaire_area);
-        map.setCenter(questionnaire_area_feature[0].geometry.getBounds().getCenterLonLat(), 0);
-        map.zoomTo(5);
+        map.zoomToExtent(questionnaire_area_feature[0].geometry.getBounds());
         
         //get the users feature if any
         gnt.geo.get_features(undefined,
