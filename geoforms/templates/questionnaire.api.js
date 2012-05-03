@@ -440,6 +440,11 @@ gnt.questionnaire.init = function(forms,
                                 gnt.questionnaire.property_id = data.id;
                                 $(forms + ' :input:not(button)').each(function(i) {
                                     
+                                    //if many results use the last one
+                                    if(data['totalResults'] !== undefined) {
+                                        var nr = data['totalResults'];
+                                        data = data['entry'][nr - 1];
+                                    }
                                     if(data[this.name] !== undefined) {
                                         if(this.type === 'radio') {
                                             if(this.value === data[this.name]) {
@@ -594,8 +599,14 @@ gnt.questionnaire.init = function(forms,
                             var popup_name = $('.drawbutton[name=' +
                                             feature.attributes.name +
                                             ']').data('popup');
-
-                            pl.addFeatures(feature);
+                            
+                            if(feature.geometry.CLASS_NAME === 'OpenLayers.Geometry.Point') {
+                                pl.addFeatures(feature);
+                            } else if(feature.geometry.CLASS_NAME === 'OpenLayers.Geometry.LineString') {
+                                rl.addFeatures(feature);
+                            } else if(feature.geometry.CLASS_NAME === 'OpenLayers.Geometry.Polygon') {
+                                al.addFeatures(feature);
+                            }
                             popupcontent = $('#' + popup_name).html();
                             
                             feature.popupClass = OpenLayers.Popup.FramedCloud;
