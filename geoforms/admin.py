@@ -33,9 +33,9 @@ class QuestionnaireAdmin(admin.OSMGeoAdmin):
         GeoformInline
     ]
 
-#admin.site.register(GeoformElement, GeoformElementAdmin)
+admin.site.register(GeoformElement, GeoformElementAdmin)
 admin.site.register(Geoform, GeoformAdmin)
-admin.site.register(FormElement, FormElementAdmin)
+#admin.site.register(FormElement, FormElementAdmin)
 admin.site.register(Questionnaire, QuestionnaireAdmin)
 #admin.site.register(QuestionnaireForm, QuestionnaireFormAdmin)
 
