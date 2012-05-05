@@ -10,10 +10,32 @@ class GeoformElementAdmin(admin.ModelAdmin):
 
 class FormElementAdmin(admin.ModelAdmin):
     ordering = ['geoform', 'order']
-    
-admin.site.register(GeoformElement, GeoformElementAdmin)
-admin.site.register(Geoform)
+
+class ElementInline(admin.TabularInline):
+    model = FormElement
+    extra = 0
+
+class GeoformAdmin(admin.ModelAdmin):
+    inlines = [
+        ElementInline
+    ]
+
+class QuestionnaireFormAdmin(admin.ModelAdmin):
+    ordering = ['questionnaire', 'order']
+
+class GeoformInline(admin.TabularInline):
+    model = QuestionnaireForm
+    extra = 0
+        
+class QuestionnaireAdmin(admin.OSMGeoAdmin):
+    ordering = ['name']
+    inlines = [
+        GeoformInline
+    ]
+
+#admin.site.register(GeoformElement, GeoformElementAdmin)
+admin.site.register(Geoform, GeoformAdmin)
 admin.site.register(FormElement, FormElementAdmin)
-admin.site.register(Questionnaire, admin.OSMGeoAdmin)
-admin.site.register(QuestionnaireForm)
+admin.site.register(Questionnaire, QuestionnaireAdmin)
+#admin.site.register(QuestionnaireForm, QuestionnaireFormAdmin)
 
