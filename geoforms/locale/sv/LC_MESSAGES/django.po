@@ -1,0 +1,41 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-05-02 14:16+0300\n"
+"PO-Revision-Date: 2012-05-02 14:38+0200\n"
+"Last-Translator: Kristoffer Snabb <kristoffer.snabb@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#: templates/questionnaire.html:45
+#: templates/questionnaire.html.py:52
+msgid "Next"
+msgstr "Nästa sida"
+
+#: templates/questionnaire.html:47
+msgid "You have now reached the end of the questionnaire. Thank you for your answers! You can still continue modifying your answers by following the previous links or clicking the sections of this questionnaire."
+msgstr "Det här är enkätets sista sida. Tack för dina svar! Du kan ännu ändra på dina svar med att väljä 'föregående sida' eller med att klicka på någon av de föregående sidornas namn."
+
+#: templates/questionnaire.html:49
+#: templates/questionnaire.html.py:51
+msgid "Previous"
+msgstr "Föregående sida"
+
+#: templates/questionnaire.html:78
+msgid "Remove"
+msgstr "Ta bort"
+
+#: templates/questionnaire.html:81
+msgid "Save"
+msgstr "Spara"
+

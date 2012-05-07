@@ -69,7 +69,7 @@ active_class: the class to use when a button is activated
                         });
                     var drawcontrol_id = this.options['drawcontrol'];
                     var drawcontrol = map.getControl(drawcontrol_id);
-                    drawcontrol.layer.styleMap.styles.default.addRules([rule]);
+                    drawcontrol.layer.styleMap.styles['default'].addRules([rule]);
                     this.options.rule_added = true;
                 }
             
@@ -440,6 +440,11 @@ gnt.questionnaire.init = function(forms,
                                 gnt.questionnaire.property_id = data.id;
                                 $(forms + ' :input:not(button)').each(function(i) {
                                     
+                                    //if many results use the last one
+                                    if(data['totalResults'] !== undefined) {
+                                        var nr = data['totalResults'];
+                                        data = data['entry'][nr - 1];
+                                    }
                                     if(data[this.name] !== undefined) {
                                         if(this.type === 'radio') {
                                             if(this.value === data[this.name]) {
@@ -571,8 +576,7 @@ gnt.questionnaire.init = function(forms,
         
         var gf = new OpenLayers.Format.GeoJSON();
         var questionnaire_area_feature = gf.read(questionnaire_area);
-        map.setCenter(questionnaire_area_feature[0].geometry.getBounds().getCenterLonLat(), 0);
-        map.zoomTo(5);
+        map.zoomToExtent(questionnaire_area_feature[0].geometry.getBounds());
         
         //get the users feature if any
         gnt.geo.get_features(undefined,
@@ -594,8 +598,14 @@ gnt.questionnaire.init = function(forms,
                             var popup_name = $('.drawbutton[name=' +
                                             feature.attributes.name +
                                             ']').data('popup');
-
-                            pl.addFeatures(feature);
+                            
+                            if(feature.geometry.CLASS_NAME === 'OpenLayers.Geometry.Point') {
+                                pl.addFeatures(feature);
+                            } else if(feature.geometry.CLASS_NAME === 'OpenLayers.Geometry.LineString') {
+                                rl.addFeatures(feature);
+                            } else if(feature.geometry.CLASS_NAME === 'OpenLayers.Geometry.Polygon') {
+                                al.addFeatures(feature);
+                            }
                             popupcontent = $('#' + popup_name).html();
                             
                             feature.popupClass = OpenLayers.Popup.FramedCloud;
