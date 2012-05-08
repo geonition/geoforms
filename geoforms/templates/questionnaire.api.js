@@ -142,15 +142,16 @@ on where to show a popup for each feature.
 */
 gnt.questionnaire.get_popup_lonlat = function(geometry) {
     var lonlat;
-    if ( geometry.id.contains("Point") ) {
+    console.log(geometry);
+    if ( geometry.id.search( "Point" ) !== -1) {
         lonlat = new OpenLayers.LonLat(
                         geometry.x,
                         geometry.y);
-    } else if ( geometry.id.contains("LineString") ) {
+    } else if ( geometry.id.search( "LineString" ) !== -1) {
         lonlat = new OpenLayers.LonLat(
                         geometry.components[geometry.components.length - 1].x,
                         geometry.components[geometry.components.length - 1].y);
-    } else if ( geometry.id.contains("Polygon") ) {
+    } else if ( geometry.id.search("Polygon") !== -1) {
         lonlat = new OpenLayers.LonLat(
                         geometry.components[0].components[0].x,
                         geometry.components[0].components[0].y);
