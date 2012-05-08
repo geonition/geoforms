@@ -8,6 +8,7 @@ gnt.questionnaire = {};
 gnt.questionnaire.popup; //only one popup at the time
 gnt.questionnaire.property_id;
 
+
 /*
 Draw Button is a drawing
 tool that works together with
@@ -142,7 +143,7 @@ on where to show a popup for each feature.
 */
 gnt.questionnaire.get_popup_lonlat = function(geometry) {
     var lonlat;
-    console.log(geometry);
+    
     if ( geometry.id.search( "Point" ) !== -1) {
         lonlat = new OpenLayers.LonLat(
                         geometry.x,
@@ -151,7 +152,7 @@ gnt.questionnaire.get_popup_lonlat = function(geometry) {
         lonlat = new OpenLayers.LonLat(
                         geometry.components[geometry.components.length - 1].x,
                         geometry.components[geometry.components.length - 1].y);
-    } else if ( geometry.id.search("Polygon") !== -1) {
+    } else if ( geometry.id.search( "Polygon" ) !== -1) {
         lonlat = new OpenLayers.LonLat(
                         geometry.components[0].components[0].x,
                         geometry.components[0].components[0].y);
@@ -203,7 +204,7 @@ gnt.questionnaire.save_handler = function(evt) {
    map.getControlsByClass( 'OpenLayers.Control.SelectFeature' )[0].unselectAll(evt);
 
     //set the popup form as not active
-    $('form.popupform.active').removeClass('active');
+    $( 'form.popupform.active' ).removeClass( 'active' );
     
     //remove popup from map
     if(gnt.questionnaire.popup !== undefined) {
@@ -231,7 +232,7 @@ gnt.questionnaire.remove_handler = function(evt) {
     }
 
     if(gnt.questionnaire.popup !== undefined) {
-        map.removePopup(gnt.questionnaire.popup);
+        map.removePopup( gnt.questionnaire.popup );
         gnt.questionnaire.popup = undefined;
     }
 }
@@ -243,25 +244,27 @@ Expects there to be a feature.popup created
 that can be called.
 */
 gnt.questionnaire.show_popup_for_feature = function(feature, popup_name) {
+    
     if ( feature.popup !== undefined ) {
         
         if(popup_name === undefined) {
             popup_name = $('.drawbutton[name=' +
                            feature.attributes.name +
-                           ']').data('popup');
+                           ']').data( 'popup' );
         }
         //remove old popup if existing
         if(gnt.questionnaire.popup !== undefined) {
-            map.removePopup(gnt.questionnaire.popup);
+            map.removePopup( gnt.questionnaire.popup );
             gnt.questionnaire.popup = undefined;
         }
         
         //create popup and put it on the map
         gnt.questionnaire.popup = feature.popup;
         map.addPopup(gnt.questionnaire.popup);
-
+        gnt.questionnaire.popup.setSize(new OpenLayers.Size(250, 200)); //fix for OpenLayers 2.12 RC1 check 8.5.2012 should be null and automatic
+        
         //add a class to the form to recognize it as active
-        $('.olFramedCloudPopupContent form[name="' + popup_name + '"]').addClass('active');
+        $('.olFramedCloudPopupContent form[name="' + popup_name + '"]').addClass( 'active' );
         
         // add values to the form the values are connected but the form element name
         // and the name value in the feature attributes
@@ -279,10 +282,10 @@ gnt.questionnaire.show_popup_for_feature = function(feature, popup_name) {
                     if($(this).attr('type') === 'checkbox' &&
                        $(this).attr('value') === val_obj.value) {
                         
-                        $(this).attr('checked', 'checked');
+                        $(this).attr( 'checked', 'checked');
                         return value;
                     
-                    } else if($(this).attr('type') === 'checkbox') {
+                    } else if($(this).attr( 'type' ) === 'checkbox') {
                     } else {
                         
                         return val_obj.value;
@@ -330,19 +333,19 @@ gnt.questionnaire.feature_added = function(evt) {
     if( popup_name !== undefined ) {
         popupcontent = $('#' + popup_name).html();
     }
+    
     evt.popupClass = OpenLayers.Popup.FramedCloud;
     evt.data = {
-        'popupSize': null,
-        'popupContentHTML': popupcontent
+        'contentHTML': popupcontent
     };
     evt.attributes.name = name;
-
+    
     //the createPopup function did not seem to work so here
     evt.popup = new OpenLayers.Popup.FramedCloud(
                         evt.id,
                         evt.lonlat,
-                        evt.data.popupSize,
-                        evt.data.popupContentHTML,
+                        null,
+                        evt.data.contentHTML,
                         null,
                         false);
     
@@ -611,16 +614,15 @@ gnt.questionnaire.init = function(forms,
                             
                             feature.popupClass = OpenLayers.Popup.FramedCloud;
                             feature.data = {
-                                popupSize: null,
-                                popupContentHTML: popupcontent
+                                contentHTML: popupcontent
                             };
 
                            //the createPopup function did not seem to work so here
                            feature.popup = new OpenLayers.Popup.FramedCloud(
                                                feature.id,
                                                feature.lonlat,
-                                               feature.data.popupSize,
-                                               feature.data.popupContentHTML,
+                                               null,
+                                               feature.data.contentHTML,
                                                null,
                                                false);
            
