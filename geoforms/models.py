@@ -99,7 +99,9 @@ class Questionnaire(models.Model):
                             editable = False,
                             unique = True)
     area = geomodel.PolygonField(srid = getattr(settings, 'SPATIAL_REFERENCE_SYSTEM_ID', 4326))
-    site = models.ForeignKey(Site)
+    site = models.ForeignKey(Site,
+                             default = getattr(settings, 'SITE_ID', 1),
+                             editable = False)
 
     on_site = CurrentSiteManager()
 
