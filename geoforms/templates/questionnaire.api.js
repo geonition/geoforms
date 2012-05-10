@@ -165,17 +165,49 @@ gnt.questionnaire.get_popup_lonlat = function(geometry) {
  connected to the save button in the popup form
 */
 gnt.questionnaire.save_handler = function(evt) {
+
     
     //get the form data
     var popup_values = $('form.popupform.active').serializeArray();
 
     //set form value attributes for feature
     evt.data[0].attributes.form_values = popup_values;
-
-    //save the geojson
+    
+    //Get the geojson
     var gf = new OpenLayers.Format.GeoJSON();
     var geojson = gf.write(evt.data[0]);
-
+    console.log( geojson );
+    var feature_json = $.parseJSON( geojson );
+        
+    
+    //Assigning Privacy to the Feature if private=false
+    var private_field_set = false;
+    for ( var i = 0;i < popup_values.length; i++ ) {
+        
+        //console.log( popup_values[i] );
+        if ( popup_values[i]["name"] === "private" ) {
+            private_field_set = true;
+            if( popup_values[i]['value'] === 'false') {
+                feature_json['private'] = false;
+                evt.data[0]['private'] = false; 
+            } else {
+                feature_json['private'] = true;
+                evt.data[0]['private'] = true;
+            } 
+        }
+        
+        //evt.data[0].private = "false";
+        console.log(evt.data[0]);
+    }
+    
+    if( !private_field_set ) {
+        feature_json['private'] = true;
+        evt.data[0]['private'] = true;
+    }
+    geojson = feature_json;
+    
+      
+    //Save the JSON
     if (evt.data[0].fid === undefined || evt.data[0].fid === null) {
         gnt.geo.create_feature('@me', data_group, geojson, {
             'success': function(data, textStatus, jqXHR) {
@@ -261,7 +293,7 @@ gnt.questionnaire.show_popup_for_feature = function(feature, popup_name) {
         //create popup and put it on the map
         gnt.questionnaire.popup = feature.popup;
         map.addPopup(gnt.questionnaire.popup);
-        gnt.questionnaire.popup.setSize(new OpenLayers.Size(250, 200)); //fix for OpenLayers 2.12 RC1 check 8.5.2012 should be null and automatic
+        gnt.questionnaire.popup.setSize(new OpenLayers.Size(250, 250)); //fix for OpenLayers 2.12 RC1 check 8.5.2012 should be null and automatic
         
         //add a class to the form to recognize it as active
         $('.olFramedCloudPopupContent form[name="' + popup_name + '"]').addClass( 'active' );
@@ -274,17 +306,26 @@ gnt.questionnaire.show_popup_for_feature = function(feature, popup_name) {
         
         $('form.popupform.active :input').val(function (index, value) {
             
+            //reserved inputs like private and other feature root values
+            if( $(this).attr('name') === 'private' ) { //should be a checkbox
+                console.log($(this).attr('name'));
+                console.log(feature);
+                console.log(feature['private']);
+                console.log(feature.attributes.form_values[i]);
+                $(this).attr( 'checked', !feature['private'] )
+            }
+            
             for(var i = 0; i < feature.attributes.form_values.length; i++) {
                 var val_obj = feature.attributes.form_values[i];
                 
                 if($(this).attr('name') === val_obj.name) {
+                
                     //this shuold be done for all kinds of multiple value inputs
                     if($(this).attr('type') === 'checkbox' &&
-                       $(this).attr('value') === val_obj.value) {
+                       $(this).attr('value') === val_obj.value) { //check checkboxes
                         
-                        $(this).attr( 'checked', 'checked');
+                        $(this).attr( 'checked', true);
                         return value;
-                    
                     } else if($(this).attr( 'type' ) === 'checkbox') {
                     } else {
                         
@@ -597,6 +638,8 @@ gnt.questionnaire.init = function(forms,
            
                         for(var i = 0; i < data.features.length; i++) {
                             var feature = gf.parseFeature(data.features[i]);
+                            //add values losed in parsing should be added again
+                            feature['private'] = data.features[i]['private']; 
                             feature.lonlat = gnt.questionnaire.get_popup_lonlat(feature.geometry);
                             
                             var popup_name = $('.drawbutton[name=' +
