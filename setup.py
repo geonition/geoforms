@@ -3,7 +3,7 @@ from setuptools import find_packages
 
 setup(
     name='geoforms',
-    version='4.0.1',
+    version='4.0.2',
     author='Kristoffer Snabb',
     url='https://github.com/geonition/geoforms',
     packages=find_packages(),
