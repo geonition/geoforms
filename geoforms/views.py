@@ -16,7 +16,7 @@ def questionnaire(request, questionnaire_slug):
     form_list = quest.geoforms.all().order_by('questionnaireform__order')
     elements = {}
     for form in form_list:
-        elements[form.slug] = form.elements.filter(lang = translation.get_language()).order_by('formelement__order', '?')
+        elements[form.slug] = form.elements.order_by('formelement__order', '?')
     
     popup_list = form_list.filter(type = 'popup')
     form_list = form_list.filter(type = 'form')

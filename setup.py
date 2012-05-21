@@ -3,7 +3,7 @@ from setuptools import find_packages
 
 setup(
     name='geoforms',
-    version='4.0.2',
+    version='4.1.0',
     author='Kristoffer Snabb',
     url='https://github.com/geonition/geoforms',
     packages=find_packages(),
@@ -19,5 +19,6 @@ setup(
         ],
     },
     zip_safe=False,
-    install_requires=['django'],
+    install_requires=['django',
+                      'django-modeltranslation'],
 )

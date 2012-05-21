@@ -26,9 +26,6 @@ class GeoformElement(models.Model):
                             editable = False,
                             unique = True)
     name = models.CharField(max_length = 50)
-    lang = models.CharField(max_length = 5,
-                            choices = settings.LANGUAGES,
-                            default = settings.LANGUAGE_CODE)
     html = models.TextField()
 
     def save(self, *args, **kwargs):

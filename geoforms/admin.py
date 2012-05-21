@@ -4,19 +4,24 @@ from models import GeoformElement
 from models import FormElement
 from models import Questionnaire
 from models import QuestionnaireForm
+from modeltranslation.admin import TranslationAdmin
+from modeltranslation.admin import TranslationTabularInline
 from django.conf import settings
 
-class GeoformElementAdmin(admin.ModelAdmin):
+class GeoformElementAdmin(TranslationAdmin, admin.ModelAdmin):
+    list_display = ('name',
+                    'html')
     ordering = ['name']
 
 class FormElementAdmin(admin.ModelAdmin):
     ordering = ['geoform', 'order']
 
-class ElementInline(admin.TabularInline):
+class ElementInline(TranslationTabularInline):
     model = FormElement
     extra = 0
 
-class GeoformAdmin(admin.ModelAdmin):
+class GeoformAdmin(TranslationAdmin, admin.ModelAdmin):
+    list_display = ('name',)
     inlines = [
         ElementInline
     ]
@@ -24,11 +29,12 @@ class GeoformAdmin(admin.ModelAdmin):
 class QuestionnaireFormAdmin(admin.ModelAdmin):
     ordering = ['questionnaire', 'order']
 
-class GeoformInline(admin.TabularInline):
+class GeoformInline(TranslationTabularInline):
     model = QuestionnaireForm
     extra = 0
         
-class QuestionnaireAdmin(admin.OSMGeoAdmin):
+class QuestionnaireAdmin(admin.OSMGeoAdmin, TranslationAdmin):
+    list_display = ('name',)
     ordering = ['name']
     inlines = [
         GeoformInline
@@ -45,7 +51,5 @@ class QuestionnaireAdmin(admin.OSMGeoAdmin):
     
 admin.site.register(GeoformElement, GeoformElementAdmin)
 admin.site.register(Geoform, GeoformAdmin)
-#admin.site.register(FormElement, FormElementAdmin)
 admin.site.register(Questionnaire, QuestionnaireAdmin)
-#admin.site.register(QuestionnaireForm, QuestionnaireFormAdmin)
 
