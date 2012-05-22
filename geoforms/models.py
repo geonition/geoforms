@@ -34,8 +34,7 @@ class GeoformElement(models.Model):
         super(GeoformElement, self).save(*args, **kwargs)
     
     def __unicode__(self):
-        return u'%s %s' % (self.name,
-                           self.lang)
+        return u'%s' % (self.name)
     
 
 class Geoform(models.Model):
