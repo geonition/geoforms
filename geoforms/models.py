@@ -4,9 +4,11 @@ from django.contrib.sites.managers import CurrentSiteManager
 from django.contrib.sites.models import Site
 from django.db import models
 from django.template.defaultfilters import slugify
+from django.utils.translation import ugettext as _
 from forms import Geoform as Geoform_form
 from django.forms.fields import CharField
 from fields import ButtonField
+
 
 class GeoformElement(models.Model):
     """
@@ -35,6 +37,10 @@ class GeoformElement(models.Model):
     
     def __unicode__(self):
         return u'%s' % (self.name)
+        
+    class Meta:
+        verbose_name = _('questionnaire page element')
+        verbose_name_plural = _('questionnaire page elements')
     
 
 class Geoform(models.Model):
@@ -64,6 +70,10 @@ class Geoform(models.Model):
     def __unicode__(self):
         return u'%s - %s' % (self.name,
                              self.type)
+        
+    class Meta:
+        verbose_name = _('questionnaire page')
+        verbose_name_plural = _('questionnaire pages')
 
 
 class FormElement(models.Model):
@@ -90,11 +100,13 @@ class Questionnaire(models.Model):
     geoforms = models.ManyToManyField(Geoform,
                                       through = 'QuestionnaireForm',
                                       related_name = 'geoforms')
-    name = models.CharField(max_length = 100)
+    name = models.CharField(_('name of questionnaire'),
+                            max_length = 100)
     slug = models.SlugField(max_length = 100,
                             editable = False,
                             unique = True)
-    area = geomodel.PolygonField(srid = getattr(settings, 'SPATIAL_REFERENCE_SYSTEM_ID', 4326))
+    area = geomodel.PolygonField(_('area of questionnaire'),
+                                 srid = getattr(settings, 'SPATIAL_REFERENCE_SYSTEM_ID', 4326))
     site = models.ForeignKey(Site,
                              default = getattr(settings, 'SITE_ID', 1),
                              editable = False)
@@ -111,6 +123,8 @@ class Questionnaire(models.Model):
 
     class Meta:
         unique_together = (("slug", "site"),)
+        verbose_name = _('questionnaire')
+        verbose_name_plural = _('questionnaires')
 
 class QuestionnaireForm(models.Model):
     """

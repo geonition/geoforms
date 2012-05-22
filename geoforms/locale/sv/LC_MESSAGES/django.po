@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-02 14:16+0300\n"
-"PO-Revision-Date: 2012-05-02 14:38+0200\n"
+"POT-Creation-Date: 2012-05-22 07:46-0500\n"
+"PO-Revision-Date: 2012-05-22 15:47+0200\n"
 "Last-Translator: Kristoffer Snabb <kristoffer.snabb@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -16,6 +16,38 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#: models.py:42
+msgid "questionnaire page element"
+msgstr "enkät sidans element"
+
+#: models.py:43
+msgid "questionnaire page elements"
+msgstr "enkät sidors element"
+
+#: models.py:75
+msgid "questionnaire page"
+msgstr "enkät sida"
+
+#: models.py:76
+msgid "questionnaire pages"
+msgstr "enkät sidor"
+
+#: models.py:103
+msgid "name of questionnaire"
+msgstr "enkätets namn"
+
+#: models.py:108
+msgid "area of questionnaire"
+msgstr "området för enkätet"
+
+#: models.py:126
+msgid "questionnaire"
+msgstr "enkät"
+
+#: models.py:127
+msgid "questionnaires"
+msgstr "enkät"
 
 #: templates/questionnaire.html:45
 #: templates/questionnaire.html.py:52
