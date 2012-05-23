@@ -13,7 +13,15 @@
     min-height: 1em;
 }
 #content button.drawbutton {
-    width: 150px;
+    width: 250px;
+}
+#content button.drawbutton.first {
+    width: 147px;
+    float: left;
+}
+#content button.drawbutton.second {
+    width: 147px;
+    float: right;
 }
 #content .next, #content .previous {
     margin: 1em;
@@ -30,6 +38,9 @@
 }
 #content input {
     max-width: 120px;
+}
+#content .ui-accordion p {
+    padding: 0;
 }
 .left_align {
     text-align: left;
