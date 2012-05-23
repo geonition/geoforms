@@ -4,6 +4,7 @@ from django.contrib.sites.managers import CurrentSiteManager
 from django.contrib.sites.models import Site
 from django.db import models
 from django.template.defaultfilters import slugify
+from django.template.loader import render_to_string
 from django.utils.translation import ugettext as _
 from forms import Geoform as Geoform_form
 from django.forms.fields import CharField
@@ -27,8 +28,9 @@ class GeoformElement(models.Model):
     slug = models.SlugField(max_length = 50,
                             editable = False,
                             unique = True)
-    name = models.CharField(max_length = 50)
-    html = models.TextField()
+    name = models.CharField(max_length = 50,
+                            help_text = render_to_string('help/geoform_element_name.html'))
+    html = models.TextField(help_text = render_to_string('help/geoform_element_html.html'))
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
@@ -86,12 +88,11 @@ class FormElement(models.Model):
     order = models.IntegerField(default=1)
 
     def __unicode__(self):
-        return u'%s. %s element in %s %s' % (
-                            self.order,
-                            self.element.name,
-                            self.geoform.name,
-                            self.geoform.type,
-                            )
+        return u'page element'
+        
+    class Meta:
+        verbose_name = _('page element')
+        verbose_name_plural = _('page elements')
         
 class Questionnaire(models.Model):
     """
@@ -139,11 +140,12 @@ class QuestionnaireForm(models.Model):
     order = models.IntegerField(default=1)
 
     def __unicode__(self):
-        return u'questionnaire %s form %s type %s order %s' % (
-                              self.questionnaire.name,
-                              self.geoform.name,
-                              self.geoform.type,
-                              self.order,)
+        return u'questionnaire page'
+        
+    class Meta:
+        verbose_name = _('questionnaire page')
+        verbose_name_plural = _('questionnaire pages')
+        
 
 
 
