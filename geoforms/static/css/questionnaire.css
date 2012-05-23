@@ -39,6 +39,11 @@
 #content input {
     max-width: 120px;
 }
+#content label {
+    display: block;
+    margin: 0.1em;
+    text-align: left;
+}
 #content .ui-accordion p {
     padding: 0;
 }
