@@ -8,6 +8,9 @@ gnt.questionnaire = {};
 gnt.questionnaire.popup; //only one popup at the time
 gnt.questionnaire.property_id;
 
+//fix for OpenLayers 2.12 RC5 check 29.5.2012 should be null and automatic
+OpenLayers.Popup.FramedCloud.prototype.maxSize = new OpenLayers.Size(370, 1024); 
+        
 
 /*
 Draw Button is a drawing
@@ -176,7 +179,7 @@ gnt.questionnaire.save_handler = function(evt) {
     //Get the geojson
     var gf = new OpenLayers.Format.GeoJSON();
     var geojson = gf.write(evt.data[0]);
-    console.log( geojson );
+    
     var feature_json = $.parseJSON( geojson );
         
     
@@ -184,7 +187,6 @@ gnt.questionnaire.save_handler = function(evt) {
     var private_field_set = false;
     for ( var i = 0;i < popup_values.length; i++ ) {
         
-        //console.log( popup_values[i] );
         if ( popup_values[i]["name"] === "private" ) {
             private_field_set = true;
             if( popup_values[i]['value'] === 'false') {
@@ -197,7 +199,6 @@ gnt.questionnaire.save_handler = function(evt) {
         }
         
         //evt.data[0].private = "false";
-        console.log(evt.data[0]);
     }
     
     if( !private_field_set ) {
@@ -293,7 +294,6 @@ gnt.questionnaire.show_popup_for_feature = function(feature, popup_name) {
         //create popup and put it on the map
         gnt.questionnaire.popup = feature.popup;
         map.addPopup(gnt.questionnaire.popup);
-        gnt.questionnaire.popup.setSize(new OpenLayers.Size(250, 250)); //fix for OpenLayers 2.12 RC1 check 8.5.2012 should be null and automatic
         
         //add a class to the form to recognize it as active
         $('.olFramedCloudPopupContent form[name="' + popup_name + '"]').addClass( 'active' );
@@ -308,10 +308,7 @@ gnt.questionnaire.show_popup_for_feature = function(feature, popup_name) {
             
             //reserved inputs like private and other feature root values
             if( $(this).attr('name') === 'private' ) { //should be a checkbox
-                console.log($(this).attr('name'));
-                console.log(feature);
-                console.log(feature['private']);
-                console.log(feature.attributes.form_values[i]);
+                
                 $(this).attr( 'checked', !feature['private'] )
             }
             
@@ -328,7 +325,6 @@ gnt.questionnaire.show_popup_for_feature = function(feature, popup_name) {
                         return value;
                     } else if($(this).attr( 'type' ) === 'checkbox') {
                     } else {
-                        
                         return val_obj.value;
                     }
                 }
@@ -388,7 +384,8 @@ gnt.questionnaire.feature_added = function(evt) {
                         null,
                         evt.data.contentHTML,
                         null,
-                        false);
+                        false,
+                        undefined);
     
     gnt.questionnaire.show_popup_for_feature(evt, popup_name);
 
