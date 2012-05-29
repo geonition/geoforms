@@ -1,3 +1,4 @@
+{% load i18n %}
 /*
  Questionnaire UI namespace
  
@@ -10,7 +11,12 @@ gnt.questionnaire.property_id;
 
 //fix for OpenLayers 2.12 RC5 check 29.5.2012 should be null and automatic
 OpenLayers.Popup.FramedCloud.prototype.maxSize = new OpenLayers.Size(370, 1024); 
-        
+   
+//TOOLTIP help texts for point, route and area
+var help = {
+    'point': ['{% trans "Click on the map to draw the point" %}'],
+    'route': ['{% trans "Click on the map to start drawing the route and doubleclick to finnish" %}'],
+    'area': ['{% trans "Click on the map to start drawing the area and doubleclick to finnish" %}']};
 
 /*
 Draw Button is a drawing
@@ -31,6 +37,7 @@ active_class: the class to use when a button is activated
         {
             options: {
                 drawcontrol: "drawcontrol", //the draw control used, required
+                geography_type: "point",
                 selectcontrol: "selectcontrol",
                 classes: "ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only",
                 text_class: "ui-button-text",
@@ -96,6 +103,9 @@ active_class: the class to use when a button is activated
                 var selectcontrol_id = this.options['selectcontrol'];
                 var selectcontrol = map.getControl(selectcontrol_id);
                 selectcontrol.activate();
+                
+                //TOOLTIP
+                $(".tooltip").hide();
             },
             activate: function() {
                 if(this.element.attr( 'disabled') !== 'disabled') {
@@ -116,6 +126,25 @@ active_class: the class to use when a button is activated
                     var name = $(this.element).attr('name');
                     drawcontrol.layer.styleMap.styles.temporary.defaultStyle.externalGraphic = '/images/needle?color=' + color;
                 }
+                
+                //TOOLTIP
+                var tooltip = $(".tooltip");
+                if (tooltip.length === 0) {
+                    var tooltip_html = '<div class="tooltip"></div>';
+                    $(document.body).append(tooltip_html);
+                    $(document.body).bind("mousemove", function(evt) {
+                        $(".tooltip").css('top', evt.clientY + 5);
+                        $(".tooltip").css('left', evt.clientX + 5);
+                    })
+                }
+                if(this.options.geography_type === "point") {
+                    $(".tooltip").html(help.point[0]);   
+                } else if (this.options.geography_type === "route") {
+                    $(".tooltip").html(help.route[0]);
+                } else if (this.options.geography_type === "area") {
+                    $(".tooltip").html(help.area[0]);
+                }
+                $(".tooltip").show();
             },
             disable: function() {
                 this.element.removeClass( this.options['active_class'] );
@@ -127,6 +156,9 @@ active_class: the class to use when a button is activated
                 var selectcontrol_id = this.options['selectcontrol'];
                 var selectcontrol = map.getControl(selectcontrol_id);
                 selectcontrol.activate();
+                
+                //TOOLTIP
+                $(".tooltip").hide();
             },
             enable: function() {
                 this.element.removeClass( this.options['disable_class'] );
@@ -605,13 +637,16 @@ gnt.questionnaire.init = function(forms,
         
         // create the form specific element widgets
         $( ".drawbutton.point" ).drawButton({
-            drawcontrol: "pointcontrol"
+            drawcontrol: "pointcontrol",
+            geography_type: "point"
         });
         $( ".drawbutton.route" ).drawButton({
-            drawcontrol: "routecontrol"
+            drawcontrol: "routecontrol",
+            geography_type: "route"
         });
         $( ".drawbutton.area" ).drawButton({
-            drawcontrol: "areacontrol"
+            drawcontrol: "areacontrol",
+            geography_type: "area"
         });
         
         select_feature_control.activate();
