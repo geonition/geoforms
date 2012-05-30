@@ -99,7 +99,7 @@
 var data_group = 'Q-{{ questionnaire.slug }}';
 var questionnaire_area = {{ questionnaire.area.json|safe }};
 
-{% include "jstranslations.js" %}
+{% include "jstranslations.txt" %}
 
 jQuery(document).ready(function() {
     gnt.questionnaire.init('#forms', '', '#forms', questionnaire_area, data_group);
