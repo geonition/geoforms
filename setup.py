@@ -12,6 +12,7 @@ setup(
         "geoforms": [
             "templates/*.html",
             "templates/*.api.js",
+            "templates/jstranslations.txt",
             "templates/help/*.html",
             "locale/*/LC_MESSAGES/*.po",
             "locale/*/LC_MESSAGES/*.mo",

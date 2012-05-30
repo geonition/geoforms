@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-30 03:58-0500\n"
+"POT-Creation-Date: 2012-05-30 04:16-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -58,6 +58,18 @@ msgstr ""
 msgid "questionnaires"
 msgstr ""
 
+#: templates/jstranslations.txt:5
+msgid "Click on the map to draw the point"
+msgstr ""
+
+#: templates/jstranslations.txt:6
+msgid "Click on the map to start drawing the route and doubleclick to finnish"
+msgstr ""
+
+#: templates/jstranslations.txt:7
+msgid "Click on the map to start drawing the area and doubleclick to finnish"
+msgstr ""
+
 #: templates/questionnaire.html:46 templates/questionnaire.html.py:53
 msgid "Next"
 msgstr ""
@@ -84,7 +96,7 @@ msgstr ""
 #: templates/help/geoform_element_html.html:2
 msgid ""
 "\n"
-"This is the HTML that represents the element widet.\n"
+"This is the HTML that represents the element widget.\n"
 msgstr ""
 
 #: templates/help/geoform_element_name.html:2

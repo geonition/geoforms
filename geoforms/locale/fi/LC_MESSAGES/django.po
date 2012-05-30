@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-30 03:58-0500\n"
-"PO-Revision-Date: 2012-05-22 15:46+0200\n"
+"POT-Creation-Date: 2012-05-30 04:16-0500\n"
+"PO-Revision-Date: 2012-05-30 12:22+0200\n"
 "Last-Translator: Kristoffer Snabb <kristoffer.snabb@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -25,21 +25,21 @@ msgstr "kyselysivun elementti"
 msgid "questionnaire page elements"
 msgstr "kyselysivujen elementit"
 
-#: models.py:77 models.py:147
+#: models.py:77
+#: models.py:147
 msgid "questionnaire page"
 msgstr "kyselysivu"
 
-#: models.py:78 models.py:148
+#: models.py:78
+#: models.py:148
 msgid "questionnaire pages"
 msgstr "kyselysivuja"
 
 #: models.py:94
-#, fuzzy
 msgid "page element"
 msgstr "kyselysivun elementti"
 
 #: models.py:95
-#, fuzzy
 msgid "page elements"
 msgstr "kyselysivujen elementit"
 
@@ -59,21 +59,29 @@ msgstr "kysely"
 msgid "questionnaires"
 msgstr "kyselyt"
 
-#: templates/questionnaire.html:46 templates/questionnaire.html.py:53
+#: templates/jstranslations.txt:5
+msgid "Click on the map to draw the point"
+msgstr "Napsauta karttaa piirtääksesi pisteen"
+
+#: templates/jstranslations.txt:6
+msgid "Click on the map to start drawing the route and doubleclick to finnish"
+msgstr "Napsauta karttaa aloittaaksesi reitin piirtämistä ja tuplanapsauta lopettaaksesi piirron"
+
+#: templates/jstranslations.txt:7
+msgid "Click on the map to start drawing the area and doubleclick to finnish"
+msgstr "Napsauta karttaa aloittaaksesi alueen piirtämistä ja tuplanapsauta lopettaaksesi piirron"
+
+#: templates/questionnaire.html:46
+#: templates/questionnaire.html.py:53
 msgid "Next"
 msgstr "Seuraava"
 
 #: templates/questionnaire.html:48
-msgid ""
-"You have now reached the end of the questionnaire. Thank you for your "
-"answers! You can still continue modifying your answers by following the "
-"previous links or clicking the sections of this questionnaire."
-msgstr ""
-"Tämä kyselyn viimeinen sivu. Kiitos vastauksistasi! Voit vielä palata "
-"muokaamaan vastauksiasi Edellinen painikkeella tai klikkaamalla haluamaasi "
-"kyselyn osiota. "
+msgid "You have now reached the end of the questionnaire. Thank you for your answers! You can still continue modifying your answers by following the previous links or clicking the sections of this questionnaire."
+msgstr "Tämä kyselyn viimeinen sivu. Kiitos vastauksistasi! Voit vielä palata muokaamaan vastauksiasi Edellinen painikkeella tai klikkaamalla haluamaasi kyselyn osiota. "
 
-#: templates/questionnaire.html:50 templates/questionnaire.html.py:52
+#: templates/questionnaire.html:50
+#: templates/questionnaire.html.py:52
 msgid "Previous"
 msgstr "Edellinen"
 
@@ -88,8 +96,10 @@ msgstr "Tallenna"
 #: templates/help/geoform_element_html.html:2
 msgid ""
 "\n"
-"This is the HTML that represents the element widet.\n"
+"This is the HTML that represents the element widget.\n"
 msgstr ""
+"\n"
+" Tämä HTML esittää yhden kysely elementin \n"
 
 #: templates/help/geoform_element_name.html:2
 msgid ""
@@ -98,3 +108,6 @@ msgid ""
 "throughout the application so there cannot be two elements with the\n"
 "same name.\n"
 msgstr ""
+"\n"
+"Tämä on kysely elementin nimi. Nimen tulisi olla uniikki koko ohjelmassa eikä kaksi samannimistä elementtiä voi tehdä.\n"
+

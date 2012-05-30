@@ -1,4 +1,3 @@
-{% load i18n %}
 /*
  Questionnaire UI namespace
  
@@ -11,12 +10,6 @@ gnt.questionnaire.property_id;
 
 //fix for OpenLayers 2.12 RC5 check 29.5.2012 should be null and automatic
 OpenLayers.Popup.FramedCloud.prototype.maxSize = new OpenLayers.Size(370, 1024); 
-   
-//TOOLTIP help texts for point, route and area
-var help = {
-    'point': ['{% trans "Click on the map to draw the point" %}'],
-    'route': ['{% trans "Click on the map to start drawing the route and doubleclick to finnish" %}'],
-    'area': ['{% trans "Click on the map to start drawing the area and doubleclick to finnish" %}']};
 
 /*
 Draw Button is a drawing
