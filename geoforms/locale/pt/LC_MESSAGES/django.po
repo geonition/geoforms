@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-05-30 03:58-0500\n"
-"PO-Revision-Date: 2012-05-22 15:47+0200\n"
-"Last-Translator: Kristoffer Snabb <kristoffer.snabb@gmail.com>\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -19,49 +20,47 @@ msgstr ""
 
 #: models.py:44
 msgid "questionnaire page element"
-msgstr "enkät sidans element"
+msgstr ""
 
 #: models.py:45
 msgid "questionnaire page elements"
-msgstr "enkät sidors element"
+msgstr ""
 
 #: models.py:77 models.py:147
 msgid "questionnaire page"
-msgstr "enkät sida"
+msgstr ""
 
 #: models.py:78 models.py:148
 msgid "questionnaire pages"
-msgstr "enkät sidor"
+msgstr ""
 
 #: models.py:94
-#, fuzzy
 msgid "page element"
-msgstr "enkät sidans element"
+msgstr ""
 
 #: models.py:95
-#, fuzzy
 msgid "page elements"
-msgstr "enkät sidors element"
+msgstr ""
 
 #: models.py:104
 msgid "name of questionnaire"
-msgstr "enkätets namn"
+msgstr ""
 
 #: models.py:109
 msgid "area of questionnaire"
-msgstr "området för enkätet"
+msgstr ""
 
 #: models.py:128
 msgid "questionnaire"
-msgstr "enkät"
+msgstr ""
 
 #: models.py:129
 msgid "questionnaires"
-msgstr "enkät"
+msgstr ""
 
 #: templates/questionnaire.html:46 templates/questionnaire.html.py:53
 msgid "Next"
-msgstr "Nästa sida"
+msgstr ""
 
 #: templates/questionnaire.html:48
 msgid ""
@@ -69,21 +68,18 @@ msgid ""
 "answers! You can still continue modifying your answers by following the "
 "previous links or clicking the sections of this questionnaire."
 msgstr ""
-"Det här är enkätets sista sida. Tack för dina svar! Du kan ännu ändra på "
-"dina svar med att väljä 'föregående sida' eller med att klicka på någon av "
-"de föregående sidornas namn."
 
 #: templates/questionnaire.html:50 templates/questionnaire.html.py:52
 msgid "Previous"
-msgstr "Föregående sida"
+msgstr ""
 
 #: templates/questionnaire.html:79
 msgid "Remove"
-msgstr "Ta bort"
+msgstr ""
 
 #: templates/questionnaire.html:82
 msgid "Save"
-msgstr "Spara"
+msgstr ""
 
 #: templates/help/geoform_element_html.html:2
 msgid ""

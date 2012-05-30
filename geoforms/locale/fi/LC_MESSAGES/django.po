@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-22 07:46-0500\n"
+"POT-Creation-Date: 2012-05-30 03:58-0500\n"
 "PO-Revision-Date: 2012-05-22 15:46+0200\n"
 "Last-Translator: Kristoffer Snabb <kristoffer.snabb@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,57 +17,84 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
-#: models.py:42
+#: models.py:44
 msgid "questionnaire page element"
 msgstr "kyselysivun elementti"
 
-#: models.py:43
+#: models.py:45
 msgid "questionnaire page elements"
 msgstr "kyselysivujen elementit"
 
-#: models.py:75
+#: models.py:77 models.py:147
 msgid "questionnaire page"
 msgstr "kyselysivu"
 
-#: models.py:76
+#: models.py:78 models.py:148
 msgid "questionnaire pages"
 msgstr "kyselysivuja"
 
-#: models.py:103
+#: models.py:94
+#, fuzzy
+msgid "page element"
+msgstr "kyselysivun elementti"
+
+#: models.py:95
+#, fuzzy
+msgid "page elements"
+msgstr "kyselysivujen elementit"
+
+#: models.py:104
 msgid "name of questionnaire"
 msgstr "kyselyn nimi"
 
-#: models.py:108
+#: models.py:109
 msgid "area of questionnaire"
 msgstr "kyselyn alue"
 
-#: models.py:126
+#: models.py:128
 msgid "questionnaire"
 msgstr "kysely"
 
-#: models.py:127
+#: models.py:129
 msgid "questionnaires"
 msgstr "kyselyt"
 
-#: templates/questionnaire.html:45
-#: templates/questionnaire.html.py:52
+#: templates/questionnaire.html:46 templates/questionnaire.html.py:53
 msgid "Next"
 msgstr "Seuraava"
 
-#: templates/questionnaire.html:47
-msgid "You have now reached the end of the questionnaire. Thank you for your answers! You can still continue modifying your answers by following the previous links or clicking the sections of this questionnaire."
-msgstr "Tämä kyselyn viimeinen sivu. Kiitos vastauksistasi! Voit vielä palata muokaamaan vastauksiasi Edellinen painikkeella tai klikkaamalla haluamaasi kyselyn osiota. "
+#: templates/questionnaire.html:48
+msgid ""
+"You have now reached the end of the questionnaire. Thank you for your "
+"answers! You can still continue modifying your answers by following the "
+"previous links or clicking the sections of this questionnaire."
+msgstr ""
+"Tämä kyselyn viimeinen sivu. Kiitos vastauksistasi! Voit vielä palata "
+"muokaamaan vastauksiasi Edellinen painikkeella tai klikkaamalla haluamaasi "
+"kyselyn osiota. "
 
-#: templates/questionnaire.html:49
-#: templates/questionnaire.html.py:51
+#: templates/questionnaire.html:50 templates/questionnaire.html.py:52
 msgid "Previous"
 msgstr "Edellinen"
 
-#: templates/questionnaire.html:78
+#: templates/questionnaire.html:79
 msgid "Remove"
 msgstr "Poista"
 
-#: templates/questionnaire.html:81
+#: templates/questionnaire.html:82
 msgid "Save"
 msgstr "Tallenna"
 
+#: templates/help/geoform_element_html.html:2
+msgid ""
+"\n"
+"This is the HTML that represents the element widet.\n"
+msgstr ""
+
+#: templates/help/geoform_element_name.html:2
+msgid ""
+"\n"
+"This is the name of the element. The element name should be unique\n"
+"throughout the application so there cannot be two elements with the\n"
+"same name.\n"
+msgstr ""
