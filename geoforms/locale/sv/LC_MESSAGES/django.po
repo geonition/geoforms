@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-05-30 04:16-0500\n"
-"PO-Revision-Date: 2012-05-30 12:18+0200\n"
+"PO-Revision-Date: 2012-06-01 13:05+0200\n"
 "Last-Translator: Kristoffer Snabb <kristoffer.snabb@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -78,7 +78,7 @@ msgstr "Nästa sida"
 
 #: templates/questionnaire.html:48
 msgid "You have now reached the end of the questionnaire. Thank you for your answers! You can still continue modifying your answers by following the previous links or clicking the sections of this questionnaire."
-msgstr "Det här är enkätets sista sida. Tack för dina svar! Du kan ännu ändra på dina svar med att väljä 'föregående sida' eller med att klicka på någon av de föregående sidornas namn."
+msgstr "Det här är enkätets sista sida. Tack för dina svar! Du kan ännu ändra på dina svar med att väljä 'föregående sida' eller med att klicka på någon av de föregående sidornas namn. "
 
 #: templates/questionnaire.html:50
 #: templates/questionnaire.html.py:52
