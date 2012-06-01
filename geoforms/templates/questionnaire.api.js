@@ -76,6 +76,18 @@ active_class: the class to use when a button is activated
                     drawcontrol.layer.styleMap.styles['default'].addRules([rule]);
                     this.options.rule_added = true;
                 }
+                
+                //TOOLTIP
+                var tooltip = $(".tooltip");
+                if (tooltip.length === 0) {
+                    var tooltip_html = '<div class="tooltip"></div>';
+                    $(document.body).append(tooltip_html);
+                    $(document.body).bind("mousemove", function(evt) {
+                        $(".tooltip").css('top', evt.clientY + 5);
+                        $(".tooltip").css('left', evt.clientX + 5);
+                    })
+                }
+                $(".tooltip").hide();
             
                 return this;
             },
@@ -122,14 +134,7 @@ active_class: the class to use when a button is activated
                 
                 //TOOLTIP
                 var tooltip = $(".tooltip");
-                if (tooltip.length === 0) {
-                    var tooltip_html = '<div class="tooltip"></div>';
-                    $(document.body).append(tooltip_html);
-                    $(document.body).bind("mousemove", function(evt) {
-                        $(".tooltip").css('top', evt.clientY + 5);
-                        $(".tooltip").css('left', evt.clientX + 5);
-                    })
-                }
+                
                 if(this.options.geography_type === "point") {
                     $(".tooltip").html(help.point[0]);   
                 } else if (this.options.geography_type === "route") {
