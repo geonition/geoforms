@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-30 04:16-0500\n"
+"POT-Creation-Date: 2012-06-12 04:04-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -70,27 +70,59 @@ msgstr ""
 msgid "Click on the map to start drawing the area and doubleclick to finnish"
 msgstr ""
 
-#: templates/questionnaire.html:46 templates/questionnaire.html.py:53
+#: templates/questionnaire.html:45 templates/questionnaire.html.py:48
 msgid "Next"
 msgstr ""
 
-#: templates/questionnaire.html:48
-msgid ""
-"You have now reached the end of the questionnaire. Thank you for your "
-"answers! You can still continue modifying your answers by following the "
-"previous links or clicking the sections of this questionnaire."
-msgstr ""
-
-#: templates/questionnaire.html:50 templates/questionnaire.html.py:52
+#: templates/questionnaire.html:47 templates/questionnaire.html.py:71
 msgid "Previous"
 msgstr ""
 
-#: templates/questionnaire.html:79
+#: templates/questionnaire.html:58
+msgid "Your answers and finish"
+msgstr ""
+
+#: templates/questionnaire.html:67
+msgid ""
+"This is the end of the questionnaire and your answers has been saved. Thank "
+"you for your answers! You can still continue modifying your answers by "
+"following the previous links or clicking the sections of this questionnaire."
+msgstr ""
+
+#: templates/questionnaire.html:93
 msgid "Remove"
 msgstr ""
 
-#: templates/questionnaire.html:82
+#: templates/questionnaire.html:96
 msgid "Save"
+msgstr ""
+
+#: templates/questionnaire.html:131 templates/questionnaire.html.py:133
+msgid "You marked"
+msgstr ""
+
+#: templates/questionnaire.html:131
+msgid "place"
+msgstr ""
+
+#: templates/questionnaire.html:133
+msgid "places"
+msgstr ""
+
+#: templates/questionnaire.html:139 templates/questionnaire.html.py:141
+msgid "and answered"
+msgstr ""
+
+#: templates/questionnaire.html:139 templates/questionnaire.html.py:144
+msgid "question"
+msgstr ""
+
+#: templates/questionnaire.html:141 templates/questionnaire.html.py:146
+msgid "questions"
+msgstr ""
+
+#: templates/questionnaire.html:144 templates/questionnaire.html.py:146
+msgid "You answered"
 msgstr ""
 
 #: templates/help/geoform_element_html.html:2
