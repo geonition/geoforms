@@ -3,7 +3,7 @@ from setuptools import find_packages
 
 setup(
     name='geoforms',
-    version='4.1.0',
+    version='4.1.6',
     author='Kristoffer Snabb',
     url='https://github.com/geonition/geoforms',
     packages=find_packages(),
@@ -12,6 +12,7 @@ setup(
         "geoforms": [
             "templates/*.html",
             "templates/*.api.js",
+            "templates/jstranslations.txt",
             "templates/help/*.html",
             "locale/*/LC_MESSAGES/*.po",
             "locale/*/LC_MESSAGES/*.mo",

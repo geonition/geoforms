@@ -5,9 +5,14 @@
 */
 gnt.questionnaire = {};
 
+//save non place based values here
+gnt.questionnaire.npvalues = {};
+
 gnt.questionnaire.popup; //only one popup at the time
 gnt.questionnaire.property_id;
 
+//fix for OpenLayers 2.12 RC5 check 29.5.2012 should be null and automatic
+OpenLayers.Popup.FramedCloud.prototype.maxSize = new OpenLayers.Size(370, 1024); 
 
 /*
 Draw Button is a drawing
@@ -28,6 +33,7 @@ active_class: the class to use when a button is activated
         {
             options: {
                 drawcontrol: "drawcontrol", //the draw control used, required
+                geography_type: "point",
                 selectcontrol: "selectcontrol",
                 classes: "ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only",
                 text_class: "ui-button-text",
@@ -73,6 +79,18 @@ active_class: the class to use when a button is activated
                     drawcontrol.layer.styleMap.styles['default'].addRules([rule]);
                     this.options.rule_added = true;
                 }
+                
+                //TOOLTIP
+                var tooltip = $(".tooltip");
+                if (tooltip.length === 0) {
+                    var tooltip_html = '<div class="tooltip"></div>';
+                    $(document.body).append(tooltip_html);
+                    $(document.body).bind("mousemove", function(evt) {
+                        $(".tooltip").css('top', evt.clientY + 5);
+                        $(".tooltip").css('left', evt.clientX + 5);
+                    })
+                }
+                $(".tooltip").hide();
             
                 return this;
             },
@@ -93,6 +111,9 @@ active_class: the class to use when a button is activated
                 var selectcontrol_id = this.options['selectcontrol'];
                 var selectcontrol = map.getControl(selectcontrol_id);
                 selectcontrol.activate();
+                
+                //TOOLTIP
+                $(".tooltip").hide();
             },
             activate: function() {
                 if(this.element.attr( 'disabled') !== 'disabled') {
@@ -113,6 +134,18 @@ active_class: the class to use when a button is activated
                     var name = $(this.element).attr('name');
                     drawcontrol.layer.styleMap.styles.temporary.defaultStyle.externalGraphic = '/images/needle?color=' + color;
                 }
+                
+                //TOOLTIP
+                var tooltip = $(".tooltip");
+                
+                if(this.options.geography_type === "point") {
+                    $(".tooltip").html(help.point[0]);   
+                } else if (this.options.geography_type === "route") {
+                    $(".tooltip").html(help.route[0]);
+                } else if (this.options.geography_type === "area") {
+                    $(".tooltip").html(help.area[0]);
+                }
+                $(".tooltip").show();
             },
             disable: function() {
                 this.element.removeClass( this.options['active_class'] );
@@ -124,6 +157,9 @@ active_class: the class to use when a button is activated
                 var selectcontrol_id = this.options['selectcontrol'];
                 var selectcontrol = map.getControl(selectcontrol_id);
                 selectcontrol.activate();
+                
+                //TOOLTIP
+                $(".tooltip").hide();
             },
             enable: function() {
                 this.element.removeClass( this.options['disable_class'] );
@@ -177,7 +213,7 @@ gnt.questionnaire.save_handler = function(evt) {
     //Get the geojson
     var gf = new OpenLayers.Format.GeoJSON();
     var geojson = gf.write(evt.data[0]);
-    console.log( geojson );
+    
     var feature_json = $.parseJSON( geojson );
         
     
@@ -185,7 +221,6 @@ gnt.questionnaire.save_handler = function(evt) {
     var private_field_set = false;
     for ( var i = 0;i < popup_values.length; i++ ) {
         
-        //console.log( popup_values[i] );
         if ( popup_values[i]["name"] === "private" ) {
             private_field_set = true;
             if( popup_values[i]['value'] === 'false') {
@@ -198,7 +233,6 @@ gnt.questionnaire.save_handler = function(evt) {
         }
         
         //evt.data[0].private = "false";
-        console.log(evt.data[0]);
     }
     
     if( !private_field_set ) {
@@ -293,7 +327,7 @@ gnt.questionnaire.show_popup_for_feature = function(feature, popup_name) {
         
         //create popup and put it on the map
         gnt.questionnaire.popup = feature.popup;
-        
+        map.addPopup(gnt.questionnaire.popup);
         gnt.questionnaire.popup.updateSize();
         map.addPopup(gnt.questionnaire.popup);
         //gnt.questionnaire.popup.setSize(new OpenLayers.Size(225,250)); //fix for OpenLayers 2.12 RC1 check 8.5.2012 should be null and automatic
@@ -310,10 +344,7 @@ gnt.questionnaire.show_popup_for_feature = function(feature, popup_name) {
             
             //reserved inputs like private and other feature root values
             if( $(this).attr('name') === 'private' ) { //should be a checkbox
-                console.log($(this).attr('name'));
-                console.log(feature);
-                console.log(feature['private']);
-                console.log(feature.attributes.form_values[i]);
+                
                 $(this).attr( 'checked', !feature['private'] )
             }
             
@@ -330,7 +361,6 @@ gnt.questionnaire.show_popup_for_feature = function(feature, popup_name) {
                         return value;
                     } else if($(this).attr( 'type' ) === 'checkbox') {
                     } else {
-                        
                         return val_obj.value;
                     }
                 }
@@ -392,7 +422,8 @@ gnt.questionnaire.feature_added = function(evt) {
                         new OpenLayers.Size(100,100),
                         evt.data.contentHTML,
                         null,
-                        false);
+                        false,
+                        undefined);
     
     gnt.questionnaire.show_popup_for_feature(evt, popup_name);
 
@@ -468,7 +499,7 @@ gnt.questionnaire.init = function(forms,
             }
         });
         
-        $(window).bind( 'hashchange', function(event) {
+        $( window ).bind( 'hashchange', function(event) {
             var newHash = location.hash.split( '#' )[1];
             var newActive = newHash.slice(7) - 1;
             var curActive = $( accordion ).accordion( 'option', 'active' );
@@ -485,10 +516,8 @@ gnt.questionnaire.init = function(forms,
                            '@null',
                            '@all',
                            {'success': function(data) {
-                            
                                 gnt.questionnaire.property_id = data.id;
                                 $(forms + ' :input:not(button)').each(function(i) {
-                                    
                                     //if many results use the last one
                                     if(data['totalResults'] !== undefined) {
                                         var nr = data['totalResults'];
@@ -501,17 +530,42 @@ gnt.questionnaire.init = function(forms,
                                             }
                                         } else if(this.type === 'textarea') {
                                             $(this).text(data[this.name]);
+                                        } else if(this.type === 'checkbox') {
+                                            for(var j = 0; j < data[this.name].length; j++) {
+                                                if($(this).attr('value') === data[this.name][j]) {
+                                                    $(this).attr('checked', 'checked');
+                                                }
+                                            }
                                         } else {
                                             this.value = data[this.name];
                                         }
                                     }
+                                    gnt.questionnaire.npvalues = data;
+                                    delete gnt.questionnaire.npvalues['user'];
+                                    delete gnt.questionnaire.npvalues['time'];
+                                    delete gnt.questionnaire.npvalues['id'];
+                                    delete gnt.questionnaire.npvalues['group'];
                                 });
                            },
                            'complete': function() {
                                 //bind on value change to save the values
                                 $(forms + ' :input:not(button)').change(function(evt) {
+                                    
+                                    var new_value = evt.currentTarget.value;
+                                    if(evt.currentTarget.type === 'checkbox') {
+                                        new_value = [];
+                                        $('[name=' + evt.currentTarget.name + ']:checkbox:checked').each(function() {
+                                            new_value.push($(this).attr('value'));
+                                        });
+                                    }
                                     var property = {};
-                                    property[evt.currentTarget.name] = evt.currentTarget.value;
+                                    property[evt.currentTarget.name] = new_value;
+                                    if(new_value === '' || new_value === []) {
+                                        delete gnt.questionnaire.npvalues[evt.currentTarget.name];
+                                    } else {
+                                        gnt.questionnaire.npvalues[evt.currentTarget.name] = new_value;
+                                    }
+                                    
                                     if(gnt.questionnaire.property_id === undefined) {
                                         gnt.geo.create_property('@me',
                                                                 data_group,
@@ -613,20 +667,23 @@ gnt.questionnaire.init = function(forms,
         
         // create the form specific element widgets
         $( ".drawbutton.point" ).drawButton({
-            drawcontrol: "pointcontrol"
+            drawcontrol: "pointcontrol",
+            geography_type: "point"
         });
         $( ".drawbutton.route" ).drawButton({
-            drawcontrol: "routecontrol"
+            drawcontrol: "routecontrol",
+            geography_type: "route"
         });
         $( ".drawbutton.area" ).drawButton({
-            drawcontrol: "areacontrol"
+            drawcontrol: "areacontrol",
+            geography_type: "area"
         });
         
         select_feature_control.activate();
         
         var gf = new OpenLayers.Format.GeoJSON();
-        var questionnaire_area_feature = gf.read(questionnaire_area);
-        map.zoomToExtent(questionnaire_area_feature[0].geometry.getBounds());
+        var questionnaire_area_feature = gf.read( questionnaire_area );
+        map.zoomToExtent( questionnaire_area_feature[0].geometry.getBounds() );
         
        
         //get the users feature if any

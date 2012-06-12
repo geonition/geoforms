@@ -115,6 +115,7 @@ class Questionnaire(models.Model):
     on_site = CurrentSiteManager()
 
     def save(self, *args, **kwargs):
+        
         self.slug = slugify(self.name)
 
         super(Questionnaire, self).save(*args, **kwargs)

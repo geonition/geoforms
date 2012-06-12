@@ -1,0 +1,7 @@
+{% load i18n %}
+
+//TOOLTIP help
+var help = {
+    'point': ['{% trans "Click on the map to draw the point" %}'],
+    'route': ['{% trans "Click on the map to start drawing the route and doubleclick to finnish" %}'],
+    'area': ['{% trans "Click on the map to start drawing the area and doubleclick to finnish" %}']};

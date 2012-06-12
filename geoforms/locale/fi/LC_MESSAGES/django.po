@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-22 07:46-0500\n"
-"PO-Revision-Date: 2012-05-22 15:46+0200\n"
+"POT-Creation-Date: 2012-06-12 05:19-0500\n"
+"PO-Revision-Date: 2012-06-12 13:21+0200\n"
 "Last-Translator: Kristoffer Snabb <kristoffer.snabb@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -17,57 +17,139 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
-#: models.py:42
+#: models.py:44
 msgid "questionnaire page element"
 msgstr "kyselysivun elementti"
 
-#: models.py:43
+#: models.py:45
 msgid "questionnaire page elements"
 msgstr "kyselysivujen elementit"
 
-#: models.py:75
+#: models.py:77
+#: models.py:147
 msgid "questionnaire page"
 msgstr "kyselysivu"
 
-#: models.py:76
+#: models.py:78
+#: models.py:148
 msgid "questionnaire pages"
 msgstr "kyselysivuja"
 
-#: models.py:103
+#: models.py:94
+msgid "page element"
+msgstr "kyselysivun elementti"
+
+#: models.py:95
+msgid "page elements"
+msgstr "kyselysivujen elementit"
+
+#: models.py:104
 msgid "name of questionnaire"
 msgstr "kyselyn nimi"
 
-#: models.py:108
+#: models.py:109
 msgid "area of questionnaire"
 msgstr "kyselyn alue"
 
-#: models.py:126
+#: models.py:128
 msgid "questionnaire"
 msgstr "kysely"
 
-#: models.py:127
+#: models.py:129
 msgid "questionnaires"
 msgstr "kyselyt"
 
+#: templates/jstranslations.txt:5
+msgid "Click on the map to draw the point"
+msgstr "Napsauta karttaa piirtääksesi pisteen"
+
+#: templates/jstranslations.txt:6
+msgid "Click on the map to start drawing the route and doubleclick to finnish"
+msgstr "Napsauta karttaa aloittaaksesi reitin piirtämistä ja tuplanapsauta lopettaaksesi piirron"
+
+#: templates/jstranslations.txt:7
+msgid "Click on the map to start drawing the area and doubleclick to finnish"
+msgstr "Napsauta karttaa aloittaaksesi alueen piirtämistä ja tuplanapsauta lopettaaksesi piirron"
+
 #: templates/questionnaire.html:45
-#: templates/questionnaire.html.py:52
+#: templates/questionnaire.html.py:48
 msgid "Next"
 msgstr "Seuraava"
 
 #: templates/questionnaire.html:47
-msgid "You have now reached the end of the questionnaire. Thank you for your answers! You can still continue modifying your answers by following the previous links or clicking the sections of this questionnaire."
-msgstr "Tämä kyselyn viimeinen sivu. Kiitos vastauksistasi! Voit vielä palata muokaamaan vastauksiasi Edellinen painikkeella tai klikkaamalla haluamaasi kyselyn osiota. "
-
-#: templates/questionnaire.html:49
-#: templates/questionnaire.html.py:51
+#: templates/questionnaire.html.py:71
 msgid "Previous"
 msgstr "Edellinen"
 
-#: templates/questionnaire.html:78
+#: templates/questionnaire.html:58
+msgid "Your answers and finish"
+msgstr "Sinun vastauksesi ja lopetus"
+
+#: templates/questionnaire.html:67
+msgid "This is the end of the questionnaire and your answers has been saved. Thank you for your answers! You can still continue modifying your answers by following the previous links or clicking the sections of this questionnaire."
+msgstr "Tämä kyselyn viimeinen sivu ja vastuksesi on tallennettu. Kiitos vastauksistasi! Voit vielä palata muokaamaan vastauksiasi Edellinen-painikkeella tai klikkaamalla haluamaasi kyselyn osiota. "
+
+#: templates/questionnaire.html:93
 msgid "Remove"
 msgstr "Poista"
 
-#: templates/questionnaire.html:81
+#: templates/questionnaire.html:96
 msgid "Save"
 msgstr "Tallenna"
 
+#: templates/questionnaire.html:131
+msgid "You marked one place"
+msgstr "Olet merkinnyt yhden paikan"
+
+#: templates/questionnaire.html:133
+msgid "You marked"
+msgstr "Olet merkinnyt"
+
+#: templates/questionnaire.html:133
+msgid "places"
+msgstr "paikkaa"
+
+#: templates/questionnaire.html:139
+msgid "and answered one question"
+msgstr "ja vastannut yhteen kysymykseen"
+
+#: templates/questionnaire.html:141
+msgid "and answered"
+msgstr "ja antanut"
+
+#: templates/questionnaire.html:141
+#: templates/questionnaire.html.py:146
+msgid "questions"
+msgstr "vastausta"
+
+#: templates/questionnaire.html:144
+msgid "You answered one question"
+msgstr "Olet vastannut yhteen kysymykseen"
+
+#: templates/questionnaire.html:146
+msgid "You answered"
+msgstr "Olet antanut"
+
+#: templates/help/geoform_element_html.html:2
+msgid ""
+"\n"
+"This is the HTML that represents the element widget.\n"
+msgstr ""
+"\n"
+" Tämä HTML esittää yhden kysely elementin \n"
+
+#: templates/help/geoform_element_name.html:2
+msgid ""
+"\n"
+"This is the name of the element. The element name should be unique\n"
+"throughout the application so there cannot be two elements with the\n"
+"same name.\n"
+msgstr ""
+"\n"
+"Tämä on kysely elementin nimi. Nimen tulisi olla uniikki koko ohjelmassa eikä kaksi samannimistä elementtiä voi tehdä.\n"
+
+#~ msgid "place"
+#~ msgstr "paikan"
+
+#~ msgid "question"
+#~ msgstr "vastauksen"
