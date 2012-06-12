@@ -1,4 +1,4 @@
-{% extends "base_map.html"%}
+{% extends "base_map.html" %}
 {% load i18n %}
 
 {% block stylesheet %}
@@ -41,8 +41,7 @@
             
             <div class="form_element">
                 <p>
-                {% if form_list|length == 1 %}
-                {% elif forloop.first %}
+                {% if forloop.first %}
                     <a class="next" href="#section{{ forloop.counter|add:'1' }}">{% trans 'Next' %}&rarr;</a>
                 {% else %}
                     <a class="previous" href="#section{{ forloop.counter|add:'-1' }}">&larr;{% trans 'Previous' %}</a>
@@ -60,12 +59,8 @@
         </h3>
         <div>
             <div class="form_element">
-                {% trans "You marked" %}
                 <span class="number_of_features">X</span>
-                {% trans "places" %}
-                {% trans "and answered" %}
                 <span class="number_of_properties">X</span>
-                {% trans "one question" %}.
             </div>
             <div class="form_element">
                 <p>
@@ -128,8 +123,34 @@ function count_results() {
     var number_of_places = map.getLayersByName('Point Layer')[0].features.length;
     var number_of_routes = map.getLayersByName('Route Layer')[0].features.length;
     var number_of_areas = map.getLayersByName('Area Layer')[0].features.length;
-    $('span.number_of_properties').html(number_of_properties);
-    $('span.number_of_features').html(number_of_places + number_of_routes + number_of_areas);
+    var number_of_features = number_of_places + number_of_routes + number_of_areas;
+    
+    if( number_of_features === 0 ) {
+        $('span.number_of_features').html("");
+    } else if( number_of_features === 1) {
+        $('span.number_of_features').html('{% trans "You marked" %} ' + number_of_features + ' {% trans "place" %}');
+    } else {
+        $('span.number_of_features').html('{% trans "You marked" %} ' + number_of_features + ' {% trans "places" %}');
+    }
+    if( number_of_properties === 0 ) {
+        $('span.number_of_properties').html("");
+    } else if( number_of_features !== 0) {
+        if( number_of_properties === 1) {
+            $('span.number_of_properties').html('{% trans "and answered" %} ' + number_of_properties + ' {% trans "question" %}');
+        } else {
+            $('span.number_of_properties').html('{% trans "and answered" %} ' + number_of_properties + ' {% trans "questions" %}');
+        }
+    } else if ( number_of_properties === 1) {
+        $('span.number_of_properties').html('{% trans "You answered" %} ' + number_of_properties + ' {% trans "question" %}');
+    } else {
+        $('span.number_of_properties').html('{% trans "You answered" %} ' + number_of_properties + ' {% trans "questions" %}');
+    }
+    
+    if ( number_of_properties === 0 && number_of_features !== 0 ) {    
+        $( 'span.number_of_features' ).append('.');
+    } else if ( number_of_properties !== 0 ) {    
+        $( 'span.number_of_properties' ).append('.');
+    }
 }
 
 jQuery(document).ready(function() {
