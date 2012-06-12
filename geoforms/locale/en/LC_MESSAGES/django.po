@@ -1,0 +1,143 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-12 05:19-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: models.py:44
+msgid "questionnaire page element"
+msgstr ""
+
+#: models.py:45
+msgid "questionnaire page elements"
+msgstr ""
+
+#: models.py:77 models.py:147
+msgid "questionnaire page"
+msgstr ""
+
+#: models.py:78 models.py:148
+msgid "questionnaire pages"
+msgstr ""
+
+#: models.py:94
+msgid "page element"
+msgstr ""
+
+#: models.py:95
+msgid "page elements"
+msgstr ""
+
+#: models.py:104
+msgid "name of questionnaire"
+msgstr ""
+
+#: models.py:109
+msgid "area of questionnaire"
+msgstr ""
+
+#: models.py:128
+msgid "questionnaire"
+msgstr ""
+
+#: models.py:129
+msgid "questionnaires"
+msgstr ""
+
+#: templates/jstranslations.txt:5
+msgid "Click on the map to draw the point"
+msgstr ""
+
+#: templates/jstranslations.txt:6
+msgid "Click on the map to start drawing the route and doubleclick to finnish"
+msgstr ""
+
+#: templates/jstranslations.txt:7
+msgid "Click on the map to start drawing the area and doubleclick to finnish"
+msgstr ""
+
+#: templates/questionnaire.html:45 templates/questionnaire.html.py:48
+msgid "Next"
+msgstr ""
+
+#: templates/questionnaire.html:47 templates/questionnaire.html.py:71
+msgid "Previous"
+msgstr ""
+
+#: templates/questionnaire.html:58
+msgid "Your answers and finish"
+msgstr ""
+
+#: templates/questionnaire.html:67
+msgid ""
+"This is the end of the questionnaire and your answers has been saved. Thank "
+"you for your answers! You can still continue modifying your answers by "
+"following the previous links or clicking the sections of this questionnaire."
+msgstr ""
+
+#: templates/questionnaire.html:93
+msgid "Remove"
+msgstr ""
+
+#: templates/questionnaire.html:96
+msgid "Save"
+msgstr ""
+
+#: templates/questionnaire.html:131
+msgid "You marked one place"
+msgstr ""
+
+#: templates/questionnaire.html:133
+msgid "You marked"
+msgstr ""
+
+#: templates/questionnaire.html:133
+msgid "places"
+msgstr ""
+
+#: templates/questionnaire.html:139
+msgid "and answered one question"
+msgstr ""
+
+#: templates/questionnaire.html:141
+msgid "and answered"
+msgstr ""
+
+#: templates/questionnaire.html:141 templates/questionnaire.html.py:146
+msgid "questions"
+msgstr ""
+
+#: templates/questionnaire.html:144
+msgid "You answered one question"
+msgstr ""
+
+#: templates/questionnaire.html:146
+msgid "You answered"
+msgstr ""
+
+#: templates/help/geoform_element_html.html:2
+msgid ""
+"\n"
+"This is the HTML that represents the element widget.\n"
+msgstr ""
+
+#: templates/help/geoform_element_name.html:2
+msgid ""
+"\n"
+"This is the name of the element. The element name should be unique\n"
+"throughout the application so there cannot be two elements with the\n"
+"same name.\n"
+msgstr ""
