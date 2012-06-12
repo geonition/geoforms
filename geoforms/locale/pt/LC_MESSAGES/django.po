@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-12 04:04-0500\n"
+"POT-Creation-Date: 2012-06-12 05:19-0500\n"
 "PO-Revision-Date: 2012-06-01 15:39\n"
 "Last-Translator:   <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -105,33 +105,38 @@ msgstr "Remover"
 msgid "Save"
 msgstr "Gravar"
 
-#: templates/questionnaire.html:131 templates/questionnaire.html.py:133
-msgid "You marked"
+#: templates/questionnaire.html:131
+msgid "You marked one place"
 msgstr ""
 
-#: templates/questionnaire.html:131
-msgid "place"
+#: templates/questionnaire.html:133
+msgid "You marked"
 msgstr ""
 
 #: templates/questionnaire.html:133
 msgid "places"
 msgstr ""
 
-#: templates/questionnaire.html:139 templates/questionnaire.html.py:141
+#: templates/questionnaire.html:139
+#, fuzzy
+msgid "and answered one question"
+msgstr "nome do questionário"
+
+#: templates/questionnaire.html:141
 msgid "and answered"
 msgstr ""
-
-#: templates/questionnaire.html:139 templates/questionnaire.html.py:144
-#, fuzzy
-msgid "question"
-msgstr "questionário"
 
 #: templates/questionnaire.html:141 templates/questionnaire.html.py:146
 #, fuzzy
 msgid "questions"
 msgstr "questionários"
 
-#: templates/questionnaire.html:144 templates/questionnaire.html.py:146
+#: templates/questionnaire.html:144
+#, fuzzy
+msgid "You answered one question"
+msgstr "área do questionário"
+
+#: templates/questionnaire.html:146
 msgid "You answered"
 msgstr ""
 
@@ -153,3 +158,7 @@ msgstr ""
 "\n"
 "Isto é o nome do elemento. O nome do elemento deve ser o mesmo por toda a "
 "aplicação portanto não pode haver dois elementos com o mesmo nome.\n"
+
+#, fuzzy
+#~ msgid "question"
+#~ msgstr "questionário"

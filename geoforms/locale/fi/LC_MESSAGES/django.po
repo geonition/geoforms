@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-12 04:04-0500\n"
-"PO-Revision-Date: 2012-06-12 12:44+0200\n"
+"POT-Creation-Date: 2012-06-12 05:19-0500\n"
+"PO-Revision-Date: 2012-06-12 13:21+0200\n"
 "Last-Translator: Kristoffer Snabb <kristoffer.snabb@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -98,27 +98,24 @@ msgid "Save"
 msgstr "Tallenna"
 
 #: templates/questionnaire.html:131
-#: templates/questionnaire.html.py:133
+msgid "You marked one place"
+msgstr "Olet merkinnyt yhden paikan"
+
+#: templates/questionnaire.html:133
 msgid "You marked"
 msgstr "Olet merkinnyt"
-
-#: templates/questionnaire.html:131
-msgid "place"
-msgstr "paikan"
 
 #: templates/questionnaire.html:133
 msgid "places"
 msgstr "paikkaa"
 
 #: templates/questionnaire.html:139
-#: templates/questionnaire.html.py:141
+msgid "and answered one question"
+msgstr "ja vastannut yhteen kysymykseen"
+
+#: templates/questionnaire.html:141
 msgid "and answered"
 msgstr "ja antanut"
-
-#: templates/questionnaire.html:139
-#: templates/questionnaire.html.py:144
-msgid "question"
-msgstr "vastauksen"
 
 #: templates/questionnaire.html:141
 #: templates/questionnaire.html.py:146
@@ -126,7 +123,10 @@ msgid "questions"
 msgstr "vastausta"
 
 #: templates/questionnaire.html:144
-#: templates/questionnaire.html.py:146
+msgid "You answered one question"
+msgstr "Olet vastannut yhteen kysymykseen"
+
+#: templates/questionnaire.html:146
 msgid "You answered"
 msgstr "Olet antanut"
 
@@ -148,3 +148,8 @@ msgstr ""
 "\n"
 "Tämä on kysely elementin nimi. Nimen tulisi olla uniikki koko ohjelmassa eikä kaksi samannimistä elementtiä voi tehdä.\n"
 
+#~ msgid "place"
+#~ msgstr "paikan"
+
+#~ msgid "question"
+#~ msgstr "vastauksen"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-12 04:04-0500\n"
+"POT-Creation-Date: 2012-06-12 05:19-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -97,31 +97,35 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
-#: templates/questionnaire.html:131 templates/questionnaire.html.py:133
-msgid "You marked"
+#: templates/questionnaire.html:131
+msgid "You marked one place"
 msgstr ""
 
-#: templates/questionnaire.html:131
-msgid "place"
+#: templates/questionnaire.html:133
+msgid "You marked"
 msgstr ""
 
 #: templates/questionnaire.html:133
 msgid "places"
 msgstr ""
 
-#: templates/questionnaire.html:139 templates/questionnaire.html.py:141
-msgid "and answered"
+#: templates/questionnaire.html:139
+msgid "and answered one question"
 msgstr ""
 
-#: templates/questionnaire.html:139 templates/questionnaire.html.py:144
-msgid "question"
+#: templates/questionnaire.html:141
+msgid "and answered"
 msgstr ""
 
 #: templates/questionnaire.html:141 templates/questionnaire.html.py:146
 msgid "questions"
 msgstr ""
 
-#: templates/questionnaire.html:144 templates/questionnaire.html.py:146
+#: templates/questionnaire.html:144
+msgid "You answered one question"
+msgstr ""
+
+#: templates/questionnaire.html:146
 msgid "You answered"
 msgstr ""
 

@@ -128,7 +128,7 @@ function count_results() {
     if( number_of_features === 0 ) {
         $('span.number_of_features').html("");
     } else if( number_of_features === 1) {
-        $('span.number_of_features').html('{% trans "You marked" %} ' + number_of_features + ' {% trans "place" %}');
+        $('span.number_of_features').html('{% trans "You marked one place" %}');
     } else {
         $('span.number_of_features').html('{% trans "You marked" %} ' + number_of_features + ' {% trans "places" %}');
     }
@@ -136,12 +136,12 @@ function count_results() {
         $('span.number_of_properties').html("");
     } else if( number_of_features !== 0) {
         if( number_of_properties === 1) {
-            $('span.number_of_properties').html('{% trans "and answered" %} ' + number_of_properties + ' {% trans "question" %}');
+            $('span.number_of_properties').html('{% trans "and answered one question" %}');
         } else {
             $('span.number_of_properties').html('{% trans "and answered" %} ' + number_of_properties + ' {% trans "questions" %}');
         }
     } else if ( number_of_properties === 1) {
-        $('span.number_of_properties').html('{% trans "You answered" %} ' + number_of_properties + ' {% trans "question" %}');
+        $('span.number_of_properties').html('{% trans "You answered one question" %}');
     } else {
         $('span.number_of_properties').html('{% trans "You answered" %} ' + number_of_properties + ' {% trans "questions" %}');
     }

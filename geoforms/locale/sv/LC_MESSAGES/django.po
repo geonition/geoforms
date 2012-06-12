@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-12 04:04-0500\n"
-"PO-Revision-Date: 2012-06-12 12:51+0200\n"
+"POT-Creation-Date: 2012-06-12 05:19-0500\n"
+"PO-Revision-Date: 2012-06-12 13:22+0200\n"
 "Last-Translator: Kristoffer Snabb <kristoffer.snabb@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -98,27 +98,24 @@ msgid "Save"
 msgstr "Spara"
 
 #: templates/questionnaire.html:131
-#: templates/questionnaire.html.py:133
+msgid "You marked one place"
+msgstr "Du markera ett ställe"
+
+#: templates/questionnaire.html:133
 msgid "You marked"
 msgstr "Du markera"
-
-#: templates/questionnaire.html:131
-msgid "place"
-msgstr "plats"
 
 #: templates/questionnaire.html:133
 msgid "places"
 msgstr "platser"
 
 #: templates/questionnaire.html:139
-#: templates/questionnaire.html.py:141
+msgid "and answered one question"
+msgstr "och svara på en fråga"
+
+#: templates/questionnaire.html:141
 msgid "and answered"
 msgstr "och svara på"
-
-#: templates/questionnaire.html:139
-#: templates/questionnaire.html.py:144
-msgid "question"
-msgstr "fråga"
 
 #: templates/questionnaire.html:141
 #: templates/questionnaire.html.py:146
@@ -126,7 +123,10 @@ msgid "questions"
 msgstr "frågor"
 
 #: templates/questionnaire.html:144
-#: templates/questionnaire.html.py:146
+msgid "You answered one question"
+msgstr "Du svara på en fråga"
+
+#: templates/questionnaire.html:146
 msgid "You answered"
 msgstr "Du svara"
 
@@ -148,3 +148,8 @@ msgstr ""
 "\n"
 "Det här är elementets namn. Elementets namn borde vara unikt och kan inte ha samma namn som nå annat element i programmet. \n"
 
+#~ msgid "place"
+#~ msgstr "plats"
+
+#~ msgid "question"
+#~ msgstr "fråga"
