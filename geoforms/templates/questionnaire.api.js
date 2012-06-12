@@ -158,6 +158,7 @@ gnt.questionnaire.get_popup_lonlat = function(geometry) {
                         geometry.components[0].components[0].y);
     }
     return lonlat;
+    console.log(lonlat);
 }
 
 /*
@@ -292,9 +293,10 @@ gnt.questionnaire.show_popup_for_feature = function(feature, popup_name) {
         
         //create popup and put it on the map
         gnt.questionnaire.popup = feature.popup;
-        map.addPopup(gnt.questionnaire.popup);
-        gnt.questionnaire.popup.setSize(new OpenLayers.Size(250, 250)); //fix for OpenLayers 2.12 RC1 check 8.5.2012 should be null and automatic
         
+        gnt.questionnaire.popup.updateSize();
+        map.addPopup(gnt.questionnaire.popup);
+        //gnt.questionnaire.popup.setSize(new OpenLayers.Size(225,250)); //fix for OpenLayers 2.12 RC1 check 8.5.2012 should be null and automatic
         //add a class to the form to recognize it as active
         $('.olFramedCloudPopupContent form[name="' + popup_name + '"]').addClass( 'active' );
         
@@ -362,6 +364,8 @@ gnt.questionnaire.show_popup_for_feature = function(feature, popup_name) {
 */
 gnt.questionnaire.feature_added = function(evt) {
     
+    console.log('feature addedd');
+    
     //get the right lonlat for the popup position
     evt.lonlat = gnt.questionnaire.get_popup_lonlat(evt.geometry);
 
@@ -385,7 +389,7 @@ gnt.questionnaire.feature_added = function(evt) {
     evt.popup = new OpenLayers.Popup.FramedCloud(
                         evt.id,
                         evt.lonlat,
-                        null,
+                        new OpenLayers.Size(100,100),
                         evt.data.contentHTML,
                         null,
                         false);
@@ -570,7 +574,8 @@ gnt.questionnaire.init = function(forms,
                             }
                         })
                     });
-    
+        
+
         map.addLayers([areaLayer,
                        routeLayer,
                        pointLayer]);
@@ -623,6 +628,7 @@ gnt.questionnaire.init = function(forms,
         var questionnaire_area_feature = gf.read(questionnaire_area);
         map.zoomToExtent(questionnaire_area_feature[0].geometry.getBounds());
         
+       
         //get the users feature if any
         gnt.geo.get_features(undefined,
                              data_group,
