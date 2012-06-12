@@ -5,6 +5,9 @@
 */
 gnt.questionnaire = {};
 
+//save non place based values here
+gnt.questionnaire.npvalues = {};
+
 gnt.questionnaire.popup; //only one popup at the time
 gnt.questionnaire.property_id;
 
@@ -491,7 +494,7 @@ gnt.questionnaire.init = function(forms,
             }
         });
         
-        $(window).bind( 'hashchange', function(event) {
+        $( window ).bind( 'hashchange', function(event) {
             var newHash = location.hash.split( '#' )[1];
             var newActive = newHash.slice(7) - 1;
             var curActive = $( accordion ).accordion( 'option', 'active' );
@@ -508,10 +511,8 @@ gnt.questionnaire.init = function(forms,
                            '@null',
                            '@all',
                            {'success': function(data) {
-                            
                                 gnt.questionnaire.property_id = data.id;
                                 $(forms + ' :input:not(button)').each(function(i) {
-                                    
                                     //if many results use the last one
                                     if(data['totalResults'] !== undefined) {
                                         var nr = data['totalResults'];
@@ -524,17 +525,42 @@ gnt.questionnaire.init = function(forms,
                                             }
                                         } else if(this.type === 'textarea') {
                                             $(this).text(data[this.name]);
+                                        } else if(this.type === 'checkbox') {
+                                            for(var j = 0; j < data[this.name].length; j++) {
+                                                if($(this).attr('value') === data[this.name][j]) {
+                                                    $(this).attr('checked', 'checked');
+                                                }
+                                            }
                                         } else {
                                             this.value = data[this.name];
                                         }
                                     }
+                                    gnt.questionnaire.npvalues = data;
+                                    delete gnt.questionnaire.npvalues['user'];
+                                    delete gnt.questionnaire.npvalues['time'];
+                                    delete gnt.questionnaire.npvalues['id'];
+                                    delete gnt.questionnaire.npvalues['group'];
                                 });
                            },
                            'complete': function() {
                                 //bind on value change to save the values
                                 $(forms + ' :input:not(button)').change(function(evt) {
+                                    
+                                    var new_value = evt.currentTarget.value;
+                                    if(evt.currentTarget.type === 'checkbox') {
+                                        new_value = [];
+                                        $('[name=' + evt.currentTarget.name + ']:checkbox:checked').each(function() {
+                                            new_value.push($(this).attr('value'));
+                                        });
+                                    }
                                     var property = {};
-                                    property[evt.currentTarget.name] = evt.currentTarget.value;
+                                    property[evt.currentTarget.name] = new_value;
+                                    if(new_value === '' || new_value === []) {
+                                        delete gnt.questionnaire.npvalues[evt.currentTarget.name];
+                                    } else {
+                                        gnt.questionnaire.npvalues[evt.currentTarget.name] = new_value;
+                                    }
+                                    
                                     if(gnt.questionnaire.property_id === undefined) {
                                         gnt.geo.create_property('@me',
                                                                 data_group,
@@ -650,8 +676,8 @@ gnt.questionnaire.init = function(forms,
         select_feature_control.activate();
         
         var gf = new OpenLayers.Format.GeoJSON();
-        var questionnaire_area_feature = gf.read(questionnaire_area);
-        map.zoomToExtent(questionnaire_area_feature[0].geometry.getBounds());
+        var questionnaire_area_feature = gf.read( questionnaire_area );
+        map.zoomToExtent( questionnaire_area_feature[0].geometry.getBounds() );
         
         //get the users feature if any
         gnt.geo.get_features(undefined,

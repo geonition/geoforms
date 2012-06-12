@@ -24,7 +24,7 @@
 <div id="forms">
     {% for form in form_list %}
         <h3 class="section{{ forloop.counter }}">
-            <a href="#">{{ form.name }} {{ forloop.counter }}/{{ form_list|length }}</a>
+            <a href="#">{{ form.name }} {{ forloop.counter }}/{{ form_list|length|add:1 }}</a>
         </h3>
         <div>
             <form name="{{ form.slug }}" method="post" action="#">
@@ -44,10 +44,6 @@
                 {% if form_list|length == 1 %}
                 {% elif forloop.first %}
                     <a class="next" href="#section{{ forloop.counter|add:'1' }}">{% trans 'Next' %}&rarr;</a>
-                {% elif forloop.last %}
-                    {% trans "You have now reached the end of the questionnaire. Thank you for your answers! You can still continue modifying your answers by following the previous links or clicking the sections of this questionnaire." %}
-                    <br />
-                    <a class="previous" href="#section{{ forloop.counter|add:'-1' }}">&larr;{% trans 'Previous' %}</a>
                 {% else %}
                     <a class="previous" href="#section{{ forloop.counter|add:'-1' }}">&larr;{% trans 'Previous' %}</a>
                     <a class="next" href="#section{{ forloop.counter|add:'1' }}">{% trans 'Next' %}&rarr;</a>
@@ -57,6 +53,29 @@
             
             </form>
         </div>
+        {% if forloop.last %}
+            
+        <h3 class="section{{ forloop.counter|add:1 }}">
+            <a href="#">{% trans "Your answers and finish" %} {{ forloop.counter|add:1 }}/{{ form_list|length|add:1 }}</a>
+        </h3>
+        <div>
+            <div class="form_element">
+                {% trans "You marked" %}
+                <span class="number_of_features">X</span>
+                {% trans "places" %}
+                {% trans "and answered" %}
+                <span class="number_of_properties">X</span>
+                {% trans "one question" %}.
+            </div>
+            <div class="form_element">
+                <p>
+                {% trans "This is the end of the questionnaire and your answers has been saved. Thank you for your answers! You can still continue modifying your answers by following the previous links or clicking the sections of this questionnaire." %}
+                </p>
+            </div>
+            <br />
+            <a class="previous" href="#section{{ forloop.counter|add:'-1' }}">&larr;{% trans 'Previous' %}</a>
+        </div>
+        {% endif %}
     {% endfor %}
 </div>
 
@@ -101,9 +120,31 @@ var questionnaire_area = {{ questionnaire.area.json|safe }};
 
 {% include "jstranslations.txt" %}
 
+function count_results() {
+    var number_of_properties = 0;
+    for(var val in gnt.questionnaire.npvalues) {
+        number_of_properties++;
+    }
+    var number_of_places = map.getLayersByName('Point Layer')[0].features.length;
+    var number_of_routes = map.getLayersByName('Route Layer')[0].features.length;
+    var number_of_areas = map.getLayersByName('Area Layer')[0].features.length;
+    $('span.number_of_properties').html(number_of_properties);
+    $('span.number_of_features').html(number_of_places + number_of_routes + number_of_areas);
+}
+
 jQuery(document).ready(function() {
-    gnt.questionnaire.init('#forms', '', '#forms', questionnaire_area, data_group);
+    gnt.questionnaire.init('#forms', '', '#forms', questionnaire_area, data_group, function() {
+        
+        //count the amount of answeres given
+        count_results();
+        
+        $('#forms').bind('accordionchangestart', function(event, ui) {
+            count_results();
+        });
+    });
 });
+
+
 </script>
 {% endblock javascript %}
 
