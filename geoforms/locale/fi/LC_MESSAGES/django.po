@@ -87,7 +87,7 @@ msgstr "Sinun vastauksesi ja lopetus"
 
 #: templates/questionnaire.html:67
 msgid "This is the end of the questionnaire and your answers has been saved. Thank you for your answers! You can still continue modifying your answers by following the previous links or clicking the sections of this questionnaire."
-msgstr "Tämä kyselyn viimeinen sivu ja vastuksesi on tallennettu. Kiitos vastauksistasi! Voit vielä palata muokaamaan vastauksiasi Edellinen-painikkeella tai klikkaamalla haluamaasi kyselyn osiota. "
+msgstr "Tämä on kyselyn viimeinen sivu ja vastuksesi on tallennettu. Kiitos vastauksistasi! Voit vielä palata muokaamaan vastauksiasi Edellinen-painikkeella tai klikkaamalla haluamaasi kyselyn osiota. "
 
 #: templates/questionnaire.html:93
 msgid "Remove"
