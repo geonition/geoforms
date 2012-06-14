@@ -394,8 +394,6 @@ gnt.questionnaire.show_popup_for_feature = function(feature, popup_name) {
 */
 gnt.questionnaire.feature_added = function(evt) {
     
-    console.log('feature addedd');
-    
     //get the right lonlat for the popup position
     evt.lonlat = gnt.questionnaire.get_popup_lonlat(evt.geometry);
 
@@ -691,13 +689,13 @@ gnt.questionnaire.init = function(forms,
                              data_group,
                              '',
             {
-               'success': function(data) {
-                   if (data.features) {
-                       var pl = map.getLayersByName('Point Layer')[0];
-                       var rl = map.getLayersByName('Route Layer')[0];
-                       var al = map.getLayersByName('Area Layer')[0];
-                       var gf = new OpenLayers.Format.GeoJSON();
-                       var popupcontent = " default content ";
+                'success': function(data) {
+                    if (data.features) {
+                        var pl = map.getLayersByName('Point Layer')[0];
+                        var rl = map.getLayersByName('Route Layer')[0];
+                        var al = map.getLayersByName('Area Layer')[0];
+                        var gf = new OpenLayers.Format.GeoJSON();
+                        var popupcontent = " default content ";
            
                         for(var i = 0; i < data.features.length; i++) {
                             var feature = gf.parseFeature(data.features[i]);
@@ -723,14 +721,14 @@ gnt.questionnaire.init = function(forms,
                                 contentHTML: popupcontent
                             };
 
-                           //the createPopup function did not seem to work so here
-                           feature.popup = new OpenLayers.Popup.FramedCloud(
-                                               feature.id,
-                                               feature.lonlat,
-                                               null,
-                                               feature.data.contentHTML,
-                                               null,
-                                               false);
+                            //the createPopup function did not seem to work so here
+                            feature.popup = new OpenLayers.Popup.FramedCloud(
+                                                feature.id,
+                                                feature.lonlat,
+                                                null,
+                                                feature.data.contentHTML,
+                                                null,
+                                                false);
            
                        }
                    }
