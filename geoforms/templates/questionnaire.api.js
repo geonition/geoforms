@@ -582,7 +582,7 @@ gnt.questionnaire.init = function(forms,
                                 });
                             }});
     
-    create_map('map', function(map) {
+    gnt.maps.create_map('map', function(map) {
         var pointLayer = new OpenLayers.Layer.Vector(
                     "Point Layer",
                     {
