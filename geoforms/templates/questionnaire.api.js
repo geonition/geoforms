@@ -607,7 +607,7 @@ gnt.questionnaire.init = function(forms,
                     {
                         styleMap: new OpenLayers.StyleMap({
                             'default': {
-                                strokeWidth: 2,
+                                strokeWidth: 4,
                                 strokeColor: '#ee9900',
                                 cursor: 'pointer'
                             }
