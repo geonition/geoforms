@@ -584,7 +584,7 @@ gnt.questionnaire.init = function(forms,
                                 });
                             }});
     
-    create_map('map', function(map) {
+    gnt.maps.create_map('map', function(map) {
         var pointLayer = new OpenLayers.Layer.Vector(
                     "Point Layer",
                     {
@@ -609,7 +609,7 @@ gnt.questionnaire.init = function(forms,
                     {
                         styleMap: new OpenLayers.StyleMap({
                             'default': {
-                                strokeWidth: 2,
+                                strokeWidth: 3,
                                 strokeColor: '#ee9900',
                                 cursor: 'pointer'
                             }
