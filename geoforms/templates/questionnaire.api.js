@@ -1,3 +1,5 @@
+{% include "jstranslations.txt" %}
+
 /*
  Questionnaire UI namespace
  

@@ -113,8 +113,6 @@
 var data_group = 'Q-{{ questionnaire.slug }}';
 var questionnaire_area = {{ questionnaire.area.json|safe }};
 
-{% include "jstranslations.txt" %}
-
 function count_results() {
     var number_of_properties = 0;
     for(var val in gnt.questionnaire.npvalues) {

@@ -47,18 +47,6 @@
 .left_align {
     text-align: left;
 }
-.tooltip {
-    position: absolute;
-    z-index: 999;
-    top: 0px;
-    left: 0px;
-    background-color: white;
-    border-radius: 0.5em;
-    padding: 0.2em;
-    border: 1px solid red;
-    text-align: center;
-    max-width: 15em;
-}
 .ui-widget-content a {
     color: #00E !important;
 }
