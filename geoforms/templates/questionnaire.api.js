@@ -316,13 +316,13 @@ gnt.questionnaire.show_popup_for_feature = function(feature, popup_name) {
     
     if ( feature.popup !== undefined ) {
         
-        if(popup_name === undefined) {
+        if( popup_name === undefined ) {
             popup_name = $('.drawbutton[name=' +
                            feature.attributes.name +
                            ']').data( 'popup' );
         }
         //remove old popup if existing
-        if(gnt.questionnaire.popup !== undefined) {
+        if( gnt.questionnaire.popup !== undefined ) {
             map.removePopup( gnt.questionnaire.popup );
             gnt.questionnaire.popup = undefined;
         }
@@ -332,9 +332,9 @@ gnt.questionnaire.show_popup_for_feature = function(feature, popup_name) {
         map.addPopup(gnt.questionnaire.popup);
         gnt.questionnaire.popup.updateSize();
         map.addPopup(gnt.questionnaire.popup);
-        //gnt.questionnaire.popup.setSize(new OpenLayers.Size(225,250)); //fix for OpenLayers 2.12 RC1 check 8.5.2012 should be null and automatic
+        
         //add a class to the form to recognize it as active
-        $('.olFramedCloudPopupContent form[name="' + popup_name + '"]').addClass( 'active' );
+        $( '.olFramedCloudPopupContent form[name="' + popup_name + '"]' ).addClass( 'active' );
         
         // add values to the form the values are connected but the form element name
         // and the name value in the feature attributes
