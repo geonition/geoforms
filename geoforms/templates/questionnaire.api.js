@@ -196,7 +196,6 @@ gnt.questionnaire.get_popup_lonlat = function(geometry) {
                         geometry.components[0].components[0].y);
     }
     return lonlat;
-    console.log(lonlat);
 }
 
 /*
@@ -204,7 +203,6 @@ gnt.questionnaire.get_popup_lonlat = function(geometry) {
  connected to the save button in the popup form
 */
 gnt.questionnaire.save_handler = function(evt) {
-
     
     //get the form data
     var popup_values = $('form.popupform.active').serializeArray();
