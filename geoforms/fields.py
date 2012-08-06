@@ -1,22 +1,26 @@
+from django.conf import settings
 from django.forms import CharField
-from widgets import Button
+from django.forms import MultiValueField
+from django.forms.widgets import TextInput
+from geoforms.widgets import TranslationWidget
 
-class ButtonField(CharField):
+class TranslationField(MultiValueField):
     """
-    This field presents html buttons that
-    are mostly used as tools for drawing
-    on the map.
-    
-    The CharField is the chosen as the
-    geometries can be described with WKT.
+    This field handles fields that needs to be translated
     """
+    widget = TranslationWidget
     
     def __init__(self, *args, **kwargs):
-        widget_attrs = kwargs.pop('attrs', {}).pop('widget_attrs', {})
-        super(ButtonField, self).__init__(widget = Button(attrs = widget_attrs),
-                                          *args,
-                                          **kwargs)
+        all_fields = ()
+        for lang in settings.LANGUAGES:
+            all_fields += (CharField(),)
+            
+        super(TranslationField, self).__init__(all_fields, *args, **kwargs)
     
-    def clean(self, value):
-        #TODO check that it is valid point
-        return value
+    def compress(self, values_list):
+        """
+        This function does not do anything.
+        """
+        print 'compress'
+        print values_list
+        return values_list

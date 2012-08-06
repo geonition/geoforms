@@ -6,16 +6,12 @@ from django.db import models
 from django.template.defaultfilters import slugify
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext as _
-from forms import Geoform as Geoform_form
-from django.forms.fields import CharField
-from fields import ButtonField
-
+from django.utils import timezone
 
 class GeoformElement(models.Model):
     """
     This is one input element in a
     geoform..
-    
     The elements of a form is written in
     HTML 5,
     
@@ -33,7 +29,7 @@ class GeoformElement(models.Model):
     html = models.TextField(help_text = render_to_string('help/geoform_element_html.html'))
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.name)
+        self.slug = slugify("%s %s" % (self.name, timezone.now()))
 
         super(GeoformElement, self).save(*args, **kwargs)
     

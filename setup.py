@@ -14,6 +14,7 @@ setup(
             "templates/*.api.js",
             "templates/jstranslations.txt",
             "templates/help/*.html",
+            "templates/admin/geoforms/geoformelement/*.html",
             "locale/*/LC_MESSAGES/*.po",
             "locale/*/LC_MESSAGES/*.mo",
             "static/js/*",

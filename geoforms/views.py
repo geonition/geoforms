@@ -1,12 +1,6 @@
 from django.shortcuts import render_to_response
 from models import Questionnaire
-from forms import Geoform
 from django.template import RequestContext
-from django.views.generic.base import View
-from django.utils.decorators import classonlymethod
-from django.utils import translation
-from django.forms import formsets
-from django.contrib.formtools.wizard.views import SessionWizardView
 from django.views.decorators.csrf import ensure_csrf_cookie
 
 @ensure_csrf_cookie

@@ -1,27 +1,36 @@
-from django.forms.widgets import Input
-from django.forms.widgets import Widget
+from django.conf import settings
+from django.forms.widgets import MultiWidget
+from django.forms.widgets import TextInput
+from django.forms.widgets import Select
 from django.utils.safestring import mark_safe
 from django.forms.util import flatatt
+from bs4 import BeautifulSoup
 
-class NumberInput(Input):
-    input_type = 'number'
-    
-class Button(Widget):
+class TranslationWidget(MultiWidget):
     """
-    This is a button widget to present a html button.
-    
-    give as an attribute a label and it will be shown as the
-    buttontext.
+    This widget separates a value into translations
+    fields.
     """
-    def render(self, name, value, attrs=None):
-        if value is None:
-            value = ''
+    
+    def __init__(self, attrs=None):
+        widget_list = ()
         
-        final_attrs = self.build_attrs(attrs)
-        label = final_attrs.pop('label', '')
-        
-        if value != '':
-            final_attrs['value'] = force_unicode(self._format_value(value))
-        
-        return mark_safe(u'<button%s>%s</button>' % (flatatt(final_attrs),
-                                                     label))
+        for lang in settings.LANGUAGES:
+            widget_list += (TextInput(),)
+            
+        super(TranslationWidget, self).__init__(widget_list, attrs)
+    
+    
+    def decompress(self, value):
+        print 'decompress'
+        print value        
+        return [None for lang in settings.LANGUAGES]
+    
+    def format_output(self, rendered_widgets):
+        rendered_with_labels = []
+        for i, lang in enumerate(settings.LANGUAGES):
+            rendered_with_labels.append('<label>%s [%s] %s</label>' % (lang[1],
+                                                                       lang[0],
+                                                                       rendered_widgets[i]))
+
+        return ''.join(rendered_with_labels)

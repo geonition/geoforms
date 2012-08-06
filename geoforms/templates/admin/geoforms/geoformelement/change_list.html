@@ -1,0 +1,21 @@
+{% extends "admin/change_list.html" %}
+{% load i18n admin_static admin_list %}
+{% load admin_urls %}
+
+{% block object-tools-items %}
+  <li>
+    <a href="add" class="addlink">
+      {% blocktrans with cl.opts.verbose_name as name %}Add {{ name }}{% endblocktrans %}
+    </a>
+  </li>
+  <li>
+    <a href="add_text_element" class="addlink">
+      {% blocktrans %}Add text element{% endblocktrans %}
+    </a>
+  </li>
+  <li>
+    <a href="add_radio_element" class="addlink">
+      {% blocktrans %}Add radio element{% endblocktrans %}
+    </a>
+  </li>
+{% endblock %}
