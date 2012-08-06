@@ -42,14 +42,20 @@ class RadioElementFormSet(BaseFormSet):
     """
     
     def save(self):
-        print self.data
         qf = QuestionForm(self.data)
-        print qf.is_valid()
-        print self.is_valid()
-        print qf.cleaned_data
-        print self.cleaned_data
+        model_values = {}
+        if qf.is_valid():
+            for i, lang in enumerate(settings.LANGUAGES):
+                model_values['html_%s' % lang[0]] = '<p>%s</p>' % qf.cleaned_data['question'][i]
+                    
+                if lang[0] == settings.LANGUAGE_CODE or i == 0:
+                    model_values['name'] = slugify(qf.cleaned_data['question'][i])
+        
         for form in self.forms:
-            print form.is_valid()
-            print form.cleaned_data
-        pass
-    
+            
+            if form.is_valid():
+                for i, lang in enumerate(settings.LANGUAGES):
+                    model_values['html_%s' % lang[0]] += '<label><input type="radio" name="%s" />%s</label>' % (form.cleaned_data['value'],
+                                                                                                                form.cleaned_data['label'][i])
+                                
+        GeoformElement(**model_values).save()

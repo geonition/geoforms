@@ -1,10 +1,6 @@
 from django.conf import settings
 from django.forms.widgets import MultiWidget
 from django.forms.widgets import TextInput
-from django.forms.widgets import Select
-from django.utils.safestring import mark_safe
-from django.forms.util import flatatt
-from bs4 import BeautifulSoup
 
 class TranslationWidget(MultiWidget):
     """
@@ -22,8 +18,6 @@ class TranslationWidget(MultiWidget):
     
     
     def decompress(self, value):
-        print 'decompress'
-        print value        
         return [None for lang in settings.LANGUAGES]
     
     def format_output(self, rendered_widgets):

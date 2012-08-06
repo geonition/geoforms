@@ -10,11 +10,11 @@ from geoforms.forms import RadioElementForm
 from geoforms.forms import RadioElementFormSet
 from geoforms.forms import TextElementForm
 from geoforms.forms import QuestionForm
-from models import Geoform
-from models import GeoformElement
-from models import FormElement
-from models import Questionnaire
-from models import QuestionnaireForm
+from geoforms.models import Geoform
+from geoforms.models import GeoformElement
+from geoforms.models import FormElement
+from geoforms.models import Questionnaire
+from geoforms.models import QuestionnaireForm
 from modeltranslation.admin import TranslationAdmin
 from modeltranslation.admin import TranslationTabularInline
 
