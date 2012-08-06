@@ -1,8 +1,9 @@
 from django import forms
 from django.conf import settings
+from django.forms.formsets import BaseFormSet
+from django.template.defaultfilters import slugify
 from geoforms.fields import TranslationField
 from geoforms.models import GeoformElement
-from django.template.defaultfilters import slugify
 
 class TextElementForm(forms.Form):
     question = TranslationField()
@@ -33,10 +34,22 @@ class QuestionForm(forms.Form):
 class RadioElementForm(forms.Form):
     label = TranslationField()
     value = forms.CharField()
+
+            
+class RadioElementFormSet(BaseFormSet):
+    """
+    Radio elements needs to be saved at one time
+    """
     
     def save(self):
-        print 'radioelmentform save'
+        print self.data
+        qf = QuestionForm(self.data)
+        print qf.is_valid()
         print self.is_valid()
-            
-            
-            
+        print qf.cleaned_data
+        print self.cleaned_data
+        for form in self.forms:
+            print form.is_valid()
+            print form.cleaned_data
+        pass
+    

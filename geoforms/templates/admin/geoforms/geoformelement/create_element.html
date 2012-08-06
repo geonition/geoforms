@@ -22,11 +22,12 @@
     	    <tr id="{{ form.prefix }}-row" class="dynamic-form">
                 <td>
                     {{ form.as_p }}
+                    <a id="remove-{{ form.prefix }}-row" href="javascript:void(0)" class="delete-row">{% trans 'remove' %}</a>
                 </td>
             </tr>
     	    {% endfor %}
             <tr>
-    	        <td colspan="4"><a href="javascript:void(0)" class="add-row">add</a></td>
+    	        <td colspan="4"><a href="javascript:void(0)" class="add-row">{% trans 'add' %}</a></td>
     	    </tr>
         </tbody>
     </table>
@@ -70,6 +71,7 @@ function deleteForm(btn, prefix) {
     var forms = $('.dynamic-form');
     $('#id_' + prefix + '-TOTAL_FORMS').val(forms.length);
     for (var i=0, formCount=forms.length; i<formCount; i++) {
+        console.log($(forms.get(i)));
         $(forms.get(i)).children().not(':last').children().each(function() {
             updateElementIndex(this, prefix, i);
         });

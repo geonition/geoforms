@@ -7,6 +7,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from geoforms.forms import RadioElementForm
+from geoforms.forms import RadioElementFormSet
 from geoforms.forms import TextElementForm
 from geoforms.forms import QuestionForm
 from models import Geoform
@@ -43,8 +44,10 @@ class GeoformElementAdmin(TranslationAdmin, admin.ModelAdmin):
     
     def create_radio_element(self, request):
         if request.method == 'POST':
-            print request.POST
-            RadioElementForm(request.POST).save()
+            res = formset_factory(RadioElementForm,
+                                  formset=RadioElementFormSet)
+            rs = res(request.POST)
+            rs.save()
             return HttpResponseRedirect(reverse('admin:geoforms_geoformelement_changelist'))
         else:
             return render_to_response('admin/geoforms/geoformelement/create_element.html',
