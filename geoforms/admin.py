@@ -6,6 +6,7 @@ from django.forms.formsets import formset_factory
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+from geoforms.forms import DrawButtonForm
 from geoforms.forms import NumberElementForm
 from geoforms.forms import RadioElementForm
 from geoforms.forms import RadioElementFormSet
@@ -32,6 +33,7 @@ class GeoformElementAdmin(TranslationAdmin, admin.ModelAdmin):
                             (r'^add_text_element/$', self.admin_site.admin_view(self.create_text_element)),
                             (r'^add_number_element/$', self.admin_site.admin_view(self.create_number_element)),
                             (r'^add_radio_element/$', self.admin_site.admin_view(self.create_radio_element)),
+                            (r'^add_drawbutton_element/$', self.admin_site.admin_view(self.create_drawbutton_element)),
                             )
         return extra_urls + urls
     
@@ -68,6 +70,21 @@ class GeoformElementAdmin(TranslationAdmin, admin.ModelAdmin):
                                        'form': QuestionForm(),
                                        'formset': formset_factory(RadioElementForm)},
                                       context_instance = RequestContext(request))
+    
+    def create_drawbutton_element(self, request):
+        if request.method == 'POST':
+            DrawButtonForm(request.POST).save()
+            return HttpResponseRedirect(reverse('admin:geoforms_geoformelement_changelist'))
+        else:
+            return render_to_response('admin/geoforms/geoformelement/create_element.html',
+                                      {'current_app': self.admin_site.name,
+                                       'form': DrawButtonForm()},
+                                      context_instance = RequestContext(request))
+        
+    class Media:
+        css = {
+            'all': ('css/questionnaire_admin.css',)
+        }
 
 class FormElementAdmin(admin.ModelAdmin):
     ordering = ['geoform', 'order']
