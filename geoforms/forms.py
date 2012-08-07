@@ -33,8 +33,6 @@ class QuestionForm(forms.Form):
     
 class RadioElementForm(forms.Form):
     label = TranslationField()
-    value = forms.CharField()
-
             
 class RadioElementFormSet(BaseFormSet):
     """
@@ -47,15 +45,13 @@ class RadioElementFormSet(BaseFormSet):
         if qf.is_valid():
             for i, lang in enumerate(settings.LANGUAGES):
                 model_values['html_%s' % lang[0]] = '<p>%s</p>' % qf.cleaned_data['question'][i]
-                    
-                if lang[0] == settings.LANGUAGE_CODE or i == 0:
-                    model_values['name'] = slugify(qf.cleaned_data['question'][i])
+                model_values['name_%s' % lang[0]] = qf.cleaned_data['question'][i]
         
         for form in self.forms:
             
             if form.is_valid():
                 for i, lang in enumerate(settings.LANGUAGES):
-                    model_values['html_%s' % lang[0]] += '<label><input type="radio" name="%s" />%s</label>' % (form.cleaned_data['value'],
+                    model_values['html_%s' % lang[0]] += '<label><input type="radio" name="%s" />%s</label>' % (slugify(form.cleaned_data['label'][0]),
                                                                                                                 form.cleaned_data['label'][i])
                                 
         GeoformElement(**model_values).save()
