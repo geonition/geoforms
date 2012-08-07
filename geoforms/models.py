@@ -2,6 +2,7 @@ from django.conf import settings
 from django.contrib.gis.db import models as geomodel
 from django.contrib.sites.managers import CurrentSiteManager
 from django.contrib.sites.models import Site
+from django.core.urlresolvers import reverse
 from django.db import models
 from django.template.defaultfilters import slugify
 from django.template.loader import render_to_string
@@ -109,6 +110,9 @@ class Questionnaire(models.Model):
                              editable = False)
 
     on_site = CurrentSiteManager()
+    
+    def get_absolute_url(self):
+        return reverse('questionnaire', kwargs={'questionnaire_slug': self.slug})
 
     def save(self, *args, **kwargs):
         

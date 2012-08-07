@@ -90,7 +90,14 @@ class QuestionnaireAdmin(admin.OSMGeoAdmin, TranslationAdmin):
                           {'default_lat': 0})['default_lat']
     default_zoom = getattr(settings,
                           'ORGANIZATION_ADMIN_DEFAULT_MAP_SETTINGS',
-                          {'default_zoom': 4})['default_zoom'] 
+                          {'default_zoom': 4})['default_zoom']
+    
+    def change_view(self, request, object_id, form_url='', extra_context=None):
+        extra_context = extra_context or {}
+        extra_context['slug'] = Questionnaire.on_site.get(pk = object_id).slug 
+        return super(QuestionnaireAdmin, self).change_view(request, object_id,
+            form_url, extra_context=extra_context)
+        
     
 admin.site.register(GeoformElement, GeoformElementAdmin)
 admin.site.register(Geoform, GeoformAdmin)
