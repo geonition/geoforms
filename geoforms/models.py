@@ -22,16 +22,16 @@ class GeoformElement(models.Model):
     pass in for widget effects is documented
     below.
     """
-    slug = models.SlugField(max_length = 50,
+    slug = models.SlugField(max_length = 200,
                             editable = False,
                             unique = True)
-    name = models.CharField(max_length = 50,
+    name = models.CharField(max_length = 200,
                             help_text = render_to_string('help/geoform_element_name.html'))
     html = models.TextField(help_text = render_to_string('help/geoform_element_html.html'))
 
     def save(self, *args, **kwargs):
         self.slug = slugify("%s %s" % (self.name, timezone.now()))
-
+        
         super(GeoformElement, self).save(*args, **kwargs)
     
     def __unicode__(self):
@@ -104,15 +104,20 @@ class Questionnaire(models.Model):
                             editable = False,
                             unique = True)
     area = geomodel.PolygonField(_('area of questionnaire'),
-                                 srid = getattr(settings, 'SPATIAL_REFERENCE_SYSTEM_ID', 4326))
+                                 srid = getattr(settings,
+                                                'SPATIAL_REFERENCE_SYSTEM_ID',
+                                                4326))
     site = models.ForeignKey(Site,
-                             default = getattr(settings, 'SITE_ID', 1),
+                             default = getattr(settings,
+                                               'SITE_ID',
+                                               1),
                              editable = False)
 
     on_site = CurrentSiteManager()
     
     def get_absolute_url(self):
-        return reverse('questionnaire', kwargs={'questionnaire_slug': self.slug})
+        return reverse('questionnaire',
+                       kwargs = {'questionnaire_slug': self.slug})
 
     def save(self, *args, **kwargs):
         
@@ -146,6 +151,8 @@ class QuestionnaireForm(models.Model):
     class Meta:
         verbose_name = _('questionnaire page')
         verbose_name_plural = _('questionnaire pages')
+        
+
         
 
 
