@@ -6,6 +6,7 @@ from django.forms.formsets import formset_factory
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+from geoforms.forms import NumberElementForm
 from geoforms.forms import RadioElementForm
 from geoforms.forms import RadioElementFormSet
 from geoforms.forms import TextElementForm
@@ -29,6 +30,7 @@ class GeoformElementAdmin(TranslationAdmin, admin.ModelAdmin):
         
         extra_urls = patterns('',
                             (r'^add_text_element/$', self.admin_site.admin_view(self.create_text_element)),
+                            (r'^add_number_element/$', self.admin_site.admin_view(self.create_number_element)),
                             (r'^add_radio_element/$', self.admin_site.admin_view(self.create_radio_element)),
                             )
         return extra_urls + urls
@@ -41,6 +43,16 @@ class GeoformElementAdmin(TranslationAdmin, admin.ModelAdmin):
             return render_to_response('admin/geoforms/geoformelement/create_element.html',
                                       {'current_app': self.admin_site.name,
                                        'form': TextElementForm()},
+                                      context_instance = RequestContext(request))
+    
+    def create_number_element(self, request):
+        if request.method == 'POST':
+            NumberElementForm(request.POST).save()
+            return HttpResponseRedirect(reverse('admin:geoforms_geoformelement_changelist'))
+        else:
+            return render_to_response('admin/geoforms/geoformelement/create_element.html',
+                                      {'current_app': self.admin_site.name,
+                                       'form': NumberElementForm()},
                                       context_instance = RequestContext(request))
     
     def create_radio_element(self, request):

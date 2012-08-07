@@ -11,19 +11,33 @@ class TextElementForm(forms.Form):
     def save(self):
         if self.is_valid():
             model_values = {}
+            name = slugify(self.cleaned_data['question'][0])
             for i, lang in enumerate(settings.LANGUAGES):
                 question = self.cleaned_data['question'][i]
-                name = slugify(question)
                 gen_html = '<label>%s<input type="text" name="%s" /></label>' % (question,
                                                                                  name)
-                if lang[0] == settings.LANGUAGE_CODE or i == 0:
-                    model_values['html'] = gen_html
-                    model_values['name'] = name
                 
                 model_values['html_%s' % lang[0]] = gen_html
+                model_values['name_%s' % lang[0]] = self.cleaned_data['question'][i]
             
             GeoformElement(**model_values).save()
 
+class NumberElementForm(TextElementForm):
+    
+    def save(self):
+        if self.is_valid():
+            model_values = {}
+            name = slugify(self.cleaned_data['question'][0])
+            for i, lang in enumerate(settings.LANGUAGES):
+                question = self.cleaned_data['question'][i]
+                gen_html = '<label>%s<input type="number" name="%s" /></label>' % (question,
+                                                                                   name)
+                
+                model_values['html_%s' % lang[0]] = gen_html
+                model_values['name_%s' % lang[0]] = self.cleaned_data['question'][i]
+            
+            GeoformElement(**model_values).save()
+    
 class QuestionForm(forms.Form):
     """
     This is used to define the question
