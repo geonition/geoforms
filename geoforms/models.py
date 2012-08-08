@@ -106,7 +106,8 @@ class Questionnaire(models.Model):
     area = geomodel.PolygonField(_('area of questionnaire'),
                                  srid = getattr(settings,
                                                 'SPATIAL_REFERENCE_SYSTEM_ID',
-                                                4326))
+                                                4326),
+                                 help_text = _('This is the initial area which will be visible on the questionnaire map. The map tools are on the up right corner of the map. To choose a tool you have to click on it so that the tool turnes yellow. To draw choose the drawing tool and start drawing. To stop drawing you have to doubleclick the map. It is also possible to modify the area by choosing the modify tool. Modification works by dragging the vertexes of the area to the new modified places.'))
     site = models.ForeignKey(Site,
                              default = getattr(settings,
                                                'SITE_ID',
