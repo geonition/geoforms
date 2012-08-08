@@ -70,6 +70,31 @@ class RadioElementFormSet(BaseFormSet):
                                 
         GeoformElement(**model_values).save()
         
+class CheckboxElementForm(forms.Form):
+    label = TranslationField()
+            
+class CheckboxElementFormSet(BaseFormSet):
+    """
+    Checkbox elements needs to be saved at one time
+    """
+    
+    def save(self):
+        qf = QuestionForm(self.data)
+        model_values = {}
+        if qf.is_valid():
+            for i, lang in enumerate(settings.LANGUAGES):
+                model_values['html_%s' % lang[0]] = '<p>%s</p>' % qf.cleaned_data['question'][i]
+                model_values['name_%s' % lang[0]] = qf.cleaned_data['question'][i]
+        
+        for form in self.forms:
+            
+            if form.is_valid():
+                for i, lang in enumerate(settings.LANGUAGES):
+                    model_values['html_%s' % lang[0]] += '<label><input type="checkbox" name="%s" />%s</label>' % (slugify(form.cleaned_data['label'][0]),
+                                                                                                                   form.cleaned_data['label'][i])
+                                
+        GeoformElement(**model_values).save()
+    
 class DrawButtonForm(forms.Form):
     geometry_type = forms.ChoiceField(choices = (
         ('point', _('place')),

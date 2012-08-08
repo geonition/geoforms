@@ -48,7 +48,6 @@ function updateElementIndex(el, prefix, ndx) {
 
 function addForm(btn, prefix) {
     var formCount = parseInt($('#id_' + prefix + '-TOTAL_FORMS').val());
-    console.log(formCount);
     var row = $('.dynamic-form:first').clone(true).get(0);
     $(row).removeAttr('id').insertAfter($('.dynamic-form:last')).children('.hidden').removeClass('hidden');
     $(row).children().children().children().each(function() {
@@ -79,11 +78,12 @@ function deleteForm(btn, prefix) {
     return false;
 }
 
+
 $('.add-row').click(function() {
     return addForm(this, 'form');
 });
 $('.delete-row').click(function() {
     return deleteForm(this, 'form');
-})
+});
 </script>
 {% endblock %}

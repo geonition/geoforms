@@ -6,6 +6,8 @@ from django.forms.formsets import formset_factory
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+from geoforms.forms import CheckboxElementForm
+from geoforms.forms import CheckboxElementFormSet
 from geoforms.forms import DrawButtonForm
 from geoforms.forms import NumberElementForm
 from geoforms.forms import RadioElementForm
@@ -33,6 +35,7 @@ class GeoformElementAdmin(TranslationAdmin, admin.ModelAdmin):
                             (r'^add_text_element/$', self.admin_site.admin_view(self.create_text_element)),
                             (r'^add_number_element/$', self.admin_site.admin_view(self.create_number_element)),
                             (r'^add_radio_element/$', self.admin_site.admin_view(self.create_radio_element)),
+                            (r'^add_checkbox_element/$', self.admin_site.admin_view(self.create_checkbox_element)),
                             (r'^add_drawbutton_element/$', self.admin_site.admin_view(self.create_drawbutton_element)),
                             )
         return extra_urls + urls
@@ -69,6 +72,20 @@ class GeoformElementAdmin(TranslationAdmin, admin.ModelAdmin):
                                       {'current_app': self.admin_site.name,
                                        'form': QuestionForm(),
                                        'formset': formset_factory(RadioElementForm)},
+                                      context_instance = RequestContext(request))
+        
+    def create_checkbox_element(self, request):
+        if request.method == 'POST':
+            res = formset_factory(CheckboxElementForm,
+                                  formset=CheckboxElementFormSet)
+            rs = res(request.POST)
+            rs.save()
+            return HttpResponseRedirect(reverse('admin:geoforms_geoformelement_changelist'))
+        else:
+            return render_to_response('admin/geoforms/geoformelement/create_element.html',
+                                      {'current_app': self.admin_site.name,
+                                       'form': QuestionForm(),
+                                       'formset': formset_factory(CheckboxElementForm)},
                                       context_instance = RequestContext(request))
     
     def create_drawbutton_element(self, request):
