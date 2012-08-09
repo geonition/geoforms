@@ -24,12 +24,23 @@ class Paragraph(Widget):
     def render(self, text):
         return u'<p>%s</p>' % text
     
+class Radiobutton(Input):
+    """
+    This widget is a radiobutton
+    """
+    input_type = 'radio'
+    
+class Checkbox(Input):
+    """
+    This widget is a radiobutton
+    """
+    input_type = 'checkbox'
+    
 #smidgets with basic html
 class NumberElement(Widget):
     """
     The NumberElement represents a number input with a label
     """
-    
     def render(self, label, name, value, attrs={}):
         return u'<label>%s %s</label>' % (label,
                                           NumberInput().render(name, value))
@@ -41,6 +52,22 @@ class TextElement(Widget):
     def render(self, label, name, value, attrs={}):
         return u'<label>%s %s</label>' % (label,
                                           TextInput().render(name, value))
+    
+class RadiobuttonElement(Widget):
+    """
+    This element presents a radiobutton with a label
+    """
+    def render(self, label, name, value, attrs={}):
+        return u'<label>%s %s</label>' % (label,
+                                          Radiobutton().render(name, value, attrs))
+    
+class CheckboxElement(Widget):
+    """
+    This element presents a radiobutton with a label
+    """
+    def render(self, label, name, value, attrs={}):
+        return u'<label>%s %s</label>' % (label,
+                                          Checkbox().render(name, value, attrs))
 
 class TranslationWidget(MultiWidget):
     """

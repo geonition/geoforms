@@ -5,7 +5,9 @@ from django.template.defaultfilters import slugify
 from django.utils.translation import ugettext as _
 from geoforms.fields import TranslationField
 from geoforms.models import GeoformElement
+from geoforms.widgets import CheckboxElement
 from geoforms.widgets import NumberElement
+from geoforms.widgets import RadiobuttonElement
 from geoforms.widgets import Paragraph
 from geoforms.widgets import TextElement
 from geoforms.widgets import TranslationWidget
@@ -71,8 +73,9 @@ class RadioElementFormSet(BaseFormSet):
             
             if form.is_valid():
                 for i, lang in enumerate(settings.LANGUAGES):
-                    model_values['html_%s' % lang[0]] += '<label><input type="radio" name="%s" />%s</label>' % (slugify(form.cleaned_data['label'][0]),
-                                                                                                                form.cleaned_data['label'][i])
+                    model_values['html_%s' % lang[0]] += RadiobuttonElement().render(form.cleaned_data['label'][i],
+                                                                                     slugify(form.cleaned_data['label'][0]),
+                                                                                     '')
                                 
         GeoformElement(**model_values).save()
         
@@ -96,8 +99,9 @@ class CheckboxElementFormSet(BaseFormSet):
             
             if form.is_valid():
                 for i, lang in enumerate(settings.LANGUAGES):
-                    model_values['html_%s' % lang[0]] += '<label><input type="checkbox" name="%s" />%s</label>' % (slugify(form.cleaned_data['label'][0]),
-                                                                                                                   form.cleaned_data['label'][i])
+                    model_values['html_%s' % lang[0]] += CheckboxElement().render(form.cleaned_data['label'][i],
+                                                                                  slugify(form.cleaned_data['label'][0]),
+                                                                                  '')
                                 
         GeoformElement(**model_values).save()
     
