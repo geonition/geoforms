@@ -16,18 +16,31 @@ class NumberInput(Input):
     """
     input_type = 'number'
 
+class Paragraph(Widget):
+    """
+    This class represents a simple html
+    paragraph.
+    """
+    def render(self, text):
+        return u'<p>%s</p>' % text
+    
 #smidgets with basic html
 class NumberElement(Widget):
     """
-    The NumberElement represents a number input in
-    the questionnaire. To the render function it additionally
-    requires a label argument.
+    The NumberElement represents a number input with a label
     """
     
     def render(self, label, name, value, attrs={}):
         return u'<label>%s %s</label>' % (label,
                                           NumberInput().render(name, value))
-    
+
+class TextElement(Widget):
+    """
+    This element presents a text input with a label
+    """
+    def render(self, label, name, value, attrs={}):
+        return u'<label>%s %s</label>' % (label,
+                                          TextInput().render(name, value))
 
 class TranslationWidget(MultiWidget):
     """
@@ -35,11 +48,11 @@ class TranslationWidget(MultiWidget):
     fields.
     """
     
-    def __init__(self, attrs=None):
+    def __init__(self, widget_class = TextInput, attrs=None):
         widget_list = ()
         
         for lang in settings.LANGUAGES:
-            widget_list += (TextInput(),)
+            widget_list += (widget_class(),)
             
         super(TranslationWidget, self).__init__(widget_list, attrs)
     

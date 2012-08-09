@@ -6,6 +6,9 @@ from django.utils.translation import ugettext as _
 from geoforms.fields import TranslationField
 from geoforms.models import GeoformElement
 from geoforms.widgets import NumberElement
+from geoforms.widgets import Paragraph
+from geoforms.widgets import TextElement
+from geoforms.widgets import TranslationWidget
 
 class TextElementForm(forms.Form):
     question = TranslationField()
@@ -16,8 +19,9 @@ class TextElementForm(forms.Form):
             name = slugify(self.cleaned_data['question'][0])
             for i, lang in enumerate(settings.LANGUAGES):
                 question = self.cleaned_data['question'][i]
-                gen_html = '<label>%s<input type="text" name="%s" /></label>' % (question,
-                                                                                 name)
+                gen_html = TextElement().render(question,
+                                                name,
+                                                '')
                 model_values['html_%s' % lang[0]] = gen_html
                 model_values['name_%s' % lang[0]] = self.cleaned_data['question'][i]
             
@@ -125,6 +129,24 @@ class DrawButtonForm(forms.Form):
                 model_values['html_%s' % lang[0]] = gen_html
                 model_values['name_%s' % lang[0]] = label
         
+            GeoformElement(**model_values).save()
+
+class ParagraphForm(forms.Form):
+    
+    text = TranslationField(field_class = forms.CharField,
+                            widget = TranslationWidget(widget_class = forms.Textarea))
+    
+    def save(self):
+        if self.is_valid():
+            model_values = {}
+            name = slugify(self.cleaned_data['text'][0])[0:200]
+            for i, lang in enumerate(settings.LANGUAGES):
+                text = self.cleaned_data['text'][i]
+                gen_html = Paragraph().render(text)
+                
+                model_values['html_%s' % lang[0]] = gen_html
+                model_values['name_%s' % lang[0]] = self.cleaned_data['text'][i]
+            
             GeoformElement(**model_values).save()
         
         
