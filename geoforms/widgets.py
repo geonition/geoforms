@@ -1,7 +1,25 @@
 from django.conf import settings
 from django.forms.widgets import MultiWidget
 from django.forms.widgets import TextInput
+from django.forms.widgets import Input
 
+
+#basic html 5 widgets
+class NumberInput(Input):
+    """
+    Presents a html 5 input of type number
+    
+    remember to pass the render function args
+    for name and value and additionaly if
+    required attrs=<some attrs dict>
+    """
+    input_type = 'number'
+
+#smidgets with basic html
+
+#used in the questionnaire
+
+#used for the admin
 class TranslationWidget(MultiWidget):
     """
     This widget separates a value into translations
