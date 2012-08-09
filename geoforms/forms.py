@@ -119,14 +119,12 @@ class DrawButtonForm(forms.Form):
     
     def save(self):
         model_values = {}
-        print self.data
         if self.is_valid():
             geometry_type = self.cleaned_data['geometry_type']
             popup = 'basic'
             color = self.cleaned_data['color']
             for i, lang in enumerate(settings.LANGUAGES):               
                 label = self.cleaned_data['label'][i]
-                name = slugify(self.cleaned_data['label'][i])
                 gen_html = Drawbutton().render(label, geometry_type, color, popup)
                 model_values['html_%s' % lang[0]] = gen_html
                 model_values['name_%s' % lang[0]] = label
