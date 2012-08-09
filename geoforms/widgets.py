@@ -2,6 +2,7 @@ from django.conf import settings
 from django.forms.widgets import MultiWidget
 from django.forms.widgets import TextInput
 from django.forms.widgets import Input
+from django.forms.widgets import Widget
 
 
 #basic html 5 widgets
@@ -16,10 +17,18 @@ class NumberInput(Input):
     input_type = 'number'
 
 #smidgets with basic html
+class NumberElement(Widget):
+    """
+    The NumberElement represents a number input in
+    the questionnaire. To the render function it additionally
+    requires a label argument.
+    """
+    
+    def render(self, label, name, value, attrs={}):
+        return u'<label>%s %s</label>' % (label,
+                                          NumberInput().render(name, value))
+    
 
-#used in the questionnaire
-
-#used for the admin
 class TranslationWidget(MultiWidget):
     """
     This widget separates a value into translations
@@ -46,3 +55,5 @@ class TranslationWidget(MultiWidget):
                                                                        rendered_widgets[i]))
 
         return ''.join(rendered_with_labels)
+    
+#widgets with javascript css and stuff

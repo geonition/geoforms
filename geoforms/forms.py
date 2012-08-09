@@ -5,6 +5,7 @@ from django.template.defaultfilters import slugify
 from django.utils.translation import ugettext as _
 from geoforms.fields import TranslationField
 from geoforms.models import GeoformElement
+from geoforms.widgets import NumberElement
 
 class TextElementForm(forms.Form):
     question = TranslationField()
@@ -30,8 +31,9 @@ class NumberElementForm(TextElementForm):
             name = slugify(self.cleaned_data['question'][0])
             for i, lang in enumerate(settings.LANGUAGES):
                 question = self.cleaned_data['question'][i]
-                gen_html = '<label>%s<input type="number" name="%s" /></label>' % (question,
-                                                                                   name)
+                gen_html = NumberElement().render(question,
+                                                  name,
+                                                  '')
                 
                 model_values['html_%s' % lang[0]] = gen_html
                 model_values['name_%s' % lang[0]] = self.cleaned_data['question'][i]
