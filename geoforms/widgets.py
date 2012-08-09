@@ -38,6 +38,13 @@ class Checkbox(Input):
     """
     input_type = 'checkbox'
     
+    
+class ColorInput(Input):
+    """
+    This widget is a radiobutton
+    """
+    input_type = 'color'
+    
 #smidgets with basic html
 class Drawbutton(Widget):
     """

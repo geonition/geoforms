@@ -6,6 +6,7 @@ from django.utils.translation import ugettext as _
 from geoforms.fields import TranslationField
 from geoforms.models import GeoformElement
 from geoforms.widgets import CheckboxElement
+from geoforms.widgets import ColorInput
 from geoforms.widgets import Drawbutton
 from geoforms.widgets import NumberElement
 from geoforms.widgets import RadiobuttonElement
@@ -113,6 +114,7 @@ class DrawButtonForm(forms.Form):
         ('area', _('area')),))
     label = TranslationField()
     color = forms.CharField(max_length = 6,
+                            widget = ColorInput,
                             help_text = _('The color of the feature to be drawn. The color is given as hexadecimal color e.g. ffffff --> white, 000000 --> black, ff0000 --> red, 00ff00 --> green, 0000ff --> blue.'))
     
     def save(self):
