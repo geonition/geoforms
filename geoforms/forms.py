@@ -6,6 +6,7 @@ from django.utils.translation import ugettext as _
 from geoforms.fields import TranslationField
 from geoforms.models import GeoformElement
 from geoforms.widgets import CheckboxElement
+from geoforms.widgets import Drawbutton
 from geoforms.widgets import NumberElement
 from geoforms.widgets import RadiobuttonElement
 from geoforms.widgets import Paragraph
@@ -124,12 +125,7 @@ class DrawButtonForm(forms.Form):
             for i, lang in enumerate(settings.LANGUAGES):               
                 label = self.cleaned_data['label'][i]
                 name = slugify(self.cleaned_data['label'][i])
-                gen_html = '<button type="button" class="drawbutton %s" name="%s" data-popup="%s" data-color="%s">%s</button>' % (geometry_type,
-                                                                                                                                  name,
-                                                                                                                                  popup,
-                                                                                                                                  color,
-                                                                                                                                  label)
-            
+                gen_html = Drawbutton().render(label, geometry_type, color, popup)
                 model_values['html_%s' % lang[0]] = gen_html
                 model_values['name_%s' % lang[0]] = label
         

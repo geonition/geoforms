@@ -1,9 +1,11 @@
 from django.conf import settings
+from django.forms.util import flatatt
 from django.forms.widgets import MultiWidget
 from django.forms.widgets import TextInput
 from django.forms.widgets import Input
 from django.forms.widgets import Widget
-
+from django.template.defaultfilters import slugify
+from django.utils.safestring import mark_safe
 
 #basic html 5 widgets
 class NumberInput(Input):
@@ -37,6 +39,19 @@ class Checkbox(Input):
     input_type = 'checkbox'
     
 #smidgets with basic html
+class Drawbutton(Widget):
+    """
+    This is a html button
+    """
+    def render(self, label, geometry_type, color, popup, attrs={}):
+        final_attrs = {'data-color': color,
+                       'data-popup': popup,
+                       'name': slugify(label),
+                       'class': 'drawbutton %s' % geometry_type}
+        final_attrs.update(attrs)
+        return mark_safe(u'<button type="button"%s>%s</button>' % (flatatt(final_attrs),
+                                                                   label))
+    
 class NumberElement(Widget):
     """
     The NumberElement represents a number input with a label
