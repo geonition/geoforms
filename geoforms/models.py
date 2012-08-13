@@ -30,7 +30,7 @@ class GeoformElement(models.Model):
     html = models.TextField(help_text = render_to_string('help/geoform_element_html.html'))
 
     def save(self, *args, **kwargs):
-        self.slug = slugify("%s %s" % (self.name, timezone.now()))
+        self.slug = slugify("%s %s" % (self.name, timezone.now()))[:200]
         
         super(GeoformElement, self).save(*args, **kwargs)
     

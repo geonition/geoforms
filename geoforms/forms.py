@@ -139,13 +139,13 @@ class ParagraphForm(forms.Form):
     def save(self):
         if self.is_valid():
             model_values = {}
-            name = slugify(self.cleaned_data['text'][0])[0:200]
+            name = slugify(self.cleaned_data['text'][0])[:199]
             for i, lang in enumerate(settings.LANGUAGES):
                 text = self.cleaned_data['text'][i]
                 gen_html = Paragraph().render(text)
                 
                 model_values['html_%s' % lang[0]] = gen_html
-                model_values['name_%s' % lang[0]] = self.cleaned_data['text'][i]
+                model_values['name_%s' % lang[0]] = self.cleaned_data['text'][i][:199]
             
             GeoformElement(**model_values).save()
         
