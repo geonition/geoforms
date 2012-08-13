@@ -19,15 +19,16 @@ class TextElementForm(forms.ModelForm):
     
     def __init__(self, *args, **kwargs):
         super(TextElementForm, self).__init__(*args, **kwargs)
+        print 'in form init'
+        print kwargs
+        print dir(kwargs['instance'])
+        print kwargs['instance'].html
+        print kwargs['instance'].cleaned_fields
  
         # Set the form fields based on the model object
         if kwargs.has_key('instance'):
             instance = kwargs['instance']
             for i, lang in enumerate(settings.LANGUAGES):
-                print 'in init'
-                print instance
-                print instance['html_%s' % lang[0]]
-                print dir(instance)
                 self.initial['question_%i' % i] = 'hello'
  
     
