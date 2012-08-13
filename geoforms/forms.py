@@ -1,3 +1,4 @@
+from bs4 import BeautifulSoup
 from django import forms
 from django.conf import settings
 from django.forms.formsets import BaseFormSet
@@ -18,19 +19,18 @@ class TextElementForm(forms.ModelForm):
     question = TranslationField()
     
     def __init__(self, *args, **kwargs):
+        
         super(TextElementForm, self).__init__(*args, **kwargs)
-        print 'in form init'
-        print kwargs
-        print dir(kwargs['instance'])
-        print kwargs['instance'].html
-        print kwargs['instance'].cleaned_fields
  
         # Set the form fields based on the model object
         if kwargs.has_key('instance'):
             instance = kwargs['instance']
+            initial_values = []
             for i, lang in enumerate(settings.LANGUAGES):
-                self.initial['question_%i' % i] = 'hello'
- 
+                soup = BeautifulSoup(getattr(kwargs['instance'], 'html_%s' % lang[0]))
+                initial_values.append(soup.label.text)
+            
+            self.initial['question'] = initial_values
     
     def save(self, commit=True):
         model = super(TextElementForm, self).save(commit=False)
@@ -164,13 +164,13 @@ class ParagraphForm(forms.Form):
     def save(self):
         if self.is_valid():
             model_values = {}
-            name = slugify(self.cleaned_data['text'][0])[0:200]
+            name = slugify(self.cleaned_data['text'][0])[:200]
             for i, lang in enumerate(settings.LANGUAGES):
                 text = self.cleaned_data['text'][i]
                 gen_html = Paragraph().render(text)
                 
                 model_values['html_%s' % lang[0]] = gen_html
-                model_values['name_%s' % lang[0]] = self.cleaned_data['text'][i]
+                model_values['name_%s' % lang[0]] = self.cleaned_data['text'][i][:200]
             
             GeoformElement(**model_values).save()
         

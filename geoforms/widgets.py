@@ -110,6 +110,7 @@ class TranslationWidget(MultiWidget):
     def decompress(self, value):
         return [None for lang in settings.LANGUAGES]
     
+    
     def format_output(self, rendered_widgets):
         rendered_with_labels = []
         for i, lang in enumerate(settings.LANGUAGES):
