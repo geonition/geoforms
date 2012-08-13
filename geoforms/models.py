@@ -43,6 +43,10 @@ class GeoformElement(models.Model):
         verbose_name_plural = _('questionnaire page elements')
 
 class TextElementModel(GeoformElement):
+    """
+    This is a proxy model to handle text inputs
+    separately in the admin interface.
+    """
     
     def save(self, *args, **kwargs):
         self.element_type = 'text'
@@ -95,9 +99,6 @@ class FormElement(models.Model):
     geoform = models.ForeignKey(Geoform)
     element = models.ForeignKey(GeoformElement)
     order = models.IntegerField(default=1)
-
-    def __unicode__(self):
-        return u'page element'
         
     class Meta:
         verbose_name = _('page element')
@@ -129,6 +130,10 @@ class Questionnaire(models.Model):
     on_site = CurrentSiteManager()
     
     def get_absolute_url(self):
+        """
+        Returns the absolute urls for this questionnaire for
+        preview purposes.
+        """
         return reverse('questionnaire',
                        kwargs = {'questionnaire_slug': self.slug})
 

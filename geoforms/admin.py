@@ -164,6 +164,9 @@ admin.site.register(Geoform, GeoformAdmin)
 admin.site.register(Questionnaire, QuestionnaireAdmin)
 
 class TextElementAdmin(admin.ModelAdmin):
+    """
+    This is the admin for text inputs
+    """
     form = TextElementForm
 
     def queryset(self, request):

@@ -5,6 +5,9 @@ from django.views.decorators.csrf import ensure_csrf_cookie
 
 @ensure_csrf_cookie
 def questionnaire(request, questionnaire_slug):
+    """
+    This view creates the whole questionnaire html.
+    """
     
     quest = Questionnaire.on_site.select_related().get(slug = questionnaire_slug)
     form_list = quest.geoforms.all().order_by('questionnaireform__order')

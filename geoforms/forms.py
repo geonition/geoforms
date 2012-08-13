@@ -5,6 +5,7 @@ from django.forms.formsets import BaseFormSet
 from django.template.defaultfilters import slugify
 from django.utils.translation import ugettext as _
 from geoforms.fields import TranslationField
+from geoforms.models import GeoformElement
 from geoforms.models import TextElementModel
 from geoforms.widgets import CheckboxElement
 from geoforms.widgets import ColorInput
@@ -16,23 +17,37 @@ from geoforms.widgets import TextElement
 from geoforms.widgets import TranslationWidget
 
 class TextElementForm(forms.ModelForm):
+    """
+    This modelform is used in the admin to
+    be able to add textinputs and
+    also modify them.
+    """
     question = TranslationField()
     
     def __init__(self, *args, **kwargs):
+        """
+        The init function parses through the saved
+        html and sets the correct initial
+        values for the form.
+        """
         
         super(TextElementForm, self).__init__(*args, **kwargs)
  
         # Set the form fields based on the model object
         if kwargs.has_key('instance'):
-            instance = kwargs['instance']
             initial_values = []
-            for i, lang in enumerate(settings.LANGUAGES):
-                soup = BeautifulSoup(getattr(kwargs['instance'], 'html_%s' % lang[0]))
+            for lang in settings.LANGUAGES:
+                soup = BeautifulSoup(getattr(kwargs['instance'],
+                                             'html_%s' % lang[0]))
                 initial_values.append(soup.label.text)
             
             self.initial['question'] = initial_values
     
     def save(self, commit=True):
+        """
+        This function saves the textinput elements form
+        the form.
+        """
         model = super(TextElementForm, self).save(commit=False)
         
  
@@ -43,8 +58,10 @@ class TextElementForm(forms.ModelForm):
                 gen_html = TextElement().render(question,
                                                 name,
                                                 '')
-                setattr(model, 'html_%s' % lang[0], gen_html)
-                setattr(model, 'name_%s' % lang[0], self.cleaned_data['question'][i])
+                setattr(model, 'html_%s' % lang[0],
+                        gen_html)
+                setattr(model, 'name_%s' % lang[0],
+                        self.cleaned_data['question'][i])
             
         # Save the fields
         if commit:
@@ -72,7 +89,7 @@ class NumberElementForm(TextElementForm):
                 model_values['name_%s' % lang[0]] = self.cleaned_data['question'][i]
             
             GeoformElement(**model_values).save()
-    
+            
 class QuestionForm(forms.Form):
     """
     This is used to define the question
@@ -89,12 +106,12 @@ class RadioElementFormSet(BaseFormSet):
     """
     
     def save(self):
-        qf = QuestionForm(self.data)
+        qform = QuestionForm(self.data)
         model_values = {}
-        if qf.is_valid():
+        if qform.is_valid():
             for i, lang in enumerate(settings.LANGUAGES):
-                model_values['html_%s' % lang[0]] = '<p>%s</p>' % qf.cleaned_data['question'][i]
-                model_values['name_%s' % lang[0]] = qf.cleaned_data['question'][i]
+                model_values['html_%s' % lang[0]] = '<p>%s</p>' % qform.cleaned_data['question'][i]
+                model_values['name_%s' % lang[0]] = qform.cleaned_data['question'][i]
         
         for form in self.forms:
             
@@ -115,12 +132,12 @@ class CheckboxElementFormSet(BaseFormSet):
     """
     
     def save(self):
-        qf = QuestionForm(self.data)
+        qform = QuestionForm(self.data)
         model_values = {}
-        if qf.is_valid():
+        if qform.is_valid():
             for i, lang in enumerate(settings.LANGUAGES):
-                model_values['html_%s' % lang[0]] = '<p>%s</p>' % qf.cleaned_data['question'][i]
-                model_values['name_%s' % lang[0]] = qf.cleaned_data['question'][i]
+                model_values['html_%s' % lang[0]] = '<p>%s</p>' % qform.cleaned_data['question'][i]
+                model_values['name_%s' % lang[0]] = qform.cleaned_data['question'][i]
         
         for form in self.forms:
             
@@ -162,9 +179,11 @@ class ParagraphForm(forms.Form):
                             widget = TranslationWidget(widget_class = forms.Textarea))
     
     def save(self):
+        """
+        This function saves the paragraph
+        """
         if self.is_valid():
             model_values = {}
-            name = slugify(self.cleaned_data['text'][0])[:200]
             for i, lang in enumerate(settings.LANGUAGES):
                 text = self.cleaned_data['text'][i]
                 gen_html = Paragraph().render(text)

@@ -51,7 +51,8 @@ class Drawbutton(Widget):
     This is a html button
     """
     def render(self, label, geometry_type, color, popup, attrs={}):
-        if color[0] == '#': color = color[1:]
+        if color[0] == '#':
+            color = color[1:]
         final_attrs = {'data-color': color,
                        'data-popup': popup,
                        'name': slugify(label),
@@ -82,7 +83,9 @@ class RadiobuttonElement(Widget):
     """
     def render(self, label, name, value, attrs={}):
         return u'<label>%s %s</label>' % (label,
-                                          Radiobutton().render(name, value, attrs))
+                                          Radiobutton().render(name,
+                                                               value,
+                                                               attrs))
     
 class CheckboxElement(Widget):
     """
@@ -101,14 +104,13 @@ class TranslationWidget(MultiWidget):
     def __init__(self, widget_class = TextInput, attrs=None):
         widget_list = ()
         
-        for lang in settings.LANGUAGES:
-            widget_list += (widget_class(),)
+        widget_list = (widget_class(),) * len(settings.LANGUAGES)
             
         super(TranslationWidget, self).__init__(widget_list, attrs)
     
     
     def decompress(self, value):
-        return [None for lang in settings.LANGUAGES]
+        return [None] * len(settings.LANGUAGES)
     
     
     def format_output(self, rendered_widgets):
