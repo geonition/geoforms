@@ -27,6 +27,7 @@ class GeoformElement(models.Model):
                             unique = True)
     name = models.CharField(max_length = 200,
                             help_text = render_to_string('help/geoform_element_name.html'))
+    element_type = models.CharField(max_length = 50)
     html = models.TextField(help_text = render_to_string('help/geoform_element_html.html'))
 
     def save(self, *args, **kwargs):
@@ -40,7 +41,18 @@ class GeoformElement(models.Model):
     class Meta:
         verbose_name = _('questionnaire page element')
         verbose_name_plural = _('questionnaire page elements')
+
+class TextElementModel(GeoformElement):
     
+    def save(self, *args, **kwargs):
+        self.element_type = 'text'
+        
+        super(TextElementModel, self).save(*args, **kwargs)
+        
+    class Meta:
+        proxy = True
+        verbose_name = _('Text input')
+        verbose_name_plural = _('Text inputs')
 
 class Geoform(models.Model):
     """

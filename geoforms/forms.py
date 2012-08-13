@@ -4,7 +4,7 @@ from django.forms.formsets import BaseFormSet
 from django.template.defaultfilters import slugify
 from django.utils.translation import ugettext as _
 from geoforms.fields import TranslationField
-from geoforms.models import GeoformElement
+from geoforms.models import TextElementModel
 from geoforms.widgets import CheckboxElement
 from geoforms.widgets import ColorInput
 from geoforms.widgets import Drawbutton
@@ -14,22 +14,46 @@ from geoforms.widgets import Paragraph
 from geoforms.widgets import TextElement
 from geoforms.widgets import TranslationWidget
 
-class TextElementForm(forms.Form):
+class TextElementForm(forms.ModelForm):
     question = TranslationField()
     
-    def save(self):
+    def __init__(self, *args, **kwargs):
+        super(TextElementForm, self).__init__(*args, **kwargs)
+ 
+        # Set the form fields based on the model object
+        if kwargs.has_key('instance'):
+            instance = kwargs['instance']
+            for i, lang in enumerate(settings.LANGUAGES):
+                print 'in init'
+                print instance
+                print instance['html_%s' % lang[0]]
+                print dir(instance)
+                self.initial['question_%i' % i] = 'hello'
+ 
+    
+    def save(self, commit=True):
+        model = super(TextElementForm, self).save(commit=False)
+        
+ 
         if self.is_valid():
-            model_values = {}
             name = slugify(self.cleaned_data['question'][0])
             for i, lang in enumerate(settings.LANGUAGES):
                 question = self.cleaned_data['question'][i]
                 gen_html = TextElement().render(question,
                                                 name,
                                                 '')
-                model_values['html_%s' % lang[0]] = gen_html
-                model_values['name_%s' % lang[0]] = self.cleaned_data['question'][i]
+                setattr(model, 'html_%s' % lang[0], gen_html)
+                setattr(model, 'name_%s' % lang[0], self.cleaned_data['question'][i])
             
-            GeoformElement(**model_values).save()
+        # Save the fields
+        if commit:
+            model.save()
+            
+        return model
+     
+    class Meta:
+        model = TextElementModel
+        fields = ('question',)
 
 class NumberElementForm(TextElementForm):
     
