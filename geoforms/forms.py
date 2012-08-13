@@ -138,7 +138,7 @@ class DrawButtonForm(forms.Form):
         ('route', _('route')),
         ('area', _('area')),))
     label = TranslationField()
-    color = forms.CharField(max_length = 6,
+    color = forms.CharField(max_length = 7,
                             widget = ColorInput,
                             help_text = _('The color of the feature to be drawn. The color is given as hexadecimal color e.g. ffffff --> white, 000000 --> black, ff0000 --> red, 00ff00 --> green, 0000ff --> blue.'))
     
