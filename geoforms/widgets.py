@@ -82,18 +82,18 @@ class RadiobuttonElement(Widget):
     This element presents a radiobutton with a label
     """
     def render(self, label, name, value, attrs={}):
-        return u'<label>%s %s</label>' % (label,
-                                          Radiobutton().render(name,
+        return u'<label>%s %s</label>' % (Radiobutton().render(name,
                                                                value,
-                                                               attrs))
+                                                               attrs),
+                                          label)
     
 class CheckboxElement(Widget):
     """
     This element presents a radiobutton with a label
     """
     def render(self, label, name, value, attrs={}):
-        return u'<label>%s %s</label>' % (label,
-                                          Checkbox().render(name, value, attrs))
+        return u'<label>%s %s</label>' % (Checkbox().render(name, value, attrs),
+                                          label)
 
 class TranslationWidget(MultiWidget):
     """
