@@ -57,7 +57,21 @@ class TextElementModel(GeoformElement):
         proxy = True
         verbose_name = _('Text input')
         verbose_name_plural = _('Text inputs')
+        
+class NumberElementModel(GeoformElement):
+    """
+    This is a proxy model for the number inputs
+    """
+    def save(self, *args, **kwargs):
+        self.element_type = 'number'
+        
+        super(NumberElementModel, self).save(*args, **kwargs)
 
+    class Meta:
+        proxy = True
+        verbose_name = _('Numer input')
+        verbose_name_plural = _('Number inputs')
+        
 class Geoform(models.Model):
     """
     This is one form in a questionnaire

@@ -1,3 +1,4 @@
+import abc
 from bs4 import BeautifulSoup
 from django import forms
 from django.conf import settings
@@ -6,6 +7,7 @@ from django.template.defaultfilters import slugify
 from django.utils.translation import ugettext as _
 from geoforms.fields import TranslationField
 from geoforms.models import GeoformElement
+from geoforms.models import NumberElementModel
 from geoforms.models import TextElementModel
 from geoforms.widgets import CheckboxElement
 from geoforms.widgets import ColorInput
@@ -16,12 +18,13 @@ from geoforms.widgets import Paragraph
 from geoforms.widgets import TextElement
 from geoforms.widgets import TranslationWidget
 
-class TextElementForm(forms.ModelForm):
+#element admin forms
+class ElementForm(forms.ModelForm):
     """
-    This modelform is used in the admin to
-    be able to add textinputs and
-    also modify them.
+    This is a base class for input elements
+    of the form <label>label <input .../></label>
     """
+    
     question = TranslationField()
     
     def __init__(self, *args, **kwargs):
@@ -31,7 +34,7 @@ class TextElementForm(forms.ModelForm):
         values for the form.
         """
         
-        super(TextElementForm, self).__init__(*args, **kwargs)
+        super(ElementForm, self).__init__(*args, **kwargs)
  
         # Set the form fields based on the model object
         if kwargs.has_key('instance'):
@@ -45,19 +48,17 @@ class TextElementForm(forms.ModelForm):
     
     def save(self, commit=True):
         """
-        This function saves the textinput elements form
-        the form.
+        This function saves the elements
         """
-        model = super(TextElementForm, self).save(commit=False)
-        
+        model = super(ElementForm, self).save(commit=False)
  
         if self.is_valid():
             name = slugify(self.cleaned_data['question'][0])
             for i, lang in enumerate(settings.LANGUAGES):
                 question = self.cleaned_data['question'][i]
-                gen_html = TextElement().render(question,
-                                                name,
-                                                '')
+                gen_html = self.render(question,
+                                       name,
+                                       '')
                 setattr(model, 'html_%s' % lang[0],
                         gen_html)
                 setattr(model, 'name_%s' % lang[0],
@@ -68,28 +69,46 @@ class TextElementForm(forms.ModelForm):
             model.save()
             
         return model
-     
+
+    @abc.abstractmethod
+    def render(self,
+               question,
+               name,
+               value):
+        """
+        This function has to be overridden to
+        render the element
+        """
+        return ''
+    
+class TextElementForm(ElementForm):
+    """
+    This modelform is used in the admin to
+    be able to add textinputs and
+    also modify them.
+    """
+    
+    def render(self, question, name, value):
+        return TextElement().render(question,
+                                    name,
+                                    value)
+        
     class Meta:
         model = TextElementModel
         fields = ('question',)
 
-class NumberElementForm(TextElementForm):
+class NumberElementForm(ElementForm):
     
-    def save(self):
-        if self.is_valid():
-            model_values = {}
-            name = slugify(self.cleaned_data['question'][0])
-            for i, lang in enumerate(settings.LANGUAGES):
-                question = self.cleaned_data['question'][i]
-                gen_html = NumberElement().render(question,
-                                                  name,
-                                                  '')
-                
-                model_values['html_%s' % lang[0]] = gen_html
-                model_values['name_%s' % lang[0]] = self.cleaned_data['question'][i]
-            
-            GeoformElement(**model_values).save()
-            
+    def render(self, question, name, value):
+        return NumberElement().render(question,
+                                      name,
+                                      value)
+     
+    class Meta:
+        model = NumberElementModel
+        fields = ('question',)
+
+#bascic admin forms    
 class QuestionForm(forms.Form):
     """
     This is used to define the question

@@ -20,6 +20,7 @@ from geoforms.models import GeoformElement
 from geoforms.models import FormElement
 from geoforms.models import Questionnaire
 from geoforms.models import QuestionnaireForm
+from geoforms.models import NumberElementModel
 from geoforms.models import TextElementModel
 from modeltranslation.admin import TranslationAdmin
 from modeltranslation.admin import TranslationTabularInline
@@ -171,6 +172,15 @@ class TextElementAdmin(admin.ModelAdmin):
 
     def queryset(self, request):
         return self.model.objects.filter(element_type = 'text')
-    
+
 admin.site.register(TextElementModel, TextElementAdmin)
 
+class NumberElementAdmin(admin.ModelAdmin):
+    
+    form = NumberElementForm
+    
+    def queryset(self, request):
+        return self.model.objects.filter(element_type = 'number')
+    
+admin.site.register(NumberElementModel, NumberElementAdmin)
+    
