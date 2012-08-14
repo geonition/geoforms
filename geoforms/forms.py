@@ -132,13 +132,12 @@ class RadioElementFormSet(BaseFormSet):
     def __init__(self, *args, **kwargs):
         super(RadioElementFormSet, self).__init__(*args, **kwargs)
         
-        print 'initi in radioelement form set'
-        print self.initial
-        
     def save(self):
         qform = QuestionForm(self.data)
         model_values = {}
-        if qform.is_valid():
+        name = ''
+        if qform.is_valid():            
+            name = slugify(qform.cleaned_data['question'][0])
             for i, lang in enumerate(settings.LANGUAGES):
                 model_values['html_%s' % lang[0]] = '<p>%s</p>' % qform.cleaned_data['question'][i]
                 model_values['name_%s' % lang[0]] = qform.cleaned_data['question'][i]
@@ -148,10 +147,10 @@ class RadioElementFormSet(BaseFormSet):
             if form.is_valid():
                 for i, lang in enumerate(settings.LANGUAGES):
                     model_values['html_%s' % lang[0]] += RadiobuttonElement().render(form.cleaned_data['label'][i],
-                                                                                     slugify(form.cleaned_data['label'][0]),
-                                                                                     '')
+                                                                                     name,
+                                                                                     slugify(form.cleaned_data['label'][i]))
                                 
-        GeoformElement(**model_values).save()
+        RadioElementModel(**model_values).save()
         
 class CheckboxElementForm(forms.Form):
     label = TranslationField()

@@ -1,3 +1,4 @@
+from bs4 import BeautifulSoup
 from django.conf import settings
 from django.conf.urls.defaults import patterns
 from django.contrib.gis import admin
@@ -193,6 +194,56 @@ class RadioElementAdmin(admin.ModelAdmin):
     
     def queryset(self, request):
         return self.model.objects.filter(element_type = 'radio')
+    
+    def add_view(self, request, form_url='', extra_context=None):
+        if request.method == 'POST':
+            res = formset_factory(RadioElementForm,
+                                  formset=RadioElementFormSet)
+            rs = res(request.POST)
+            rs.save()
+            return HttpResponseRedirect(reverse('admin:geoforms_radioelementmodel_changelist'))
+        else:
+            return super(RadioElementAdmin, self).add_view(request,
+                                                           form_url = '',
+                                                           extra_context = {
+                                                            'current_app': self.admin_site.name,
+                                                            'form': QuestionForm(),
+                                                            'formset': formset_factory(RadioElementForm)})
+    
+    def change_view(self, request, object_id, form_url='', extra_context=None):
+        if request.method == 'POST':
+            res = formset_factory(RadioElementForm,
+                                  formset=RadioElementFormSet)
+            rs = res(request.POST)
+            rs.save()
+            return HttpResponseRedirect(reverse('admin:geoforms_radioelementmodel_changelist'))
+        else:
+            initial_data = []
+            question_data = {'question': []}
+            radioelement = RadioElementModel.objects.get(id = object_id)
+            
+            for i, lang in enumerate(settings.LANGUAGES):
+                html = getattr(radioelement,
+                               'html_%s' % lang[0],
+                               '')
+                soup = BeautifulSoup(html)
+                question_data['question'].append(soup.p.text)
+                labels = soup.find_all('label')
+                label_row = {u'label': []}
+                for j, label in enumerate(labels):
+                    if i == 0:
+                        initial_data.append({u'label': [label.text]})
+                    else:
+                        initial_data[j]['label'].append(label.text)
+            
+            return super(RadioElementAdmin, self).change_view(request,
+                                                              object_id,
+                                                              form_url = '',
+                                                              extra_context = {
+                                                                'current_app': self.admin_site.name,
+                                                                'form': QuestionForm(initial = question_data),
+                                                                'formset': formset_factory(RadioElementForm,
+                                                                                           extra = 0)(initial = initial_data)})
     
 admin.site.register(RadioElementModel, RadioElementAdmin)
     
