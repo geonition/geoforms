@@ -72,6 +72,20 @@ class NumberElementModel(GeoformElement):
         verbose_name = _('Numer input')
         verbose_name_plural = _('Number inputs')
         
+class RadioElementModel(GeoformElement):
+    """
+    This is a proxy model for the radiobuttons
+    """
+    def save(self, *args, **kwargs):
+        self.element_type = 'radio'
+        
+        super(RadioElementModel, self).save(*args, **kwargs)
+
+    class Meta:
+        proxy = True
+        verbose_name = _('Select one item')
+        verbose_name_plural = _('Select one items')
+        
 class Geoform(models.Model):
     """
     This is one form in a questionnaire

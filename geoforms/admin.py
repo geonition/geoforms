@@ -21,6 +21,7 @@ from geoforms.models import FormElement
 from geoforms.models import Questionnaire
 from geoforms.models import QuestionnaireForm
 from geoforms.models import NumberElementModel
+from geoforms.models import RadioElementModel
 from geoforms.models import TextElementModel
 from modeltranslation.admin import TranslationAdmin
 from modeltranslation.admin import TranslationTabularInline
@@ -183,4 +184,15 @@ class NumberElementAdmin(admin.ModelAdmin):
         return self.model.objects.filter(element_type = 'number')
     
 admin.site.register(NumberElementModel, NumberElementAdmin)
+
+class RadioElementAdmin(admin.ModelAdmin):
+    
+    form = RadioElementForm
+    add_form_template = 'admin/geoforms/geoformelement/create_element.html'
+    change_form_template = add_form_template
+    
+    def queryset(self, request):
+        return self.model.objects.filter(element_type = 'radio')
+    
+admin.site.register(RadioElementModel, RadioElementAdmin)
     

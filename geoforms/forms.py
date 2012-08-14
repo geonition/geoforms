@@ -8,6 +8,7 @@ from django.utils.translation import ugettext as _
 from geoforms.fields import TranslationField
 from geoforms.models import GeoformElement
 from geoforms.models import NumberElementModel
+from geoforms.models import RadioElementModel
 from geoforms.models import TextElementModel
 from geoforms.widgets import CheckboxElement
 from geoforms.widgets import ColorInput
@@ -108,7 +109,7 @@ class NumberElementForm(ElementForm):
         model = NumberElementModel
         fields = ('question',)
 
-#bascic admin forms    
+#basic admin forms    
 class QuestionForm(forms.Form):
     """
     This is used to define the question
@@ -116,14 +117,24 @@ class QuestionForm(forms.Form):
     """
     question = TranslationField()
     
-class RadioElementForm(forms.Form):
+class RadioElementForm(forms.ModelForm):
     label = TranslationField()
+    
+    class Meta:
+        model = RadioElementModel
+        fields = ('label',)
             
 class RadioElementFormSet(BaseFormSet):
     """
     Radio elements needs to be saved at one time
     """
     
+    def __init__(self, *args, **kwargs):
+        super(RadioElementFormSet, self).__init__(*args, **kwargs)
+        
+        print 'initi in radioelement form set'
+        print self.initial
+        
     def save(self):
         qform = QuestionForm(self.data)
         model_values = {}
