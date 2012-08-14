@@ -6,6 +6,8 @@ from django.forms.formsets import BaseFormSet
 from django.template.defaultfilters import slugify
 from django.utils.translation import ugettext as _
 from geoforms.fields import TranslationField
+from geoforms.models import CheckboxElementModel
+from geoforms.models import DrawbuttonElementModel
 from geoforms.models import GeoformElement
 from geoforms.models import NumberElementModel
 from geoforms.models import RadioElementModel
@@ -152,8 +154,12 @@ class RadioElementFormSet(BaseFormSet):
                                 
         RadioElementModel(**model_values).save()
         
-class CheckboxElementForm(forms.Form):
+class CheckboxElementForm(forms.ModelForm):
     label = TranslationField()
+    
+    class Meta:
+        model = CheckboxElementModel
+        fields = ('label',)
             
 class CheckboxElementFormSet(BaseFormSet):
     """
@@ -163,7 +169,9 @@ class CheckboxElementFormSet(BaseFormSet):
     def save(self):
         qform = QuestionForm(self.data)
         model_values = {}
-        if qform.is_valid():
+        name = ''
+        if qform.is_valid():            
+            name = slugify(qform.cleaned_data['question'][0])
             for i, lang in enumerate(settings.LANGUAGES):
                 model_values['html_%s' % lang[0]] = '<p>%s</p>' % qform.cleaned_data['question'][i]
                 model_values['name_%s' % lang[0]] = qform.cleaned_data['question'][i]
@@ -173,12 +181,12 @@ class CheckboxElementFormSet(BaseFormSet):
             if form.is_valid():
                 for i, lang in enumerate(settings.LANGUAGES):
                     model_values['html_%s' % lang[0]] += CheckboxElement().render(form.cleaned_data['label'][i],
-                                                                                  slugify(form.cleaned_data['label'][0]),
-                                                                                  '')
+                                                                                  name,
+                                                                                  slugify(form.cleaned_data['label'][i]))
                                 
         CheckboxElementModel(**model_values).save()
     
-class DrawButtonForm(forms.Form):
+class DrawbuttonForm(forms.ModelForm):
     geometry_type = forms.ChoiceField(choices = (
         ('point', _('place')),
         ('route', _('route')),
@@ -188,8 +196,9 @@ class DrawButtonForm(forms.Form):
                             widget = ColorInput,
                             help_text = _('The color of the feature to be drawn. The color is given as hexadecimal color e.g. ffffff --> white, 000000 --> black, ff0000 --> red, 00ff00 --> green, 0000ff --> blue.'))
     
-    def save(self):
-        model_values = {}
+    def save(self, commit=True):
+        model = super(DrawbuttonForm, self).save(commit=False)
+        
         if self.is_valid():
             geometry_type = self.cleaned_data['geometry_type']
             popup = 'basic'
@@ -197,10 +206,23 @@ class DrawButtonForm(forms.Form):
             for i, lang in enumerate(settings.LANGUAGES):               
                 label = self.cleaned_data['label'][i]
                 gen_html = Drawbutton().render(label, geometry_type, color, popup)
-                model_values['html_%s' % lang[0]] = gen_html
-                model_values['name_%s' % lang[0]] = label
+                setattr(model,
+                        'html_%s' % lang[0],
+                        gen_html)
+                setattr(model,
+                        'name_%s' % lang[0],
+                        label)
         
-            GeoformElement(**model_values).save()
+        if commit:
+            model.save()
+            
+        return model
+          
+    class Meta:
+        model = DrawbuttonElementModel
+        fields = ('geometry_type',
+                  'label',
+                  'color',)
 
 class ParagraphForm(forms.Form):
     

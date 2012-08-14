@@ -84,8 +84,8 @@ class RadioElementModel(GeoformElement):
 
     class Meta:
         proxy = True
-        verbose_name = _('Select one item')
-        verbose_name_plural = _('Select one items')
+        verbose_name = _('Select one')
+        verbose_name_plural = _('Select one')
 
 class CheckboxElementModel(GeoformElement):
     """
@@ -98,8 +98,22 @@ class CheckboxElementModel(GeoformElement):
 
     class Meta:
         proxy = True
-        verbose_name = _('Select multiple item')
-        verbose_name_plural = _('Select multiple items')
+        verbose_name = _('Select multiple')
+        verbose_name_plural = _('Select multiple')
+
+class DrawbuttonElementModel(GeoformElement):
+    """
+    This is a proxy model for the drawbuttons
+    """
+    def save(self, *args, **kwargs):
+        self.element_type = 'drawbutton'
+        
+        super(DrawbuttonElementModel, self).save(*args, **kwargs)
+
+    class Meta:
+        proxy = True
+        verbose_name = _('Draw button')
+        verbose_name_plural = _('Draw buttons')
 
 
 #continue with real models       
