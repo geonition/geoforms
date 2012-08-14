@@ -46,6 +46,8 @@ class ColorInput(Input):
     input_type = 'color'
     
 #smidgets with basic html
+
+#questionnaire widgets
 class Drawbutton(Widget):
     """
     This is a html button
@@ -95,6 +97,7 @@ class CheckboxElement(Widget):
         return u'<label>%s %s</label>' % (Checkbox().render(name, value, attrs),
                                           label)
 
+#admin widgets
 class TranslationWidget(MultiWidget):
     """
     This widget separates a value into translations

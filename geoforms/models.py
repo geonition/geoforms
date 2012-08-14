@@ -42,6 +42,7 @@ class GeoformElement(models.Model):
         verbose_name = _('questionnaire page element')
         verbose_name_plural = _('questionnaire page elements')
 
+#proxy models for geoformelement
 class TextElementModel(GeoformElement):
     """
     This is a proxy model to handle text inputs
@@ -85,7 +86,23 @@ class RadioElementModel(GeoformElement):
         proxy = True
         verbose_name = _('Select one item')
         verbose_name_plural = _('Select one items')
+
+class CheckboxElementModel(GeoformElement):
+    """
+    This is a proxy model for the checkboxes
+    """
+    def save(self, *args, **kwargs):
+        self.element_type = 'checkbox'
         
+        super(CheckboxElementModel, self).save(*args, **kwargs)
+
+    class Meta:
+        proxy = True
+        verbose_name = _('Select multiple item')
+        verbose_name_plural = _('Select multiple items')
+
+
+#continue with real models       
 class Geoform(models.Model):
     """
     This is one form in a questionnaire

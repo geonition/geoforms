@@ -176,7 +176,7 @@ class CheckboxElementFormSet(BaseFormSet):
                                                                                   slugify(form.cleaned_data['label'][0]),
                                                                                   '')
                                 
-        GeoformElement(**model_values).save()
+        CheckboxElementModel(**model_values).save()
     
 class DrawButtonForm(forms.Form):
     geometry_type = forms.ChoiceField(choices = (
