@@ -196,6 +196,34 @@ class DrawbuttonForm(forms.ModelForm):
                             widget = ColorInput,
                             help_text = _('The color of the feature to be drawn. The color is given as hexadecimal color e.g. ffffff --> white, 000000 --> black, ff0000 --> red, 00ff00 --> green, 0000ff --> blue.'))
     
+    
+    def __init__(self, *args, **kwargs):
+        """
+        The init function parses through the saved
+        html and sets the correct initial
+        values for the form.
+        """
+        
+        super(DrawbuttonForm, self).__init__(*args, **kwargs)
+ 
+        # Set the form fields based on the model object
+        if kwargs.has_key('instance'):
+            geometry_type = 'point'
+            label = []
+            color = '#000000'
+            for lang in settings.LANGUAGES:
+                soup = BeautifulSoup(getattr(kwargs['instance'],
+                                             'html_%s' % lang[0]))
+                geometry_type = soup.button['class'][1]
+                color = '#' + soup.button['data-color']
+                label.append(soup.button.text)
+            
+            self.initial['geometry_type'] = geometry_type
+            self.initial['label'] = label
+            self.initial['color'] = color
+            
+            
+            
     def save(self, commit=True):
         model = super(DrawbuttonForm, self).save(commit=False)
         
