@@ -36,9 +36,11 @@ class GeoformElement(models.Model):
         super(GeoformElement, self).save(*args, **kwargs)
     
     def __unicode__(self):
-        return u'%s' % (self.name)
+        return u'%s-%s' % (self.name,
+                           self.element_type)
         
     class Meta:
+        ordering = ['element_type']
         verbose_name = _('questionnaire page element')
         verbose_name_plural = _('questionnaire page elements')
 
