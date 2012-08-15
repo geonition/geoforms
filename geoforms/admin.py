@@ -21,6 +21,7 @@ from geoforms.models import DrawbuttonElementModel
 from geoforms.models import Geoform
 from geoforms.models import GeoformElement
 from geoforms.models import FormElement
+from geoforms.models import ParagraphElementModel
 from geoforms.models import Questionnaire
 from geoforms.models import QuestionnaireForm
 from geoforms.models import NumberElementModel
@@ -187,6 +188,15 @@ class NumberElementAdmin(admin.ModelAdmin):
         return self.model.objects.filter(element_type = 'number')
     
 admin.site.register(NumberElementModel, NumberElementAdmin)
+
+class ParagraphElementAdmin(admin.ModelAdmin):
+    
+    form = ParagraphForm
+    
+    def queryset(self, request):
+        return self.model.objects.filter(element_type = 'paragraph')
+    
+admin.site.register(ParagraphElementModel, ParagraphElementAdmin)
 
 class DrawbuttonElementAdmin(admin.ModelAdmin):
     

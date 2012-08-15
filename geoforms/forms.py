@@ -10,6 +10,7 @@ from geoforms.models import CheckboxElementModel
 from geoforms.models import DrawbuttonElementModel
 from geoforms.models import GeoformElement
 from geoforms.models import NumberElementModel
+from geoforms.models import ParagraphElementModel
 from geoforms.models import RadioElementModel
 from geoforms.models import TextElementModel
 from geoforms.widgets import CheckboxElement
@@ -111,14 +112,6 @@ class NumberElementForm(ElementForm):
         model = NumberElementModel
         fields = ('question',)
 
-#basic admin forms    
-class QuestionForm(forms.Form):
-    """
-    This is used to define the question
-    for e.g. radio buttons
-    """
-    question = TranslationField()
-    
 class RadioElementForm(forms.ModelForm):
     label = TranslationField()
     
@@ -252,25 +245,60 @@ class DrawbuttonForm(forms.ModelForm):
                   'label',
                   'color',)
 
-class ParagraphForm(forms.Form):
+class ParagraphForm(forms.ModelForm):
     
     text = TranslationField(field_class = forms.CharField,
                             widget = TranslationWidget(widget_class = forms.Textarea))
     
-    def save(self):
-        """
-        This function saves the paragraph
-        """
-        if self.is_valid():
-            model_values = {}
-            for i, lang in enumerate(settings.LANGUAGES):
-                text = self.cleaned_data['text'][i]
-                gen_html = Paragraph().render(text)
-                
-                model_values['html_%s' % lang[0]] = gen_html
-                model_values['name_%s' % lang[0]] = self.cleaned_data['text'][i][:200]
+    
+    
+    def __init__(self, *args, **kwargs):
+        
+        super(ParagraphForm, self).__init__(*args, **kwargs)
+ 
+        # Set the form fields based on the model object
+        if kwargs.has_key('instance'):
+            initial_values = []
+            for lang in settings.LANGUAGES:
+                soup = BeautifulSoup(getattr(kwargs['instance'],
+                                             'html_%s' % lang[0]))
+                initial_values.append(soup.p.text)
             
-            GeoformElement(**model_values).save()
+            self.initial['text'] = initial_values
+    
+    def save(self, commit=True):
+        """
+        This function saves the elements
+        """
+        model = super(ParagraphForm, self).save(commit=False)
+ 
+        if self.is_valid():
+            name = slugify(self.cleaned_data['text'][0])
+            for i, lang in enumerate(settings.LANGUAGES):
+                question = self.cleaned_data['text'][i]
+                gen_html = '<p>%s</p>' % question
+                setattr(model, 'html_%s' % lang[0],
+                        gen_html)
+                setattr(model, 'name_%s' % lang[0],
+                        question[:200])
+            
+        # Save the fields
+        if commit:
+            model.save()
+            
+        return model
+    
+    
+          
+    class Meta:
+        model = ParagraphElementModel
+        fields = ('text',)
         
-        
+#basic admin forms    
+class QuestionForm(forms.Form):
+    """
+    This is used to define the question
+    for e.g. radio buttons
+    """
+    question = TranslationField()
     

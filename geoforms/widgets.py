@@ -119,7 +119,7 @@ class TranslationWidget(MultiWidget):
     def format_output(self, rendered_widgets):
         rendered_with_labels = []
         for i, lang in enumerate(settings.LANGUAGES):
-            rendered_with_labels.append('<label>%s [%s] %s</label>' % (lang[1],
+            rendered_with_labels.append('<span>%s [%s]</span> %s' % (lang[1],
                                                                        lang[0],
                                                                        rendered_widgets[i]))
 

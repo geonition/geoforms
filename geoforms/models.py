@@ -58,8 +58,8 @@ class TextElementModel(GeoformElement):
         
     class Meta:
         proxy = True
-        verbose_name = _('Text input')
-        verbose_name_plural = _('Text inputs')
+        verbose_name = _('text input')
+        verbose_name_plural = _('text inputs')
         
 class NumberElementModel(GeoformElement):
     """
@@ -72,8 +72,22 @@ class NumberElementModel(GeoformElement):
 
     class Meta:
         proxy = True
-        verbose_name = _('Numer input')
-        verbose_name_plural = _('Number inputs')
+        verbose_name = _('numer input')
+        verbose_name_plural = _('number inputs')
+        
+class ParagraphElementModel(GeoformElement):
+    """
+    This is a proxy model for the number inputs
+    """
+    def save(self, *args, **kwargs):
+        self.element_type = 'paragraph'
+        
+        super(ParagraphElementModel, self).save(*args, **kwargs)
+
+    class Meta:
+        proxy = True
+        verbose_name = _('paragraph')
+        verbose_name_plural = _('paragraphs')
         
 class RadioElementModel(GeoformElement):
     """
