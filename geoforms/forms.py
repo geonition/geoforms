@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 from django import forms
 from django.conf import settings
 from django.forms.formsets import BaseFormSet
+from django.forms.models import BaseModelFormSet
 from django.template.defaultfilters import slugify
 from django.utils.translation import ugettext as _
 from geoforms.fields import TranslationField
@@ -144,7 +145,9 @@ class RadioElementFormSet(BaseFormSet):
                     model_values['html_%s' % lang[0]] += RadiobuttonElement().render(form.cleaned_data['label'][i],
                                                                                      name,
                                                                                      slugify(form.cleaned_data['label'][i]))
-                                
+        if self.data.has_key('id'):
+            model_values['id'] = self.data['id']
+            
         RadioElementModel(**model_values).save()
         
 class CheckboxElementForm(forms.ModelForm):
@@ -176,7 +179,9 @@ class CheckboxElementFormSet(BaseFormSet):
                     model_values['html_%s' % lang[0]] += CheckboxElement().render(form.cleaned_data['label'][i],
                                                                                   name,
                                                                                   slugify(form.cleaned_data['label'][i]))
-                                
+        if self.data.has_key('id'):
+            model_values['id'] = self.data['id']
+            
         CheckboxElementModel(**model_values).save()
     
 class DrawbuttonForm(forms.ModelForm):
@@ -249,8 +254,6 @@ class ParagraphForm(forms.ModelForm):
     
     text = TranslationField(field_class = forms.CharField,
                             widget = TranslationWidget(widget_class = forms.Textarea))
-    
-    
     
     def __init__(self, *args, **kwargs):
         

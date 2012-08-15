@@ -235,7 +235,7 @@ class CheckboxElementAdmin(admin.ModelAdmin):
         if request.method == 'POST':
             ces = formset_factory(CheckboxElementForm,
                                   formset=CheckboxElementFormSet)
-            cs = res(request.POST)
+            cs = ces(request.POST)
             cs.save()
             return HttpResponseRedirect(reverse('admin:geoforms_checkboxelementmodel_changelist'))
         else:
