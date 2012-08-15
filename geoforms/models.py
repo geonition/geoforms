@@ -173,7 +173,7 @@ class FormElement(models.Model):
     """
     geoform = models.ForeignKey(Geoform)
     element = models.ForeignKey(GeoformElement)
-    order = models.IntegerField(default=1)
+    order = models.IntegerField(default=10)
         
     class Meta:
         verbose_name = _('page element')
@@ -236,7 +236,7 @@ class QuestionnaireForm(models.Model):
     """
     questionnaire = models.ForeignKey(Questionnaire)
     geoform = models.ForeignKey(Geoform)
-    order = models.IntegerField(default=1)
+    order = models.IntegerField(default=10)
 
     def __unicode__(self):
         return u'questionnaire page'
