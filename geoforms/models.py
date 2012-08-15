@@ -27,7 +27,8 @@ class GeoformElement(models.Model):
                             unique = True)
     name = models.CharField(max_length = 200,
                             help_text = render_to_string('help/geoform_element_name.html'))
-    element_type = models.CharField(max_length = 50)
+    element_type = models.CharField(max_length = 50,
+                                    default = 'html')
     html = models.TextField(help_text = render_to_string('help/geoform_element_html.html'))
 
     def save(self, *args, **kwargs):

@@ -37,6 +37,16 @@ class GeoformElementAdmin(TranslationAdmin, admin.ModelAdmin):
                     'html')
     ordering = ['name']
     
+    def __init__(self, *args, **kwargs):
+        super(GeoformElementAdmin, self).__init__(*args, **kwargs)
+        sfields = ['element_type']
+        for lang in settings.LANGUAGES:
+            sfields.append('html_%s' % lang[0])
+            
+        setattr(self,
+                'search_fields',
+                sfields)
+        
     def get_urls(self):
         urls = super(GeoformElementAdmin, self).get_urls()
         
