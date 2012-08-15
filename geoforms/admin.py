@@ -32,6 +32,7 @@ from modeltranslation.admin import TranslationTabularInline
 
 class GeoformElementAdmin(TranslationAdmin, admin.ModelAdmin):
     list_display = ('name',
+                    'element_type',
                     'id',
                     'html')
     ordering = ['name']
