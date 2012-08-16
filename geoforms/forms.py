@@ -9,6 +9,7 @@ from django.utils.translation import ugettext as _
 from geoforms.fields import TranslationField
 from geoforms.models import CheckboxElementModel
 from geoforms.models import DrawbuttonElementModel
+from geoforms.models import Geoform
 from geoforms.models import GeoformElement
 from geoforms.models import NumberElementModel
 from geoforms.models import ParagraphElementModel
@@ -183,7 +184,11 @@ class CheckboxElementFormSet(BaseFormSet):
             model_values['id'] = self.data['id']
             
         CheckboxElementModel(**model_values).save()
-    
+
+
+def get_popup_choices():
+    return Geoform.objects.filter(type = 'popup').values_list('name', 'name')
+         
 class DrawbuttonForm(forms.ModelForm):
     geometry_type = forms.ChoiceField(choices = (
         ('point', _('place')),
@@ -193,6 +198,8 @@ class DrawbuttonForm(forms.ModelForm):
     color = forms.CharField(max_length = 7,
                             widget = ColorInput,
                             help_text = _('The color of the feature to be drawn. The color is given as hexadecimal color e.g. ffffff --> white, 000000 --> black, ff0000 --> red, 00ff00 --> green, 0000ff --> blue.'))
+    popup = forms.ChoiceField(choices = get_popup_choices(),
+                              help_text = _('Choose the popup to use for the place, route, or area.'))
     
     
     def __init__(self, *args, **kwargs):
@@ -203,22 +210,29 @@ class DrawbuttonForm(forms.ModelForm):
         """
         
         super(DrawbuttonForm, self).__init__(*args, **kwargs)
+        #set the popup choices
+        self.fields['popup'] = forms.ChoiceField(
+            choices = Geoform.objects.filter(type = 'popup').values_list('name', 'name'),
+            help_text = _('Choose the popup to use for the place, route, or area.'))
  
         # Set the form fields based on the model object
         if kwargs.has_key('instance'):
             geometry_type = 'point'
             label = []
             color = '#000000'
+            popup = ''
             for lang in settings.LANGUAGES:
                 soup = BeautifulSoup(getattr(kwargs['instance'],
                                              'html_%s' % lang[0]))
                 geometry_type = soup.button['class'][1]
                 color = '#' + soup.button['data-color']
+                popup = soup.button['data-popup']
                 label.append(soup.button.text)
             
             self.initial['geometry_type'] = geometry_type
             self.initial['label'] = label
             self.initial['color'] = color
+            self.initial['popup'] = popup
             
             
             
@@ -227,7 +241,7 @@ class DrawbuttonForm(forms.ModelForm):
         
         if self.is_valid():
             geometry_type = self.cleaned_data['geometry_type']
-            popup = 'basic'
+            popup = self.cleaned_data['popup']
             color = self.cleaned_data['color']
             for i, lang in enumerate(settings.LANGUAGES):               
                 label = self.cleaned_data['label'][i]
@@ -243,7 +257,7 @@ class DrawbuttonForm(forms.ModelForm):
             model.save()
             
         return model
-          
+    
     class Meta:
         model = DrawbuttonElementModel
         fields = ('geometry_type',
