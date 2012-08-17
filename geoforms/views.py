@@ -23,7 +23,7 @@ def questionnaire(request, questionnaire_slug):
             
         elements[form.slug] = form.elements.order_by('formelement__order', '?')
         
-    popup_list = Geoform.objects.filter(type = 'popup').filter(name__in = popup_set)
+    popup_list = Geoform.objects.filter(type = 'popup').filter(slug__in = popup_set)
     form_list = form_list.filter(type = 'form')
     
     return render_to_response('questionnaire.html',

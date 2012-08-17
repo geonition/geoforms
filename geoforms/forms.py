@@ -184,10 +184,6 @@ class CheckboxElementFormSet(BaseFormSet):
             model_values['id'] = self.data['id']
             
         CheckboxElementModel(**model_values).save()
-
-
-def get_popup_choices():
-    return Geoform.objects.filter(type = 'popup').values_list('name', 'name')
          
 class DrawbuttonForm(forms.ModelForm):
     geometry_type = forms.ChoiceField(choices = (
@@ -197,8 +193,8 @@ class DrawbuttonForm(forms.ModelForm):
     label = TranslationField()
     color = forms.CharField(max_length = 7,
                             widget = ColorInput,
-                            help_text = _('The color of the feature to be drawn. The color is given as hexadecimal color e.g. ffffff --> white, 000000 --> black, ff0000 --> red, 00ff00 --> green, 0000ff --> blue.'))
-    popup = forms.ChoiceField(choices = get_popup_choices(),
+                            help_text = _('The color of the feature to be drawn. The color is given as hexadecimal color e.g. #ffffff --> white, #000000 --> black, #ff0000 --> red, #00ff00 --> green, #0000ff --> blue.'))
+    popup = forms.ChoiceField(choices = (('',''),),
                               help_text = _('Choose the popup to use for the place, route, or area.'))
     
     
@@ -212,7 +208,7 @@ class DrawbuttonForm(forms.ModelForm):
         super(DrawbuttonForm, self).__init__(*args, **kwargs)
         #set the popup choices
         self.fields['popup'] = forms.ChoiceField(
-            choices = Geoform.objects.filter(type = 'popup').values_list('name', 'name'),
+            choices = Geoform.objects.filter(type = 'popup').values_list('slug', 'name'),
             help_text = _('Choose the popup to use for the place, route, or area.'))
  
         # Set the form fields based on the model object
@@ -225,7 +221,7 @@ class DrawbuttonForm(forms.ModelForm):
                 soup = BeautifulSoup(getattr(kwargs['instance'],
                                              'html_%s' % lang[0]))
                 geometry_type = soup.button['class'][1]
-                color = '#' + soup.button['data-color']
+                color = soup.button['data-color']
                 popup = soup.button['data-popup']
                 label.append(soup.button.text)
             

@@ -60,6 +60,9 @@ active_class: the class to use when a button is activated
                 
                 //add rule to layer for prefered rendering      
                 var color = $(this.element).data('color');
+                console.log("The color defined for the button:");
+                console.log(color);
+                console.log(color.substr(1));
                 var name = $(this.element).attr('name');
                 if(!this.options.rule_added) {
                     var rule = new OpenLayers.Rule({
@@ -69,7 +72,7 @@ active_class: the class to use when a button is activated
                             value: name
                         }),
                         symbolizer: {
-                            externalGraphic: '/images/needle?color=' + color,
+                            externalGraphic: '/images/needle?color=' + color.substr(1),
                             graphicHeight: 36,
                             graphicWidth: 23,
                             graphicYOffset: -30,
@@ -134,7 +137,7 @@ active_class: the class to use when a button is activated
                     //change the temporary style of the layer
                     var color = $(this.element).data('color');
                     var name = $(this.element).attr('name');
-                    drawcontrol.layer.styleMap.styles.temporary.defaultStyle.externalGraphic = '/images/needle?color=' + color;
+                    drawcontrol.layer.styleMap.styles.temporary.defaultStyle.externalGraphic = '/images/needle?color=' + color.substr(1);
                 }
                 
                 //TOOLTIP

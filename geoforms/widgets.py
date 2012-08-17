@@ -53,8 +53,6 @@ class Drawbutton(Widget):
     This is a html button
     """
     def render(self, label, geometry_type, color, popup, attrs={}):
-        if color[0] == '#':
-            color = color[1:]
         final_attrs = {'data-color': color,
                        'data-popup': popup,
                        'name': slugify(label),
