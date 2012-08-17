@@ -64,6 +64,7 @@ active_class: the class to use when a button is activated
                 console.log(color);
                 console.log(color.substr(1));
                 var name = $(this.element).attr('name');
+                //add styling rules
                 if(!this.options.rule_added) {
                     var rule = new OpenLayers.Rule({
                         filter: new OpenLayers.Filter.Comparison({
@@ -76,6 +77,8 @@ active_class: the class to use when a button is activated
                             graphicHeight: 36,
                             graphicWidth: 23,
                             graphicYOffset: -30,
+                            strokeColor: color,
+                            fillColor: color,
                             cursor: 'pointer'
                             }
                         });
