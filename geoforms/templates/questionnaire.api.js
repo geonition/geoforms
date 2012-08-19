@@ -73,10 +73,10 @@ active_class: the class to use when a button is activated
                             value: name
                         }),
                         symbolizer: {
-                            externalGraphic: '/images/needle?color=' + color.substr(1),
-                            graphicHeight: 36,
-                            graphicWidth: 23,
-                            graphicYOffset: -30,
+                            externalGraphic: '/images/svg/place_marker.svg?scale=1&color=' + color.substr(1),
+                            graphicHeight: 34,
+                            graphicWidth: 34,
+                            graphicYOffset: -32,
                             strokeColor: color,
                             fillColor: color,
                             cursor: 'pointer'
@@ -140,7 +140,7 @@ active_class: the class to use when a button is activated
                     //change the temporary style of the layer
                     var color = $(this.element).data('color');
                     var name = $(this.element).attr('name');
-                    drawcontrol.layer.styleMap.styles.temporary.defaultStyle.externalGraphic = '/images/needle?color=' + color.substr(1);
+                    drawcontrol.layer.styleMap.styles.temporary.defaultStyle.externalGraphic = '/images/svg/place_marker.svg?scale=1&color=' + color.substr(1);
                 }
                 
                 //TOOLTIP
@@ -594,17 +594,17 @@ gnt.questionnaire.init = function(forms,
                     {
                         styleMap: new OpenLayers.StyleMap({
                             'default': {
-                                externalGraphic: "/images/needle?color=ee9900",
-                                graphicHeight: 36,
-                                graphicWidth: 23,
-                                graphicYOffset: -30,
+                                externalGraphic: '/images/svg/place_marker.svg?scale=1&color=ee9900',
+                                graphicHeight: 34,
+                                graphicWidth: 34,
+                                graphicYOffset: -32,
                                 cursor: 'pointer'
                             },
                             'temporary': {
-                                externalGraphic: "/images/needle?color=ee9900",
-                                graphicHeight: 36,
-                                graphicWidth: 23,
-                                graphicYOffset: -30
+                                externalGraphic: "/images/svg/place_marker.svg?scale=1&color=ee9900",
+                                graphicHeight: 34,
+                                graphicWidth: 34,
+                                graphicYOffset: -32
                             }
                         })
                     });

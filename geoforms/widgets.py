@@ -58,8 +58,18 @@ class Drawbutton(Widget):
                        'name': slugify(label),
                        'class': 'drawbutton %s' % geometry_type}
         final_attrs.update(attrs)
-        return mark_safe(u'<button type="button"%s>%s</button>' % (flatatt(final_attrs),
-                                                                   label))
+        symbol = ''
+        if geometry_type == 'point':
+            symbol = '<img src="/images/svg/place_marker.svg?color=%s" />' % color[1:]
+        elif geometry_type == 'route':
+            symbol = '<img src="/images/svg/route_marker.svg?color=%s" />' % color[1:]
+        elif geometry_type == 'area':
+            symbol = '<img src="/images/svg/area_marker.svg?color=%s" />' % color[1:]
+            
+            
+        return mark_safe(u'<button type="button"%s>%s %s</button>' % (flatatt(final_attrs),
+                                                                      symbol,
+                                                                      label))
     
 class NumberElement(Widget):
     """

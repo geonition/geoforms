@@ -12,6 +12,11 @@
 #content button.drawbutton {
     width: 250px;
 }
+#content button.drawbutton img {
+    width: 34px;
+    height: 34px;
+    float: right;
+}
 #content button.drawbutton.first {
     width: 49%;
     float: left;
