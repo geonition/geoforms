@@ -23,8 +23,8 @@
 
 <div id="forms">
     {% for form in form_list %}
-        <h3 class="section{{ forloop.counter }}">
-            <a href="#">{{ form.name }} {{ forloop.counter }}/{{ form_list|length|add:1 }}</a>
+        <h3 id="section{{ forloop.counter }}" class="section{{ forloop.counter }}">
+            <a href="#section{{ forloop.counter }}">{{ form.name }} {{ forloop.counter }}/{{ form_list|length|add:1 }}</a>
         </h3>
         <div>
             <form name="{{ form.slug }}" method="post" action="#">
@@ -54,8 +54,8 @@
         </div>
         {% if forloop.last %}
             
-        <h3 class="section{{ forloop.counter|add:1 }}">
-            <a href="#">{% trans "Your answers and finish" %} {{ forloop.counter|add:1 }}/{{ form_list|length|add:1 }}</a>
+        <h3 id="section{{ forloop.counter|add:1 }}" class="section{{ forloop.counter|add:1 }}">
+            <a href="#section{{ forloop.counter|add:1 }}">{% trans "Your answers and finish" %} {{ forloop.counter|add:1 }}/{{ form_list|length|add:1 }}</a>
         </h3>
         <div>
             <div class="form_element">
@@ -68,7 +68,7 @@
                 </p>
             </div>
             <br />
-            <a class="previous" href="#section{{ forloop.counter|add:'-1' }}">&larr;{% trans 'Previous' %}</a>
+            <a class="previous" href="#section{{ forloop.counter }}">&larr;{% trans 'Previous' %}</a>
         </div>
         {% endif %}
     {% endfor %}

@@ -8,9 +8,16 @@
 #content .form_element p {
     text-align: left;
     min-height: 1em;
+    margin-bottom: 0;
 }
 #content button.drawbutton {
     width: 250px;
+    margin: 2px;
+}
+#content button.drawbutton img {
+    width: 34px;
+    height: 34px;
+    float: right;
 }
 #content button.drawbutton.first {
     width: 49%;
