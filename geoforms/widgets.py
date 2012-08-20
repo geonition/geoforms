@@ -58,8 +58,24 @@ class Drawbutton(Widget):
                        'name': slugify(label),
                        'class': 'drawbutton %s' % geometry_type}
         final_attrs.update(attrs)
-        return mark_safe(u'<button type="button"%s>%s</button>' % (flatatt(final_attrs),
-                                                                   label))
+        svg = u'''
+        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="30px" height="30px">
+          <g transform="scale(3)">
+              <linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="3.8652" y1="-0.9263" x2="3.8652" y2="10.4354">
+                      <stop  offset="0" style="stop-color:#FFFFFF"/>
+                      <stop  offset="1" style="stop-color:#A8A8A8"/>
+              </linearGradient>
+              <path fill="url(#SVGID_1_)" stroke="#6D6E71" stroke-width="0.1019" stroke-miterlimit="10" d="M6.969,0.042H0.762
+                      c-0.405,0-0.734,0.328-0.734,0.733v5.667c0,0.406,0.329,0.734,0.734,0.734h1.399l1.704,1.703L5.57,7.175h1.399
+                      c0.405,0,0.733-0.328,0.733-0.734V0.775C7.703,0.37,7.375,0.042,6.969,0.042z"/>
+              <circle fill="#009444" cx="3.866" cy="3.813" r="1.869"/>
+          </g>
+        </svg>
+        '''
+        
+        return mark_safe(u'<button type="button"%s>%s%s</button>' % (flatatt(final_attrs),
+                                                                     label,
+                                                                     svg))
     
 class NumberElement(Widget):
     """
