@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-06-12 05:19-0500\n"
-"PO-Revision-Date: 2012-08-21 14:13+0200\n"
+"PO-Revision-Date: 2012-08-21 14:27+0200\n"
 "Last-Translator: Kristoffer Snabb <kristoffer.snabb@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -84,7 +84,7 @@ msgstr "Anterior"
 
 #: templates/questionnaire.html:58
 msgid "Your answers and finish"
-msgstr ""
+msgstr "As tuas respostas e terminar"
 
 #: templates/questionnaire.html:67
 msgid "This is the end of the questionnaire and your answers has been saved. Thank you for your answers! You can still continue modifying your answers by following the previous links or clicking the sections of this questionnaire."
@@ -102,15 +102,15 @@ msgstr "Gravar"
 
 #: templates/questionnaire.html:131
 msgid "You marked one place"
-msgstr ""
+msgstr "Marcaste um lugar"
 
 #: templates/questionnaire.html:133
 msgid "You marked"
-msgstr ""
+msgstr "Marcaste"
 
 #: templates/questionnaire.html:133
 msgid "places"
-msgstr ""
+msgstr "lugares"
 
 #: templates/questionnaire.html:139
 msgid "and answered one question"
@@ -118,7 +118,7 @@ msgstr "nome do questionário"
 
 #: templates/questionnaire.html:141
 msgid "and answered"
-msgstr ""
+msgstr "e respondeste"
 
 #: templates/questionnaire.html:141
 #: templates/questionnaire.html.py:146
@@ -131,7 +131,7 @@ msgstr "área do questionário"
 
 #: templates/questionnaire.html:146
 msgid "You answered"
-msgstr ""
+msgstr "Respondeste"
 
 #: templates/help/geoform_element_html.html:2
 msgid ""
