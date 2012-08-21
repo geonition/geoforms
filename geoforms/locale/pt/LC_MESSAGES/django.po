@@ -2,15 +2,14 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
-#, fuzzy
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-06-12 05:19-0500\n"
-"PO-Revision-Date: 2012-06-01 15:39\n"
-"Last-Translator: <>\n"
+"PO-Revision-Date: 2012-08-21 14:13+0200\n"
+"Last-Translator: Kristoffer Snabb <kristoffer.snabb@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,11 +26,13 @@ msgstr "elemento de página do questionário"
 msgid "questionnaire page elements"
 msgstr "elementos de página do questionário"
 
-#: models.py:77 models.py:147
+#: models.py:77
+#: models.py:147
 msgid "questionnaire page"
 msgstr "página do questionário"
 
-#: models.py:78 models.py:148
+#: models.py:78
+#: models.py:148
 msgid "questionnaire pages"
 msgstr "páginas do questionário"
 
@@ -65,19 +66,19 @@ msgstr "Clica no mapa para desenhar o ponto"
 
 #: templates/jstranslations.txt:6
 msgid "Click on the map to start drawing the route and doubleclick to finnish"
-msgstr ""
-"Clica no mapa para começar a desenhar o caminho e duplo clique para acabar"
+msgstr "Clica no mapa para começar a desenhar o caminho e duplo clique para acabar"
 
 #: templates/jstranslations.txt:7
 msgid "Click on the map to start drawing the area and doubleclick to finnish"
-msgstr ""
-"Clica no mapa para começar a desenhar a área e duplo clique para acabar "
+msgstr "Clica no mapa para começar a desenhar a área e duplo clique para acabar "
 
-#: templates/questionnaire.html:45 templates/questionnaire.html.py:48
+#: templates/questionnaire.html:45
+#: templates/questionnaire.html.py:48
 msgid "Next"
 msgstr "Seguinte"
 
-#: templates/questionnaire.html:47 templates/questionnaire.html.py:71
+#: templates/questionnaire.html:47
+#: templates/questionnaire.html.py:71
 msgid "Previous"
 msgstr "Anterior"
 
@@ -86,11 +87,7 @@ msgid "Your answers and finish"
 msgstr ""
 
 #: templates/questionnaire.html:67
-#, fuzzy
-msgid ""
-"This is the end of the questionnaire and your answers has been saved. Thank "
-"you for your answers! You can still continue modifying your answers by "
-"following the previous links or clicking the sections of this questionnaire."
+msgid "This is the end of the questionnaire and your answers has been saved. Thank you for your answers! You can still continue modifying your answers by following the previous links or clicking the sections of this questionnaire."
 msgstr ""
 "Chegaste agora ao fim do questionário.\n"
 "Obrigado pelas tuas respostas! Podes na mesma continuar a modificar as tuas respostas seguindo as hiperligações (links) anteriores ou clicando nas secções deste questionário."
@@ -116,7 +113,6 @@ msgid "places"
 msgstr ""
 
 #: templates/questionnaire.html:139
-#, fuzzy
 msgid "and answered one question"
 msgstr "nome do questionário"
 
@@ -124,13 +120,12 @@ msgstr "nome do questionário"
 msgid "and answered"
 msgstr ""
 
-#: templates/questionnaire.html:141 templates/questionnaire.html.py:146
-#, fuzzy
+#: templates/questionnaire.html:141
+#: templates/questionnaire.html.py:146
 msgid "questions"
 msgstr "questionários"
 
 #: templates/questionnaire.html:144
-#, fuzzy
 msgid "You answered one question"
 msgstr "área do questionário"
 
