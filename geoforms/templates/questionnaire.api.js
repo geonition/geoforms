@@ -63,6 +63,11 @@ active_class: the class to use when a button is activated
                 var name = $(this.element).attr('name');
                 //add styling rules
                 if(!this.options.rule_added) {
+                    
+                    var egraphic = '/images/svg/place_marker.svg?scale=1&color=' + color.substr(1);
+                    if($('html').hasClass('lt-ie9')) {
+                        egraphic = '/images/needle?color=' + color.substr(1);
+                    }
                     var rule = new OpenLayers.Rule({
                         filter: new OpenLayers.Filter.Comparison({
                             type: OpenLayers.Filter.Comparison.EQUAL_TO,
@@ -70,7 +75,7 @@ active_class: the class to use when a button is activated
                             value: name
                         }),
                         symbolizer: {
-                            externalGraphic: '/images/svg/place_marker.svg?scale=1&color=' + color.substr(1),
+                            externalGraphic: egraphic,
                             graphicHeight: 34,
                             graphicWidth: 34,
                             graphicYOffset: -32,
@@ -137,7 +142,12 @@ active_class: the class to use when a button is activated
                     //change the temporary style of the layer
                     var color = $(this.element).data('color');
                     var name = $(this.element).attr('name');
-                    drawcontrol.layer.styleMap.styles.temporary.defaultStyle.externalGraphic = '/images/svg/place_marker.svg?scale=1&color=' + color.substr(1);
+                    
+                    var egraphic = '/images/svg/place_marker.svg?scale=1&color=' + color.substr(1);
+                    if($('html').hasClass('lt-ie9')) {
+                        egraphic = '/images/needle?color=' + color.substr(1);
+                    }
+                    drawcontrol.layer.styleMap.styles.temporary.defaultStyle.externalGraphic = egraphic;
                 }
                 
                 //TOOLTIP
