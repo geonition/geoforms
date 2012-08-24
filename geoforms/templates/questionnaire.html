@@ -77,8 +77,8 @@
 <div id="popups">
     {% for form in popup_list %}
         <div id="{{ form.slug }}">
+            
             <form name="{{ form.slug }}" method="post" action="#" class="popupform">
-                
                 {% for key, value in elements.items %}
                     {% if key == form.slug %}
                         {% for element in value %}
@@ -88,7 +88,6 @@
                         {% endfor %}
                     {% endif %}
                 {% endfor %}
-                
                 <button type="button" class="remove">
                     {% trans 'Remove' %}
                 </button>

@@ -24,8 +24,12 @@ def questionnaire(request, questionnaire_slug):
         elements[form.slug] = form.elements.order_by('formelement__order', '?')
         
     popup_list = Geoform.objects.filter(type = 'popup').filter(slug__in = popup_set)
-    form_list = form_list.filter(type = 'form')
     
+    #add the popup elements to elements
+    for popupform in popup_list:
+        elements[popupform.slug] = popupform.elements.order_by('formelement__order', '?')
+    
+    form_list = form_list.filter(type = 'form')
     return render_to_response('questionnaire.html',
                              {'form_list': form_list,
                               'popup_list': popup_list,
