@@ -60,9 +60,6 @@ active_class: the class to use when a button is activated
                 
                 //add rule to layer for prefered rendering      
                 var color = $(this.element).data('color');
-                console.log("The color defined for the button:");
-                console.log(color);
-                console.log(color.substr(1));
                 var name = $(this.element).attr('name');
                 //add styling rules
                 if(!this.options.rule_added) {

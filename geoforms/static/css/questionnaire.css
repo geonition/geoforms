@@ -19,6 +19,12 @@
     height: 34px;
     float: right;
 }
+
+.lt-ie9 button.drawbutton img {
+    display: none;
+    visibility: hidden;
+}
+
 #content button.drawbutton.first {
     width: 49%;
     float: left;
