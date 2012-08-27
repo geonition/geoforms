@@ -15,6 +15,7 @@ from geoforms.models import NumberElementModel
 from geoforms.models import ParagraphElementModel
 from geoforms.models import RadioElementModel
 from geoforms.models import TextElementModel
+from geoforms.models import RangeElementModel
 from geoforms.widgets import CheckboxElement
 from geoforms.widgets import ColorInput
 from geoforms.widgets import Drawbutton
@@ -23,6 +24,7 @@ from geoforms.widgets import RadiobuttonElement
 from geoforms.widgets import Paragraph
 from geoforms.widgets import TextElement
 from geoforms.widgets import TranslationWidget
+from geoforms.widgets import RangeElement
 
 #element admin forms
 class ElementForm(forms.ModelForm):
@@ -113,6 +115,77 @@ class NumberElementForm(ElementForm):
     class Meta:
         model = NumberElementModel
         fields = ('question',)
+
+class RangeElementForm(forms.ModelForm):
+    question = TranslationField()
+    min_label = TranslationField()
+    max_label = TranslationField()
+    
+    def __init__(self, *args, **kwargs):
+        """
+        The init function parses through the saved
+        html and sets the correct initial
+        values for the form.
+        """
+        super(RangeElementForm, self).__init__(*args, **kwargs)
+ 
+        # Set the form fields based on the model object
+        if kwargs.has_key('instance'):
+            question = []
+            min_label = []
+            max_label = []
+            for lang in settings.LANGUAGES:
+                soup = BeautifulSoup(getattr(kwargs['instance'],
+                                             'html_%s' % lang[0]))
+                question.append(soup.p.text)
+                min_label.append(soup.span.text)
+                max_label.append(soup.span.next_sibling.next_sibling.text)
+            
+            self.initial['question'] = question
+            self.initial['min_label'] = min_label
+            self.initial['max_label'] = max_label
+            
+    def render(self, question, min_label, max_label, name, value):
+        return RangeElement().render(question,
+                                     min_label,
+                                     max_label,
+                                     name,
+                                     value)
+    
+    
+    
+    def save(self, commit=True):
+        model = super(RangeElementForm, self).save(commit=False)
+        
+        if self.is_valid():
+            question = self.cleaned_data['question']
+            min_label = self.cleaned_data['min_label']
+            max_label = self.cleaned_data['max_label']
+            name = slugify(question[0][:200])
+            value = ''
+            for i, lang in enumerate(settings.LANGUAGES):
+                gen_html = RangeElement().render(question[i],
+                                                 min_label[i],
+                                                 max_label[i],
+                                                 name,
+                                                 value)
+                setattr(model,
+                        'html_%s' % lang[0],
+                        gen_html)
+                setattr(model,
+                        'name_%s' % lang[0],
+                        question[i][:200])
+        
+        if commit:
+            model.save()
+            
+        return model
+    
+    class Meta:
+        model = RangeElementModel
+        fields = ('question',
+                  'min_label',
+                  'max_label',)
 
 class RadioElementForm(forms.ModelForm):
     label = TranslationField()

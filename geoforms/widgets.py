@@ -45,6 +45,12 @@ class ColorInput(Input):
     """
     input_type = 'color'
     
+class RangeInput(Input):
+    """
+    This widget is a radiobutton
+    """
+    input_type = 'range'
+    
 #smidgets with basic html
 
 #questionnaire widgets
@@ -78,6 +84,18 @@ class NumberElement(Widget):
     def render(self, label, name, value, attrs={}):
         return u'<label>%s %s</label>' % (label,
                                           NumberInput().render(name, value))
+     
+class RangeElement(Widget):
+    """
+    The RangeElement represents a range input with a question, min and max labels to be
+    set on the left and right side of the slider/range
+    """
+    def render(self, question, min_label, max_label, name, value, attrs={}):
+        return u'<p>%s</p><div><span>%s</span>%s<span>%s</span></div>' % (question,
+                                                                          min_label,
+                                                                          RangeInput().render(name, value),
+                                                                          max_label)
+
 
 class TextElement(Widget):
     """

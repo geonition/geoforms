@@ -16,6 +16,7 @@ from geoforms.forms import RadioElementForm
 from geoforms.forms import RadioElementFormSet
 from geoforms.forms import TextElementForm
 from geoforms.forms import QuestionForm
+from geoforms.forms import RangeElementForm
 from geoforms.models import CheckboxElementModel
 from geoforms.models import DrawbuttonElementModel
 from geoforms.models import Geoform
@@ -27,6 +28,7 @@ from geoforms.models import QuestionnaireForm
 from geoforms.models import NumberElementModel
 from geoforms.models import RadioElementModel
 from geoforms.models import TextElementModel
+from geoforms.models import RangeElementModel
 from modeltranslation.admin import TranslationAdmin
 from modeltranslation.admin import TranslationTabularInline
 
@@ -199,6 +201,15 @@ class NumberElementAdmin(admin.ModelAdmin):
         return self.model.objects.filter(element_type = 'number')
     
 admin.site.register(NumberElementModel, NumberElementAdmin)
+
+class RangeElementAdmin(admin.ModelAdmin):
+    
+    form = RangeElementForm
+    
+    def queryset(self, request):
+        return self.model.objects.filter(element_type = 'range')
+    
+admin.site.register(RangeElementModel, RangeElementAdmin)
 
 class ParagraphElementAdmin(admin.ModelAdmin):
     

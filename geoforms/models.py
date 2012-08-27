@@ -76,6 +76,20 @@ class NumberElementModel(GeoformElement):
         verbose_name = _('numer input')
         verbose_name_plural = _('number inputs')
         
+class RangeElementModel(GeoformElement):
+    """
+    This is a proxy model for the range inputs
+    """
+    def save(self, *args, **kwargs):
+        self.element_type = 'range'
+        
+        super(RangeElementModel, self).save(*args, **kwargs)
+
+    class Meta:
+        proxy = True
+        verbose_name = _('range input')
+        verbose_name_plural = _('range inputs')
+        
 class ParagraphElementModel(GeoformElement):
     """
     This is a proxy model for the number inputs
