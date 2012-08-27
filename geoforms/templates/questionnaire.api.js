@@ -506,6 +506,9 @@ gnt.questionnaire.init = function(forms,
                 var newHash = 'section' + sectionNr;
                 if(oldHash !== newHash) {
                     location.hash = newHash;
+                    
+                    //scroll to the right place
+                    $('#main .span_left').scrollTop($(newHash).position()['top'])
                 }
             }
         });
@@ -515,7 +518,7 @@ gnt.questionnaire.init = function(forms,
             var newActive = newHash.slice(7) - 1;
             var curActive = $( accordion ).accordion( 'option', 'active' );
             if(curActive !== newActive) {
-                $( accordion ).accordion( 'activate',
+                $( accordion ).accordion('activate',
                                          newActive);
             }
         });
