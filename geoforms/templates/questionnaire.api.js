@@ -506,10 +506,9 @@ gnt.questionnaire.init = function(forms,
                 var newHash = 'section' + sectionNr;
                 if(oldHash !== newHash) {
                     location.hash = newHash;
-                    
-                    //scroll to the right place
-                    $('#main .span_left').scrollTop($(newHash).position()['top'])
                 }
+                //scroll to the right place
+                $('#main .span_left').scrollTop($(newHash).position()['top'])
             }
         });
         
