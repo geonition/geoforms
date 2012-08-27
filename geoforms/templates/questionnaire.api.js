@@ -508,7 +508,7 @@ gnt.questionnaire.init = function(forms,
                     location.hash = newHash;
                 }
                 //scroll to the right place
-                $('#main .span_left').scrollTop($(newHash).position()['top'])
+                $('#main .span_left').scrollTop($('#main .span_left').scrollTop() + $('#' + newHash).position().top);
             }
         });
         
