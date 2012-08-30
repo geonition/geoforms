@@ -10,7 +10,7 @@
 {% block content %}
     
 <ul class="breadcrumb">
-    <li class="disk hover base_bgcolor">
+    <li class="disk hover base_bgcolor" onclick="window.location = '{% url dashboard %}'">
         <a href="{% url dashboard %}">
             <h3>
             {% trans 'Questionnaires' %}
