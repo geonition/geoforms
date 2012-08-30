@@ -112,12 +112,12 @@ class GeoformElementAdmin(TranslationAdmin, admin.ModelAdmin):
     
     def create_drawbutton_element(self, request):
         if request.method == 'POST':
-            DrawButtonForm(request.POST).save()
+            DrawbuttonForm(request.POST).save()
             return HttpResponseRedirect(reverse('admin:geoforms_geoformelement_changelist'))
         else:
             return render_to_response('admin/geoforms/geoformelement/create_element.html',
                                       {'current_app': self.admin_site.name,
-                                       'form': DrawButtonForm()},
+                                       'form': DrawbuttonForm()},
                                       context_instance = RequestContext(request))
     
     def create_paragraph_element(self, request):
