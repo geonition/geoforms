@@ -9,12 +9,16 @@
 
 {% block content %}
     
-<ul class="breadcrumb base_bgcolor">
-    <li class="disk hover" onclick="window.location = '{% url dashboard %}'">
+<ul class="breadcrumb">
+    <li class="disk hover base_bgcolor">
+        <a href="{% url dashboard %}">
+            <h3>
+            {% trans 'Questionnaires' %}
+            </h3>
+        </a>
     </li>
-    <li class="separator">
-    </li>
-    <li class="active">
+    <li class="separator base_bgcolor"></li>
+    <li class="active base_textcolor">
         <h3>
             {{ questionnaire.name }}
         </h3>
