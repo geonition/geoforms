@@ -7,6 +7,7 @@
     <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
 {% endblock %}
 
+
 {% block content %}
     
 <ul class="breadcrumb">
@@ -27,7 +28,7 @@
 
 <div id="forms">
     {% for form in form_list %}
-        <h3 id="section{{ forloop.counter }}" class="section{{ forloop.counter }}">
+        <h3 id="section{{ forloop.counter }}" class="section{{ forloop.counter }} {% if form.name in bigcontent_forms %}bigcontent{% else %}smallcontent{% endif %}">
             <a href="#section{{ forloop.counter }}">{{ form.name }} {{ forloop.counter }}/{{ form_list|length|add:1 }}</a>
         </h3>
         <div>
@@ -58,7 +59,7 @@
         </div>
         {% if forloop.last %}
             
-        <h3 id="section{{ forloop.counter|add:1 }}" class="section{{ forloop.counter|add:1 }}">
+        <h3 id="section{{ forloop.counter|add:1 }}" class="section{{ forloop.counter|add:1 }} bigcontent">
             <a href="#section{{ forloop.counter|add:1 }}">{% trans "Your answers and finish" %} {{ forloop.counter|add:1 }}/{{ form_list|length|add:1 }}</a>
         </h3>
         <div>
@@ -104,7 +105,7 @@
 </div>
 
 
-{% endblock %}
+{% endblock content %}
 
 {% block javascript %}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>

@@ -494,6 +494,11 @@ gnt.questionnaire.init = function(forms,
         if(origHash) {
             active_section = origHash.slice(7) - 1;
         }
+        // set the size according to active section
+        if($('#section' + (active_section + 1)).hasClass('bigcontent')) {
+            $('#main .span_left').switchClass('smallcontent', 'bigcontent', '3000');
+            $('#main .span_right').switchClass('smallcontent', 'bigcontent', '3000');
+        }
         
         //create accordion
         $( accordion ).accordion({
@@ -509,6 +514,15 @@ gnt.questionnaire.init = function(forms,
                 }
                 //scroll to the right place
                 $('#main .span_left').scrollTop($('#main .span_left').scrollTop() + $('#' + newHash).position().top);
+                
+                //make content big if no drawbuttons on page
+                if(ui.newHeader.hasClass('bigcontent')) {
+                    $('#main .span_left').switchClass('smallcontent', 'bigcontent', '3000');
+                    $('#main .span_right').switchClass('smallcontent', 'bigcontent', '3000');
+                } else {
+                    $('#main .span_left').switchClass('bigcontent', 'smallcontent', '3000');
+                    $('#main .span_right').switchClass('bigcontent', 'smallcontent', '3000');
+                }
             }
         });
         

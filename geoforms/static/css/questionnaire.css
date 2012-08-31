@@ -63,3 +63,27 @@
 .ui-widget-content a {
     color: #00E !important;
 }
+
+/* big content
+*/
+.span_left.bigcontent {
+    width: 1024px;
+}
+.span_right.bigcontent {
+    left: 1024px;
+    opacity: 0.4;
+    background-color: #445566;
+}
+/* the animation does not work well with bg color*/
+.lt-ie9 .span_right.bigcontent {
+    background-color: inherit;
+}
+
+@media (max-width:1024px) {
+    .span_left.bigcontent {
+        width: 100%;
+    }
+    .span_right.bigcontent {
+        display: none;
+    }
+}

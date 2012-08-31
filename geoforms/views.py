@@ -15,8 +15,13 @@ def questionnaire(request, questionnaire_slug):
     form_list = quest.geoforms.all().order_by('questionnaireform__order')
     elements = {}
     popup_set = set()
+    bigcontent_forms = set()
     for form in form_list:
         popup_elements = form.elements.filter(element_type = 'drawbutton').values_list('html', flat=True)
+
+        if len(popup_elements) == 0:
+            bigcontent_forms.add(form.name)
+
         for e in popup_elements:
             soup = BeautifulSoup(e)
             popup_set.add(soup.button['data-popup'])
@@ -33,6 +38,7 @@ def questionnaire(request, questionnaire_slug):
     return render_to_response('questionnaire.html',
                              {'form_list': form_list,
                               'popup_list': popup_list,
+                              'bigcontent_forms': bigcontent_forms,
                               'elements': elements,
                               'questionnaire': quest,
                               'map_slug': 'questionnaire-map'},
