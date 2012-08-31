@@ -87,3 +87,18 @@
         display: none;
     }
 }
+
+/* element styling */
+.form_element table {
+    table-layout: fixed;
+}
+.form_element table tr td {
+    padding: 1em;
+    border-top: 1px solid #DDD;
+}
+.form_element table tr td:nth-child(1) {
+    text-align: left;
+}
+.form_element table tbody tr:nth-child(odd) {
+    background-color: #F9F9F9;
+}

@@ -514,6 +514,8 @@ gnt.questionnaire.init = function(forms,
                 }
                 //scroll to the right place
                 $('#main .span_left').scrollTop($('#main .span_left').scrollTop() + $('#' + newHash).position().top);
+            },
+            changestart: function(event, ui) {
                 
                 //make content big if no drawbuttons on page
                 if(ui.newHeader.hasClass('bigcontent')) {
@@ -523,6 +525,7 @@ gnt.questionnaire.init = function(forms,
                     $('#main .span_left').switchClass('bigcontent', 'smallcontent', '3000');
                     $('#main .span_right').switchClass('bigcontent', 'smallcontent', '3000');
                 }
+                
             }
         });
         
