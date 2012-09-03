@@ -18,7 +18,8 @@ setup(
             "locale/*/LC_MESSAGES/*.po",
             "locale/*/LC_MESSAGES/*.mo",
             "static/js/*",
-            "static/css/*"
+            "static/css/*.css",
+            "static/css/images/*.png"
         ],
     },
     zip_safe=False,

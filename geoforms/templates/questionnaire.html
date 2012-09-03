@@ -3,8 +3,8 @@
 
 {% block stylesheet %}
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/questionnaire.css" />
-    <!--<link href="{{ STATIC_URL }}css/jquery-ui-1.8.19.custom.css" rel="stylesheet" type="text/css" />-->
-    <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <link href="{{ STATIC_URL }}css/jquery-ui-1.8.23.custom.css" rel="stylesheet" type="text/css" />
+    <!--<link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />-->
 {% endblock %}
 
 
@@ -25,11 +25,11 @@
         </h3>
     </li>
 </ul>
-
+    
 <div id="forms">
     {% for form in form_list %}
         <h3 id="section{{ forloop.counter }}" class="section{{ forloop.counter }} {% if form.name in bigcontent_forms %}bigcontent{% else %}smallcontent{% endif %}">
-            <a href="#section{{ forloop.counter }}">{{ form.name }} {{ forloop.counter }}/{{ form_list|length|add:1 }}</a>
+            {{ forloop.counter }}/{{ form_list|length|add:1 }} {{ form.name }}
         </h3>
         <div>
             <form name="{{ form.slug }}" method="post" action="#">
@@ -45,14 +45,14 @@
             
             
             <div class="form_element">
-                <p>
+                <div class="prev_next_controls">
                 {% if forloop.first %}
-                    <a class="next" href="#section{{ forloop.counter|add:'1' }}">{% trans 'Next' %}&rarr;</a>
+                    <a class="next base_bgcolor" href="#section{{ forloop.counter|add:'1' }}">{% trans 'Next' %}&rarr;</a>
                 {% else %}
                     <a class="previous" href="#section{{ forloop.counter|add:'-1' }}">&larr;{% trans 'Previous' %}</a>
-                    <a class="next" href="#section{{ forloop.counter|add:'1' }}">{% trans 'Next' %}&rarr;</a>
+                    <a class="next base_bgcolor" href="#section{{ forloop.counter|add:'1' }}">{% trans 'Next' %}&rarr;</a>
                 {% endif %}
-                </p>
+                </div>
             </div>
             
             </form>
@@ -60,7 +60,7 @@
         {% if forloop.last %}
             
         <h3 id="section{{ forloop.counter|add:1 }}" class="section{{ forloop.counter|add:1 }} bigcontent">
-            <a href="#section{{ forloop.counter|add:1 }}">{% trans "Your answers and finish" %} {{ forloop.counter|add:1 }}/{{ form_list|length|add:1 }}</a>
+            {% trans "Your answers and finish" %} {{ forloop.counter|add:1 }}/{{ form_list|length|add:1 }}
         </h3>
         <div>
             <div class="form_element">
@@ -69,11 +69,15 @@
             </div>
             <div class="form_element">
                 <p>
-                {% trans "This is the end of the questionnaire and your answers has been saved. Thank you for your answers! You can still continue modifying your answers by following the previous links or clicking the sections of this questionnaire." %}
+                {% trans "This is the end of the questionnaire and your answers has been saved. Thank you for your answers! You can still continue modifying your answers by clicking the previous buttons. Quit the questionnaire by clicking the 'quit and go to home page' button." %}
                 </p>
             </div>
-            <br />
-            <a class="previous" href="#section{{ forloop.counter }}">&larr;{% trans 'Previous' %}</a>
+            <div class="form_element">
+                <div class="prev_next_controls">
+                    <a class="previous" href="#section{{ forloop.counter }}">&larr;{% trans 'Previous' %}</a>
+                    <a class="previous" href="{% url dashboard %}">{% trans 'Quit and go to home page' %}</a>
+                </div>
+            </div>
         </div>
         {% endif %}
     {% endfor %}
