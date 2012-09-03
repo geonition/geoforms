@@ -89,6 +89,8 @@
 }
 
 /* element styling */
+
+/* tables */
 .form_element table {
     table-layout: fixed;
 }
@@ -101,4 +103,9 @@
 }
 .form_element table tbody tr:nth-child(odd) {
     background-color: #F9F9F9;
+}
+
+/* checkboxes and radiobuttons */
+.form_element label {
+    margin-left: 50px;
 }
