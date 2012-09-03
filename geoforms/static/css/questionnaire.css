@@ -16,6 +16,9 @@
     max-width: 300px;
     margin: 2px;
 }
+#content button.drawbutton span {
+    vertical-align: middle;
+}
 #content button.drawbutton img {
     width: 34px;
     height: 34px;
