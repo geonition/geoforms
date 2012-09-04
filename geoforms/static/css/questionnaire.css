@@ -149,3 +149,15 @@
 .form_element label {
     margin-left: 50px;
 }
+
+/*
+mobiles and below
+*/
+@media (max-width:480px) {
+    #content h3.ui-state-active {
+        padding-left: 10px;
+    }
+    #content .ui-accordion-content {
+        padding-left: 10px;
+    }
+}
