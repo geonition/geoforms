@@ -126,6 +126,7 @@ active_class: the class to use when a button is activated
                 
                 //TOOLTIP
                 $(".tooltip").hide();
+                
             },
             activate: function() {
                 if(this.element.attr( 'disabled') !== 'disabled') {
@@ -150,6 +151,11 @@ active_class: the class to use when a button is activated
                         egraphic = '/images/needle?color=' + color.substr(1);
                     }
                     drawcontrol.layer.styleMap.styles.temporary.defaultStyle.externalGraphic = egraphic;
+                    
+                    //add map class to body
+                    if(!$('body').hasClass('map')) {
+                        $('body').addClass('map');
+                    }
                 }
                 
                 //TOOLTIP
