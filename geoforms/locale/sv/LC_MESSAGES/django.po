@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-09-05 06:40-0500\n"
-"PO-Revision-Date: 2012-09-05 15:14+0200\n"
+"PO-Revision-Date: 2012-09-05 16:14+0200\n"
 "Last-Translator: Kristoffer Snabb <kristoffer.snabb@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -76,7 +76,7 @@ msgstr ""
 
 #: models.py:104
 msgid "paragraph"
-msgstr ""
+msgstr "text paragraf"
 
 #: models.py:105
 msgid "paragraphs"
@@ -85,12 +85,12 @@ msgstr ""
 #: models.py:118
 #: models.py:119
 msgid "Select one"
-msgstr ""
+msgstr "Välj en"
 
 #: models.py:132
 #: models.py:133
 msgid "Select multiple"
-msgstr ""
+msgstr "Välj många"
 
 #: models.py:146
 msgid "Draw button"
@@ -132,7 +132,7 @@ msgstr ""
 
 #: models.py:214
 msgid "Show area"
-msgstr ""
+msgstr "Visa området"
 
 #: models.py:215
 msgid "Check the box to show the area to the user. Otherwise leave the checkbox unchecked."
