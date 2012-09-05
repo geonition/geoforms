@@ -118,6 +118,16 @@
 <script type="text/javascript">
 var data_group = 'Q-{{ questionnaire.slug }}';
 var questionnaire_area = {{ questionnaire.area.json|safe }};
+var show_area = {{ questionnaire.show_area|lower }};
+var scale_visible_area = {{ questionnaire.buffer_area }};
+// instead of using global varibles start using this object
+
+var questionnaire = {
+    'data_group': 'Q-{{ questionnaire.slug }}',
+    'questionnaire_area': {{ questionnaire.area.json|safe }},
+    'show_area': {{ questionnaire.show_area|lower }},
+    'scale_visible_area': {{ questionnaire.scale_visible_area }}
+}
 
 function count_results() {
     var number_of_properties = 0;

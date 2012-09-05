@@ -614,6 +614,21 @@ gnt.questionnaire.init = function(forms,
                             }});
     
     gnt.maps.create_map('map', function(map) {
+        //annotations from the questionnaire creater
+        var annotationLayer = new OpenLayers.Layer.Vector(
+                    layer_names.annotationsLayer,
+                    {
+                        styleMap: new OpenLayers.StyleMap({
+                            'default': {
+                                strokeWidth: 4,
+                                strokeDashstyle: 'dash',
+                                strokeColor: $('.base_textcolor').css('color'),
+                                fillOpacity: 0,
+                                strokeLinecap: 'butt'
+                            }
+                        })
+                    }
+                    );
         var pointLayer = new OpenLayers.Layer.Vector(
                     "Point Layer",
                     {
@@ -659,7 +674,8 @@ gnt.questionnaire.init = function(forms,
                     });
         
 
-        map.addLayers([areaLayer,
+        map.addLayers([annotationLayer,
+                       areaLayer,
                        routeLayer,
                        pointLayer]);
     
@@ -712,7 +728,12 @@ gnt.questionnaire.init = function(forms,
         
         var gf = new OpenLayers.Format.GeoJSON();
         var questionnaire_area_feature = gf.read( questionnaire_area );
-        map.zoomToExtent( questionnaire_area_feature[0].geometry.getBounds() );
+        map.zoomToExtent( questionnaire_area_feature[0].geometry.getBounds().scale(questionnaire.scale_visible_area) );
+        
+        //set to annotations layer if visible
+        if(show_area) {
+            annotationLayer.addFeatures(questionnaire_area_feature);
+        }
         
        
         //get the users feature if any
