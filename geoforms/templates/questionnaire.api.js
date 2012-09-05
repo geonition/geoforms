@@ -96,8 +96,11 @@ active_class: the class to use when a button is activated
                     var tooltip_html = '<div class="tooltip"></div>';
                     $(document.body).append(tooltip_html);
                     $(document.body).bind("mousemove", function(evt) {
-                        $(".tooltip").css('top', evt.clientY + 5);
-                        $(".tooltip").css('left', evt.clientX + 5);
+                        console.log($(window).width);
+                        if($(window).width() > 767) {
+                            $(".tooltip").css('top', evt.clientY + 5);
+                            $(".tooltip").css('left', evt.clientX + 5);
+                        }
                     })
                 }
                 $(".tooltip").hide();
@@ -124,6 +127,7 @@ active_class: the class to use when a button is activated
                 
                 //TOOLTIP
                 $(".tooltip").hide();
+                
             },
             activate: function() {
                 if(this.element.attr( 'disabled') !== 'disabled') {
@@ -148,6 +152,11 @@ active_class: the class to use when a button is activated
                         egraphic = '/images/needle?color=' + color.substr(1);
                     }
                     drawcontrol.layer.styleMap.styles.temporary.defaultStyle.externalGraphic = egraphic;
+                    
+                    //add map class to body
+                    if(!$('body').hasClass('map')) {
+                        $('body').addClass('map');
+                    }
                 }
                 
                 //TOOLTIP

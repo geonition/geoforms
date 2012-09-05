@@ -118,15 +118,6 @@
     background-color: inherit;
 }
 
-@media (max-width:1024px) {
-    .span_left.bigcontent {
-        width: 100%;
-    }
-    .span_right.bigcontent {
-        display: none;
-    }
-}
-
 /* element styling */
 
 /* tables */
@@ -148,4 +139,21 @@
 /* checkboxes and radiobuttons */
 .form_element label {
     margin-left: 50px;
+}
+
+/*
+phones
+*/
+@media (max-width:480px) {
+    #content h3.ui-state-active {
+        padding-left: 10px;
+    }
+    #content .ui-accordion-content {
+        padding-left: 10px;
+    }
+}
+/* phones to tablets */
+@media (min-width:480px) and (max-width: 767px) {
+    
+    
 }
