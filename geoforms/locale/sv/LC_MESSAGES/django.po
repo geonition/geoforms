@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-09-05 06:40-0500\n"
-"PO-Revision-Date: 2012-06-12 13:22+0200\n"
+"PO-Revision-Date: 2012-09-05 15:14+0200\n"
 "Last-Translator: Kristoffer Snabb <kristoffer.snabb@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -19,7 +19,7 @@ msgstr ""
 
 #: admin.py:178
 msgid "Advanced options"
-msgstr ""
+msgstr "Avancerade inställningar"
 
 #: forms.py:263
 msgid "place"
@@ -27,20 +27,18 @@ msgstr "plats"
 
 #: forms.py:264
 msgid "route"
-msgstr ""
+msgstr "rutt"
 
 #: forms.py:265
 msgid "area"
-msgstr ""
+msgstr "område"
 
 #: forms.py:269
-msgid ""
-"The color of the feature to be drawn. The color is given as hexadecimal "
-"color e.g. #ffffff --> white, #000000 --> black, #ff0000 --> red, #00ff00 --"
-"> green, #0000ff --> blue."
+msgid "The color of the feature to be drawn. The color is given as hexadecimal color e.g. #ffffff --> white, #000000 --> black, #ff0000 --> red, #00ff00 --> green, #0000ff --> blue."
 msgstr ""
 
-#: forms.py:271 forms.py:285
+#: forms.py:271
+#: forms.py:285
 msgid "Choose the popup to use for the place, route, or area."
 msgstr ""
 
@@ -84,11 +82,13 @@ msgstr ""
 msgid "paragraphs"
 msgstr ""
 
-#: models.py:118 models.py:119
+#: models.py:118
+#: models.py:119
 msgid "Select one"
 msgstr ""
 
-#: models.py:132 models.py:133
+#: models.py:132
+#: models.py:133
 msgid "Select multiple"
 msgstr ""
 
@@ -100,11 +100,13 @@ msgstr ""
 msgid "Draw buttons"
 msgstr ""
 
-#: models.py:180 models.py:265
+#: models.py:180
+#: models.py:265
 msgid "questionnaire page"
 msgstr "enkät sida"
 
-#: models.py:181 models.py:266
+#: models.py:181
+#: models.py:266
 msgid "questionnaire pages"
 msgstr "enkät sidor"
 
@@ -125,14 +127,7 @@ msgid "area of questionnaire"
 msgstr "området för enkätet"
 
 #: models.py:213
-msgid ""
-"This is the initial area which will be visible on the questionnaire map. The "
-"map tools are on the up right corner of the map. To choose a tool you have "
-"to click on it so that the tool turnes yellow. To draw choose the drawing "
-"tool and start drawing. To stop drawing you have to doubleclick the map. It "
-"is also possible to modify the area by choosing the modify tool. "
-"Modification works by dragging the vertexes of the area to the new modified "
-"places."
+msgid "This is the initial area which will be visible on the questionnaire map. The map tools are on the up right corner of the map. To choose a tool you have to click on it so that the tool turnes yellow. To draw choose the drawing tool and start drawing. To stop drawing you have to doubleclick the map. It is also possible to modify the area by choosing the modify tool. Modification works by dragging the vertexes of the area to the new modified places."
 msgstr ""
 
 #: models.py:214
@@ -140,9 +135,7 @@ msgid "Show area"
 msgstr ""
 
 #: models.py:215
-msgid ""
-"Check the box to show the area to the user. Otherwise leave the checkbox "
-"unchecked."
+msgid "Check the box to show the area to the user. Otherwise leave the checkbox unchecked."
 msgstr ""
 
 #: models.py:216
@@ -150,9 +143,7 @@ msgid "Scale the visible area"
 msgstr ""
 
 #: models.py:218
-msgid ""
-"This number will be used to set the initial map extent. The map extent is "
-"counted by drawn area times this number."
+msgid "This number will be used to set the initial map extent. The map extent is counted by drawn area times this number."
 msgstr ""
 
 #: models.py:246
@@ -169,30 +160,27 @@ msgstr "Klicka på kartan för att märka stället"
 
 #: templates/jstranslations.txt:6
 msgid "Click on the map to start drawing the route and doubleclick to finnish"
-msgstr ""
-"Klicka på kartan för att börja rita rutten och dubbelklicka för att sluta "
-"rita"
+msgstr "Klicka på kartan för att börja rita rutten och dubbelklicka för att sluta rita"
 
 #: templates/jstranslations.txt:7
 msgid "Click on the map to start drawing the area and doubleclick to finnish"
-msgstr ""
-"Klicka på kartan för att börja rita området och sluta rita med ett "
-"dubbelklick"
+msgstr "Klicka på kartan för att börja rita området och sluta rita med ett dubbelklick"
 
 #: templates/jstranslations.txt:10
 msgid "Annotations"
-msgstr ""
+msgstr "Kartmärken"
 
 #: templates/questionnaire.html:17
-#, fuzzy
 msgid "Questionnaires"
 msgstr "enkät"
 
-#: templates/questionnaire.html:50 templates/questionnaire.html.py:53
+#: templates/questionnaire.html:50
+#: templates/questionnaire.html.py:53
 msgid "Next"
 msgstr "Nästa sida"
 
-#: templates/questionnaire.html:52 templates/questionnaire.html.py:77
+#: templates/questionnaire.html:52
+#: templates/questionnaire.html.py:77
 msgid "Previous"
 msgstr "Föregående sida"
 
@@ -201,20 +189,12 @@ msgid "Your answers and finish"
 msgstr "Dina svar och avsluta"
 
 #: templates/questionnaire.html:72
-#, fuzzy
-msgid ""
-"This is the end of the questionnaire and your answers has been saved. Thank "
-"you for your answers! You can still continue modifying your answers by "
-"clicking the previous buttons. Quit the questionnaire by clicking the 'quit "
-"and go to home page' button."
-msgstr ""
-"Det här är enkätens sista sida dina svar har sparats. Tack för dina svar! Du "
-"kan ännu ändra på dina svar genom att väljä 'Föregående sida' eller genom "
-"att klicka på den föregående sidans namn."
+msgid "This is the end of the questionnaire and your answers has been saved. Thank you for your answers! You can still continue modifying your answers by clicking the previous buttons. Quit the questionnaire by clicking the 'quit and go to home page' button."
+msgstr "Det här är enkätens sista sida dina svar har sparats. Tack för dina svar! Du kan ännu ändra på dina svar genom att väljä 'Föregående sida'. Du kan avsluta och gå tillbaka till första sidan med att klicka på 'avsluta och gå till första sidan'."
 
 #: templates/questionnaire.html:78
 msgid "Quit and go to home page"
-msgstr ""
+msgstr "Avbryt och gå till första sidan"
 
 #: templates/questionnaire.html:101
 msgid "Remove"
@@ -245,7 +225,8 @@ msgstr "och svara på en fråga"
 msgid "and answered"
 msgstr "och svara på"
 
-#: templates/questionnaire.html:154 templates/questionnaire.html.py:159
+#: templates/questionnaire.html:154
+#: templates/questionnaire.html.py:159
 msgid "questions"
 msgstr "frågor"
 
@@ -288,21 +269,19 @@ msgstr ""
 
 #: templates/admin/geoforms/geoformelement/create_element.html:7
 msgid "Home"
-msgstr ""
+msgstr "Första sidan"
 
 #: templates/admin/geoforms/geoformelement/create_element.html:10
-#, fuzzy
 msgid "Create element"
-msgstr "sidans element"
+msgstr "skapa ett element"
 
 #: templates/admin/geoforms/geoformelement/create_element.html:29
-#, fuzzy
 msgid "remove"
-msgstr "Ta bort"
+msgstr "ta bort"
 
 #: templates/admin/geoforms/geoformelement/create_element.html:34
 msgid "add"
-msgstr ""
+msgstr "lägg till"
 
 #: templates/help/geoform_element_html.html:2
 msgid ""
@@ -320,8 +299,7 @@ msgid ""
 "same name.\n"
 msgstr ""
 "\n"
-"Det här är elementets namn. Elementets namn borde vara unikt och kan inte ha "
-"samma namn som nå annat element i programmet. \n"
+"Det här är elementets namn. Elementets namn borde vara unikt och kan inte ha samma namn som nå annat element i programmet. \n"
 
 #~ msgid "question"
 #~ msgstr "fråga"
