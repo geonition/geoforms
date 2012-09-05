@@ -118,8 +118,7 @@
 <script type="text/javascript">
 var data_group = 'Q-{{ questionnaire.slug }}';
 var questionnaire_area = {{ questionnaire.area.json|safe }};
-var show_area = {{ questionnaire.show_area|lower }};
-var scale_visible_area = {{ questionnaire.buffer_area }};
+
 // instead of using global varibles start using this object
 
 var questionnaire = {

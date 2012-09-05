@@ -7,6 +7,7 @@ from django.forms.formsets import formset_factory
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+from django.utils.translation import ugettext as _
 from geoforms.forms import CheckboxElementForm
 from geoforms.forms import CheckboxElementFormSet
 from geoforms.forms import DrawbuttonForm
@@ -170,6 +171,15 @@ class QuestionnaireAdmin(admin.OSMGeoAdmin, TranslationAdmin):
     default_zoom = getattr(settings,
                           'ORGANIZATION_ADMIN_DEFAULT_MAP_SETTINGS',
                           {'default_zoom': 4})['default_zoom']
+    fieldsets = (
+        (None, {
+            'fields': ('name', 'area',)
+        }),
+        (_('Advanced options'), {
+            'classes': ('collapse',),
+            'fields': ('show_area', 'scale_visible_area',)
+        }),
+    )
     
     def change_view(self, request, object_id, form_url='', extra_context=None):
         extra_context = extra_context or {}
