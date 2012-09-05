@@ -97,7 +97,7 @@ active_class: the class to use when a button is activated
                     $(document.body).append(tooltip_html);
                     $(document.body).bind("mousemove", function(evt) {
                         console.log($(window).width);
-                        if($(window).width > 767) {
+                        if($(window).width() > 767) {
                             $(".tooltip").css('top', evt.clientY + 5);
                             $(".tooltip").css('left', evt.clientX + 5);
                         }
