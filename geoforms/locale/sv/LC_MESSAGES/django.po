@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-09-05 06:40-0500\n"
-"PO-Revision-Date: 2012-09-05 16:14+0200\n"
+"PO-Revision-Date: 2012-09-06 11:12+0200\n"
 "Last-Translator: Kristoffer Snabb <kristoffer.snabb@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -35,12 +35,12 @@ msgstr "område"
 
 #: forms.py:269
 msgid "The color of the feature to be drawn. The color is given as hexadecimal color e.g. #ffffff --> white, #000000 --> black, #ff0000 --> red, #00ff00 --> green, #0000ff --> blue."
-msgstr ""
+msgstr "Färgen för platsen som ritas. Färgen skall ges i hexadecimal form t.ex. #ffffff (vit), #000000 (svart), #ff0000 (röd), #00ff00 (grön), #0000ff (blå)"
 
 #: forms.py:271
 #: forms.py:285
 msgid "Choose the popup to use for the place, route, or area."
-msgstr ""
+msgstr "Välj popup som skall anvädas för platsen, rutten eller området"
 
 #: models.py:45
 msgid "questionnaire page element"
@@ -52,27 +52,27 @@ msgstr "enkät sidors element"
 
 #: models.py:62
 msgid "text input"
-msgstr ""
+msgstr "text fråga"
 
 #: models.py:63
 msgid "text inputs"
-msgstr ""
+msgstr "text fråga"
 
 #: models.py:76
 msgid "numer input"
-msgstr ""
+msgstr "nummer fråga"
 
 #: models.py:77
 msgid "number inputs"
-msgstr ""
+msgstr "nummer fråga"
 
 #: models.py:90
 msgid "range input"
-msgstr ""
+msgstr "slider"
 
 #: models.py:91
 msgid "range inputs"
-msgstr ""
+msgstr "sliders"
 
 #: models.py:104
 msgid "paragraph"
@@ -80,7 +80,7 @@ msgstr "text paragraf"
 
 #: models.py:105
 msgid "paragraphs"
-msgstr ""
+msgstr "text"
 
 #: models.py:118
 #: models.py:119
@@ -94,11 +94,11 @@ msgstr "Välj många"
 
 #: models.py:146
 msgid "Draw button"
-msgstr ""
+msgstr "Ritnings knapp"
 
 #: models.py:147
 msgid "Draw buttons"
-msgstr ""
+msgstr "Ritnings knappar"
 
 #: models.py:180
 #: models.py:265
@@ -128,7 +128,7 @@ msgstr "området för enkätet"
 
 #: models.py:213
 msgid "This is the initial area which will be visible on the questionnaire map. The map tools are on the up right corner of the map. To choose a tool you have to click on it so that the tool turnes yellow. To draw choose the drawing tool and start drawing. To stop drawing you have to doubleclick the map. It is also possible to modify the area by choosing the modify tool. Modification works by dragging the vertexes of the area to the new modified places."
-msgstr ""
+msgstr "Det här är det synliga området på kartan. Du kan använda verktygen som du ser upp till höger av kartan. Välj ett verktyg med att klicka på verktyget så att det färgas gult. För att rita ett område välj ritnings verktyget och börja märka områdets kanter med att klicka på kartan. För att sluta rita skall du dubbelklicka på kartan. Det är också möjligt att ändra på området med verktyget vänster till ritnings verktyget och sedan klicka på området som skall ändras."
 
 #: models.py:214
 msgid "Show area"
@@ -136,15 +136,15 @@ msgstr "Visa området"
 
 #: models.py:215
 msgid "Check the box to show the area to the user. Otherwise leave the checkbox unchecked."
-msgstr ""
+msgstr "Välj för att visa området för användaren. Annars lämna rutan tom."
 
 #: models.py:216
 msgid "Scale the visible area"
-msgstr ""
+msgstr "Förstora det synliga området"
 
 #: models.py:218
 msgid "This number will be used to set the initial map extent. The map extent is counted by drawn area times this number."
-msgstr ""
+msgstr "Det här numret kommar att användas för att räkna kartans område. Kartans område räknas enligt det märkta området gånger det här numret."
 
 #: models.py:246
 msgid "questionnaire"
@@ -241,31 +241,31 @@ msgstr "Du svara"
 #: templates/admin/geoforms/geoformelement/change_list.html:8
 #, python-format
 msgid "Add %(name)s"
-msgstr ""
+msgstr "Lägg till %(name)s"
 
 #: templates/admin/geoforms/geoformelement/change_list.html:13
 msgid "Add text input"
-msgstr ""
+msgstr "Lägg till en text fråga"
 
 #: templates/admin/geoforms/geoformelement/change_list.html:18
 msgid "Add number input"
-msgstr ""
+msgstr "Lägg till en nummer fråga"
 
 #: templates/admin/geoforms/geoformelement/change_list.html:23
 msgid "Add radiobuttons"
-msgstr ""
+msgstr "Lägg till en välj en fråga"
 
 #: templates/admin/geoforms/geoformelement/change_list.html:28
 msgid "Add checkboxes"
-msgstr ""
+msgstr "Lägg till en välj många fråga"
 
 #: templates/admin/geoforms/geoformelement/change_list.html:33
 msgid "Add draw button"
-msgstr ""
+msgstr "Lägg till en plats fråga"
 
 #: templates/admin/geoforms/geoformelement/change_list.html:38
 msgid "Add paragraph"
-msgstr ""
+msgstr "Lägg till text"
 
 #: templates/admin/geoforms/geoformelement/create_element.html:7
 msgid "Home"
