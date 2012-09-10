@@ -269,6 +269,10 @@ class DrawbuttonForm(forms.ModelForm):
                             help_text = _('The color of the feature to be drawn. The color is given as hexadecimal color e.g. #ffffff --> white, #000000 --> black, #ff0000 --> red, #00ff00 --> green, #0000ff --> blue.'))
     popup = forms.ChoiceField(choices = (('',''),),
                               help_text = _('Choose the popup to use for the place, route, or area.'))
+    max_amount = forms.IntegerField(min_value = 1,
+                                    max_value = 1000,
+                                    initial = 3,
+                                    help_text = _('This is the maximum number of allowed places/routes/areas that can be drawn by this drawbutton.'))
     
     
     def __init__(self, *args, **kwargs):
@@ -296,12 +300,14 @@ class DrawbuttonForm(forms.ModelForm):
                 geometry_type = soup.button['class'][1]
                 color = soup.button['data-color']
                 popup = soup.button['data-popup']
+                max_amount = soup.button['data-max']
                 label.append(soup.button.text)
             
             self.initial['geometry_type'] = geometry_type
             self.initial['label'] = label
             self.initial['color'] = color
             self.initial['popup'] = popup
+            self.initial['max_amount'] = max_amount
             
             
             
@@ -312,9 +318,10 @@ class DrawbuttonForm(forms.ModelForm):
             geometry_type = self.cleaned_data['geometry_type']
             popup = self.cleaned_data['popup']
             color = self.cleaned_data['color']
+            max_amount = self.cleaned_data['max_amount']
             for i, lang in enumerate(settings.LANGUAGES):               
                 label = self.cleaned_data['label'][i]
-                gen_html = Drawbutton().render(label, geometry_type, color, popup)
+                gen_html = Drawbutton().render(label, geometry_type, color, popup, max_amount)
                 setattr(model,
                         'html_%s' % lang[0],
                         gen_html)

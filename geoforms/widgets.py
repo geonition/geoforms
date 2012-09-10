@@ -59,10 +59,10 @@ class Drawbutton(Widget):
     """
     This is a html button
     """
-    def render(self, label, geometry_type, color, popup, attrs={}):
+    def render(self, label, geometry_type, color, popup, max_amount, attrs={}):
         final_attrs = {'data-color': color,
                        'data-popup': popup,
-                       'data-max': 3,
+                       'data-max': max_amount,
                        'name': slugify(label),
                        'class': 'drawbutton %s' % geometry_type}
         final_attrs.update(attrs)
