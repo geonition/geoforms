@@ -2,6 +2,7 @@ from django.conf import settings
 from django.forms.util import flatatt
 from django.forms.widgets import MultiWidget
 from django.forms.widgets import TextInput
+from django.forms.widgets import Textarea
 from django.forms.widgets import Input
 from django.forms.widgets import Widget
 from django.template.defaultfilters import slugify
@@ -109,6 +110,14 @@ class TextElement(Widget):
     def render(self, label, name, value, attrs={}):
         return u'<label>%s %s</label>' % (label,
                                           TextInput().render(name, value))
+    
+class TextareaElement(Widget):
+    """
+    This widget is a question requiring a text area.
+    """
+    def render(self, label, name, value, attrs={}):
+        return u'<label>%s %s</label>' % (label,
+                                          Textarea().render(name, value))
     
 class RadiobuttonElement(Widget):
     """

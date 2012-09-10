@@ -15,6 +15,7 @@ from geoforms.models import NumberElementModel
 from geoforms.models import ParagraphElementModel
 from geoforms.models import RadioElementModel
 from geoforms.models import TextElementModel
+from geoforms.models import TextareaModel
 from geoforms.models import RangeElementModel
 from geoforms.widgets import CheckboxElement
 from geoforms.widgets import ColorInput
@@ -23,6 +24,7 @@ from geoforms.widgets import NumberElement
 from geoforms.widgets import RadiobuttonElement
 from geoforms.widgets import Paragraph
 from geoforms.widgets import TextElement
+from geoforms.widgets import TextareaElement
 from geoforms.widgets import TranslationWidget
 from geoforms.widgets import RangeElement
 
@@ -105,6 +107,20 @@ class TextElementForm(ElementForm):
         model = TextElementModel
         fields = ('question',)
 
+class TextareaForm(ElementForm):
+    """
+    This handled creation of Textarea questions
+    """
+    
+    def render(self, question, name, value):
+        return TextareaElement().render(question,
+                                        name,
+                                        value)
+    
+    class Meta:
+        model = TextareaModel
+        fields = ('question',)
+    
 class NumberElementForm(ElementForm):
     
     def render(self, question, name, value):

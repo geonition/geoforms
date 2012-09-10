@@ -15,6 +15,7 @@ from geoforms.forms import NumberElementForm
 from geoforms.forms import ParagraphForm
 from geoforms.forms import RadioElementForm
 from geoforms.forms import RadioElementFormSet
+from geoforms.forms import TextareaForm
 from geoforms.forms import TextElementForm
 from geoforms.forms import QuestionForm
 from geoforms.forms import RangeElementForm
@@ -29,6 +30,7 @@ from geoforms.models import QuestionnaireForm
 from geoforms.models import NumberElementModel
 from geoforms.models import RadioElementModel
 from geoforms.models import TextElementModel
+from geoforms.models import TextareaModel
 from geoforms.models import RangeElementModel
 from modeltranslation.admin import TranslationAdmin
 from modeltranslation.admin import TranslationTabularInline
@@ -202,6 +204,17 @@ class TextElementAdmin(admin.ModelAdmin):
         return self.model.objects.filter(element_type = 'text')
 
 admin.site.register(TextElementModel, TextElementAdmin)
+
+class TextareaAdmin(admin.ModelAdmin):
+    """
+    This is the admin for adding textareas
+    """
+    form = TextareaForm
+    
+    def queryset(self, request):
+        return self.model.objects.filter(element_type = 'textarea')
+    
+admin.site.register(TextareaModel, TextareaAdmin)
 
 class NumberElementAdmin(admin.ModelAdmin):
     
