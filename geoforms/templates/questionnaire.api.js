@@ -42,6 +42,7 @@ active_class: the class to use when a button is activated
                 active_class: "ui-state-active",
                 disable_class: "ui-button-disabled ui-state-disabled",
                 rule_added: false,
+                max_amount: 3, //the maximum amount of points/routes/areas that can be drawn with this button
                 icons: {
                     primary: undefined,
                     secondary: undefined
@@ -60,14 +61,12 @@ active_class: the class to use when a button is activated
                 
                 //add rule to layer for prefered rendering      
                 var color = $(this.element).data('color');
+                var max_amount = $(this.element).data('maxAmount');
                 var name = $(this.element).attr('name');
                 //add styling rules
                 if(!this.options.rule_added) {
                     
                     var egraphic = '/images/svg/place_marker.svg?scale=1&color=' + color.substr(1);
-                    if($('html').hasClass('lt-ie9')) {
-                        egraphic = '/images/needle?color=' + color.substr(1);
-                    }
                     var rule = new OpenLayers.Rule({
                         filter: new OpenLayers.Filter.Comparison({
                             type: OpenLayers.Filter.Comparison.EQUAL_TO,
@@ -84,6 +83,25 @@ active_class: the class to use when a button is activated
                             cursor: 'pointer'
                             }
                         });
+                    if($('html').hasClass('lt-ie9')) {
+                        egraphic = '/images/needle?color=' + color.substr(1);
+                        rule = new OpenLayers.Rule({
+                            filter: new OpenLayers.Filter.Comparison({
+                                type: OpenLayers.Filter.Comparison.EQUAL_TO,
+                                property: 'name',
+                                value: name
+                            }),
+                            symbolizer: {
+                                externalGraphic: egraphic,
+                                graphicHeight: 36,
+                                graphicWidth: 23,
+                                graphicYOffset: -30,
+                                strokeColor: color,
+                                fillColor: color,
+                                cursor: 'pointer'
+                                }
+                            });
+                    }
                     var drawcontrol_id = this.options['drawcontrol'];
                     var drawcontrol = map.getControl(drawcontrol_id);
                     drawcontrol.layer.styleMap.styles['default'].addRules([rule]);
@@ -149,6 +167,9 @@ active_class: the class to use when a button is activated
                     var egraphic = '/images/svg/place_marker.svg?scale=1&color=' + color.substr(1);
                     if($('html').hasClass('lt-ie9')) {
                         egraphic = '/images/needle?color=' + color.substr(1);
+                        drawcontrol.layer.styleMap.styles.temporary.defaultStyle.graphicHeight = 36;
+                        drawcontrol.layer.styleMap.styles.temporary.defaultStyle.graphicWidth = 23;
+                        drawcontrol.layer.styleMap.styles.temporary.defaultStyle.graphicYOffset = -30;
                     }
                     drawcontrol.layer.styleMap.styles.temporary.defaultStyle.externalGraphic = egraphic;
                     
