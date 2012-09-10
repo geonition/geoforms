@@ -301,7 +301,7 @@ class DrawbuttonForm(forms.ModelForm):
                 color = soup.button['data-color']
                 popup = soup.button['data-popup']
                 max_amount = soup.button['data-max']
-                label.append(soup.button.text)
+                label.append(soup.button.text.strip())
             
             self.initial['geometry_type'] = geometry_type
             self.initial['label'] = label

@@ -280,14 +280,14 @@ class CheckboxElementAdmin(admin.ModelAdmin):
                                'html_%s' % lang[0],
                                '')
                 soup = BeautifulSoup(html)
-                question_data['question'].append(soup.p.text)
+                question_data['question'].append(soup.p.text.strip())
                 labels = soup.find_all('label')
                 label_row = {u'label': []}
                 for j, label in enumerate(labels):
                     if i == 0:
-                        initial_data.append({u'label': [label.text]})
+                        initial_data.append({u'label': [label.text.strip()]})
                     else:
-                        initial_data[j]['label'].append(label.text)
+                        initial_data[j]['label'].append(label.text.strip())
             
             return super(CheckboxElementAdmin, self).change_view(request,
                                                               object_id,
@@ -346,9 +346,9 @@ class RadioElementAdmin(admin.ModelAdmin):
                 label_row = {u'label': []}
                 for j, label in enumerate(labels):
                     if i == 0:
-                        initial_data.append({u'label': [label.text]})
+                        initial_data.append({u'label': [label.text.strip()]})
                     else:
-                        initial_data[j]['label'].append(label.text)
+                        initial_data[j]['label'].append(label.text.strip())
             
             return super(RadioElementAdmin, self).change_view(request,
                                                               object_id,
