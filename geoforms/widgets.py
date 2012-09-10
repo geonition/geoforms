@@ -62,6 +62,7 @@ class Drawbutton(Widget):
     def render(self, label, geometry_type, color, popup, attrs={}):
         final_attrs = {'data-color': color,
                        'data-popup': popup,
+                       'data-max': 3,
                        'name': slugify(label),
                        'class': 'drawbutton %s' % geometry_type}
         final_attrs.update(attrs)

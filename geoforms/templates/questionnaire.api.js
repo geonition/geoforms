@@ -42,7 +42,7 @@ active_class: the class to use when a button is activated
                 active_class: "ui-state-active",
                 disable_class: "ui-button-disabled ui-state-disabled",
                 rule_added: false,
-                max_amount: 3, //the maximum amount of points/routes/areas that can be drawn with this button
+                max: 3, //the maximum amount of points/routes/areas that can be drawn with this button
                 icons: {
                     primary: undefined,
                     secondary: undefined
@@ -61,7 +61,7 @@ active_class: the class to use when a button is activated
                 
                 //add rule to layer for prefered rendering      
                 var color = $(this.element).data('color');
-                var max_amount = $(this.element).data('maxAmount');
+                var max = $(this.element).data('max');
                 var name = $(this.element).attr('name');
                 //add styling rules
                 if(!this.options.rule_added) {
@@ -147,17 +147,17 @@ active_class: the class to use when a button is activated
                 
             },
             activate: function() {
-                if(this.element.attr( 'disabled') !== 'disabled') {
+                if(this.element.attr('disabled') !== 'disabled') {
                     
                     //unselect the others
                     $(".drawbutton." + this.options['active_class'])
-                        .drawButton( 'deactivate' );
+                        .drawButton('deactivate');
                     this.element.addClass( this.options['active_class'] );
                     var drawcontrol_id = this.options['drawcontrol'];
                     var drawcontrol = map.getControl(drawcontrol_id);
                     drawcontrol.activate();
                     var selectcontrol_id = this.options['selectcontrol'];
-                    var selectcontrol = map.getControl( selectcontrol_id );
+                    var selectcontrol = map.getControl(selectcontrol_id);
                     selectcontrol.deactivate();
                     
                     //change the temporary style of the layer
@@ -289,15 +289,27 @@ gnt.questionnaire.save_handler = function(evt) {
         gnt.geo.create_feature('@me', data_group, geojson, {
             'success': function(data, textStatus, jqXHR) {
                 var new_feature = null;
+                var amount = 0;
                 // retrieve feature without fid and give it the id from the right layer
                 if( data.geometry.type === 'Point') {
                     new_feature = map.getLayersByName('Point Layer')[0].getFeatureByFid(undefined);
+                    amount = map.getLayersByName('Point Layer')[0].getFeaturesByAttribute('name', new_feature.attributes.name).length;
                 } else if ( data.geometry.type === 'LineString' ) {
                     new_feature = map.getLayersByName('Route Layer')[0].getFeatureByFid(undefined);
+                    amount = map.getLayersByName('Route Layer')[0].getFeaturesByAttribute('name', new_feature.attributes.name).length;
                 } else if ( data.geometry.type === 'Polygon' ) {
                     new_feature = map.getLayersByName('Area Layer')[0].getFeatureByFid(undefined);
+                    amount = map.getLayersByName('Area Layer')[0].getFeaturesByAttribute('name', new_feature.attributes.name).length;
                 }
                 new_feature.fid = data.id;
+                
+                //disable the button if max amount of features has been drawn
+                var max = $('button[name=' + new_feature.attributes.name + ']').data('max');
+                if(max !== undefined &&
+                   amount >= max) {
+                    $('button[name=' + new_feature.attributes.name + ']').drawButton('disable');
+                }
+                
             }
         });
         
@@ -310,7 +322,7 @@ gnt.questionnaire.save_handler = function(evt) {
     }
 
     //unselect feature
-   map.getControlsByClass( 'OpenLayers.Control.SelectFeature' )[0].unselectAll(evt);
+    map.getControlsByClass( 'OpenLayers.Control.SelectFeature' )[0].unselectAll(evt);
 
     //set the popup form as not active
     $( 'form.popupform.active' ).removeClass( 'active' );
@@ -320,6 +332,7 @@ gnt.questionnaire.save_handler = function(evt) {
         map.removePopup(gnt.questionnaire.popup);
         gnt.questionnaire.popup = undefined;
     }
+    
 }
 
 /*
@@ -327,7 +340,13 @@ gnt.questionnaire.save_handler = function(evt) {
  connected to the remove button in the popup form.
 */
 gnt.questionnaire.remove_handler = function(evt) {
-
+    
+    //enable drawbutton if amount of feature under max
+    var max = $('button[name=' + evt.data[0].attributes.name + ']').data('max');
+    var amount = evt.data[0].layer.getFeaturesByAttribute('name', evt.data[0].attributes.name).length - 1;
+    if(amount < max) {
+        $('button[name=' + evt.data[0].attributes.name + ']').drawButton('enable');
+    }
     evt.data[0].layer.removeFeatures([evt.data[0]]);
     //unselect feature
     map.getControlsByClass( 'OpenLayers.Control.SelectFeature' )[0].unselectAll();
@@ -810,11 +829,36 @@ gnt.questionnaire.init = function(forms,
                                                 feature.data.contentHTML,
                                                 null,
                                                 false);
-           
-                       }
-                   }
-               }
-           });
+                        }
+                            
+                        //disable drawbuttons that has max number of features
+                        $('button.drawbutton.point').each(function(index, element) {
+                            var amount = pl.getFeaturesByAttribute('name', $(element).attr('name')).length;
+                            var max = $(element).data('max');
+                            if(max !== undefined &&
+                               amount >= max) {
+                                $('button[name=' + $(element).attr('name') + ']').drawButton('disable');
+                            }
+                        });
+                        $('button.drawbutton.route').each(function(index, element) {
+                            var amount = rl.getFeaturesByAttribute('name', $(element).attr('name')).length;
+                            var max = $(element).data('max');
+                            if(max !== undefined &&
+                               amount >= max) {
+                                $('button[name=' + $(element).attr('name') + ']').drawButton('disable');
+                            }
+                        });
+                        $('button.drawbutton.area').each(function(index, element) {
+                            var amount = al.getFeaturesByAttribute('name', $(element).attr('name')).length;
+                            var max = $(element).data('max');
+                            if(max !== undefined &&
+                               amount >= max) {
+                                $('button[name=' + $(element).attr('name') + ']').drawButton('disable');
+                            }
+                        });
+                    }
+                }
+            });
         
         //the point where everything is done for callback
         if(callback !== undefined) {
