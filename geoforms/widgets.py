@@ -6,6 +6,7 @@ from django.forms.widgets import Input
 from django.forms.widgets import Widget
 from django.template.defaultfilters import slugify
 from django.utils.safestring import mark_safe
+from django.utils.translation import ugettext as _
 
 #basic html 5 widgets
 class NumberInput(Input):
@@ -66,11 +67,14 @@ class Drawbutton(Widget):
         final_attrs.update(attrs)
         symbol = ''
         if geometry_type == 'point':
-            symbol = '<img src="/images/svg/place_marker.svg?color=%s" />' % color[1:]
+            symbol = '<img src="/images/svg/place_marker.svg?color=%s" alt="%s" />' % (color[1:],
+                                                                                       _('place icon'))
         elif geometry_type == 'route':
-            symbol = '<img src="/images/svg/route_marker.svg?color=%s" />' % color[1:]
+            symbol = '<img src="/images/svg/route_marker.svg?color=%s" alt="%s" />' % (color[1:],
+                                                                                       _('route icon'))
         elif geometry_type == 'area':
-            symbol = '<img src="/images/svg/area_marker.svg?color=%s" />' % color[1:]
+            symbol = '<img src="/images/svg/area_marker.svg?color=%s" alt="%s" />' % (color[1:],
+                                                                                       _('area icon'))
             
             
         return mark_safe(u'<button type="button"%s>%s %s</button>' % (flatatt(final_attrs),

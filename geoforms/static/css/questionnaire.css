@@ -90,6 +90,13 @@
 }
 
 /* jquery ui accordion modified */
+/*hide as default*/
+#forms h3, #forms h3 + div {
+    visibility: hidden;
+}
+#forms h3.ui-state-active, #forms h3.ui-state-active + div {
+    visibility: visible;    
+}
 #content h3.ui-state-default {
     display: none;
 }
