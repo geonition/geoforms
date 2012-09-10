@@ -52,91 +52,6 @@ class GeoformElementAdmin(TranslationAdmin, admin.ModelAdmin):
                 'search_fields',
                 sfields)
         
-    def get_urls(self):
-        urls = super(GeoformElementAdmin, self).get_urls()
-        
-        extra_urls = patterns('',
-                            (r'^add_text_element/$', self.admin_site.admin_view(self.create_text_element)),
-                            (r'^add_number_element/$', self.admin_site.admin_view(self.create_number_element)),
-                            (r'^add_radio_element/$', self.admin_site.admin_view(self.create_radio_element)),
-                            (r'^add_checkbox_element/$', self.admin_site.admin_view(self.create_checkbox_element)),
-                            (r'^add_drawbutton_element/$', self.admin_site.admin_view(self.create_drawbutton_element)),
-                            (r'^add_paragraph_element/$', self.admin_site.admin_view(self.create_paragraph_element)),
-                            )
-        return extra_urls + urls
-    
-    def create_text_element(self, request):
-        if request.method == 'POST':
-            TextElementForm(request.POST).save()
-            return HttpResponseRedirect(reverse('admin:geoforms_geoformelement_changelist'))
-        else:
-            return render_to_response('admin/geoforms/geoformelement/create_element.html',
-                                      {'current_app': self.admin_site.name,
-                                       'form': TextElementForm()},
-                                      context_instance = RequestContext(request))
-    
-    def create_number_element(self, request):
-        if request.method == 'POST':
-            NumberElementForm(request.POST).save()
-            return HttpResponseRedirect(reverse('admin:geoforms_geoformelement_changelist'))
-        else:
-            return render_to_response('admin/geoforms/geoformelement/create_element.html',
-                                      {'current_app': self.admin_site.name,
-                                       'form': NumberElementForm()},
-                                      context_instance = RequestContext(request))
-    
-    def create_radio_element(self, request):
-        if request.method == 'POST':
-            res = formset_factory(RadioElementForm,
-                                  formset=RadioElementFormSet)
-            rs = res(request.POST)
-            rs.save()
-            return HttpResponseRedirect(reverse('admin:geoforms_geoformelement_changelist'))
-        else:
-            return render_to_response('admin/geoforms/geoformelement/create_element.html',
-                                      {'current_app': self.admin_site.name,
-                                       'form': QuestionForm(),
-                                       'formset': formset_factory(RadioElementForm)},
-                                      context_instance = RequestContext(request))
-        
-    def create_checkbox_element(self, request):
-        if request.method == 'POST':
-            res = formset_factory(CheckboxElementForm,
-                                  formset=CheckboxElementFormSet)
-            rs = res(request.POST)
-            rs.save()
-            return HttpResponseRedirect(reverse('admin:geoforms_geoformelement_changelist'))
-        else:
-            return render_to_response('admin/geoforms/geoformelement/create_element.html',
-                                      {'current_app': self.admin_site.name,
-                                       'form': QuestionForm(),
-                                       'formset': formset_factory(CheckboxElementForm)},
-                                      context_instance = RequestContext(request))
-    
-    def create_drawbutton_element(self, request):
-        if request.method == 'POST':
-            DrawbuttonForm(request.POST).save()
-            return HttpResponseRedirect(reverse('admin:geoforms_geoformelement_changelist'))
-        else:
-            return render_to_response('admin/geoforms/geoformelement/create_element.html',
-                                      {'current_app': self.admin_site.name,
-                                       'form': DrawbuttonForm()},
-                                      context_instance = RequestContext(request))
-    
-    def create_paragraph_element(self, request):
-        if request.method == 'POST':
-            ParagraphForm(request.POST).save()
-            return HttpResponseRedirect(reverse('admin:geoforms_geoformelement_changelist'))
-        else:
-            return render_to_response('admin/geoforms/geoformelement/create_element.html',
-                                      {'current_app': self.admin_site.name,
-                                       'form': ParagraphForm()},
-                                      context_instance = RequestContext(request))
-        
-    class Media:
-        css = {
-            'all': ('css/questionnaire_admin.css',)
-        }
 
 class FormElementAdmin(admin.ModelAdmin):
     ordering = ['geoform', 'order']
@@ -194,7 +109,7 @@ admin.site.register(GeoformElement, GeoformElementAdmin)
 admin.site.register(Geoform, GeoformAdmin)
 admin.site.register(Questionnaire, QuestionnaireAdmin)
 
-class TextElementAdmin(admin.ModelAdmin):
+class TextElementAdmin(GeoformElementAdmin):
     """
     This is the admin for text inputs
     """
@@ -205,7 +120,7 @@ class TextElementAdmin(admin.ModelAdmin):
 
 admin.site.register(TextElementModel, TextElementAdmin)
 
-class TextareaAdmin(admin.ModelAdmin):
+class TextareaAdmin(GeoformElementAdmin):
     """
     This is the admin for adding textareas
     """
@@ -216,7 +131,7 @@ class TextareaAdmin(admin.ModelAdmin):
     
 admin.site.register(TextareaModel, TextareaAdmin)
 
-class NumberElementAdmin(admin.ModelAdmin):
+class NumberElementAdmin(GeoformElementAdmin):
     
     form = NumberElementForm
     
@@ -225,7 +140,7 @@ class NumberElementAdmin(admin.ModelAdmin):
     
 admin.site.register(NumberElementModel, NumberElementAdmin)
 
-class RangeElementAdmin(admin.ModelAdmin):
+class RangeElementAdmin(GeoformElementAdmin):
     
     form = RangeElementForm
     
@@ -234,7 +149,7 @@ class RangeElementAdmin(admin.ModelAdmin):
     
 admin.site.register(RangeElementModel, RangeElementAdmin)
 
-class ParagraphElementAdmin(admin.ModelAdmin):
+class ParagraphElementAdmin(GeoformElementAdmin):
     
     form = ParagraphForm
     
@@ -243,7 +158,7 @@ class ParagraphElementAdmin(admin.ModelAdmin):
     
 admin.site.register(ParagraphElementModel, ParagraphElementAdmin)
 
-class DrawbuttonElementAdmin(admin.ModelAdmin):
+class DrawbuttonElementAdmin(GeoformElementAdmin):
     
     form = DrawbuttonForm
     
@@ -252,7 +167,7 @@ class DrawbuttonElementAdmin(admin.ModelAdmin):
     
 admin.site.register(DrawbuttonElementModel, DrawbuttonElementAdmin)
 
-class CheckboxElementAdmin(admin.ModelAdmin):
+class CheckboxElementAdmin(GeoformElementAdmin):
     
     form = CheckboxElementForm
     add_form_template = 'admin/geoforms/geoformelement/create_element.html'
@@ -313,7 +228,7 @@ class CheckboxElementAdmin(admin.ModelAdmin):
     
 admin.site.register(CheckboxElementModel, CheckboxElementAdmin)
 
-class RadioElementAdmin(admin.ModelAdmin):
+class RadioElementAdmin(GeoformElementAdmin):
     
     form = RadioElementForm
     add_form_template = 'admin/geoforms/geoformelement/create_element.html'
