@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-12 05:19-0500\n"
+"POT-Creation-Date: 2012-09-11 07:16-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,44 +17,176 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: models.py:44
-msgid "questionnaire page element"
+#: admin.py:95
+msgid "Advanced options"
+msgstr ""
+
+#: forms.py:279
+msgid "place"
+msgstr ""
+
+#: forms.py:280
+msgid "route"
+msgstr ""
+
+#: forms.py:281
+msgid "area"
+msgstr ""
+
+#: forms.py:285
+msgid ""
+"The color of the feature to be drawn. The color is given as hexadecimal "
+"color e.g. #ffffff --> white, #000000 --> black, #ff0000 --> red, #00ff00 --"
+"> green, #0000ff --> blue."
+msgstr ""
+
+#: forms.py:287 forms.py:305
+msgid "Choose the popup to use for the place, route, or area."
+msgstr ""
+
+#: forms.py:291
+msgid ""
+"This is the maximum number of allowed places/routes/areas that can be drawn "
+"by this drawbutton."
 msgstr ""
 
 #: models.py:45
+msgid "questionnaire page element"
+msgstr ""
+
+#: models.py:46
 msgid "questionnaire page elements"
 msgstr ""
 
-#: models.py:77 models.py:147
-msgid "questionnaire page"
+#: models.py:62
+msgid "text input"
 msgstr ""
 
-#: models.py:78 models.py:148
-msgid "questionnaire pages"
+#: models.py:63
+msgid "text inputs"
 msgstr ""
 
-#: models.py:94
-msgid "page element"
+#: models.py:76
+msgid "text area"
 msgstr ""
 
-#: models.py:95
-msgid "page elements"
+#: models.py:77
+msgid "text areas"
+msgstr ""
+
+#: models.py:90
+msgid "numer input"
+msgstr ""
+
+#: models.py:91
+msgid "number inputs"
 msgstr ""
 
 #: models.py:104
+msgid "range input"
+msgstr ""
+
+#: models.py:105
+msgid "range inputs"
+msgstr ""
+
+#: models.py:118
+msgid "paragraph"
+msgstr ""
+
+#: models.py:119
+msgid "paragraphs"
+msgstr ""
+
+#: models.py:132 models.py:133
+msgid "Select one"
+msgstr ""
+
+#: models.py:146 models.py:147
+msgid "Select multiple"
+msgstr ""
+
+#: models.py:160
+msgid "Draw button"
+msgstr ""
+
+#: models.py:161
+msgid "Draw buttons"
+msgstr ""
+
+#: models.py:194 models.py:279
+msgid "questionnaire page"
+msgstr ""
+
+#: models.py:195 models.py:280
+msgid "questionnaire pages"
+msgstr ""
+
+#: models.py:208
+msgid "page element"
+msgstr ""
+
+#: models.py:209
+msgid "page elements"
+msgstr ""
+
+#: models.py:218
 msgid "name of questionnaire"
 msgstr ""
 
-#: models.py:109
+#: models.py:223
 msgid "area of questionnaire"
 msgstr ""
 
-#: models.py:128
+#: models.py:227
+msgid ""
+"This is the initial area which will be visible on the questionnaire map. The "
+"map tools are on the up right corner of the map. To choose a tool you have "
+"to click on it so that the tool turnes yellow. To draw choose the drawing "
+"tool and start drawing. To stop drawing you have to doubleclick the map. It "
+"is also possible to modify the area by choosing the modify tool. "
+"Modification works by dragging the vertexes of the area to the new modified "
+"places."
+msgstr ""
+
+#: models.py:228
+msgid "Show area"
+msgstr ""
+
+#: models.py:229
+msgid ""
+"Check the box to show the area to the user. Otherwise leave the checkbox "
+"unchecked."
+msgstr ""
+
+#: models.py:230
+msgid "Scale the visible area"
+msgstr ""
+
+#: models.py:232
+msgid ""
+"This number will be used to set the initial map extent. The map extent is "
+"counted by drawn area times this number."
+msgstr ""
+
+#: models.py:260
 msgid "questionnaire"
 msgstr ""
 
-#: models.py:129
+#: models.py:261
 msgid "questionnaires"
+msgstr ""
+
+#: widgets.py:73
+msgid "place icon"
+msgstr ""
+
+#: widgets.py:76
+msgid "route icon"
+msgstr ""
+
+#: widgets.py:79
+msgid "area icon"
 msgstr ""
 
 #: templates/jstranslations.txt:5
@@ -69,62 +201,75 @@ msgstr ""
 msgid "Click on the map to start drawing the area and doubleclick to finnish"
 msgstr ""
 
-#: templates/questionnaire.html:45 templates/questionnaire.html.py:48
+#: templates/jstranslations.txt:10
+msgid "Annotations"
+msgstr ""
+
+#: templates/questionnaire.html:17
+msgid "Questionnaires"
+msgstr ""
+
+#: templates/questionnaire.html:50 templates/questionnaire.html.py:53
 msgid "Next"
 msgstr ""
 
-#: templates/questionnaire.html:47 templates/questionnaire.html.py:71
+#: templates/questionnaire.html:52 templates/questionnaire.html.py:77
 msgid "Previous"
 msgstr ""
 
-#: templates/questionnaire.html:58
+#: templates/questionnaire.html:63
 msgid "Your answers and finish"
 msgstr ""
 
-#: templates/questionnaire.html:67
+#: templates/questionnaire.html:72
 msgid ""
 "This is the end of the questionnaire and your answers has been saved. Thank "
 "you for your answers! You can still continue modifying your answers by "
-"following the previous links or clicking the sections of this questionnaire."
+"clicking the previous buttons. Quit the questionnaire by clicking the 'quit "
+"and go to home page' button."
 msgstr ""
 
-#: templates/questionnaire.html:93
+#: templates/questionnaire.html:78
+msgid "Quit and go to home page"
+msgstr ""
+
+#: templates/questionnaire.html:101
 msgid "Remove"
 msgstr ""
 
-#: templates/questionnaire.html:96
+#: templates/questionnaire.html:104
 msgid "Save"
 msgstr ""
 
-#: templates/questionnaire.html:131
+#: templates/questionnaire.html:144
 msgid "You marked one place"
 msgstr ""
 
-#: templates/questionnaire.html:133
+#: templates/questionnaire.html:146
 msgid "You marked"
 msgstr ""
 
-#: templates/questionnaire.html:133
+#: templates/questionnaire.html:146
 msgid "places"
 msgstr ""
 
-#: templates/questionnaire.html:139
+#: templates/questionnaire.html:152
 msgid "and answered one question"
 msgstr ""
 
-#: templates/questionnaire.html:141
+#: templates/questionnaire.html:154
 msgid "and answered"
 msgstr ""
 
-#: templates/questionnaire.html:141 templates/questionnaire.html.py:146
+#: templates/questionnaire.html:154 templates/questionnaire.html.py:159
 msgid "questions"
 msgstr ""
 
-#: templates/questionnaire.html:144
+#: templates/questionnaire.html:157
 msgid "You answered one question"
 msgstr ""
 
-#: templates/questionnaire.html:146
+#: templates/questionnaire.html:159
 msgid "You answered"
 msgstr ""
 
