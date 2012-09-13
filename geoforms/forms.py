@@ -326,9 +326,9 @@ class DrawbuttonForm(forms.ModelForm):
                 soup = BeautifulSoup(lang_html)
                 label.append(soup.button.text.strip())
                 if lang[0] == settings.LANGUAGE_CODE:
-                    geometry_type = soup.button['class'][1]
-                    color = soup.button['data-color']
-                    popup = soup.button['data-popup']
+                    geometry_type = soup.button.get('class', [u'',u'point'])[1]
+                    color = soup.button.get('data-color', u'#ff00ee')
+                    popup = soup.button.get('data-popup', u'basic')
                     max_amount = soup.button.get('data-max', u'3')
             
             self.initial['geometry_type'] = geometry_type
