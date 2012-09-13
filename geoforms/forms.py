@@ -1,5 +1,6 @@
 import abc
 from bs4 import BeautifulSoup
+from datetime import datetime
 from django import forms
 from django.conf import settings
 from django.forms.formsets import BaseFormSet
@@ -63,7 +64,9 @@ class ElementForm(forms.ModelForm):
         model = super(ElementForm, self).save(commit=False)
  
         if self.is_valid():
-            name = slugify(self.cleaned_data['question'][0])
+            name = "%sT%s" % (slugify(self.cleaned_data['question'][0]),
+                              str(datetime.datetime.utcnow()))
+                
             for i, lang in enumerate(settings.LANGUAGES):
                 question = self.cleaned_data['question'][i]
                 gen_html = self.render(question,
@@ -177,7 +180,9 @@ class RangeElementForm(forms.ModelForm):
             question = self.cleaned_data['question']
             min_label = self.cleaned_data['min_label']
             max_label = self.cleaned_data['max_label']
-            name = slugify(question[0][:200])
+            name = "%sT%s" % (slugify(question[0][:200]),
+                              str(datetime.datetime.utcnow()))
+                
             value = ''
             for i, lang in enumerate(settings.LANGUAGES):
                 gen_html = RangeElement().render(question[i],
@@ -224,6 +229,7 @@ class RadioElementFormSet(BaseFormSet):
         name = ''
         if qform.is_valid():            
             name = slugify(qform.cleaned_data['question'][0])
+                
             for i, lang in enumerate(settings.LANGUAGES):
                 model_values['html_%s' % lang[0]] = '<p>%s</p>' % qform.cleaned_data['question'][i]
                 model_values['name_%s' % lang[0]] = qform.cleaned_data['question'][i]
@@ -301,7 +307,7 @@ class DrawbuttonForm(forms.ModelForm):
         super(DrawbuttonForm, self).__init__(*args, **kwargs)
         #set the popup choices
         self.fields['popup'] = forms.ChoiceField(
-            choices = Geoform.objects.filter(type = 'popup').values_list('slug', 'name'),
+            choices = Geoform.objects.filter(page_type = 'popup').values_list('slug', 'name'),
             help_text = _('Choose the popup to use for the place, route, or area.'))
  
         # Set the form fields based on the model object
@@ -383,6 +389,7 @@ class ParagraphForm(forms.ModelForm):
  
         if self.is_valid():
             name = slugify(self.cleaned_data['text'][0])
+            
             for i, lang in enumerate(settings.LANGUAGES):
                 question = self.cleaned_data['text'][i]
                 gen_html = '<p>%s</p>' % question

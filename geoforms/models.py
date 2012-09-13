@@ -169,26 +169,26 @@ class Geoform(models.Model):
     fields starting with small f is for the
     form html element.
     """
-    slug = models.SlugField(max_length = 50,
-                                      editable = False,
-                                      unique = True)
-    name = models.CharField(max_length = 50)
-    type = models.CharField(max_length = 5,
-                            choices = (
-                                ('popup', 'popup'),
-                                ('form','form')),
-                            default = 'form')
+    slug = models.SlugField(max_length = 200,
+                            editable = False,
+                            unique = True)
+    name = models.CharField(max_length = 200)
+    page_type = models.CharField(max_length = 5,
+                                 choices = (
+                                    ('popup', 'popup'),
+                                    ('form','form')),
+                                 default = 'form')
     elements = models.ManyToManyField(GeoformElement,
                                       through = 'FormElement')
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.name)
+        self.slug = slugify("%s %s" % (self.name, timezone.now()))[:200]
 
         super(Geoform, self).save(*args, **kwargs)
 
     def __unicode__(self):
         return u'%s - %s' % (self.name,
-                             self.type)
+                             self.page_type)
         
     class Meta:
         verbose_name = _('questionnaire page')
@@ -216,8 +216,8 @@ class Questionnaire(models.Model):
                                       through = 'QuestionnaireForm',
                                       related_name = 'geoforms')
     name = models.CharField(_('name of questionnaire'),
-                            max_length = 100)
-    slug = models.SlugField(max_length = 100,
+                            max_length = 200)
+    slug = models.SlugField(max_length = 200,
                             editable = False,
                             unique = True)
     area = geomodel.PolygonField(_('area of questionnaire'),
@@ -248,7 +248,7 @@ class Questionnaire(models.Model):
 
     def save(self, *args, **kwargs):
         
-        self.slug = slugify(self.name)
+        self.slug = slugify("%s %s" % (self.name, timezone.now()))[:200]
 
         super(Questionnaire, self).save(*args, **kwargs)
 
