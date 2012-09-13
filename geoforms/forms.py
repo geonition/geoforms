@@ -312,18 +312,24 @@ class DrawbuttonForm(forms.ModelForm):
  
         # Set the form fields based on the model object
         if kwargs.has_key('instance'):
-            geometry_type = 'point'
+            geometry_type = u'point'
             label = []
-            color = '#000000'
-            popup = ''
+            color = u'#000000'
+            popup = u''
+            max_amount = u'3'
             for lang in settings.LANGUAGES:
-                soup = BeautifulSoup(getattr(kwargs['instance'],
-                                             'html_%s' % lang[0]))
-                geometry_type = soup.button['class'][1]
-                color = soup.button['data-color']
-                popup = soup.button['data-popup']
-                max_amount = soup.button['data-max']
+                lang_html = getattr(kwargs['instance'],
+                                    'html_%s' % lang[0])
+                if lang_html == None:
+                    continue
+                
+                soup = BeautifulSoup(lang_html)
                 label.append(soup.button.text.strip())
+                if lang[0] == settings.LANGUAGE_CODE:
+                    geometry_type = soup.button['class'][1]
+                    color = soup.button['data-color']
+                    popup = soup.button['data-popup']
+                    max_amount = soup.button.get('data-max', u'3')
             
             self.initial['geometry_type'] = geometry_type
             self.initial['label'] = label
