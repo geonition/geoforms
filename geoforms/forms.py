@@ -64,8 +64,7 @@ class ElementForm(forms.ModelForm):
         model = super(ElementForm, self).save(commit=False)
  
         if self.is_valid():
-            name = "%sT%s" % (slugify(self.cleaned_data['question'][0]),
-                              str(datetime.datetime.utcnow()))
+            name = self.cleaned_data['question'][0].replace(' ', '-')[:200]
                 
             for i, lang in enumerate(settings.LANGUAGES):
                 question = self.cleaned_data['question'][i]
