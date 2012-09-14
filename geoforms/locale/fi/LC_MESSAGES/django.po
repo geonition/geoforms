@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geonition\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-11 07:16-0500\n"
-"PO-Revision-Date: 2012-09-11 19:04+0000\n"
+"POT-Creation-Date: 2012-09-14 02:51-0500\n"
+"PO-Revision-Date: 2012-09-14 08:02+0000\n"
 "Last-Translator: ksnabb <kristoffer.snabb@geonition.org>\n"
 "Language-Team: Finnish (http://www.transifex.com/projects/p/geonition/language/fi/)\n"
 "MIME-Version: 1.0\n"
@@ -22,30 +22,30 @@ msgstr ""
 msgid "Advanced options"
 msgstr "Lisäasetukset"
 
-#: forms.py:279
+#: forms.py:285
 msgid "place"
 msgstr "paikan"
 
-#: forms.py:280
+#: forms.py:286
 msgid "route"
 msgstr "reitti"
 
-#: forms.py:281
+#: forms.py:287
 msgid "area"
 msgstr "alue"
 
-#: forms.py:285
+#: forms.py:291
 msgid ""
 "The color of the feature to be drawn. The color is given as hexadecimal "
 "color e.g. #ffffff --> white, #000000 --> black, #ff0000 --> red, #00ff00 "
 "--> green, #0000ff --> blue."
 msgstr "Käyttäjän piirtämän paikannuksen väri. Väri syötetään heksadesimaali muodossa esim. #ffffff (valkoinen), #000000 (musta), #ff0000 (punainen), #00ff00 (vihreä), #0000ff (sininen) "
 
-#: forms.py:287 forms.py:305
+#: forms.py:293 forms.py:311
 msgid "Choose the popup to use for the place, route, or area."
 msgstr "Valitse ponnahdusikkuna jonka käyttäjä näkee sen jälkeen kun hän on piirtänyt paikannuksen."
 
-#: forms.py:291
+#: forms.py:297
 msgid ""
 "This is the maximum number of allowed places/routes/areas that can be drawn "
 "by this drawbutton."
@@ -239,6 +239,7 @@ msgid "Remove"
 msgstr "Poista"
 
 #: templates/questionnaire.html:104
+#: templates/admin/geoforms/geoformelement/create_element.html:41
 msgid "Save"
 msgstr "Tallenna"
 
@@ -273,6 +274,22 @@ msgstr "Olet vastannut yhteen kysymykseen"
 #: templates/questionnaire.html:159
 msgid "You answered"
 msgstr "Olet antanut"
+
+#: templates/admin/geoforms/geoformelement/create_element.html:7
+msgid "Home"
+msgstr ""
+
+#: templates/admin/geoforms/geoformelement/create_element.html:10
+msgid "Create element"
+msgstr ""
+
+#: templates/admin/geoforms/geoformelement/create_element.html:29
+msgid "remove"
+msgstr ""
+
+#: templates/admin/geoforms/geoformelement/create_element.html:34
+msgid "add"
+msgstr ""
 
 #: templates/help/geoform_element_html.html:2
 msgid ""

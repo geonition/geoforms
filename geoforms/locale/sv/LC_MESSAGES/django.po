@@ -3,12 +3,13 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+#   <kristoffer.snabb@geonition.org>, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: geonition\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-11 07:16-0500\n"
-"PO-Revision-Date: 2012-09-11 12:16+0000\n"
+"POT-Creation-Date: 2012-09-14 02:51-0500\n"
+"PO-Revision-Date: 2012-09-14 08:16+0000\n"
 "Last-Translator: ksnabb <kristoffer.snabb@geonition.org>\n"
 "Language-Team: Swedish (http://www.transifex.com/projects/p/geonition/language/sv/)\n"
 "MIME-Version: 1.0\n"
@@ -21,34 +22,34 @@ msgstr ""
 msgid "Advanced options"
 msgstr "Avancerade inställningar"
 
-#: forms.py:279
+#: forms.py:285
 msgid "place"
 msgstr "plats"
 
-#: forms.py:280
+#: forms.py:286
 msgid "route"
 msgstr "rutt"
 
-#: forms.py:281
+#: forms.py:287
 msgid "area"
 msgstr "område"
 
-#: forms.py:285
+#: forms.py:291
 msgid ""
 "The color of the feature to be drawn. The color is given as hexadecimal "
 "color e.g. #ffffff --> white, #000000 --> black, #ff0000 --> red, #00ff00 "
 "--> green, #0000ff --> blue."
 msgstr "Färgen för platsen som ritas. Färgen skall ges i hexadecimal form t.ex. #ffffff (vit), #000000 (svart), #ff0000 (röd), #00ff00 (grön), #0000ff (blå)"
 
-#: forms.py:287 forms.py:305
+#: forms.py:293 forms.py:311
 msgid "Choose the popup to use for the place, route, or area."
 msgstr "Välj popup som skall anvädas för platsen, rutten eller området"
 
-#: forms.py:291
+#: forms.py:297
 msgid ""
 "This is the maximum number of allowed places/routes/areas that can be drawn "
 "by this drawbutton."
-msgstr ""
+msgstr "Det här är högsta antalet platser/rutter/områden som kan ritas med den här ritknappen."
 
 #: models.py:45
 msgid "questionnaire page element"
@@ -68,11 +69,11 @@ msgstr "text fråga"
 
 #: models.py:76
 msgid "text area"
-msgstr ""
+msgstr "Text fråga"
 
 #: models.py:77
 msgid "text areas"
-msgstr ""
+msgstr "Text frågor"
 
 #: models.py:90
 msgid "numer input"
@@ -179,15 +180,15 @@ msgstr "enkät"
 
 #: widgets.py:73
 msgid "place icon"
-msgstr ""
+msgstr "plats ikon"
 
 #: widgets.py:76
 msgid "route icon"
-msgstr ""
+msgstr "rutt ikon"
 
 #: widgets.py:79
 msgid "area icon"
-msgstr ""
+msgstr "område ikon"
 
 #: templates/jstranslations.txt:5
 msgid "Click on the map to draw the point"
@@ -238,6 +239,7 @@ msgid "Remove"
 msgstr "Ta bort"
 
 #: templates/questionnaire.html:104
+#: templates/admin/geoforms/geoformelement/create_element.html:41
 msgid "Save"
 msgstr "Spara"
 
@@ -272,6 +274,22 @@ msgstr "Du svara på en fråga"
 #: templates/questionnaire.html:159
 msgid "You answered"
 msgstr "Du svara"
+
+#: templates/admin/geoforms/geoformelement/create_element.html:7
+msgid "Home"
+msgstr "Hem"
+
+#: templates/admin/geoforms/geoformelement/create_element.html:10
+msgid "Create element"
+msgstr "Skapa fråga"
+
+#: templates/admin/geoforms/geoformelement/create_element.html:29
+msgid "remove"
+msgstr "ta bort"
+
+#: templates/admin/geoforms/geoformelement/create_element.html:34
+msgid "add"
+msgstr "lägg till"
 
 #: templates/help/geoform_element_html.html:2
 msgid ""
