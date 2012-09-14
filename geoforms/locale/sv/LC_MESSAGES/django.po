@@ -1,46 +1,54 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: geonition\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-05 06:40-0500\n"
-"PO-Revision-Date: 2012-09-06 11:18+0200\n"
-"Last-Translator: Kristoffer Snabb <kristoffer.snabb@gmail.com>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"POT-Creation-Date: 2012-09-11 07:16-0500\n"
+"PO-Revision-Date: 2012-09-11 12:16+0000\n"
+"Last-Translator: ksnabb <kristoffer.snabb@geonition.org>\n"
+"Language-Team: Swedish (http://www.transifex.com/projects/p/geonition/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"Language: sv\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: admin.py:178
+#: admin.py:95
 msgid "Advanced options"
 msgstr "Avancerade inställningar"
 
-#: forms.py:263
+#: forms.py:279
 msgid "place"
 msgstr "plats"
 
-#: forms.py:264
+#: forms.py:280
 msgid "route"
 msgstr "rutt"
 
-#: forms.py:265
+#: forms.py:281
 msgid "area"
 msgstr "område"
 
-#: forms.py:269
-msgid "The color of the feature to be drawn. The color is given as hexadecimal color e.g. #ffffff --> white, #000000 --> black, #ff0000 --> red, #00ff00 --> green, #0000ff --> blue."
+#: forms.py:285
+msgid ""
+"The color of the feature to be drawn. The color is given as hexadecimal "
+"color e.g. #ffffff --> white, #000000 --> black, #ff0000 --> red, #00ff00 "
+"--> green, #0000ff --> blue."
 msgstr "Färgen för platsen som ritas. Färgen skall ges i hexadecimal form t.ex. #ffffff (vit), #000000 (svart), #ff0000 (röd), #00ff00 (grön), #0000ff (blå)"
 
-#: forms.py:271
-#: forms.py:285
+#: forms.py:287 forms.py:305
 msgid "Choose the popup to use for the place, route, or area."
 msgstr "Välj popup som skall anvädas för platsen, rutten eller området"
+
+#: forms.py:291
+msgid ""
+"This is the maximum number of allowed places/routes/areas that can be drawn "
+"by this drawbutton."
+msgstr ""
 
 #: models.py:45
 msgid "questionnaire page element"
@@ -59,100 +67,127 @@ msgid "text inputs"
 msgstr "text fråga"
 
 #: models.py:76
+msgid "text area"
+msgstr ""
+
+#: models.py:77
+msgid "text areas"
+msgstr ""
+
+#: models.py:90
 msgid "numer input"
 msgstr "nummer fråga"
 
-#: models.py:77
+#: models.py:91
 msgid "number inputs"
 msgstr "nummer fråga"
 
-#: models.py:90
+#: models.py:104
 msgid "range input"
 msgstr "slider"
 
-#: models.py:91
+#: models.py:105
 msgid "range inputs"
 msgstr "sliders"
 
-#: models.py:104
+#: models.py:118
 msgid "paragraph"
 msgstr "text paragraf"
 
-#: models.py:105
+#: models.py:119
 msgid "paragraphs"
 msgstr "text"
 
-#: models.py:118
-#: models.py:119
+#: models.py:132 models.py:133
 msgid "Select one"
 msgstr "Välj en"
 
-#: models.py:132
-#: models.py:133
+#: models.py:146 models.py:147
 msgid "Select multiple"
 msgstr "Välj många"
 
-#: models.py:146
+#: models.py:160
 msgid "Draw button"
 msgstr "Ritnings knapp"
 
-#: models.py:147
+#: models.py:161
 msgid "Draw buttons"
 msgstr "Ritnings knappar"
 
-#: models.py:180
-#: models.py:265
+#: models.py:194 models.py:279
 msgid "questionnaire page"
 msgstr "enkät sida"
 
-#: models.py:181
-#: models.py:266
+#: models.py:195 models.py:280
 msgid "questionnaire pages"
 msgstr "enkät sidor"
 
-#: models.py:194
+#: models.py:208
 msgid "page element"
 msgstr "sidans element"
 
-#: models.py:195
+#: models.py:209
 msgid "page elements"
 msgstr "sidors element"
 
-#: models.py:204
+#: models.py:218
 msgid "name of questionnaire"
 msgstr "enkätets namn"
 
-#: models.py:209
+#: models.py:223
 msgid "area of questionnaire"
 msgstr "området för enkätet"
 
-#: models.py:213
-msgid "This is the initial area which will be visible on the questionnaire map. The map tools are on the up right corner of the map. To choose a tool you have to click on it so that the tool turnes yellow. To draw choose the drawing tool and start drawing. To stop drawing you have to doubleclick the map. It is also possible to modify the area by choosing the modify tool. Modification works by dragging the vertexes of the area to the new modified places."
+#: models.py:227
+msgid ""
+"This is the initial area which will be visible on the questionnaire map. The"
+" map tools are on the up right corner of the map. To choose a tool you have "
+"to click on it so that the tool turnes yellow. To draw choose the drawing "
+"tool and start drawing. To stop drawing you have to doubleclick the map. It "
+"is also possible to modify the area by choosing the modify tool. "
+"Modification works by dragging the vertexes of the area to the new modified "
+"places."
 msgstr "Det här är det synliga området på kartan. Du kan använda verktygen som du ser upp till höger av kartan. Välj ett verktyg med att klicka på verktyget så att det färgas gult. För att rita ett område välj ritnings verktyget och börja märka områdets kanter med att klicka på kartan. För att sluta rita skall du dubbelklicka på kartan. Det är också möjligt att ändra på området med verktyget vänster till ritnings verktyget och sedan klicka på området som skall ändras."
 
-#: models.py:214
+#: models.py:228
 msgid "Show area"
 msgstr "Visa området"
 
-#: models.py:215
-msgid "Check the box to show the area to the user. Otherwise leave the checkbox unchecked."
+#: models.py:229
+msgid ""
+"Check the box to show the area to the user. Otherwise leave the checkbox "
+"unchecked."
 msgstr "Välj för att visa området för användaren. Annars lämna rutan tom."
 
-#: models.py:216
+#: models.py:230
 msgid "Scale the visible area"
 msgstr "Förstora det synliga området"
 
-#: models.py:218
-msgid "This number will be used to set the initial map extent. The map extent is counted by drawn area times this number."
+#: models.py:232
+msgid ""
+"This number will be used to set the initial map extent. The map extent is "
+"counted by drawn area times this number."
 msgstr "Det här numret kommar att användas för att räkna kartans område. Kartans område räknas enligt det märkta området gånger det här numret."
 
-#: models.py:246
+#: models.py:260
 msgid "questionnaire"
 msgstr "enkät"
 
-#: models.py:247
+#: models.py:261
 msgid "questionnaires"
 msgstr "enkät"
+
+#: widgets.py:73
+msgid "place icon"
+msgstr ""
+
+#: widgets.py:76
+msgid "route icon"
+msgstr ""
+
+#: widgets.py:79
+msgid "area icon"
+msgstr ""
 
 #: templates/jstranslations.txt:5
 msgid "Click on the map to draw the point"
@@ -174,13 +209,11 @@ msgstr "Kartmärken"
 msgid "Questionnaires"
 msgstr "enkät"
 
-#: templates/questionnaire.html:50
-#: templates/questionnaire.html.py:53
+#: templates/questionnaire.html:50 templates/questionnaire.html.py:53
 msgid "Next"
 msgstr "Nästa sida"
 
-#: templates/questionnaire.html:52
-#: templates/questionnaire.html.py:77
+#: templates/questionnaire.html:52 templates/questionnaire.html.py:77
 msgid "Previous"
 msgstr "Föregående sida"
 
@@ -189,7 +222,11 @@ msgid "Your answers and finish"
 msgstr "Dina svar och avsluta"
 
 #: templates/questionnaire.html:72
-msgid "This is the end of the questionnaire and your answers has been saved. Thank you for your answers! You can still continue modifying your answers by clicking the previous buttons. Quit the questionnaire by clicking the 'quit and go to home page' button."
+msgid ""
+"This is the end of the questionnaire and your answers has been saved. Thank "
+"you for your answers! You can still continue modifying your answers by "
+"clicking the previous buttons. Quit the questionnaire by clicking the 'quit "
+"and go to home page' button."
 msgstr "Det här är enkätens sista sida dina svar har sparats. Tack för dina svar! Du kan ännu ändra på dina svar genom att väljä 'Föregående sida'. Du kan avsluta och gå tillbaka till första sidan med att klicka på 'avsluta och gå till första sidan'."
 
 #: templates/questionnaire.html:78
@@ -201,7 +238,6 @@ msgid "Remove"
 msgstr "Ta bort"
 
 #: templates/questionnaire.html:104
-#: templates/admin/geoforms/geoformelement/create_element.html:41
 msgid "Save"
 msgstr "Spara"
 
@@ -225,8 +261,7 @@ msgstr "och svara på en fråga"
 msgid "and answered"
 msgstr "och svara på"
 
-#: templates/questionnaire.html:154
-#: templates/questionnaire.html.py:159
+#: templates/questionnaire.html:154 templates/questionnaire.html.py:159
 msgid "questions"
 msgstr "frågor"
 
@@ -238,58 +273,11 @@ msgstr "Du svara på en fråga"
 msgid "You answered"
 msgstr "Du svara"
 
-#: templates/admin/geoforms/geoformelement/change_list.html:8
-#, python-format
-msgid "Add %(name)s"
-msgstr "Lägg till %(name)s"
-
-#: templates/admin/geoforms/geoformelement/change_list.html:13
-msgid "Add text input"
-msgstr "Lägg till en text fråga"
-
-#: templates/admin/geoforms/geoformelement/change_list.html:18
-msgid "Add number input"
-msgstr "Lägg till en nummer fråga"
-
-#: templates/admin/geoforms/geoformelement/change_list.html:23
-msgid "Add radiobuttons"
-msgstr "Lägg till en välj en fråga"
-
-#: templates/admin/geoforms/geoformelement/change_list.html:28
-msgid "Add checkboxes"
-msgstr "Lägg till en välj många fråga"
-
-#: templates/admin/geoforms/geoformelement/change_list.html:33
-msgid "Add draw button"
-msgstr "Lägg till en plats fråga"
-
-#: templates/admin/geoforms/geoformelement/change_list.html:38
-msgid "Add paragraph"
-msgstr "Lägg till text"
-
-#: templates/admin/geoforms/geoformelement/create_element.html:7
-msgid "Home"
-msgstr "Första sidan"
-
-#: templates/admin/geoforms/geoformelement/create_element.html:10
-msgid "Create element"
-msgstr "skapa ett element"
-
-#: templates/admin/geoforms/geoformelement/create_element.html:29
-msgid "remove"
-msgstr "ta bort"
-
-#: templates/admin/geoforms/geoformelement/create_element.html:34
-msgid "add"
-msgstr "lägg till"
-
 #: templates/help/geoform_element_html.html:2
 msgid ""
 "\n"
 "This is the HTML that represents the element widget.\n"
-msgstr ""
-"\n"
-"Här kan du skriva element i HTML format \n"
+msgstr "\nHär kan du skriva element i HTML format \n"
 
 #: templates/help/geoform_element_name.html:2
 msgid ""
@@ -297,9 +285,4 @@ msgid ""
 "This is the name of the element. The element name should be unique\n"
 "throughout the application so there cannot be two elements with the\n"
 "same name.\n"
-msgstr ""
-"\n"
-"Det här är elementets namn. Elementets namn borde vara unikt och kan inte ha samma namn som nå annat element i programmet. \n"
-
-#~ msgid "question"
-#~ msgstr "fråga"
+msgstr "\nDet här är elementets namn. Elementets namn borde vara unikt och kan inte ha samma namn som nå annat element i programmet. \n"

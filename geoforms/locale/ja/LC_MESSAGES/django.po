@@ -1,48 +1,53 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: geonition\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-05 06:40-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"POT-Creation-Date: 2012-09-11 07:16-0500\n"
+"PO-Revision-Date: 2012-09-11 12:14+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language-Team: Japanese (http://www.transifex.com/projects/p/geonition/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0\n"
+"Language: ja\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
-#: admin.py:178
+#: admin.py:95
 msgid "Advanced options"
 msgstr ""
 
-#: forms.py:263
+#: forms.py:279
 msgid "place"
 msgstr ""
 
-#: forms.py:264
+#: forms.py:280
 msgid "route"
 msgstr ""
 
-#: forms.py:265
+#: forms.py:281
 msgid "area"
 msgstr ""
 
-#: forms.py:269
+#: forms.py:285
 msgid ""
 "The color of the feature to be drawn. The color is given as hexadecimal "
-"color e.g. #ffffff --> white, #000000 --> black, #ff0000 --> red, #00ff00 --"
-"> green, #0000ff --> blue."
+"color e.g. #ffffff --> white, #000000 --> black, #ff0000 --> red, #00ff00 "
+"--> green, #0000ff --> blue."
 msgstr ""
 
-#: forms.py:271 forms.py:285
+#: forms.py:287 forms.py:305
 msgid "Choose the popup to use for the place, route, or area."
+msgstr ""
+
+#: forms.py:291
+msgid ""
+"This is the maximum number of allowed places/routes/areas that can be drawn "
+"by this drawbutton."
 msgstr ""
 
 #: models.py:45
@@ -62,73 +67,81 @@ msgid "text inputs"
 msgstr ""
 
 #: models.py:76
-msgid "numer input"
+msgid "text area"
 msgstr ""
 
 #: models.py:77
-msgid "number inputs"
+msgid "text areas"
 msgstr ""
 
 #: models.py:90
-msgid "range input"
+msgid "numer input"
 msgstr ""
 
 #: models.py:91
-msgid "range inputs"
+msgid "number inputs"
 msgstr ""
 
 #: models.py:104
-msgid "paragraph"
+msgid "range input"
 msgstr ""
 
 #: models.py:105
+msgid "range inputs"
+msgstr ""
+
+#: models.py:118
+msgid "paragraph"
+msgstr ""
+
+#: models.py:119
 msgid "paragraphs"
 msgstr ""
 
-#: models.py:118 models.py:119
+#: models.py:132 models.py:133
 msgid "Select one"
 msgstr ""
 
-#: models.py:132 models.py:133
+#: models.py:146 models.py:147
 msgid "Select multiple"
 msgstr ""
 
-#: models.py:146
+#: models.py:160
 msgid "Draw button"
 msgstr ""
 
-#: models.py:147
+#: models.py:161
 msgid "Draw buttons"
 msgstr ""
 
-#: models.py:180 models.py:265
+#: models.py:194 models.py:279
 msgid "questionnaire page"
 msgstr ""
 
-#: models.py:181 models.py:266
+#: models.py:195 models.py:280
 msgid "questionnaire pages"
 msgstr ""
 
-#: models.py:194
+#: models.py:208
 msgid "page element"
 msgstr ""
 
-#: models.py:195
+#: models.py:209
 msgid "page elements"
 msgstr ""
 
-#: models.py:204
+#: models.py:218
 msgid "name of questionnaire"
 msgstr ""
 
-#: models.py:209
+#: models.py:223
 msgid "area of questionnaire"
 msgstr ""
 
-#: models.py:213
+#: models.py:227
 msgid ""
-"This is the initial area which will be visible on the questionnaire map. The "
-"map tools are on the up right corner of the map. To choose a tool you have "
+"This is the initial area which will be visible on the questionnaire map. The"
+" map tools are on the up right corner of the map. To choose a tool you have "
 "to click on it so that the tool turnes yellow. To draw choose the drawing "
 "tool and start drawing. To stop drawing you have to doubleclick the map. It "
 "is also possible to modify the area by choosing the modify tool. "
@@ -136,32 +149,44 @@ msgid ""
 "places."
 msgstr ""
 
-#: models.py:214
+#: models.py:228
 msgid "Show area"
 msgstr ""
 
-#: models.py:215
+#: models.py:229
 msgid ""
 "Check the box to show the area to the user. Otherwise leave the checkbox "
 "unchecked."
 msgstr ""
 
-#: models.py:216
+#: models.py:230
 msgid "Scale the visible area"
 msgstr ""
 
-#: models.py:218
+#: models.py:232
 msgid ""
 "This number will be used to set the initial map extent. The map extent is "
 "counted by drawn area times this number."
 msgstr ""
 
-#: models.py:246
+#: models.py:260
 msgid "questionnaire"
 msgstr ""
 
-#: models.py:247
+#: models.py:261
 msgid "questionnaires"
+msgstr ""
+
+#: widgets.py:73
+msgid "place icon"
+msgstr ""
+
+#: widgets.py:76
+msgid "route icon"
+msgstr ""
+
+#: widgets.py:79
+msgid "area icon"
 msgstr ""
 
 #: templates/jstranslations.txt:5
@@ -213,7 +238,6 @@ msgid "Remove"
 msgstr ""
 
 #: templates/questionnaire.html:104
-#: templates/admin/geoforms/geoformelement/create_element.html:41
 msgid "Save"
 msgstr ""
 
@@ -247,51 +271,6 @@ msgstr ""
 
 #: templates/questionnaire.html:159
 msgid "You answered"
-msgstr ""
-
-#: templates/admin/geoforms/geoformelement/change_list.html:8
-#, python-format
-msgid "Add %(name)s"
-msgstr ""
-
-#: templates/admin/geoforms/geoformelement/change_list.html:13
-msgid "Add text input"
-msgstr ""
-
-#: templates/admin/geoforms/geoformelement/change_list.html:18
-msgid "Add number input"
-msgstr ""
-
-#: templates/admin/geoforms/geoformelement/change_list.html:23
-msgid "Add radiobuttons"
-msgstr ""
-
-#: templates/admin/geoforms/geoformelement/change_list.html:28
-msgid "Add checkboxes"
-msgstr ""
-
-#: templates/admin/geoforms/geoformelement/change_list.html:33
-msgid "Add draw button"
-msgstr ""
-
-#: templates/admin/geoforms/geoformelement/change_list.html:38
-msgid "Add paragraph"
-msgstr ""
-
-#: templates/admin/geoforms/geoformelement/create_element.html:7
-msgid "Home"
-msgstr ""
-
-#: templates/admin/geoforms/geoformelement/create_element.html:10
-msgid "Create element"
-msgstr ""
-
-#: templates/admin/geoforms/geoformelement/create_element.html:29
-msgid "remove"
-msgstr ""
-
-#: templates/admin/geoforms/geoformelement/create_element.html:34
-msgid "add"
 msgstr ""
 
 #: templates/help/geoform_element_html.html:2
