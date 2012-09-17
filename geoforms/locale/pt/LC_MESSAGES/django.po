@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+#   <fred.lopes3@gmail.com>, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: geonition\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-09-14 02:51-0500\n"
-"PO-Revision-Date: 2012-09-14 08:02+0000\n"
-"Last-Translator: ksnabb <kristoffer.snabb@geonition.org>\n"
+"PO-Revision-Date: 2012-09-14 11:18+0000\n"
+"Last-Translator: FredGIS <fred.lopes3@gmail.com>\n"
 "Language-Team: Portuguese (http://www.transifex.com/projects/p/geonition/language/pt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,36 +20,36 @@ msgstr ""
 
 #: admin.py:95
 msgid "Advanced options"
-msgstr ""
+msgstr "Opções avançadas"
 
 #: forms.py:285
 msgid "place"
-msgstr ""
+msgstr "lugar"
 
 #: forms.py:286
 msgid "route"
-msgstr ""
+msgstr "caminho"
 
 #: forms.py:287
 msgid "area"
-msgstr ""
+msgstr "área"
 
 #: forms.py:291
 msgid ""
 "The color of the feature to be drawn. The color is given as hexadecimal "
 "color e.g. #ffffff --> white, #000000 --> black, #ff0000 --> red, #00ff00 "
 "--> green, #0000ff --> blue."
-msgstr ""
+msgstr "A cor da marca a ser desenhada. A cor é dada como uma cor hexadecimal e.g. #ffffff --> branco, #000000 --> preto, #ff0000 --> vermelho, #00ff00 --> verde, #0000ff --> azul."
 
 #: forms.py:293 forms.py:311
 msgid "Choose the popup to use for the place, route, or area."
-msgstr ""
+msgstr "Escolhe o popup para o lugar, caminho, ou área."
 
 #: forms.py:297
 msgid ""
 "This is the maximum number of allowed places/routes/areas that can be drawn "
 "by this drawbutton."
-msgstr ""
+msgstr "Este é o número máximo de lugares/caminhos/áreas que pode ser desenhado por este botão de desenho."
 
 #: models.py:45
 msgid "questionnaire page element"
@@ -60,59 +61,59 @@ msgstr "elementos de página do questionário"
 
 #: models.py:62
 msgid "text input"
-msgstr ""
+msgstr "entrada de texto"
 
 #: models.py:63
 msgid "text inputs"
-msgstr ""
+msgstr "entradas de texto"
 
 #: models.py:76
 msgid "text area"
-msgstr ""
+msgstr "área de texto"
 
 #: models.py:77
 msgid "text areas"
-msgstr ""
+msgstr "áreas de texto"
 
 #: models.py:90
 msgid "numer input"
-msgstr ""
+msgstr "entrada de número"
 
 #: models.py:91
 msgid "number inputs"
-msgstr ""
+msgstr "entradas de números"
 
 #: models.py:104
 msgid "range input"
-msgstr ""
+msgstr "entrada de amplitude"
 
 #: models.py:105
 msgid "range inputs"
-msgstr ""
+msgstr "entradas de amplitude"
 
 #: models.py:118
 msgid "paragraph"
-msgstr ""
+msgstr "parágrafo"
 
 #: models.py:119
 msgid "paragraphs"
-msgstr ""
+msgstr "parágrafos"
 
 #: models.py:132 models.py:133
 msgid "Select one"
-msgstr ""
+msgstr "Escolha única"
 
 #: models.py:146 models.py:147
 msgid "Select multiple"
-msgstr ""
+msgstr "Escolha múltipla"
 
 #: models.py:160
 msgid "Draw button"
-msgstr ""
+msgstr "Botão de desenho"
 
 #: models.py:161
 msgid "Draw buttons"
-msgstr ""
+msgstr "Botões de desenho"
 
 #: models.py:194 models.py:279
 msgid "questionnaire page"
@@ -147,27 +148,27 @@ msgid ""
 "is also possible to modify the area by choosing the modify tool. "
 "Modification works by dragging the vertexes of the area to the new modified "
 "places."
-msgstr ""
+msgstr "Esta é a área inicial que estará visível no mapa do questionário. As ferramentas do mapa estão no canto direito superior do mapa. Para escolher uma ferramenta tens de clicar nela para que a ferramenta se torne amarela. Para desenhar escolhe a ferramenta de desenho e começa a desenhar. Para acabares de desenhar tens de fazer duplo clique no mapa. É também possível modificar a área escolhendo a ferramenta de modificar. A modificação funciona arrastando os vértices da área para os lugares novos modificados."
 
 #: models.py:228
 msgid "Show area"
-msgstr ""
+msgstr "Mostrar área"
 
 #: models.py:229
 msgid ""
 "Check the box to show the area to the user. Otherwise leave the checkbox "
 "unchecked."
-msgstr ""
+msgstr "Marca a caixa para mostrar a área ao utilizador. Caso contrário deixa a caixa de marcação desmarcada."
 
 #: models.py:230
 msgid "Scale the visible area"
-msgstr ""
+msgstr "Escala a área visível"
 
 #: models.py:232
 msgid ""
 "This number will be used to set the initial map extent. The map extent is "
 "counted by drawn area times this number."
-msgstr ""
+msgstr "Este número será usado para definir a extensão inicial do mapa. A extensão do mapa é contada pela área desenhada multiplicada por este número."
 
 #: models.py:260
 msgid "questionnaire"
@@ -179,15 +180,15 @@ msgstr "questionários"
 
 #: widgets.py:73
 msgid "place icon"
-msgstr ""
+msgstr "ícone de lugar"
 
 #: widgets.py:76
 msgid "route icon"
-msgstr ""
+msgstr "ícone de caminho"
 
 #: widgets.py:79
 msgid "area icon"
-msgstr ""
+msgstr "ícone de área"
 
 #: templates/jstranslations.txt:5
 msgid "Click on the map to draw the point"
@@ -203,7 +204,7 @@ msgstr "Clica no mapa para começar a desenhar a área e duplo clique para acaba
 
 #: templates/jstranslations.txt:10
 msgid "Annotations"
-msgstr ""
+msgstr "Anotações"
 
 #: templates/questionnaire.html:17
 msgid "Questionnaires"
@@ -227,11 +228,11 @@ msgid ""
 "you for your answers! You can still continue modifying your answers by "
 "clicking the previous buttons. Quit the questionnaire by clicking the 'quit "
 "and go to home page' button."
-msgstr ""
+msgstr "Isto é o final do questionário e todas as tuas respostas foram gravadas. Obrigado pelas tuas respostas! Se quiseres mudar as tuas respostas clica nos botões \"anterior\". Para saíres do questionário clica no botão \"sair e ir para a página inicial\". "
 
 #: templates/questionnaire.html:78
 msgid "Quit and go to home page"
-msgstr ""
+msgstr "Sair e ir para a página inicial"
 
 #: templates/questionnaire.html:101
 msgid "Remove"
@@ -276,19 +277,19 @@ msgstr "Respondeste"
 
 #: templates/admin/geoforms/geoformelement/create_element.html:7
 msgid "Home"
-msgstr ""
+msgstr "Início"
 
 #: templates/admin/geoforms/geoformelement/create_element.html:10
 msgid "Create element"
-msgstr ""
+msgstr "Criar elemento"
 
 #: templates/admin/geoforms/geoformelement/create_element.html:29
 msgid "remove"
-msgstr ""
+msgstr "remover"
 
 #: templates/admin/geoforms/geoformelement/create_element.html:34
 msgid "add"
-msgstr ""
+msgstr "adicionar"
 
 #: templates/help/geoform_element_html.html:2
 msgid ""

@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+#   <ehsan_ahmadi@yahoo.com>, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: geonition\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-09-14 02:51-0500\n"
-"PO-Revision-Date: 2012-09-14 08:02+0000\n"
-"Last-Translator: ksnabb <kristoffer.snabb@geonition.org>\n"
+"PO-Revision-Date: 2012-09-14 15:10+0000\n"
+"Last-Translator: ehsansan <ehsan_ahmadi@yahoo.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/projects/p/geonition/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,7 +24,7 @@ msgstr ""
 
 #: forms.py:285
 msgid "place"
-msgstr ""
+msgstr "場所"
 
 #: forms.py:286
 msgid "route"
@@ -171,11 +172,11 @@ msgstr ""
 
 #: models.py:260
 msgid "questionnaire"
-msgstr ""
+msgstr "アンケート"
 
 #: models.py:261
 msgid "questionnaires"
-msgstr ""
+msgstr "アンケート"
 
 #: widgets.py:73
 msgid "place icon"
@@ -207,15 +208,15 @@ msgstr ""
 
 #: templates/questionnaire.html:17
 msgid "Questionnaires"
-msgstr ""
+msgstr "アンケート"
 
 #: templates/questionnaire.html:50 templates/questionnaire.html.py:53
 msgid "Next"
-msgstr ""
+msgstr "次へ"
 
 #: templates/questionnaire.html:52 templates/questionnaire.html.py:77
 msgid "Previous"
-msgstr ""
+msgstr "もどる"
 
 #: templates/questionnaire.html:63
 msgid "Your answers and finish"
@@ -235,7 +236,7 @@ msgstr ""
 
 #: templates/questionnaire.html:101
 msgid "Remove"
-msgstr ""
+msgstr "取り消します"
 
 #: templates/questionnaire.html:104
 #: templates/admin/geoforms/geoformelement/create_element.html:41
