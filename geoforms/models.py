@@ -177,7 +177,8 @@ class Geoform(models.Model):
                                  choices = (
                                     ('popup', 'popup'),
                                     ('form','form')),
-                                 default = 'form')
+                                 default = 'form',
+                                 editable = False)
     elements = models.ManyToManyField(GeoformElement,
                                       through = 'FormElement')
 
