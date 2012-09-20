@@ -3,56 +3,18 @@ from django.forms.util import flatatt
 from django.forms.widgets import MultiWidget
 from django.forms.widgets import TextInput
 from django.forms.widgets import Textarea
-from django.forms.widgets import Input
 from django.forms.widgets import Widget
 from django.template.defaultfilters import slugify
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext as _
+from geonition_utils.widgets import ColorInput    
+from geonition_utils.widgets import NumberInput
+from geonition_utils.widgets import Paragraph
+from geonition_utils.widgets import RangeInput
+from geonition_utils.widgets import TextInput
+from geonition_utils.widgets import Radiobutton
+from geonition_utils.widgets import Checkbox
 
-#basic html 5 widgets
-class NumberInput(Input):
-    """
-    Presents a html 5 input of type number
-    
-    remember to pass the render function args
-    for name and value and additionaly if
-    required attrs=<some attrs dict>
-    """
-    input_type = 'number'
-
-class Paragraph(Widget):
-    """
-    This class represents a simple html
-    paragraph.
-    """
-    def render(self, text):
-        return u'<p>%s</p>' % text
-    
-class Radiobutton(Input):
-    """
-    This widget is a radiobutton
-    """
-    input_type = 'radio'
-    
-class Checkbox(Input):
-    """
-    This widget is a radiobutton
-    """
-    input_type = 'checkbox'
-    
-    
-class ColorInput(Input):
-    """
-    This widget is a radiobutton
-    """
-    input_type = 'color'
-    
-class RangeInput(Input):
-    """
-    This widget is a radiobutton
-    """
-    input_type = 'range'
-    
 #smidgets with basic html
 
 #questionnaire widgets
