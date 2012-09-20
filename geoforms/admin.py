@@ -32,6 +32,8 @@ from geoforms.models import RadioElementModel
 from geoforms.models import TextElementModel
 from geoforms.models import TextareaModel
 from geoforms.models import RangeElementModel
+from geoforms.models import PopupModel
+from geoforms.models import PageModel
 from modeltranslation.admin import TranslationAdmin
 from modeltranslation.admin import TranslationTabularInline
 
@@ -65,6 +67,24 @@ class GeoformAdmin(TranslationAdmin, admin.ModelAdmin):
     inlines = [
         ElementInline
     ]
+    
+class PageAdmin(GeoformAdmin):
+    """
+    Page admin
+    """
+    def queryset(self, request):
+        return self.model.objects.filter(page_type = 'form')
+
+admin.site.register(PageModel, PageAdmin)
+
+class PopupAdmin(GeoformAdmin):
+    """
+    Popup admin
+    """
+    def queryset(self, request):
+        return self.model.objects.filter(page_type = 'popup')
+    
+admin.site.register(PopupModel, PopupAdmin)
 
 class QuestionnaireFormAdmin(admin.ModelAdmin):
     ordering = ['questionnaire', 'order']
@@ -106,7 +126,6 @@ class QuestionnaireAdmin(admin.OSMGeoAdmin, TranslationAdmin):
         
     
 admin.site.register(GeoformElement, GeoformElementAdmin)
-admin.site.register(Geoform, GeoformAdmin)
 admin.site.register(Questionnaire, QuestionnaireAdmin)
 
 class TextElementAdmin(GeoformElementAdmin):

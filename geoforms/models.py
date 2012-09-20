@@ -195,6 +195,40 @@ class Geoform(models.Model):
         verbose_name_plural = _('questionnaire pages')
 
 
+#Proxy models for geoforms
+class PopupModel(Geoform):
+    """
+    Proxy model for geoform discuised as a
+    popup.
+    """
+    
+    def save(self, *args, **kwargs):
+        self.page_type = 'popup'
+        
+        super(PopupModel, self).save(*args, **kwargs)
+        
+    class Meta:
+        proxy = True
+        verbose_name = _('popup')
+        verbose_name_plural = _('popups')
+        
+class PageModel(Geoform):
+    """
+    Proxy model for geoform discuised as a
+    popup.
+    """
+    
+    def save(self, *args, **kwargs):
+        self.page_type = 'form'
+        
+        super(PopupModel, self).save(*args, **kwargs)
+        
+    class Meta:
+        proxy = True
+        verbose_name = _('page')
+        verbose_name_plural = _('pages')
+
+
 class FormElement(models.Model):
     """
     This model orders the elements in a
