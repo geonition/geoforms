@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geonition\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-14 02:51-0500\n"
-"PO-Revision-Date: 2012-09-14 08:16+0000\n"
+"POT-Creation-Date: 2012-09-20 05:44-0500\n"
+"PO-Revision-Date: 2012-09-20 10:44+0000\n"
 "Last-Translator: ksnabb <kristoffer.snabb@geonition.org>\n"
 "Language-Team: Swedish (http://www.transifex.com/projects/p/geonition/language/sv/)\n"
 "MIME-Version: 1.0\n"
@@ -18,34 +18,34 @@ msgstr ""
 "Language: sv\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: admin.py:95
+#: admin.py:115
 msgid "Advanced options"
 msgstr "Avancerade inställningar"
 
-#: forms.py:285
+#: forms.py:284
 msgid "place"
 msgstr "plats"
 
-#: forms.py:286
+#: forms.py:285
 msgid "route"
 msgstr "rutt"
 
-#: forms.py:287
+#: forms.py:286
 msgid "area"
 msgstr "område"
 
-#: forms.py:291
+#: forms.py:290
 msgid ""
 "The color of the feature to be drawn. The color is given as hexadecimal "
 "color e.g. #ffffff --> white, #000000 --> black, #ff0000 --> red, #00ff00 "
 "--> green, #0000ff --> blue."
 msgstr "Färgen för platsen som ritas. Färgen skall ges i hexadecimal form t.ex. #ffffff (vit), #000000 (svart), #ff0000 (röd), #00ff00 (grön), #0000ff (blå)"
 
-#: forms.py:293 forms.py:311
+#: forms.py:292 forms.py:310
 msgid "Choose the popup to use for the place, route, or area."
 msgstr "Välj popup som skall anvädas för platsen, rutten eller området"
 
-#: forms.py:297
+#: forms.py:296
 msgid ""
 "This is the maximum number of allowed places/routes/areas that can be drawn "
 "by this drawbutton."
@@ -115,31 +115,47 @@ msgstr "Ritnings knapp"
 msgid "Draw buttons"
 msgstr "Ritnings knappar"
 
-#: models.py:194 models.py:279
+#: models.py:194 models.py:313
 msgid "questionnaire page"
 msgstr "enkät sida"
 
-#: models.py:195 models.py:280
+#: models.py:195 models.py:314
 msgid "questionnaire pages"
 msgstr "enkät sidor"
 
-#: models.py:208
+#: models.py:212
+msgid "popup"
+msgstr ""
+
+#: models.py:213
+msgid "popups"
+msgstr ""
+
+#: models.py:228
+msgid "page"
+msgstr ""
+
+#: models.py:229
+msgid "pages"
+msgstr ""
+
+#: models.py:242
 msgid "page element"
 msgstr "sidans element"
 
-#: models.py:209
+#: models.py:243
 msgid "page elements"
 msgstr "sidors element"
 
-#: models.py:218
+#: models.py:252
 msgid "name of questionnaire"
 msgstr "enkätets namn"
 
-#: models.py:223
+#: models.py:257
 msgid "area of questionnaire"
 msgstr "området för enkätet"
 
-#: models.py:227
+#: models.py:261
 msgid ""
 "This is the initial area which will be visible on the questionnaire map. The"
 " map tools are on the up right corner of the map. To choose a tool you have "
@@ -150,43 +166,43 @@ msgid ""
 "places."
 msgstr "Det här är det synliga området på kartan. Du kan använda verktygen som du ser upp till höger av kartan. Välj ett verktyg med att klicka på verktyget så att det färgas gult. För att rita ett område välj ritnings verktyget och börja märka områdets kanter med att klicka på kartan. För att sluta rita skall du dubbelklicka på kartan. Det är också möjligt att ändra på området med verktyget vänster till ritnings verktyget och sedan klicka på området som skall ändras."
 
-#: models.py:228
+#: models.py:262
 msgid "Show area"
 msgstr "Visa området"
 
-#: models.py:229
+#: models.py:263
 msgid ""
 "Check the box to show the area to the user. Otherwise leave the checkbox "
 "unchecked."
 msgstr "Välj för att visa området för användaren. Annars lämna rutan tom."
 
-#: models.py:230
+#: models.py:264
 msgid "Scale the visible area"
 msgstr "Förstora det synliga området"
 
-#: models.py:232
+#: models.py:266
 msgid ""
 "This number will be used to set the initial map extent. The map extent is "
 "counted by drawn area times this number."
 msgstr "Det här numret kommar att användas för att räkna kartans område. Kartans område räknas enligt det märkta området gånger det här numret."
 
-#: models.py:260
+#: models.py:294
 msgid "questionnaire"
 msgstr "enkät"
 
-#: models.py:261
+#: models.py:295
 msgid "questionnaires"
 msgstr "enkät"
 
-#: widgets.py:73
+#: widgets.py:34
 msgid "place icon"
 msgstr "plats ikon"
 
-#: widgets.py:76
+#: widgets.py:37
 msgid "route icon"
 msgstr "rutt ikon"
 
-#: widgets.py:79
+#: widgets.py:40
 msgid "area icon"
 msgstr "område ikon"
 

@@ -1,43 +1,44 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
+# 
+# Translators:
+#   <mczepkiewicz@yahoo.pl>, 2012.
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: geonition\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-09-20 05:44-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2012-09-20 10:44+0000\n"
+"Last-Translator: ksnabb <kristoffer.snabb@geonition.org>\n"
+"Language-Team: Polish (http://www.transifex.com/projects/p/geonition/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: pl\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: admin.py:115
 msgid "Advanced options"
-msgstr ""
+msgstr "Opcje zaawansowane"
 
 #: forms.py:284
 msgid "place"
-msgstr ""
+msgstr "Miejsce"
 
 #: forms.py:285
 msgid "route"
-msgstr ""
+msgstr "ścieżka"
 
 #: forms.py:286
 msgid "area"
-msgstr ""
+msgstr "Obszar"
 
 #: forms.py:290
 msgid ""
 "The color of the feature to be drawn. The color is given as hexadecimal "
-"color e.g. #ffffff --> white, #000000 --> black, #ff0000 --> red, #00ff00 --"
-"> green, #0000ff --> blue."
+"color e.g. #ffffff --> white, #000000 --> black, #ff0000 --> red, #00ff00 "
+"--> green, #0000ff --> blue."
 msgstr ""
 
 #: forms.py:292 forms.py:310
@@ -156,8 +157,8 @@ msgstr ""
 
 #: models.py:261
 msgid ""
-"This is the initial area which will be visible on the questionnaire map. The "
-"map tools are on the up right corner of the map. To choose a tool you have "
+"This is the initial area which will be visible on the questionnaire map. The"
+" map tools are on the up right corner of the map. To choose a tool you have "
 "to click on it so that the tool turnes yellow. To draw choose the drawing "
 "tool and start drawing. To stop drawing you have to doubleclick the map. It "
 "is also possible to modify the area by choosing the modify tool. "
@@ -223,15 +224,15 @@ msgstr ""
 
 #: templates/questionnaire.html:17
 msgid "Questionnaires"
-msgstr ""
+msgstr "Ankiety"
 
 #: templates/questionnaire.html:50 templates/questionnaire.html.py:53
 msgid "Next"
-msgstr ""
+msgstr "Następne"
 
 #: templates/questionnaire.html:52 templates/questionnaire.html.py:77
 msgid "Previous"
-msgstr ""
+msgstr "Poprzednie"
 
 #: templates/questionnaire.html:63
 msgid "Your answers and finish"
@@ -247,24 +248,24 @@ msgstr ""
 
 #: templates/questionnaire.html:78
 msgid "Quit and go to home page"
-msgstr ""
+msgstr "Wyjdź i wróć do strony głównej"
 
 #: templates/questionnaire.html:101
 msgid "Remove"
-msgstr ""
+msgstr "Usuń"
 
 #: templates/questionnaire.html:104
 #: templates/admin/geoforms/geoformelement/create_element.html:41
 msgid "Save"
-msgstr ""
+msgstr "Zapisz"
 
 #: templates/questionnaire.html:144
 msgid "You marked one place"
-msgstr ""
+msgstr "Zaznaczyłeś/aś jedno miejsce"
 
 #: templates/questionnaire.html:146
 msgid "You marked"
-msgstr ""
+msgstr "Zaznaczyłeś/aś"
 
 #: templates/questionnaire.html:146
 msgid "places"

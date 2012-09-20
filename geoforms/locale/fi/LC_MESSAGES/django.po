@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geonition\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-14 02:51-0500\n"
-"PO-Revision-Date: 2012-09-14 09:12+0000\n"
-"Last-Translator: msjohans <mikko.johansson@aalto.fi>\n"
+"POT-Creation-Date: 2012-09-20 05:44-0500\n"
+"PO-Revision-Date: 2012-09-20 10:44+0000\n"
+"Last-Translator: ksnabb <kristoffer.snabb@geonition.org>\n"
 "Language-Team: Finnish (http://www.transifex.com/projects/p/geonition/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,34 +19,34 @@ msgstr ""
 "Language: fi\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: admin.py:95
+#: admin.py:115
 msgid "Advanced options"
 msgstr "Lisäasetukset"
 
-#: forms.py:285
+#: forms.py:284
 msgid "place"
 msgstr "paikan"
 
-#: forms.py:286
+#: forms.py:285
 msgid "route"
 msgstr "reitti"
 
-#: forms.py:287
+#: forms.py:286
 msgid "area"
 msgstr "alue"
 
-#: forms.py:291
+#: forms.py:290
 msgid ""
 "The color of the feature to be drawn. The color is given as hexadecimal "
 "color e.g. #ffffff --> white, #000000 --> black, #ff0000 --> red, #00ff00 "
 "--> green, #0000ff --> blue."
 msgstr "Käyttäjän piirtämän paikannuksen väri. Väri syötetään heksadesimaali muodossa esim. #ffffff (valkoinen), #000000 (musta), #ff0000 (punainen), #00ff00 (vihreä), #0000ff (sininen) "
 
-#: forms.py:293 forms.py:311
+#: forms.py:292 forms.py:310
 msgid "Choose the popup to use for the place, route, or area."
 msgstr "Valitse ponnahdusikkuna jonka käyttäjä näkee sen jälkeen kun hän on piirtänyt paikannuksen."
 
-#: forms.py:297
+#: forms.py:296
 msgid ""
 "This is the maximum number of allowed places/routes/areas that can be drawn "
 "by this drawbutton."
@@ -116,31 +116,47 @@ msgstr "piirtonappi"
 msgid "Draw buttons"
 msgstr "piirtonappeja"
 
-#: models.py:194 models.py:279
+#: models.py:194 models.py:313
 msgid "questionnaire page"
 msgstr "kyselysivu"
 
-#: models.py:195 models.py:280
+#: models.py:195 models.py:314
 msgid "questionnaire pages"
 msgstr "kyselysivuja"
 
-#: models.py:208
+#: models.py:212
+msgid "popup"
+msgstr ""
+
+#: models.py:213
+msgid "popups"
+msgstr ""
+
+#: models.py:228
+msgid "page"
+msgstr ""
+
+#: models.py:229
+msgid "pages"
+msgstr ""
+
+#: models.py:242
 msgid "page element"
 msgstr "kyselysivun elementti"
 
-#: models.py:209
+#: models.py:243
 msgid "page elements"
 msgstr "kyselysivujen elementit"
 
-#: models.py:218
+#: models.py:252
 msgid "name of questionnaire"
 msgstr "kyselyn nimi"
 
-#: models.py:223
+#: models.py:257
 msgid "area of questionnaire"
 msgstr "kyselyn alue"
 
-#: models.py:227
+#: models.py:261
 msgid ""
 "This is the initial area which will be visible on the questionnaire map. The"
 " map tools are on the up right corner of the map. To choose a tool you have "
@@ -151,43 +167,43 @@ msgid ""
 "places."
 msgstr "Tämä on alue johon kysely kohdistuu. Kartan piirtotyökalut ovat kartan oikeassa yläkulmassa. Valitse työkalu napsauttamalla työkalua siten, että se muuttuu keltaiseksi. Piirtääksesi alueen valitse alue työkalu ja napsauta karttaa alueen reunalla kunnes alue on täysin merkitty. Piirto lopetetaan tuplaklikkauksella. Voit myös myöhemmin muokata aluetta valitsemalla alueen muokkaustyökalun. Voit muokkaustyökalun avulla raahata alueen kulmia siten, että alue on oikein merkitty."
 
-#: models.py:228
+#: models.py:262
 msgid "Show area"
 msgstr "näytä alue"
 
-#: models.py:229
+#: models.py:263
 msgid ""
 "Check the box to show the area to the user. Otherwise leave the checkbox "
 "unchecked."
 msgstr "Valitse jos haluat, että alue näkyy käyttäjälle. Muuten jätä tyhjäksi."
 
-#: models.py:230
+#: models.py:264
 msgid "Scale the visible area"
 msgstr "Skaalaa aluetta joka näkyy kartalla."
 
-#: models.py:232
+#: models.py:266
 msgid ""
 "This number will be used to set the initial map extent. The map extent is "
 "counted by drawn area times this number."
 msgstr "Tätä numeroa käytetään laskemaan kartan aloitusnäkymä. Aloitusnäkymä lasketaan merkityn alueen koko kertaa tämä numero. "
 
-#: models.py:260
+#: models.py:294
 msgid "questionnaire"
 msgstr "kysely"
 
-#: models.py:261
+#: models.py:295
 msgid "questionnaires"
 msgstr "kyselyt"
 
-#: widgets.py:73
+#: widgets.py:34
 msgid "place icon"
 msgstr "Paikka ikoni"
 
-#: widgets.py:76
+#: widgets.py:37
 msgid "route icon"
 msgstr "Reitti ikoni"
 
-#: widgets.py:79
+#: widgets.py:40
 msgid "area icon"
 msgstr "Alue ikoni"
 
