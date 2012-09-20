@@ -1,25 +1,25 @@
 #popups {
     display: none;
 }
-#content .form_element {
+.form_element {
     text-align: center;
     width: 100%;
 }
-#content .form_element p {
+.form_element p {
     text-align: left;
     min-height: 1em;
     margin-bottom: 0;
 }
-#content button.drawbutton {
+button.drawbutton {
     width: 80%;
     min-width: 250px;
     max-width: 300px;
     margin: 2px;
 }
-#content button.drawbutton span {
+button.drawbutton span {
     vertical-align: middle;
 }
-#content button.drawbutton img {
+button.drawbutton img {
     width: 34px;
     height: 34px;
     float: right;
@@ -30,11 +30,11 @@
     visibility: hidden;
 }
 
-#content button.drawbutton.first {
+button.drawbutton.first {
     width: 49%;
     float: left;
 }
-#content button.drawbutton.second {
+button.drawbutton.second {
     width: 49%;
     float: right;
 }
@@ -56,33 +56,16 @@
 .prev_next_controls a.previous {
     margin: 5px 30px 5px 5px;
 }
-/*
-#content .next, #content .previous {
-    margin: 1em;
-    position: relative;
-}
-#content a.next {
-    float: right;
-    margin-top: 0;
-    margin-bottom: 0;
-    rigth: 20%;
-}
-#content a.previous {
-    float: left;
-    margin-top: 0;
-    margin-bottom: 0;
-    left: 20%;
-}*/
 
-#content input {
+.form_element input {
     max-width: 120px;
 }
-#content label {
+.form_element label {
     display: block;
     margin: 0.1em;
     text-align: left;
 }
-#content .ui-accordion p {
+.form_element .ui-accordion p {
     padding: 0;
 }
 .left_align {
