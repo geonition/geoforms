@@ -28,7 +28,7 @@
     
 <div id="forms">
     {% for form in form_list %}
-        <h3 id="section{{ forloop.counter }}" class="section{{ forloop.counter }} {% if form.name in bigcontent_forms %}bigcontent{% else %}smallcontent{% endif %}">
+        <h3 id="page_{{ forloop.counter }}" class="page_{{ forloop.counter }} {% if form.name in bigcontent_forms %}bigcontent{% else %}smallcontent{% endif %}">
             {{ forloop.counter }}/{{ form_list|length|add:1 }} {{ form.name }}
         </h3>
         <div>
@@ -47,10 +47,10 @@
             <div class="form_element">
                 <div class="prev_next_controls">
                 {% if forloop.first %}
-                    <a class="next base_bgcolor" href="#section{{ forloop.counter|add:'1' }}">{% trans 'Next' %}&rarr;</a>
+                    <a class="next base_bgcolor" href="#page_{{ forloop.counter|add:'1' }}">{% trans 'Next' %}&rarr;</a>
                 {% else %}
-                    <a class="previous" href="#section{{ forloop.counter|add:'-1' }}">&larr;{% trans 'Previous' %}</a>
-                    <a class="next base_bgcolor" href="#section{{ forloop.counter|add:'1' }}">{% trans 'Next' %}&rarr;</a>
+                    <a class="previous" href="#page_{{ forloop.counter|add:'-1' }}">&larr;{% trans 'Previous' %}</a>
+                    <a class="next base_bgcolor" href="#page_{{ forloop.counter|add:'1' }}">{% trans 'Next' %}&rarr;</a>
                 {% endif %}
                 </div>
             </div>
@@ -59,7 +59,7 @@
         </div>
         {% if forloop.last %}
             
-        <h3 id="section{{ forloop.counter|add:1 }}" class="section{{ forloop.counter|add:1 }} bigcontent">
+        <h3 id="page_{{ forloop.counter|add:1 }}" class="page_{{ forloop.counter|add:1 }} bigcontent">
             {% trans "Your answers and finish" %} {{ forloop.counter|add:1 }}/{{ form_list|length|add:1 }}
         </h3>
         <div>
@@ -74,7 +74,7 @@
             </div>
             <div class="form_element">
                 <div class="prev_next_controls">
-                    <a class="previous" href="#section{{ forloop.counter }}">&larr;{% trans 'Previous' %}</a>
+                    <a class="previous" href="#page_{{ forloop.counter }}">&larr;{% trans 'Previous' %}</a>
                     <a class="previous" href="{% url dashboard %}">{% trans 'Quit and go to home page' %}</a>
                 </div>
             </div>

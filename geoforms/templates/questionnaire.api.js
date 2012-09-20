@@ -538,24 +538,24 @@ gnt.questionnaire.init = function(forms,
     
     if( accordion !== undefined ) {
         var origHash = location.hash.split('#')[1];
-        var active_section = 0;
+        var active_page = 0;
         if(origHash) {
-            active_section = origHash.slice(7) - 1;
+            active_page = origHash.slice(5) - 1;
         }
-        // set the size according to active section
-        if($('#section' + (active_section + 1)).hasClass('bigcontent')) {
+        // set the size according to active page
+        if($('#page_' + (active_page + 1)).hasClass('bigcontent')) {
             $('#main .span_left').switchClass('smallcontent', 'bigcontent', '3000');
             $('#main .span_right').switchClass('smallcontent', 'bigcontent', '3000');
         }
         
         //create accordion
         $( accordion ).accordion({
-            active: active_section,
+            active: active_page,
             autoHeight: false,
             change: function(event, ui) {
                 var oldHash = location.hash.split('#')[1];
-                var sectionNr = ui.options.active + 1;
-                var newHash = 'section' + sectionNr;
+                var pageNr = ui.options.active + 1;
+                var newHash = 'page_' + pageNr;
                 if(oldHash !== newHash) {
                     location.hash = newHash;
                 }
@@ -578,7 +578,7 @@ gnt.questionnaire.init = function(forms,
         
         $( window ).bind( 'hashchange', function(event) {
             var newHash = location.hash.split( '#' )[1];
-            var newActive = newHash.slice(7) - 1;
+            var newActive = newHash.slice(5) - 1;
             var curActive = $( accordion ).accordion( 'option', 'active' );
             if(curActive !== newActive) {
                 $( accordion ).accordion('activate',
