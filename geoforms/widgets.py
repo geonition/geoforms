@@ -11,7 +11,6 @@ from geonition_utils.widgets import ColorInput
 from geonition_utils.widgets import NumberInput
 from geonition_utils.widgets import Paragraph
 from geonition_utils.widgets import RangeInput
-from geonition_utils.widgets import TextInput
 from geonition_utils.widgets import Radiobutton
 from geonition_utils.widgets import Checkbox
 
