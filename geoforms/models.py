@@ -222,7 +222,7 @@ class PageModel(Geoform):
     def save(self, *args, **kwargs):
         self.page_type = 'form'
         
-        super(PopupModel, self).save(*args, **kwargs)
+        super(PageModel, self).save(*args, **kwargs)
         
     class Meta:
         proxy = True
