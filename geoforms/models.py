@@ -7,7 +7,6 @@ from django.db import models
 from django.template.defaultfilters import slugify
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext as _
-from django.utils import timezone
 
 class GeoformElement(models.Model):
     """
@@ -32,7 +31,7 @@ class GeoformElement(models.Model):
     html = models.TextField(help_text = render_to_string('help/geoform_element_html.html'))
 
     def save(self, *args, **kwargs):
-        self.slug = slugify("%s %s" % (self.name, timezone.now()))[:200]
+        self.slug = slugify("%s %s" % (self.name, self.id))[:200]
         
         super(GeoformElement, self).save(*args, **kwargs)
     
@@ -183,7 +182,7 @@ class Geoform(models.Model):
                                       through = 'FormElement')
 
     def save(self, *args, **kwargs):
-        self.slug = slugify("%s %s" % (self.name, timezone.now()))[:200]
+        self.slug = slugify("%s %s" % (self.name, self.id))[:200]
 
         super(Geoform, self).save(*args, **kwargs)
 
@@ -283,7 +282,7 @@ class Questionnaire(models.Model):
 
     def save(self, *args, **kwargs):
         
-        self.slug = slugify("%s %s" % (self.name, timezone.now()))[:200]
+        self.slug = slugify("%s %s" % (self.name, self.id))[:200]
 
         super(Questionnaire, self).save(*args, **kwargs)
 
