@@ -866,3 +866,42 @@ gnt.questionnaire.init = function(forms,
         }
     });
 };
+
+/*
+html5_support tables are used for creating widgets only for browsers
+that do not support them natively.
+
+For having to write less, you can define nosupport browsers or
+list of browsers that support html5. This means that the widget will
+be created "if browser not in support and browser in nosupport". This
+enalbles you to define e.g. msie in nosupport but msie version 10 in support
+which would create the widget for all IE browsers except version 10.
+*/
+gnt.questionnaire.support_tables = {
+    'range': {
+        'support': ['chrome'],
+        'nosupport': ['msie']
+    }
+}
+
+/*
+This function creates widgets for HTML5 elements for browsers that do not support them.
+
+The parameter css_selector can be used to specify where to search for html5 input elements
+*/
+gnt.questionnaire.create_widgets = function(css_selector) {
+    console.log(css_selector + ':input');
+    var input_elements = $(css_selector + ':input');
+    console.log(input_elements);
+    for(var i = 0; i < input_elements.length; i++) {
+        var element = input_elements[i];
+        console.log(element.type);
+        if(element.type === 'range') {
+            console.log(element);
+            
+            //HTML 5 fallback create a slider if no browser support
+            $('input[type=range]').replaceWith('<div class="slider"></span>')
+            $('.slider').slider({value: 50.123})
+        }
+    }
+};

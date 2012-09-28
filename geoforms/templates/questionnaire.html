@@ -3,8 +3,6 @@
 
 {% block stylesheet %}
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/questionnaire.css" />
-    <link href="{{ STATIC_URL }}css/jquery-ui-1.8.23.custom.css" rel="stylesheet" type="text/css" />
-    <!--<link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />-->
 {% endblock %}
 
 
@@ -110,8 +108,6 @@
 {% endblock content %}
 
 {% block javascript %}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
 <script src="{{ STATIC_URL }}js/libs/OpenLayers-gnt.js"></script>
 <script type="text/javascript" src="{% url api_javascript %}"></script>
 <script type="text/javascript" src="{% url map_js map_slug_name=map_slug %}"></script>
