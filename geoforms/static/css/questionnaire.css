@@ -76,6 +76,8 @@ button.drawbutton.second {
 .form_element .slider {
     display: inline-block;
     width: 250px;
+    margin-left: 1em;
+    margin-right: 1em;
 }
 
 /* jquery ui accordion modified */
