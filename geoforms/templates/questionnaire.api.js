@@ -860,6 +860,9 @@ gnt.questionnaire.init = function(forms,
                 }
             });
         
+        // polyfill HTML 5 widgets
+        gnt.questionnaire.create_widgets('');
+        
         //the point where everything is done for callback
         if(callback !== undefined) {
             callback();
@@ -873,10 +876,33 @@ This function creates widgets for HTML5 elements for browsers that do not suppor
 The parameter css_selector can be used to specify where to search for html5 input elements
 */
 gnt.questionnaire.create_widgets = function(css_selector) {
-    
+    var i;
     //HTML 5 fallback create a slider if no browser support
-    if(!Modernizr.inputtypes.range) {
-        $('input[type=range]').replaceWith('<div class="slider"></div>');
-        $('.slider').slider();
+    if(true /*!Modernizr.inputtypes.range*/) {
+        var range_elements = $('input[type=range]');
+        var min;
+        var max;
+        var step;
+        var value;
+        for(i = 0; i < range_elements.length; i++) {
+            min = $(range_elements[i]).attr('min');
+            max = $(range_elements[i]).attr('max');
+            step = $(range_elements[i]).attr('step');
+            value = $(range_elements[i]).attr('value');
+            name = $(range_elements[i]).attr('name');
+            $(range_elements[i]).after('<div class="slider ' + name + '"></div>');
+            
+            $('.slider.' + name).slider({
+                'max': max,
+                'min': min,
+                'step': 1,
+                'value': value/*,
+                
+                'change': function(event, ui) {
+                    $(range_elements[i]).attr('value', ui.value);
+                }*/
+            });
+            
+        }
     }
 };

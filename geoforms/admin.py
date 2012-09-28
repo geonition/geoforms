@@ -162,9 +162,24 @@ admin.site.register(NumberElementModel, NumberElementAdmin)
 class RangeElementAdmin(GeoformElementAdmin):
     
     form = RangeElementForm
+    fieldsets = (
+        (None, {
+            'fields': ('question',
+                       'min_label',
+                       'max_label',)
+        }),
+        (_('Advanced options'), {
+            'classes': ('collapse',),
+            'fields': ('min_value',
+                       'max_value',
+                       'step',
+                       'initial_value',)
+        }),
+    )
     
     def queryset(self, request):
         return self.model.objects.filter(element_type = 'range')
+    
     
 admin.site.register(RangeElementModel, RangeElementAdmin)
 

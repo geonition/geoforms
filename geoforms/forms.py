@@ -138,6 +138,10 @@ class RangeElementForm(forms.ModelForm):
     question = TranslationField()
     min_label = TranslationField()
     max_label = TranslationField()
+    initial_value = forms.FloatField(initial = 50.12)
+    min_value = forms.IntegerField(initial = 0)
+    max_value = forms.IntegerField(initial = 100)
+    step = forms.FloatField(initial = 0.01)
     
     def __init__(self, *args, **kwargs):
         """
@@ -152,23 +156,38 @@ class RangeElementForm(forms.ModelForm):
             question = []
             min_label = []
             max_label = []
+            initial_value = 50.12
+            min_value = 0
+            max_value = 100
+            step = 0.01
             for lang in settings.LANGUAGES:
                 soup = BeautifulSoup(getattr(kwargs['instance'],
                                              'html_%s' % lang[0]))
                 question.append(soup.p.text)
                 min_label.append(soup.span.text)
                 max_label.append(soup.span.next_sibling.next_sibling.text)
+                
+                initial_value = soup.input.get('value', 50.12)
+                min_value = soup.input.get('min_value', 0)
+                max_value = soup.input.get('max_value', 100)
+                step = soup.input.get('step', 0.01)
             
             self.initial['question'] = question
             self.initial['min_label'] = min_label
             self.initial['max_label'] = max_label
+            self.initial['initial_value'] = initial_value
+            self.initial['min_value'] = min_value
+            self.initial['max_value'] = max_value
+            self.initial['step'] = step
             
-    def render(self, question, min_label, max_label, name, value):
+            
+    def render(self, question, min_label, max_label, name, value, attrs = {}):
         return RangeElement().render(question,
                                      min_label,
                                      max_label,
                                      name,
-                                     value)
+                                     value,
+                                     attrs = attrs)
     
     
     
@@ -179,8 +198,9 @@ class RangeElementForm(forms.ModelForm):
             question = self.cleaned_data['question']
             min_label = self.cleaned_data['min_label']
             max_label = self.cleaned_data['max_label']
-            name = "%sT%s" % (slugify(question[0][:200]),
-                              str(datetime.datetime.utcnow()))
+            
+            name = slugify("%sT%s" % (question[0][:200],
+                                      str(datetime.utcnow())))
                 
             value = ''
             for i, lang in enumerate(settings.LANGUAGES):
@@ -188,7 +208,13 @@ class RangeElementForm(forms.ModelForm):
                                                  min_label[i],
                                                  max_label[i],
                                                  name,
-                                                 value)
+                                                 value,
+                                                 attrs = {
+                                                    'min': self.cleaned_data['min_value'],
+                                                    'max': self.cleaned_data['max_value'],
+                                                    'step': self.cleaned_data['step'],
+                                                    'value': self.cleaned_data['initial_value']
+                                                    })
                 setattr(model,
                         'html_%s' % lang[0],
                         gen_html)
@@ -205,7 +231,11 @@ class RangeElementForm(forms.ModelForm):
         model = RangeElementModel
         fields = ('question',
                   'min_label',
-                  'max_label',)
+                  'max_label',
+                  'min_value',
+                  'max_value',
+                  'step',
+                  'initial_value')
 
 class RadioElementForm(forms.ModelForm):
     label = TranslationField()

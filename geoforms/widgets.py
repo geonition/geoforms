@@ -60,7 +60,7 @@ class RangeElement(Widget):
     def render(self, question, min_label, max_label, name, value, attrs={}):
         return u'<p>%s</p><div><span>%s</span>%s<span>%s</span></div>' % (question,
                                                                           min_label,
-                                                                          RangeInput().render(name, value),
+                                                                          RangeInput().render(name, value, attrs=attrs),
                                                                           max_label)
 
 
