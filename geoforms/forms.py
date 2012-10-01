@@ -400,7 +400,8 @@ class DrawbuttonForm(forms.ModelForm):
 class ParagraphForm(forms.ModelForm):
     
     text = TranslationField(field_class = forms.CharField,
-                            widget = TranslationWidget(widget_class = forms.Textarea))
+                            widget = TranslationWidget(widget_class = forms.Textarea),
+                            help_text = _('This field takes as input any html tags. This enables you to style the text in any way you want. Here is a list of tags that can be used <a href="http://dev.w3.org/html5/spec/single-page.html#usage-summary">html5 tags</a>'))
     
     def __init__(self, *args, **kwargs):
         
@@ -412,7 +413,8 @@ class ParagraphForm(forms.ModelForm):
             for lang in settings.LANGUAGES:
                 soup = BeautifulSoup(getattr(kwargs['instance'],
                                              'html_%s' % lang[0]))
-                initial_values.append(soup.p.text)
+                soup.p.unwrap() #remove the p tags
+                initial_values.append(soup)
             
             self.initial['text'] = initial_values
     
