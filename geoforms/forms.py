@@ -205,8 +205,8 @@ class NumberElementForm(ElementForm):
 
 class RangeElementForm(forms.ModelForm):
     question = TranslationField()
-    min_label = TranslationField()
-    max_label = TranslationField()
+    min_label = TranslationField(label=_('label for minimum choice'))
+    max_label = TranslationField(label=_('label for maximum choice'))
     initial_value = forms.FloatField(initial = 50.12)
     min_value = forms.IntegerField(initial = 0)
     max_value = forms.IntegerField(initial = 100)
@@ -307,7 +307,7 @@ class RangeElementForm(forms.ModelForm):
                   'initial_value')
 
 class RadioElementForm(forms.ModelForm):
-    label = TranslationField()
+    label = TranslationField(label = _('option'))
     
     class Meta:
         model = RadioElementModel
@@ -345,7 +345,7 @@ class RadioElementFormSet(BaseFormSet):
         RadioElementModel(**model_values).save()
         
 class CheckboxElementForm(forms.ModelForm):
-    label = TranslationField()
+    label = TranslationField(label = _('option'))
     
     class Meta:
         model = CheckboxElementModel
