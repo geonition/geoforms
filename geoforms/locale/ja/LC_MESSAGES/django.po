@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geonition\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-20 05:44-0500\n"
+"POT-Creation-Date: 2012-10-02 02:40-0500\n"
 "PO-Revision-Date: 2012-09-14 15:10+0000\n"
 "Last-Translator: ehsansan <ehsan_ahmadi@yahoo.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/projects/p/geonition/"
@@ -19,100 +19,120 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: admin.py:115
+#: admin.py:115 admin.py:160 admin.py:182
 msgid "Advanced options"
 msgstr ""
 
-#: forms.py:284
+#: forms.py:208
+msgid "label for minimum choice"
+msgstr ""
+
+#: forms.py:209
+msgid "label for maximum choice"
+msgstr ""
+
+#: forms.py:310 forms.py:348
+msgid "option"
+msgstr ""
+
+#: forms.py:383
 msgid "place"
 msgstr "場所"
 
-#: forms.py:285
+#: forms.py:384
 msgid "route"
 msgstr ""
 
-#: forms.py:286
+#: forms.py:385
 msgid "area"
 msgstr ""
 
-#: forms.py:290
+#: forms.py:389
 msgid ""
 "The color of the feature to be drawn. The color is given as hexadecimal "
 "color e.g. #ffffff --> white, #000000 --> black, #ff0000 --> red, #00ff00 --"
 "> green, #0000ff --> blue."
 msgstr ""
 
-#: forms.py:292 forms.py:310
+#: forms.py:391 forms.py:409
 msgid "Choose the popup to use for the place, route, or area."
 msgstr ""
 
-#: forms.py:296
+#: forms.py:395
 msgid ""
 "This is the maximum number of allowed places/routes/areas that can be drawn "
 "by this drawbutton."
 msgstr ""
 
-#: models.py:45
+#: forms.py:473
+msgid ""
+"This field takes as input any html tags. This enables you to style the text "
+"in any way you want. Here is a list of tags that can be used <a href="
+"\"http://dev.w3.org/html5/spec/single-page.html#usage-summary\">html5 tags</"
+"a>"
+msgstr ""
+
+#: models.py:44
 msgid "questionnaire page element"
 msgstr ""
 
-#: models.py:46
+#: models.py:45
 msgid "questionnaire page elements"
 msgstr ""
 
-#: models.py:62
+#: models.py:61
 msgid "text input"
 msgstr ""
 
-#: models.py:63
+#: models.py:62
 msgid "text inputs"
 msgstr ""
 
-#: models.py:76
+#: models.py:75
 msgid "text area"
 msgstr ""
 
-#: models.py:77
+#: models.py:76
 msgid "text areas"
 msgstr ""
 
-#: models.py:90
+#: models.py:89
 msgid "numer input"
 msgstr ""
 
-#: models.py:91
+#: models.py:90
 msgid "number inputs"
 msgstr ""
 
-#: models.py:104
+#: models.py:103
 msgid "range input"
 msgstr ""
 
-#: models.py:105
+#: models.py:104
 msgid "range inputs"
 msgstr ""
 
-#: models.py:118
+#: models.py:117
 msgid "paragraph"
 msgstr ""
 
-#: models.py:119
+#: models.py:118
 msgid "paragraphs"
 msgstr ""
 
-#: models.py:132 models.py:133
+#: models.py:131 models.py:132
 msgid "Select one"
 msgstr ""
 
-#: models.py:146 models.py:147
+#: models.py:145 models.py:146
 msgid "Select multiple"
 msgstr ""
 
-#: models.py:160
+#: models.py:159
 msgid "Draw button"
 msgstr ""
 
-#: models.py:161
+#: models.py:160
 msgid "Draw buttons"
 msgstr ""
 
@@ -223,23 +243,23 @@ msgstr ""
 msgid "Annotations"
 msgstr ""
 
-#: templates/questionnaire.html:17
+#: templates/questionnaire.html:15
 msgid "Questionnaires"
 msgstr "アンケート"
 
-#: templates/questionnaire.html:50 templates/questionnaire.html.py:53
+#: templates/questionnaire.html:48 templates/questionnaire.html.py:51
 msgid "Next"
 msgstr "次へ"
 
-#: templates/questionnaire.html:52 templates/questionnaire.html.py:77
+#: templates/questionnaire.html:50 templates/questionnaire.html.py:75
 msgid "Previous"
 msgstr "もどる"
 
-#: templates/questionnaire.html:63
+#: templates/questionnaire.html:61
 msgid "Your answers and finish"
 msgstr ""
 
-#: templates/questionnaire.html:72
+#: templates/questionnaire.html:70
 msgid ""
 "This is the end of the questionnaire and your answers has been saved. Thank "
 "you for your answers! You can still continue modifying your answers by "
@@ -247,48 +267,48 @@ msgid ""
 "and go to home page' button."
 msgstr ""
 
-#: templates/questionnaire.html:78
+#: templates/questionnaire.html:76
 msgid "Quit and go to home page"
 msgstr ""
 
-#: templates/questionnaire.html:101
+#: templates/questionnaire.html:99
 msgid "Remove"
 msgstr "取り消します"
 
-#: templates/questionnaire.html:104
+#: templates/questionnaire.html:102
 #: templates/admin/geoforms/geoformelement/create_element.html:41
 msgid "Save"
 msgstr ""
 
-#: templates/questionnaire.html:144
+#: templates/questionnaire.html:140
 msgid "You marked one place"
 msgstr ""
 
-#: templates/questionnaire.html:146
+#: templates/questionnaire.html:142
 msgid "You marked"
 msgstr ""
 
-#: templates/questionnaire.html:146
+#: templates/questionnaire.html:142
 msgid "places"
 msgstr ""
 
-#: templates/questionnaire.html:152
+#: templates/questionnaire.html:148
 msgid "and answered one question"
 msgstr ""
 
-#: templates/questionnaire.html:154
+#: templates/questionnaire.html:150
 msgid "and answered"
 msgstr ""
 
-#: templates/questionnaire.html:154 templates/questionnaire.html.py:159
+#: templates/questionnaire.html:150 templates/questionnaire.html.py:155
 msgid "questions"
 msgstr ""
 
-#: templates/questionnaire.html:157
+#: templates/questionnaire.html:153
 msgid "You answered one question"
 msgstr ""
 
-#: templates/questionnaire.html:159
+#: templates/questionnaire.html:155
 msgid "You answered"
 msgstr ""
 
