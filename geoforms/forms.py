@@ -125,14 +125,83 @@ class TextareaForm(ElementForm):
     
 class NumberElementForm(ElementForm):
     
-    def render(self, question, name, value):
+    min_value = forms.IntegerField(initial = 0)
+    max_value = forms.IntegerField(initial = 1000)
+    step = forms.FloatField(initial = 1)
+    
+    def __init__(self, *args, **kwargs):
+        """
+        The init function parses through the saved
+        html and sets the correct initial
+        values for the form.
+        """
+        super(NumberElementForm, self).__init__(*args, **kwargs)
+ 
+        # Set the form fields based on the model object
+        if kwargs.has_key('instance'):
+            question = []
+            min_value = 0
+            max_value = 1000
+            step = 1
+            for lang in settings.LANGUAGES:
+                soup = BeautifulSoup(getattr(kwargs['instance'],
+                                             'html_%s' % lang[0]))
+                question.append(soup.label.text)
+                
+                min_value = soup.input.get('min', 0)
+                max_value = soup.input.get('max', 1000)
+                step = soup.input.get('step', 1)
+            
+            self.initial['question'] = question
+            self.initial['min_value'] = min_value
+            self.initial['max_value'] = max_value
+            self.initial['step'] = step
+    
+    def render(self, question, name, value, attrs = {}):
         return NumberElement().render(question,
                                       name,
-                                      value)
+                                      value,
+                                      attrs = attrs)
+    
+    
+    
+    def save(self, commit=True):
+        model = super(NumberElementForm, self).save(commit=False)
+        
+        if self.is_valid():
+            question = self.cleaned_data['question']
+            
+            name = slugify("%sT%s" % (question[0][:200],
+                                      str(datetime.utcnow())))
+                
+            value = ''
+            for i, lang in enumerate(settings.LANGUAGES):
+                gen_html = NumberElement().render(question[i],
+                                                  name,
+                                                  value,
+                                                  attrs = {
+                                                    'min': self.cleaned_data['min_value'],
+                                                    'max': self.cleaned_data['max_value'],
+                                                    'step': self.cleaned_data['step']
+                                                    })
+                setattr(model,
+                        'html_%s' % lang[0],
+                        gen_html)
+                setattr(model,
+                        'name_%s' % lang[0],
+                        question[i][:200])
+        
+        if commit:
+            model.save()
+            
+        return model
      
     class Meta:
         model = NumberElementModel
-        fields = ('question',)
+        fields = ('question',
+                  'min_value',
+                  'max_value',
+                  'step')
 
 class RangeElementForm(forms.ModelForm):
     question = TranslationField()
@@ -168,8 +237,8 @@ class RangeElementForm(forms.ModelForm):
                 max_label.append(soup.span.next_sibling.next_sibling.text)
                 
                 initial_value = soup.input.get('value', 50.12)
-                min_value = soup.input.get('min_value', 0)
-                max_value = soup.input.get('max_value', 100)
+                min_value = soup.input.get('min', 0)
+                max_value = soup.input.get('max', 100)
                 step = soup.input.get('step', 0.01)
             
             self.initial['question'] = question

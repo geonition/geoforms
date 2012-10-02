@@ -50,7 +50,9 @@ class NumberElement(Widget):
     """
     def render(self, label, name, value, attrs={}):
         return u'<label>%s %s</label>' % (label,
-                                          NumberInput().render(name, value))
+                                          NumberInput().render(name,
+                                                               value,
+                                                               attrs = attrs))
      
 class RangeElement(Widget):
     """

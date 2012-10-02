@@ -153,6 +153,17 @@ admin.site.register(TextareaModel, TextareaAdmin)
 class NumberElementAdmin(GeoformElementAdmin):
     
     form = NumberElementForm
+    fieldsets = (
+        (None, {
+            'fields': ('question',)
+        }),
+        (_('Advanced options'), {
+            'classes': ('collapse',),
+            'fields': ('min_value',
+                       'max_value',
+                       'step')
+        }),
+    )
     
     def queryset(self, request):
         return self.model.objects.filter(element_type = 'number')
