@@ -86,7 +86,7 @@ class NumberElementModel(GeoformElement):
 
     class Meta:
         proxy = True
-        verbose_name = _('numer input')
+        verbose_name = _('number input')
         verbose_name_plural = _('number inputs')
         
 class RangeElementModel(GeoformElement):
