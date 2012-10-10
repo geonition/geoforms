@@ -63,7 +63,7 @@ class ElementInline(TranslationTabularInline):
     extra = 0
 
 class GeoformAdmin(TranslationAdmin, admin.ModelAdmin):
-    list_display = ('name',)
+    list_display = ('name', 'id')
     inlines = [
         ElementInline
     ]
