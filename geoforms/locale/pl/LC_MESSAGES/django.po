@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geonition\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-02 02:40-0500\n"
-"PO-Revision-Date: 2012-09-20 10:44+0000\n"
-"Last-Translator: ksnabb <kristoffer.snabb@geonition.org>\n"
+"POT-Creation-Date: 2012-10-05 11:26+0300\n"
+"PO-Revision-Date: 2012-10-05 07:58+0000\n"
+"Last-Translator: msjohans <mikko.johansson@aalto.fi>\n"
 "Language-Team: Polish (http://www.transifex.com/projects/p/geonition/"
 "language/pl/)\n"
 "Language: pl\n"
@@ -98,7 +98,7 @@ msgid "text areas"
 msgstr ""
 
 #: models.py:89
-msgid "numer input"
+msgid "number input"
 msgstr ""
 
 #: models.py:90
