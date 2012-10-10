@@ -188,7 +188,7 @@ class Geoform(models.Model):
 
     def __unicode__(self):
         return u'%s - %s' % (self.name,
-                             self.page_type)
+                             self.id)
         
     class Meta:
         verbose_name = _('questionnaire page')
