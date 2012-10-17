@@ -117,6 +117,8 @@ class QuestionnaireAdmin(admin.OSMGeoAdmin, TranslationAdmin):
             'fields': ('show_area', 'scale_visible_area',)
         }),
     )
+    openlayers_url = '%s%s' % (getattr(settings, 'STATIC_URL', '/'), 'js/libs/OpenLayers.js')
+    extra_js = ('%s%s' % (getattr(settings, 'STATIC_URL', '/'), 'js/OSMAdmin_extra.js'),)
     
     def change_view(self, request, object_id, form_url='', extra_context=None):
         extra_context = extra_context or {}
