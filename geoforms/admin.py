@@ -63,7 +63,7 @@ class ElementInline(TranslationTabularInline):
     extra = 0
 
 class GeoformAdmin(TranslationAdmin, admin.ModelAdmin):
-    list_display = ('name',)
+    list_display = ('name', 'id')
     inlines = [
         ElementInline
     ]
@@ -117,6 +117,8 @@ class QuestionnaireAdmin(admin.OSMGeoAdmin, TranslationAdmin):
             'fields': ('show_area', 'scale_visible_area',)
         }),
     )
+    openlayers_url = '%s%s' % (getattr(settings, 'STATIC_URL', '/'), 'js/libs/OpenLayers.js')
+    extra_js = ('%s%s' % (getattr(settings, 'STATIC_URL', '/'), 'js/OSMAdmin_extra.js'),)
     
     def change_view(self, request, object_id, form_url='', extra_context=None):
         extra_context = extra_context or {}
@@ -153,6 +155,17 @@ admin.site.register(TextareaModel, TextareaAdmin)
 class NumberElementAdmin(GeoformElementAdmin):
     
     form = NumberElementForm
+    fieldsets = (
+        (None, {
+            'fields': ('question',)
+        }),
+        (_('Advanced options'), {
+            'classes': ('collapse',),
+            'fields': ('min_value',
+                       'max_value',
+                       'step')
+        }),
+    )
     
     def queryset(self, request):
         return self.model.objects.filter(element_type = 'number')
@@ -162,9 +175,24 @@ admin.site.register(NumberElementModel, NumberElementAdmin)
 class RangeElementAdmin(GeoformElementAdmin):
     
     form = RangeElementForm
+    fieldsets = (
+        (None, {
+            'fields': ('question',
+                       'min_label',
+                       'max_label',)
+        }),
+        (_('Advanced options'), {
+            'classes': ('collapse',),
+            'fields': ('min_value',
+                       'max_value',
+                       'step',
+                       'initial_value',)
+        }),
+    )
     
     def queryset(self, request):
         return self.model.objects.filter(element_type = 'range')
+    
     
 admin.site.register(RangeElementModel, RangeElementAdmin)
 

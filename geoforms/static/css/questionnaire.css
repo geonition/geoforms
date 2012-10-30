@@ -58,7 +58,7 @@ button.drawbutton.second {
 }
 
 .form_element input {
-    max-width: 120px;
+    max-width: 250px;
 }
 .form_element label {
     display: block;
@@ -70,6 +70,14 @@ button.drawbutton.second {
 }
 .left_align {
     text-align: left;
+}
+
+/* HTML% fallbasck widgets*/
+.form_element .slider {
+    display: inline-block;
+    width: 250px;
+    margin-left: 1em;
+    margin-right: 1em;
 }
 
 /* jquery ui accordion modified */
@@ -141,9 +149,4 @@ phones
     #content .ui-accordion-content {
         padding-left: 10px;
     }
-}
-/* phones to tablets */
-@media (min-width:480px) and (max-width: 767px) {
-    
-    
 }

@@ -627,7 +627,6 @@ gnt.questionnaire.init = function(forms,
                            'complete': function() {
                                 //bind on value change to save the values
                                 $(forms + ' :input:not(button)').change(function(evt) {
-                                    
                                     var new_value = evt.currentTarget.value;
                                     if(evt.currentTarget.type === 'checkbox') {
                                         new_value = [];
@@ -860,6 +859,9 @@ gnt.questionnaire.init = function(forms,
                 }
             });
         
+        // polyfill HTML 5 widgets
+        gnt.questionnaire.create_widgets('');
+        
         //the point where everything is done for callback
         if(callback !== undefined) {
             callback();
@@ -873,10 +875,38 @@ This function creates widgets for HTML5 elements for browsers that do not suppor
 The parameter css_selector can be used to specify where to search for html5 input elements
 */
 gnt.questionnaire.create_widgets = function(css_selector) {
-    
+    var i;
     //HTML 5 fallback create a slider if no browser support
     if(!Modernizr.inputtypes.range) {
-        $('input[type=range]').replaceWith('<div class="slider"></div>');
-        $('.slider').slider();
+        var range_elements = $('input[type=range]');
+        var min;
+        var max;
+        var step;
+        var value;
+        //hide the range inputs
+        $('input[type=range]').hide()
+        for(i = 0; i < range_elements.length; i++) {
+            min = $(range_elements[i]).attr('min');
+            max = $(range_elements[i]).attr('max');
+            step = $(range_elements[i]).attr('step');
+            value = $(range_elements[i]).attr('value');
+            name = $(range_elements[i]).attr('name');
+            $(range_elements[i]).after('<div class="slider ' + name + '" data-input="' + name + '"></div>');
+            //the step has to be a integer e.g. step is 1,2,3,4,,, in UI sliders
+            
+            
+            $('.slider.' + name).slider({
+                'max': (max - min)/step,
+                'min': 0,
+                'step': 1,
+                'value': (value - min)/step,
+                'input_element': range_elements[i],
+                'change': function(event, ui) {
+                    $('input[name=' + $(this).data('input') + ']').attr('value', String(ui.value * step + Number(min)));
+                    $('input[name=' + $(this).data('input') + ']').change();
+                }
+            });
+            
+        }
     }
 };

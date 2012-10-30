@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
+#
 # Translators:
 #   <kristoffer.snabb@geonition.org>, 2012.
 #   <mikko.johansson@aalto.fi>, 2012.
@@ -9,110 +9,138 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geonition\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-20 05:44-0500\n"
-"PO-Revision-Date: 2012-09-20 10:44+0000\n"
-"Last-Translator: ksnabb <kristoffer.snabb@geonition.org>\n"
-"Language-Team: Finnish (http://www.transifex.com/projects/p/geonition/language/fi/)\n"
+"POT-Creation-Date: 2012-10-05 11:26+0300\n"
+"PO-Revision-Date: 2012-10-05 08:00+0000\n"
+"Last-Translator: msjohans <mikko.johansson@aalto.fi>\n"
+"Language-Team: Finnish (http://www.transifex.com/projects/p/geonition/"
+"language/fi/)\n"
+"Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: fi\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: admin.py:115
+#: admin.py:115 admin.py:160 admin.py:182
 msgid "Advanced options"
 msgstr "Lisäasetukset"
 
-#: forms.py:284
+#: forms.py:208
+msgid "label for minimum choice"
+msgstr ""
+
+#: forms.py:209
+msgid "label for maximum choice"
+msgstr ""
+
+#: forms.py:310 forms.py:348
+msgid "option"
+msgstr ""
+
+#: forms.py:383
 msgid "place"
 msgstr "paikan"
 
-#: forms.py:285
+#: forms.py:384
 msgid "route"
 msgstr "reitti"
 
-#: forms.py:286
+#: forms.py:385
 msgid "area"
 msgstr "alue"
 
-#: forms.py:290
+#: forms.py:389
 msgid ""
 "The color of the feature to be drawn. The color is given as hexadecimal "
-"color e.g. #ffffff --> white, #000000 --> black, #ff0000 --> red, #00ff00 "
-"--> green, #0000ff --> blue."
-msgstr "Käyttäjän piirtämän paikannuksen väri. Väri syötetään heksadesimaali muodossa esim. #ffffff (valkoinen), #000000 (musta), #ff0000 (punainen), #00ff00 (vihreä), #0000ff (sininen) "
+"color e.g. #ffffff --> white, #000000 --> black, #ff0000 --> red, #00ff00 --"
+"> green, #0000ff --> blue."
+msgstr ""
+"Käyttäjän piirtämän paikannuksen väri. Väri syötetään heksadesimaali "
+"muodossa esim. #ffffff (valkoinen), #000000 (musta), #ff0000 (punainen), "
+"#00ff00 (vihreä), #0000ff (sininen) "
 
-#: forms.py:292 forms.py:310
+#: forms.py:391 forms.py:409
 msgid "Choose the popup to use for the place, route, or area."
-msgstr "Valitse ponnahdusikkuna jonka käyttäjä näkee sen jälkeen kun hän on piirtänyt paikannuksen."
+msgstr ""
+"Valitse ponnahdusikkuna jonka käyttäjä näkee sen jälkeen kun hän on "
+"piirtänyt paikannuksen."
 
-#: forms.py:296
+#: forms.py:395
 msgid ""
 "This is the maximum number of allowed places/routes/areas that can be drawn "
 "by this drawbutton."
-msgstr "Tämä on suurin sallittu paikannusten määrä, joita tällä piirtonapilla voi piirtää."
+msgstr ""
+"Tämä on suurin sallittu paikannusten määrä, joita tällä piirtonapilla voi "
+"piirtää."
 
-#: models.py:45
+#: forms.py:473
+msgid ""
+"This field takes as input any html tags. This enables you to style the text "
+"in any way you want. Here is a list of tags that can be used <a href="
+"\"http://dev.w3.org/html5/spec/single-page.html#usage-summary\">html5 tags</"
+"a>"
+msgstr ""
+
+#: models.py:44
 msgid "questionnaire page element"
 msgstr "kyselysivun elementti"
 
-#: models.py:46
+#: models.py:45
 msgid "questionnaire page elements"
 msgstr "kyselysivujen elementit"
 
-#: models.py:62
+#: models.py:61
 msgid "text input"
 msgstr "Teksti syöttökenttä"
 
-#: models.py:63
+#: models.py:62
 msgid "text inputs"
 msgstr "teksti syöttökenttiä"
 
-#: models.py:76
+#: models.py:75
 msgid "text area"
 msgstr "Tekstikenttä"
 
-#: models.py:77
+#: models.py:76
 msgid "text areas"
 msgstr "Tekstikenttiä"
 
-#: models.py:90
-msgid "numer input"
-msgstr "numero syöttökenttä"
+#: models.py:89
+msgid "number input"
+msgstr "numeronsyöttökenttä"
 
-#: models.py:91
+#: models.py:90
 msgid "number inputs"
 msgstr "numeroiden syöttökenttiä"
 
-#: models.py:104
+#: models.py:103
 msgid "range input"
 msgstr "liukukytkin"
 
-#: models.py:105
+#: models.py:104
 msgid "range inputs"
 msgstr "liukukytkimiä"
 
-#: models.py:118
+#: models.py:117
 msgid "paragraph"
 msgstr "tekstikappale"
 
-#: models.py:119
+#: models.py:118
 msgid "paragraphs"
 msgstr "tekstikappaleita"
 
-#: models.py:132 models.py:133
+#: models.py:131 models.py:132
 msgid "Select one"
 msgstr "valitse yksi"
 
-#: models.py:146 models.py:147
+#: models.py:145 models.py:146
 msgid "Select multiple"
 msgstr "valitse monta"
 
-#: models.py:160
+#: models.py:159
 msgid "Draw button"
 msgstr "piirtonappi"
 
-#: models.py:161
+#: models.py:160
 msgid "Draw buttons"
 msgstr "piirtonappeja"
 
@@ -158,14 +186,21 @@ msgstr "kyselyn alue"
 
 #: models.py:261
 msgid ""
-"This is the initial area which will be visible on the questionnaire map. The"
-" map tools are on the up right corner of the map. To choose a tool you have "
+"This is the initial area which will be visible on the questionnaire map. The "
+"map tools are on the up right corner of the map. To choose a tool you have "
 "to click on it so that the tool turnes yellow. To draw choose the drawing "
 "tool and start drawing. To stop drawing you have to doubleclick the map. It "
 "is also possible to modify the area by choosing the modify tool. "
 "Modification works by dragging the vertexes of the area to the new modified "
 "places."
-msgstr "Tämä on alue johon kysely kohdistuu. Kartan piirtotyökalut ovat kartan oikeassa yläkulmassa. Valitse työkalu napsauttamalla työkalua siten, että se muuttuu keltaiseksi. Piirtääksesi alueen valitse alue työkalu ja napsauta karttaa alueen reunalla kunnes alue on täysin merkitty. Piirto lopetetaan tuplaklikkauksella. Voit myös myöhemmin muokata aluetta valitsemalla alueen muokkaustyökalun. Voit muokkaustyökalun avulla raahata alueen kulmia siten, että alue on oikein merkitty."
+msgstr ""
+"Tämä on alue johon kysely kohdistuu. Kartan piirtotyökalut ovat kartan "
+"oikeassa yläkulmassa. Valitse työkalu napsauttamalla työkalua siten, että se "
+"muuttuu keltaiseksi. Piirtääksesi alueen valitse alue työkalu ja napsauta "
+"karttaa alueen reunalla kunnes alue on täysin merkitty. Piirto lopetetaan "
+"tuplaklikkauksella. Voit myös myöhemmin muokata aluetta valitsemalla alueen "
+"muokkaustyökalun. Voit muokkaustyökalun avulla raahata alueen kulmia siten, "
+"että alue on oikein merkitty."
 
 #: models.py:262
 msgid "Show area"
@@ -185,7 +220,9 @@ msgstr "Skaalaa aluetta joka näkyy kartalla."
 msgid ""
 "This number will be used to set the initial map extent. The map extent is "
 "counted by drawn area times this number."
-msgstr "Tätä numeroa käytetään laskemaan kartan aloitusnäkymä. Aloitusnäkymä lasketaan merkityn alueen koko kertaa tämä numero. "
+msgstr ""
+"Tätä numeroa käytetään laskemaan kartan aloitusnäkymä. Aloitusnäkymä "
+"lasketaan merkityn alueen koko kertaa tämä numero. "
 
 #: models.py:294
 msgid "questionnaire"
@@ -213,82 +250,90 @@ msgstr "Napsauta karttaa piirtääksesi pisteen"
 
 #: templates/jstranslations.txt:6
 msgid "Click on the map to start drawing the route and doubleclick to finnish"
-msgstr "Napsauta karttaa aloittaaksesi reitin piirtämistä ja tuplanapsauta lopettaaksesi piirron"
+msgstr ""
+"Napsauta karttaa aloittaaksesi reitin piirtämistä ja tuplanapsauta "
+"lopettaaksesi piirron"
 
 #: templates/jstranslations.txt:7
 msgid "Click on the map to start drawing the area and doubleclick to finnish"
-msgstr "Napsauta karttaa aloittaaksesi alueen piirtämistä ja tuplanapsauta lopettaaksesi piirron"
+msgstr ""
+"Napsauta karttaa aloittaaksesi alueen piirtämistä ja tuplanapsauta "
+"lopettaaksesi piirron"
 
 #: templates/jstranslations.txt:10
 msgid "Annotations"
 msgstr "Karttamerkinnät"
 
-#: templates/questionnaire.html:17
+#: templates/questionnaire.html:15
 msgid "Questionnaires"
 msgstr "kyselyitä"
 
-#: templates/questionnaire.html:50 templates/questionnaire.html.py:53
+#: templates/questionnaire.html:48 templates/questionnaire.html.py:51
 msgid "Next"
 msgstr "Seuraava"
 
-#: templates/questionnaire.html:52 templates/questionnaire.html.py:77
+#: templates/questionnaire.html:50 templates/questionnaire.html.py:75
 msgid "Previous"
 msgstr "Edellinen"
 
-#: templates/questionnaire.html:63
+#: templates/questionnaire.html:61
 msgid "Your answers and finish"
 msgstr "Sinun vastauksesi ja lopetus"
 
-#: templates/questionnaire.html:72
+#: templates/questionnaire.html:70
 msgid ""
 "This is the end of the questionnaire and your answers has been saved. Thank "
 "you for your answers! You can still continue modifying your answers by "
 "clicking the previous buttons. Quit the questionnaire by clicking the 'quit "
 "and go to home page' button."
-msgstr "Tämä on kyselyn viimeinen sivu ja vastuksesi on tallennettu. Kiitos vastauksistasi! Voit vielä palata muokaamaan vastauksiasi Edellinen-painikkeella. Voit lopettaa kyselyn painamalla 'lopeta kysely ja palaa etusivulle' -nappia."
+msgstr ""
+"Tämä on kyselyn viimeinen sivu ja vastuksesi on tallennettu. Kiitos "
+"vastauksistasi! Voit vielä palata muokaamaan vastauksiasi Edellinen-"
+"painikkeella. Voit lopettaa kyselyn painamalla 'lopeta kysely ja palaa "
+"etusivulle' -nappia."
 
-#: templates/questionnaire.html:78
+#: templates/questionnaire.html:76
 msgid "Quit and go to home page"
 msgstr "Lopeta ja siirry etusivulle"
 
-#: templates/questionnaire.html:101
+#: templates/questionnaire.html:99
 msgid "Remove"
 msgstr "Poista"
 
-#: templates/questionnaire.html:104
+#: templates/questionnaire.html:102
 #: templates/admin/geoforms/geoformelement/create_element.html:41
 msgid "Save"
 msgstr "Tallenna"
 
-#: templates/questionnaire.html:144
+#: templates/questionnaire.html:140
 msgid "You marked one place"
 msgstr "Olet merkinnyt yhden paikan"
 
-#: templates/questionnaire.html:146
+#: templates/questionnaire.html:142
 msgid "You marked"
 msgstr "Olet merkinnyt"
 
-#: templates/questionnaire.html:146
+#: templates/questionnaire.html:142
 msgid "places"
 msgstr "paikkaa"
 
-#: templates/questionnaire.html:152
+#: templates/questionnaire.html:148
 msgid "and answered one question"
 msgstr "ja vastannut yhteen kysymykseen"
 
-#: templates/questionnaire.html:154
+#: templates/questionnaire.html:150
 msgid "and answered"
 msgstr "ja antanut"
 
-#: templates/questionnaire.html:154 templates/questionnaire.html.py:159
+#: templates/questionnaire.html:150 templates/questionnaire.html.py:155
 msgid "questions"
 msgstr "vastausta"
 
-#: templates/questionnaire.html:157
+#: templates/questionnaire.html:153
 msgid "You answered one question"
 msgstr "Olet vastannut yhteen kysymykseen"
 
-#: templates/questionnaire.html:159
+#: templates/questionnaire.html:155
 msgid "You answered"
 msgstr "Olet antanut"
 
@@ -312,7 +357,9 @@ msgstr "lisää"
 msgid ""
 "\n"
 "This is the HTML that represents the element widget.\n"
-msgstr "\n Tämä HTML esittää yhden kysely elementin \n"
+msgstr ""
+"\n"
+" Tämä HTML esittää yhden kysely elementin \n"
 
 #: templates/help/geoform_element_name.html:2
 msgid ""
@@ -320,4 +367,7 @@ msgid ""
 "This is the name of the element. The element name should be unique\n"
 "throughout the application so there cannot be two elements with the\n"
 "same name.\n"
-msgstr "\nTämä on kysely elementin nimi. Nimen tulisi olla uniikki koko ohjelmassa eikä kaksi samannimistä elementtiä voi tehdä.\n"
+msgstr ""
+"\n"
+"Tämä on kysely elementin nimi. Nimen tulisi olla uniikki koko ohjelmassa "
+"eikä kaksi samannimistä elementtiä voi tehdä.\n"
