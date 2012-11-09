@@ -14,7 +14,7 @@ def questionnaire(request, questionnaire_slug):
     quest = Questionnaire.on_site.select_related().get(slug = questionnaire_slug)
     form_list = quest.geoforms.all().order_by('questionnaireform__order')
     elements = {}
-    popup_set = set()
+    popup_set = set(Geoform.objects.filter(page_type = 'popup').values_list('slug', flat=True))
     bigcontent_forms = set()
     for form in form_list:
         popup_elements = form.elements.filter(element_type = 'drawbutton').values_list('html', flat=True)
