@@ -6,10 +6,11 @@ from django.template import RequestContext
 from django.views.decorators.csrf import ensure_csrf_cookie
 
 @ensure_csrf_cookie
-def questionnaire(request, questionnaire_slug):
+def questionnaire(request, questionnaire_slug, template=''):
     """
     This view creates the whole questionnaire html.
     """
+    print "slug:", questionnaire_slug
     
     quest = Questionnaire.on_site.select_related().get(slug = questionnaire_slug)
     form_list = quest.geoforms.all().order_by('questionnaireform__order')
@@ -35,7 +36,9 @@ def questionnaire(request, questionnaire_slug):
         elements[popupform.slug] = popupform.elements.order_by('formelement__order', '?')
     
     form_list = form_list.filter(page_type = 'form')
-    return render_to_response('questionnaire.html',
+    if not template:
+        template = 'questionnaire.html'
+    return render_to_response(template,
                              {'form_list': form_list,
                               'popup_list': popup_list,
                               'bigcontent_forms': bigcontent_forms,
@@ -43,3 +46,7 @@ def questionnaire(request, questionnaire_slug):
                               'questionnaire': quest,
                               'map_slug': 'questionnaire-map'},
                              context_instance = RequestContext(request))
+
+def feedback(request, questionnaire_slug):
+    return questionnaire(request, questionnaire_slug, 'kateva_feedback.html')
+

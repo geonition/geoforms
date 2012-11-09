@@ -27,7 +27,7 @@
 <div id="forms">
     {% for form in form_list %}
         <h3 id="page_{{ forloop.counter }}" class="page_{{ forloop.counter }} {% if form.name in bigcontent_forms %}bigcontent{% else %}smallcontent{% endif %}">
-            {{ forloop.counter }}/{{ form_list|length|add:1 }} {{ form.name }}
+            {{ form.name }} {{ forloop.counter }}/{{ form_list|length|add:1 }} 
         </h3>
         <div>
             <form name="{{ form.slug }}" method="post" action="#">

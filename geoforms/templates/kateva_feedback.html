@@ -1,0 +1,327 @@
+{% extends "base_map.html" %}
+{% load i18n %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/questionnaire.css" />
+{% endblock %}
+
+
+{% block content %}
+
+<ul class="feature_comments">
+</ul>
+    
+<ul class="breadcrumb">
+    <li class="disk hover base_bgcolor" onclick="window.location = '{% url dashboard %}'">
+        <a href="{% url dashboard %}">
+            <h3>
+            {% trans 'Questionnaires' %}
+            </h3>
+        </a>
+    </li>
+    <li class="separator base_bgcolor"></li>
+    <li class="active base_textcolor">
+        <h3>
+            {{ questionnaire.name }}
+        </h3>
+    </li>
+</ul>
+<p>
+Paikannukset on merkitty karttaan punaisella. Viemällä hiiren paikannuksen
+päälle voit tarkastella vastausta yksityiskohtaisemmin.
+</p>
+ <!--   
+<div id="forms">
+    {% for form in form_list %}
+        <h3 id="page_{{ forloop.counter }}" class="page_{{ forloop.counter }} {% if form.name in bigcontent_forms %}bigcontent{% else %}smallcontent{% endif %}">
+            {{ form.name }} {{ forloop.counter }}/{{ form_list|length|add:1 }} 
+        </h3>
+        <div>
+            <form name="{{ form.slug }}" method="post" action="#">
+                {% for key, value in elements.items %}
+                    {% if key == form.slug %}
+                        {% for element in value %}
+                        <div class="form_element">
+                            {{ element.html|safe }}
+                        </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endfor %}
+            
+            
+            <div class="form_element">
+                <div class="prev_next_controls">
+                {% if forloop.first %}
+                    <a class="next base_bgcolor" href="#page_{{ forloop.counter|add:'1' }}">{% trans 'Next' %}&rarr;</a>
+                {% else %}
+                    <a class="previous" href="#page_{{ forloop.counter|add:'-1' }}">&larr;{% trans 'Previous' %}</a>
+                    <a class="next base_bgcolor" href="#page_{{ forloop.counter|add:'1' }}">{% trans 'Next' %}&rarr;</a>
+                {% endif %}
+                </div>
+            </div>
+            
+            </form>
+        </div>
+        {% if forloop.last %}
+            
+        <h3 id="page_{{ forloop.counter|add:1 }}" class="page_{{ forloop.counter|add:1 }} bigcontent">
+            {% trans "Your answers and finish" %} {{ forloop.counter|add:1 }}/{{ form_list|length|add:1 }}
+        </h3>
+        <div>
+            <div class="form_element">
+                <span class="number_of_features">X</span>
+                <span class="number_of_properties">X</span>
+            </div>
+            <div class="form_element">
+                <p>
+                {% trans "This is the end of the questionnaire and your answers has been saved. Thank you for your answers! You can still continue modifying your answers by clicking the previous buttons. Quit the questionnaire by clicking the 'quit and go to home page' button." %}
+                </p>
+            </div>
+            <div class="form_element">
+                <div class="prev_next_controls">
+                    <a class="previous" href="#page_{{ forloop.counter }}">&larr;{% trans 'Previous' %}</a>
+                    <a class="previous" href="{% url dashboard %}">{% trans 'Quit and go to home page' %}</a>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    {% endfor %}
+</div>
+
+<div id="popups">
+    {% for form in popup_list %}
+        <div id="{{ form.slug }}">
+            
+            <form name="{{ form.slug }}" method="post" action="#" class="popupform">
+                {% for key, value in elements.items %}
+                    {% if key == form.slug %}
+                        {% for element in value %}
+                        <div class="form_element">
+                            {{ element.html|safe }}
+                        </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endfor %}
+                <button type="button" class="remove">
+                    {% trans 'Remove' %}
+                </button>
+                <button type="button" class="save">
+                    {% trans 'Save' %}
+                </button>
+            </form>
+        </div>
+    {% endfor %}
+</div>-->
+{% endblock content %}
+
+{% block javascript %}
+<script src="{{ STATIC_URL }}js/libs/OpenLayers-gnt.js"></script>
+<script type="text/javascript" src="{% url api_javascript %}"></script>
+<script type="text/javascript" src="{% url map_js map_slug_name=map_slug %}"></script>
+<script type="text/javascript">
+var data_group = 'Q-{{ questionnaire.slug }}';
+var questionnaire_area = {{ questionnaire.area.json|safe }};
+
+// instead of using global varibles start using this object
+
+var questionnaire = {
+    'data_group': 'Q-{{ questionnaire.slug }}',
+    'questionnaire_area': {{ questionnaire.area.json|safe }},
+    'show_area': {{ questionnaire.show_area|lower }},
+    'scale_visible_area': {{ questionnaire.scale_visible_area }}
+}
+
+function count_results() {
+    var number_of_properties = 0;
+    for(var val in gnt.questionnaire.npvalues) {
+        number_of_properties++;
+    }
+    var number_of_places = map.getLayersByName('Point Layer')[0].features.length;
+    var number_of_routes = map.getLayersByName('Route Layer')[0].features.length;
+    var number_of_areas = map.getLayersByName('Area Layer')[0].features.length;
+    var number_of_features = number_of_places + number_of_routes + number_of_areas;
+    
+    if( number_of_features === 0 ) {
+        $('span.number_of_features').html("");
+    } else if( number_of_features === 1) {
+        $('span.number_of_features').html('{% trans "You marked one place" %}');
+    } else {
+        $('span.number_of_features').html('{% trans "You marked" %} ' + number_of_features + ' {% trans "places" %}');
+    }
+    if( number_of_properties === 0 ) {
+        $('span.number_of_properties').html("");
+    } else if( number_of_features !== 0) {
+        if( number_of_properties === 1) {
+            $('span.number_of_properties').html('{% trans "and answered one question" %}');
+        } else {
+            $('span.number_of_properties').html('{% trans "and answered" %} ' + number_of_properties + ' {% trans "questions" %}');
+        }
+    } else if ( number_of_properties === 1) {
+        $('span.number_of_properties').html('{% trans "You answered one question" %}');
+    } else {
+        $('span.number_of_properties').html('{% trans "You answered" %} ' + number_of_properties + ' {% trans "questions" %}');
+    }
+    
+    if ( number_of_properties === 0 && number_of_features !== 0 ) {    
+        $( 'span.number_of_features' ).append('.');
+    } else if ( number_of_properties !== 0 ) {    
+        $( 'span.number_of_properties' ).append('.');
+    }
+}
+
+jQuery(document).ready(function() {
+    gnt.questionnaire.init('#forms', '', '#forms', questionnaire_area, data_group, function() {
+        
+        //count the amount of answeres given
+        count_results();
+        
+        $('#forms').bind('accordionchangestart', function(event, ui) {
+            count_results();
+        });
+        // KATEVA START
+            var i,
+                highlightCtrl,
+                select_control,
+                others_feature_collected = false,
+                otherLayer = new OpenLayers.Layer.Vector("Others Layer", {
+                    styleMap: new OpenLayers.StyleMap({
+                        'default': {
+                            strokeWidth: 3,
+                            strokeColor: 'red',
+                            //strokeColor: '#aaaaff',
+                            cursor: 'pointer',
+                            fillColor: '#aaaaff',
+                            fillOpacity: 0.3,
+                            pointRadius: 5
+                        },
+                        'highlight': {
+                            strokeWidth: 3,
+                            strokeColor: '#555555',
+                            cursor: 'pointer',
+                            fillColor: '#555555',
+                            fillOpacity: 0.3,
+                            pointRadius: 5
+                        }
+                    })
+                });
+            otherLayer.setVisibility(false);
+            map.addLayer(otherLayer);
+        var other = map.getLayersByName('Others Layer')[0];
+                    if (others_feature_collected === false) {
+                        gnt.geo.get_features('@all',
+                                             data_group,
+                                             '',
+                            {
+                                'success': function (data) {
+                                    if (data.features) {
+                                        var gf = new OpenLayers.Format.GeoJSON(),
+                                            user,
+                                            comment,
+                                            i,
+                                            feature,
+                                            anonymous_regexp,
+                                            popupcontent;
+                                        for (i = 0; i < data.features.length; i += 1) {
+                                            feature = gf.parseFeature(data.features[i]);
+                                            //add values losed in parsing should be added again
+                                            feature['private'] = data.features[i]['private'];
+                                            feature.lonlat = gnt.questionnaire.get_popup_lonlat(feature.geometry);
+                                            other.addFeatures(feature);
+                                            comment = feature.attributes.form_values[0].value;
+                                            user = feature.attributes.user;
+                                            // set the right content
+                                            anonymous_regexp = new RegExp('T[0-9]+.[0-9]+R[0-9]+.[0-9]+');
+                                            if (!anonymous_regexp.test(user)) {
+                                                $('#other .username').text(user);
+                                            }
+                                            $('#other .comment').text(comment);
+                                            //get the content
+                                            popupcontent = $('#other').html();
+                                            feature.popupClass = OpenLayers.Popup.FramedCloud;
+                                            feature.popup = new OpenLayers.Popup.FramedCloud(
+                                                feature.id,
+                                                feature.lonlat,
+                                                null,
+                                                popupcontent,
+                                                null,
+                                                false
+                                            );
+                                        }
+                                    }
+                                }
+                            });
+                        others_feature_collected = true;
+                        other.setVisibility(true);
+                        //featureFilter();
+                    } else if (others_feature_collected === true) {
+                        other.setVisibility(true);
+                        //featureFilter();
+                    }
+                highlightCtrl = new OpenLayers.Control.SelectFeature(
+                    map.getControl('selectcontrol').layers.concat(map.getLayersByName('Others Layer')[0]),
+                    {
+                        hover: true,
+                        highlightOnly: true,
+                        multiple: true,
+                        renderIntent: 'highlight',
+                        eventListeners: {
+                            featurehighlighted: function (e) {
+                                //fix for unhighlight in OpenLayers not always triggering
+                                $('ul.feature_comments li:visible').fadeOut(500);
+                                var feat_str = '<li class="' +e.feature.id +'">';
+                                feat_str += e.feature.attributes.name + '<br />';
+                                for (i = 0; i < e.feature.attributes.form_values.length; i += 1) {
+                                            feat_str += '<br />' + e.feature.attributes.form_values[i].name +
+                                                             '<br />' +
+                                                             e.feature.attributes.form_values[i].value +'<br />';
+                                        /*} else if ($('ul.feature_comments li.' + e.feature.id + ' span.comment').text() !== e.feature.attributes.form_values[i].value) {
+                                            $('ul.feature_comments li.' + e.feature.id + ' span.comment').text(e.feature.attributes.form_values[i].value);
+                                        }*/
+                                }
+                                var create_time_string,
+                                    username,
+                                    anonymous_regexp,
+                                    show_list_item = $('ul.feature_comments li.' + e.feature.id);
+                                    username = e.feature.attributes.user;
+                                    anonymous_regexp = new RegExp('T[0-9]+.[0-9]+R[0-9]+.[0-9]+');
+                                    if (anonymous_regexp.test(username) || username === undefined) {
+                                        username = '';
+                                    }
+                                    create_time_string = '';
+                                    if (e.feature.attributes.time !== undefined) {
+                                        create_time_string = $.datepicker.formatDate('D, d M yy',
+                                                                 $.datepicker.parseDate('yy-mm-dd', e.feature.attributes.time.create_time.split('T')[0]));
+                                    }
+                                feat_str += '<br /><br />' +
+                                                 username +
+                                                 ' ' +
+                                                 create_time_string + '</li>';
+                                console.log(feat_str);
+                                $('ul.feature_comments').prepend(feat_str);
+                                show_list_item = $('ul.feature_comments li.' + e.feature.id);
+                                show_list_item.stop(true, true);
+                                show_list_item.fadeIn(500);
+                            },
+                            featureunhighlighted: function (e) {
+                                var hide_list_item = $('ul.feature_comments li.' + e.feature.id);
+                                hide_list_item.stop(true, true);
+                                hide_list_item.fadeOut(500);
+                            }
+                        }
+                    }
+                );
+                map.addControl(highlightCtrl);
+                highlightCtrl.activate();
+                // The select_control needs to be deactivated and activated to make
+                // hover and select on different layers to work together (done by setLayer)
+                select_control = map.getControl('selectcontrol');
+                select_control.setLayer((select_control.layers).concat(otherLayer));
+
+        // KATEVA END
+    });
+});
+
+
+</script>
+{% endblock javascript %}
+
