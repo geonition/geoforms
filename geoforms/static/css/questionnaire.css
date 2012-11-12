@@ -4,11 +4,17 @@
 .form_element {
     text-align: center;
     width: 100%;
+    clear: both;
 }
 .form_element p {
     text-align: left;
     min-height: 1em;
     margin-bottom: 0;
+}
+.rangetext {
+    width: 250px;
+    float: left;
+    text-align: left;
 }
 button.drawbutton {
     width: 80%;
@@ -74,7 +80,7 @@ button.drawbutton.second {
 
 /* HTML% fallbasck widgets*/
 .form_element .slider {
-    display: inline-block;
+    float: left;
     width: 250px;
     margin-left: 1em;
     margin-right: 1em;
@@ -149,4 +155,26 @@ phones
     #content .ui-accordion-content {
         padding-left: 10px;
     }
+}
+
+ul.feature_comments {
+    position: absolute;
+    z-index: 9999;
+    width:  330px;
+    right: 20px;
+    list-style: none;
+    padding: 0;
+}
+
+ul.feature_comments li {
+    background-color: #555555;
+    color: white;
+    opacity: 0.9;
+    padding: 1em;
+    border-color: #444444;
+    border: 1px solid #EEEEEE;
+    border-radius: 13px;
+    font-weight: bold;
+    position: absolute;
+    top: 0;
 }
