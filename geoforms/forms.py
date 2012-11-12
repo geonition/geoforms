@@ -464,7 +464,9 @@ class DrawbuttonForm(forms.ModelForm):
         model = DrawbuttonElementModel
         fields = ('geometry_type',
                   'label',
-                  'color',)
+                  'color',
+                  'popup',
+                  'max_amount')
 
 class ParagraphForm(forms.ModelForm):
     
