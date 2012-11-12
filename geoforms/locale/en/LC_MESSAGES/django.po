@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-05 11:29+0300\n"
+"POT-Creation-Date: 2012-11-12 08:46-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: admin.py:115 admin.py:160 admin.py:182
+#: admin.py:112 admin.py:159 admin.py:181
 msgid "Advanced options"
 msgstr ""
 
@@ -62,7 +62,7 @@ msgid ""
 "by this drawbutton."
 msgstr ""
 
-#: forms.py:473
+#: forms.py:475
 msgid ""
 "This field takes as input any html tags. This enables you to style the text "
 "in any way you want. Here is a list of tags that can be used <a href="
