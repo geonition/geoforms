@@ -544,8 +544,8 @@ gnt.questionnaire.init = function(forms,
         }
         // set the size according to active page
         if($('#page_' + (active_page + 1)).hasClass('bigcontent')) {
-            $('#main .span_left').switchClass('smallcontent', 'bigcontent', '3000');
-            $('#main .span_right').switchClass('smallcontent', 'bigcontent', '3000');
+            $('#main .span_left').switchClass('smallcontent', 'bigcontent', '500');
+            $('#main .span_right').switchClass('smallcontent', 'bigcontent', '500');
         }
         
         //create accordion
@@ -559,9 +559,16 @@ gnt.questionnaire.init = function(forms,
                 if(oldHash !== newHash) {
                     location.hash = newHash;
                 }
+                if(ui.newHeader.hasClass('bigcontent')) {
+                    $('#main .span_left').switchClass('smallcontent', 'bigcontent', '500');
+                    $('#main .span_right').switchClass('smallcontent', 'bigcontent', '500');
+                } else {
+                    $('#main .span_left').switchClass('bigcontent', 'smallcontent', '300');
+                    $('#main .span_right').switchClass('bigcontent', 'smallcontent', '300');
+                }
                 //scroll to the right place
                 $('#main .span_left').scrollTop(0);
-            },
+            }/*,
             changestart: function(event, ui) {
                 
                 //make content big if no drawbuttons on page
@@ -573,7 +580,7 @@ gnt.questionnaire.init = function(forms,
                     $('#main .span_right').switchClass('bigcontent', 'smallcontent', '3000');
                 }
                 
-            }
+            }*/
         });
         
         $( window ).bind( 'hashchange', function(event) {
