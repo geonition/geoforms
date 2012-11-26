@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geonition\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-12 08:46-0600\n"
-"PO-Revision-Date: 2012-11-12 19:32+0000\n"
+"POT-Creation-Date: 2012-11-26 15:08+0200\n"
+"PO-Revision-Date: 2012-11-26 13:08+0000\n"
 "Last-Translator: ksnabb <kristoffer.snabb@geonition.org>\n"
 "Language-Team: Polish (http://www.transifex.com/projects/p/geonition/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -22,12 +22,32 @@ msgstr ""
 msgid "Advanced options"
 msgstr "Opcje zaawansowane"
 
+#: forms.py:39 forms.py:207 forms.py:532
+msgid "question"
+msgstr ""
+
+#: forms.py:128 forms.py:211
+msgid "minimum value"
+msgstr ""
+
+#: forms.py:129 forms.py:212
+msgid "maximum value"
+msgstr ""
+
+#: forms.py:130 forms.py:213
+msgid "size for one step"
+msgstr ""
+
 #: forms.py:208
 msgid "label for minimum choice"
 msgstr ""
 
 #: forms.py:209
 msgid "label for maximum choice"
+msgstr ""
+
+#: forms.py:210
+msgid "initial value"
 msgstr ""
 
 #: forms.py:310 forms.py:348
@@ -46,24 +66,48 @@ msgstr "ścieżka"
 msgid "area"
 msgstr "Obszar"
 
-#: forms.py:389
+#: forms.py:386
+msgid "geometry type"
+msgstr ""
+
+#: forms.py:387
+msgid "button text"
+msgstr ""
+
+#: forms.py:390
+msgid "color"
+msgstr ""
+
+#: forms.py:391
 msgid ""
 "The color of the feature to be drawn. The color is given as hexadecimal "
 "color e.g. #ffffff --> white, #000000 --> black, #ff0000 --> red, #00ff00 "
 "--> green, #0000ff --> blue."
 msgstr ""
 
-#: forms.py:391 forms.py:409
+#: forms.py:393
+msgid "popup for the place, route or area"
+msgstr ""
+
+#: forms.py:394 forms.py:413
 msgid "Choose the popup to use for the place, route, or area."
 msgstr ""
 
-#: forms.py:395
+#: forms.py:398
+msgid "max amount of answers"
+msgstr ""
+
+#: forms.py:399
 msgid ""
 "This is the maximum number of allowed places/routes/areas that can be drawn "
 "by this drawbutton."
 msgstr ""
 
-#: forms.py:475
+#: forms.py:479
+msgid "text for the paragraph"
+msgstr ""
+
+#: forms.py:480
 msgid ""
 "This field takes as input any html tags. This enables you to style the text "
 "in any way you want. Here is a list of tags that can be used <a "
