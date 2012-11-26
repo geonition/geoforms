@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geonition\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-26 15:08+0200\n"
+"POT-Creation-Date: 2012-11-26 15:43+0200\n"
 "PO-Revision-Date: 2012-11-26 12:08+0000\n"
 "Last-Translator: ksnabb <kristoffer.snabb@geonition.org>\n"
 "Language-Team: Swedish (http://www.transifex.com/projects/p/geonition/"
@@ -122,111 +122,145 @@ msgid ""
 "a>"
 msgstr ""
 
-#: models.py:44
+#: models.py:27 models.py:178 models.py:269
+msgid "slug"
+msgstr ""
+
+#: models.py:30 models.py:180
+msgid "name"
+msgstr ""
+
+#: models.py:33
+msgid "element type"
+msgstr ""
+
+#: models.py:35
+msgid "html"
+msgstr ""
+
+#: models.py:48
 msgid "questionnaire page element"
 msgstr "enkät sidans element"
 
-#: models.py:45
+#: models.py:49
 msgid "questionnaire page elements"
 msgstr "enkät sidors element"
 
-#: models.py:61
+#: models.py:65
 msgid "text input"
 msgstr "text fråga"
 
-#: models.py:62
+#: models.py:66
 msgid "text inputs"
 msgstr "text fråga"
 
-#: models.py:75
+#: models.py:79
 msgid "text area"
 msgstr "Text fråga"
 
-#: models.py:76
+#: models.py:80
 msgid "text areas"
 msgstr "Text frågor"
 
-#: models.py:89
+#: models.py:93
 msgid "number input"
 msgstr ""
 
-#: models.py:90
+#: models.py:94
 msgid "number inputs"
 msgstr "nummer fråga"
 
-#: models.py:103
+#: models.py:107
 msgid "range input"
 msgstr "slider"
 
-#: models.py:104
+#: models.py:108
 msgid "range inputs"
 msgstr "sliders"
 
-#: models.py:117
+#: models.py:121
 msgid "paragraph"
 msgstr "text paragraf"
 
-#: models.py:118
+#: models.py:122
 msgid "paragraphs"
 msgstr "text"
 
-#: models.py:131 models.py:132
+#: models.py:135 models.py:136
 msgid "Select one"
 msgstr "Välj en"
 
-#: models.py:145 models.py:146
+#: models.py:149 models.py:150
 msgid "Select multiple"
 msgstr "Välj många"
 
-#: models.py:159
+#: models.py:163
 msgid "Draw button"
 msgstr "Ritnings knapp"
 
-#: models.py:160
+#: models.py:164
 msgid "Draw buttons"
 msgstr "Ritnings knappar"
 
-#: models.py:194 models.py:313
+#: models.py:187
+msgid "page type"
+msgstr ""
+
+#: models.py:190
+#, fuzzy
+msgid "elements"
+msgstr "sidors element"
+
+#: models.py:202 models.py:330
 msgid "questionnaire page"
 msgstr "enkät sida"
 
-#: models.py:195 models.py:314
+#: models.py:203 models.py:331
 msgid "questionnaire pages"
 msgstr "enkät sidor"
 
-#: models.py:212
+#: models.py:220
 msgid "popup"
 msgstr ""
 
-#: models.py:213
+#: models.py:221
 msgid "popups"
 msgstr ""
 
-#: models.py:228
+#: models.py:236 models.py:246 models.py:322
 msgid "page"
 msgstr ""
 
-#: models.py:229
+#: models.py:237 models.py:263
 msgid "pages"
 msgstr ""
 
-#: models.py:242
+#: models.py:248
+#, fuzzy
+msgid "element"
+msgstr "sidans element"
+
+#: models.py:250 models.py:324
+msgid "order"
+msgstr ""
+
+#: models.py:253
 msgid "page element"
 msgstr "sidans element"
 
-#: models.py:243
+#: models.py:254
 msgid "page elements"
 msgstr "sidors element"
 
-#: models.py:252
+#: models.py:264
 msgid "name of questionnaire"
 msgstr "enkätets namn"
 
-#: models.py:257
+#: models.py:270
 msgid "area of questionnaire"
 msgstr "området för enkätet"
 
-#: models.py:261
+#: models.py:274
 msgid ""
 "This is the initial area which will be visible on the questionnaire map. The "
 "map tools are on the up right corner of the map. To choose a tool you have "
@@ -244,21 +278,23 @@ msgstr ""
 "med verktyget vänster till ritnings verktyget och sedan klicka på området "
 "som skall ändras."
 
-#: models.py:262
-msgid "Show area"
+#: models.py:275
+#, fuzzy
+msgid "show area"
 msgstr "Visa området"
 
-#: models.py:263
+#: models.py:276
 msgid ""
 "Check the box to show the area to the user. Otherwise leave the checkbox "
 "unchecked."
 msgstr "Välj för att visa området för användaren. Annars lämna rutan tom."
 
-#: models.py:264
-msgid "Scale the visible area"
+#: models.py:277
+#, fuzzy
+msgid "scale the visible area"
 msgstr "Förstora det synliga området"
 
-#: models.py:266
+#: models.py:279
 msgid ""
 "This number will be used to set the initial map extent. The map extent is "
 "counted by drawn area times this number."
@@ -266,11 +302,15 @@ msgstr ""
 "Det här numret kommar att användas för att räkna kartans område. Kartans "
 "område räknas enligt det märkta området gånger det här numret."
 
-#: models.py:294
+#: models.py:281
+msgid "site"
+msgstr ""
+
+#: models.py:308 models.py:320
 msgid "questionnaire"
 msgstr "enkät"
 
-#: models.py:295
+#: models.py:309
 msgid "questionnaires"
 msgstr "enkät"
 
