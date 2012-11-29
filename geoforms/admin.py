@@ -1,12 +1,10 @@
 from bs4 import BeautifulSoup
 from django.conf import settings
-from django.conf.urls.defaults import patterns
 from django.contrib.gis import admin
 from django.core.urlresolvers import reverse
+from django.core.urlresolvers import reverse_lazy
 from django.forms.formsets import formset_factory
 from django.http import HttpResponseRedirect
-from django.shortcuts import render_to_response
-from django.template import RequestContext
 from django.utils.translation import ugettext as _
 from geoforms.forms import CheckboxElementForm
 from geoforms.forms import CheckboxElementFormSet
@@ -21,7 +19,6 @@ from geoforms.forms import QuestionForm
 from geoforms.forms import RangeElementForm
 from geoforms.models import CheckboxElementModel
 from geoforms.models import DrawbuttonElementModel
-from geoforms.models import Geoform
 from geoforms.models import GeoformElement
 from geoforms.models import FormElement
 from geoforms.models import ParagraphElementModel
@@ -119,6 +116,8 @@ class QuestionnaireAdmin(admin.OSMGeoAdmin, TranslationAdmin):
             'fields': ('show_area', 'scale_visible_area',)
         }),
     )
+    openlayers_url = '%s%s' % (getattr(settings, 'STATIC_URL', '/'), 'js/libs/OpenLayers.js')
+    extra_js = (reverse_lazy('osmextra'),)
     
     def change_view(self, request, object_id, form_url='', extra_context=None):
         extra_context = extra_context or {}
@@ -257,7 +256,6 @@ class CheckboxElementAdmin(GeoformElementAdmin):
                 soup = BeautifulSoup(html)
                 question_data['question'].append(soup.p.text.strip())
                 labels = soup.find_all('label')
-                label_row = {u'label': []}
                 for j, label in enumerate(labels):
                     if i == 0:
                         initial_data.append({u'label': [label.text.strip()]})
@@ -318,7 +316,6 @@ class RadioElementAdmin(GeoformElementAdmin):
                 soup = BeautifulSoup(html)
                 question_data['question'].append(soup.p.text)
                 labels = soup.find_all('label')
-                label_row = {u'label': []}
                 for j, label in enumerate(labels):
                     if i == 0:
                         initial_data.append({u'label': [label.text.strip()]})
