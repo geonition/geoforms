@@ -1,269 +1,270 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
+# 
+# Translators:
+#   <pratikhublikar@gmail.com>, 2012.
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: geonition\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-12-18 01:53-0600\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"POT-Creation-Date: 2012-12-18 02:02-0600\n"
+"PO-Revision-Date: 2012-12-14 10:10+0000\n"
+"Last-Translator: pratikhublikar <pratikhublikar@gmail.com>\n"
+"Language-Team: Marathi (http://www.transifex.com/projects/p/geonition/language/mr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: mr\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: admin.py:112 admin.py:159 admin.py:181
 msgid "Advanced options"
-msgstr ""
+msgstr "उद्धारित पर्याय."
 
 #: forms.py:39 forms.py:207 forms.py:532
 msgid "question"
-msgstr ""
+msgstr "प्रश्न "
 
 #: forms.py:128 forms.py:211
 msgid "minimum value"
-msgstr ""
+msgstr "किमान  मुल्य "
 
 #: forms.py:129 forms.py:212
 msgid "maximum value"
-msgstr ""
+msgstr "कमाल मुल्य "
 
 #: forms.py:130 forms.py:213
 msgid "size for one step"
-msgstr ""
+msgstr "एका लेवलचा आकारमान."
 
 #: forms.py:208
 msgid "label for minimum choice"
-msgstr ""
+msgstr "किमान पर्यायासाठी लेबल द्या."
 
 #: forms.py:209
 msgid "label for maximum choice"
-msgstr ""
+msgstr " कमाल पर्यायासाठी लेबल द्या."
 
 #: forms.py:210
 msgid "initial value"
-msgstr ""
+msgstr "प्रारंभिक संख्या"
 
 #: forms.py:310 forms.py:348
 msgid "option"
-msgstr ""
+msgstr "पर्याय "
 
 #: forms.py:383
 msgid "place"
-msgstr ""
+msgstr "जागा "
 
 #: forms.py:384
 msgid "route"
-msgstr ""
+msgstr "मार्ग"
 
 #: forms.py:385
 msgid "area"
-msgstr ""
+msgstr "क्षेत्र"
 
 #: forms.py:386
 msgid "geometry type"
-msgstr ""
+msgstr "भौमितक प्रकार "
 
 #: forms.py:387
 msgid "button text"
-msgstr ""
+msgstr "बटणावरचे पाठ."
 
 #: forms.py:390
 msgid "color"
-msgstr ""
+msgstr "रंग "
 
 #: forms.py:391
 msgid ""
 "The color of the feature to be drawn. The color is given as hexadecimal "
-"color e.g. #ffffff --> white, #000000 --> black, #ff0000 --> red, #00ff00 --"
-"> green, #0000ff --> blue."
-msgstr ""
+"color e.g. #ffffff --> white, #000000 --> black, #ff0000 --> red, #00ff00 "
+"--> green, #0000ff --> blue."
+msgstr "फीचरचा रंग निवडा.रंग सह्दाशौंश अंका प्रमाणे ठरविण्यात येतो.#ffffff --> पांढरा , #000000 --> काळा, #ff0000 --> लाल, #00ff00 -->हिरवा, #0000ff -->  निळा."
 
 #: forms.py:393
 msgid "popup for the place, route or area"
-msgstr ""
+msgstr "जागा, मार्ग आणि क्षेत्रासाठी पॉपप."
 
 #: forms.py:394 forms.py:413
 msgid "Choose the popup to use for the place, route, or area."
-msgstr ""
+msgstr "जागा, मार्ग व क्षेत्रासाठी पोपप निवडावा. "
 
 #: forms.py:398
 msgid "max amount of answers"
-msgstr ""
+msgstr "उत्तरांचे कमाल परिमाण."
 
 #: forms.py:399
 msgid ""
 "This is the maximum number of allowed places/routes/areas that can be drawn "
 "by this drawbutton."
-msgstr ""
+msgstr "ह्या बटणाद्वारे मार्क करता येणाऱ्या  अनुमत  जागा, मार्ग आणि क्षेत्रांची ही कमाल संख्या आहे"
 
 #: forms.py:479
 msgid "text for the paragraph"
-msgstr ""
+msgstr "परिच्छेदासाठी पाठ. "
 
 #: forms.py:480
 msgid ""
 "This field takes as input any html tags. This enables you to style the text "
-"in any way you want. Here is a list of tags that can be used <a href="
-"\"http://dev.w3.org/html5/spec/single-page.html#usage-summary\">html5 tags</"
-"a>"
+"in any way you want. Here is a list of tags that can be used <a "
+"href=\"http://dev.w3.org/html5/spec/single-page.html#usage-summary\">html5 "
+"tags</a>"
 msgstr ""
 
 #: models.py:27 models.py:178 models.py:269
 msgid "slug"
-msgstr ""
+msgstr "स्लग "
 
 #: models.py:30 models.py:180
 msgid "name"
-msgstr ""
+msgstr "नाव"
 
 #: models.py:33
 msgid "element type"
-msgstr ""
+msgstr "एलिमेंटचा प्रकार. "
 
 #: models.py:35
 msgid "html"
-msgstr ""
+msgstr "एच.टि.एम.एल "
 
 #: models.py:48
 msgid "questionnaire page element"
-msgstr ""
+msgstr "प्रश्नावलीचा पेज एलीमेंट"
 
 #: models.py:49
 msgid "questionnaire page elements"
-msgstr ""
+msgstr "प्रश्नावलीचे पेज एलिमेंट्स"
 
 #: models.py:65
 msgid "text input"
-msgstr ""
+msgstr "  पाठ माहिती "
 
 #: models.py:66
 msgid "text inputs"
-msgstr ""
+msgstr "  पाठ माहिती "
 
 #: models.py:79
 msgid "text area"
-msgstr ""
+msgstr "पाठ क्षेत्र"
 
 #: models.py:80
 msgid "text areas"
-msgstr ""
+msgstr "पाठ क्षेत्र"
 
 #: models.py:93
 msgid "number input"
-msgstr ""
+msgstr "अंक लिहा "
 
 #: models.py:94
 msgid "number inputs"
-msgstr ""
+msgstr "संख्या "
 
 #: models.py:107
 msgid "range input"
-msgstr ""
+msgstr "आवाका"
 
 #: models.py:108
 msgid "range inputs"
-msgstr ""
+msgstr "आवाका"
 
 #: models.py:121
 msgid "paragraph"
-msgstr ""
+msgstr "परीच्चेद "
 
 #: models.py:122
 msgid "paragraphs"
-msgstr ""
+msgstr "परीच्चेद "
 
 #: models.py:135 models.py:136
 msgid "Select one"
-msgstr ""
+msgstr "एक निवडा "
 
 #: models.py:149 models.py:150
 msgid "Select multiple"
-msgstr ""
+msgstr "अनेक निवडा "
 
 #: models.py:163
 msgid "Draw button"
-msgstr ""
+msgstr "आखणीचे बटन"
 
 #: models.py:164
 msgid "Draw buttons"
-msgstr ""
+msgstr "आखणीचे बटन्स"
 
 #: models.py:187
 msgid "page type"
-msgstr ""
+msgstr "पेजचा प्रकार"
 
 #: models.py:190
 msgid "elements"
-msgstr ""
+msgstr "एलिमेंट "
 
 #: models.py:202 models.py:330
 msgid "questionnaire page"
-msgstr ""
+msgstr "प्रश्नावलीचे पेज"
 
 #: models.py:203 models.py:331
 msgid "questionnaire pages"
-msgstr ""
+msgstr "प्रश्नावलीचे पेजेस"
 
 #: models.py:220
 msgid "popup"
-msgstr ""
+msgstr "पॉपप "
 
 #: models.py:221
 msgid "popups"
-msgstr ""
+msgstr "पॉपप्स "
 
 #: models.py:236 models.py:246 models.py:322
 msgid "page"
-msgstr ""
+msgstr "पेज "
 
 #: models.py:237 models.py:263
 msgid "pages"
-msgstr ""
+msgstr "पेजेस "
 
 #: models.py:248
 msgid "element"
-msgstr ""
+msgstr "एलिमेंट "
 
 #: models.py:250 models.py:324
 msgid "order"
-msgstr ""
+msgstr "क्रम "
 
 #: models.py:253
 msgid "page element"
-msgstr ""
+msgstr "पेज एलीमेंट"
 
 #: models.py:254
 msgid "page elements"
-msgstr ""
+msgstr "पेज एलिमेंट्स"
 
 #: models.py:264
 msgid "name of questionnaire"
-msgstr ""
+msgstr "प्रश्नावलीचे नाव "
 
 #: models.py:270
 msgid "area of questionnaire"
-msgstr ""
+msgstr "प्रश्नावलीचे क्षेत्र"
 
 #: models.py:274
 msgid ""
-"This is the initial area which will be visible on the questionnaire map. The "
-"map tools are on the up right corner of the map. To choose a tool you have "
+"This is the initial area which will be visible on the questionnaire map. The"
+" map tools are on the up right corner of the map. To choose a tool you have "
 "to click on it so that the tool turnes yellow. To draw choose the drawing "
 "tool and start drawing. To stop drawing you have to doubleclick the map. It "
 "is also possible to modify the area by choosing the modify tool. "
 "Modification works by dragging the vertexes of the area to the new modified "
 "places."
-msgstr ""
+msgstr "हे प्रारंभिक क्षेत्र प्रश्नावली नकाश्यावर  प्रदर्शित होईल.नकाश्याची साधनं वरच्या उजव्या कोपर्यात आहेत.\nसाधन निवडण्या करिता त्यावर क्लिक करा जेणे करून ते साधन पिवळ्या रंगाचे दिसेल.मार्किंग चालू करण्यासाठी मार्किंग साधनाची निवड करावी.\nमार्किंग थांबविण्या करता नकाश्यावर डबल क्लिक करावे.आपण  मार्क केलेल्या क्षेत्रा मध्ये सुधारणा करण्यासाठी फेरबदलाचे साधन निवडावे.\nफेरबदल करण्या करिता मार्क केलेल्या क्षेत्राचे कोपरे निवडून साधारित जागे परंत खेचावे."
 
 #: models.py:275
 msgid "show area"
-msgstr ""
+msgstr "क्षेत्र दाखवा "
 
 #: models.py:276
 msgid ""
@@ -279,43 +280,43 @@ msgstr ""
 msgid ""
 "This number will be used to set the initial map extent. The map extent is "
 "counted by drawn area times this number."
-msgstr ""
+msgstr "हि संख्या नकाश्याची  प्रारंभिक मर्यादा ठरवण्या करता उपयोगी आहे"
 
 #: models.py:281
 msgid "site"
-msgstr ""
+msgstr "साईट "
 
 #: models.py:308 models.py:320
 msgid "questionnaire"
-msgstr ""
+msgstr "प्रश्नावली "
 
 #: models.py:309
 msgid "questionnaires"
-msgstr ""
+msgstr "प्रश्नावली "
 
 #: widgets.py:34
 msgid "place icon"
-msgstr ""
+msgstr "जागेचे चिन्ह "
 
 #: widgets.py:37
 msgid "route icon"
-msgstr ""
+msgstr "मार्गाचे चिन्ह"
 
 #: widgets.py:40
 msgid "area icon"
-msgstr ""
+msgstr "क्षेत्राचे चिन्ह"
 
 #: templates/jstranslations.txt:5
 msgid "Click on the map to draw the point"
-msgstr ""
+msgstr "जागा  आखण्यासाठी नकाश्यावर क्लिक करा  "
 
 #: templates/jstranslations.txt:6
 msgid "Click on the map to start drawing the route and doubleclick to finnish"
-msgstr ""
+msgstr "मार्ग आखण्यासाठी नकाश्यावर क्लिक करा आणि मार्ग पूर्ण करण्या करता डबल क्लिक करा  "
 
 #: templates/jstranslations.txt:7
 msgid "Click on the map to start drawing the area and doubleclick to finnish"
-msgstr ""
+msgstr "क्षेत्र आखण्यासाठी नकाश्यावर क्लिक करा आणि मार्ग पूर्ण करण्या करता डबल क्लिक करा "
 
 #: templates/jstranslations.txt:10
 msgid "Annotations"
@@ -323,15 +324,15 @@ msgstr ""
 
 #: templates/questionnaire.html:15
 msgid "Questionnaires"
-msgstr ""
+msgstr "प्रश्नावली "
 
 #: templates/questionnaire.html:48 templates/questionnaire.html.py:51
 msgid "Next"
-msgstr ""
+msgstr "पुढचे "
 
 #: templates/questionnaire.html:50 templates/questionnaire.html.py:75
 msgid "Previous"
-msgstr ""
+msgstr "आधीचे "
 
 #: templates/questionnaire.html:61
 msgid "Your answers and finish"
@@ -343,24 +344,24 @@ msgid ""
 "you for your answers! You can still continue modifying your answers by "
 "clicking the previous buttons. Quit the questionnaire by clicking the 'quit "
 "and go to home page' button."
-msgstr ""
+msgstr "आपली उत्तरं सेव करण्यात आलेली असून ही प्रश्नावली येथे संपन्न होते.आपण दिलेल्या उत्तरांसाठी आपले आभार. \nतुम्ही तुमची उत्तरं मागे जाण्याचा बटणावर क्लिक करून अजूनही  सुधारू शकता.प्रश्नावली सोडून जाण्यासाठी 'बंद करून होमपेजवर जा ' ह्या बटणावर क्लिक करा."
 
 #: templates/questionnaire.html:76
 msgid "Quit and go to home page"
-msgstr ""
+msgstr "पेज सोडून होमपेज वर या "
 
 #: templates/questionnaire.html:99
 msgid "Remove"
-msgstr ""
+msgstr "काढा "
 
 #: templates/questionnaire.html:102
 #: templates/admin/geoforms/geoformelement/create_element.html:41
 msgid "Save"
-msgstr ""
+msgstr "सेव करा "
 
 #: templates/questionnaire.html:140
 msgid "You marked one place"
-msgstr ""
+msgstr "आपण एक जागा मार्क केली आहे."
 
 #: templates/questionnaire.html:142
 msgid "You marked"
@@ -368,23 +369,23 @@ msgstr ""
 
 #: templates/questionnaire.html:142
 msgid "places"
-msgstr ""
+msgstr "जागा"
 
 #: templates/questionnaire.html:148
 msgid "and answered one question"
-msgstr ""
+msgstr "आणि  एका  प्रश्नाचे  उत्तर  दिले  आहे"
 
 #: templates/questionnaire.html:150
 msgid "and answered"
-msgstr ""
+msgstr "आणि उत्तर दिले"
 
 #: templates/questionnaire.html:150 templates/questionnaire.html.py:155
 msgid "questions"
-msgstr ""
+msgstr "प्रश्न "
 
 #: templates/questionnaire.html:153
 msgid "You answered one question"
-msgstr ""
+msgstr "आपण एका प्रश्नाचे उत्तर दिले"
 
 #: templates/questionnaire.html:155
 msgid "You answered"
@@ -392,25 +393,25 @@ msgstr ""
 
 #: templates/admin/geoforms/geoformelement/create_element.html:7
 msgid "Home"
-msgstr ""
+msgstr "होम"
 
 #: templates/admin/geoforms/geoformelement/create_element.html:10
 msgid "Create element"
-msgstr ""
+msgstr "एलिमेंट बनवा  "
 
 #: templates/admin/geoforms/geoformelement/create_element.html:29
 msgid "remove"
-msgstr ""
+msgstr "काढा "
 
 #: templates/admin/geoforms/geoformelement/create_element.html:34
 msgid "add"
-msgstr ""
+msgstr "अधिक "
 
 #: templates/help/geoform_element_html.html:2
 msgid ""
 "\n"
 "This is the HTML that represents the element widget.\n"
-msgstr ""
+msgstr "\nहे एच.टि.एम.एल  एलिमेन्टचे वर्णन करते.\n"
 
 #: templates/help/geoform_element_name.html:2
 msgid ""
@@ -418,4 +419,4 @@ msgid ""
 "This is the name of the element. The element name should be unique\n"
 "throughout the application so there cannot be two elements with the\n"
 "same name.\n"
-msgstr ""
+msgstr "\nहे एलिमेन्टचे नाव आहे.हे नाव पूर्ण अएप्लिकशन मध्ये \nएकमेव असावे जेणे करून २ एलिमेंट्सना एकाच नाव दिले जाणार  नाही.\n"
