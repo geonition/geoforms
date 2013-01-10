@@ -389,11 +389,11 @@ gnt.questionnaire.show_popup_for_feature = function(feature, popup_name) {
         //create popup and put it on the map
         gnt.questionnaire.popup = feature.popup;
         map.addPopup(gnt.questionnaire.popup);
-        gnt.questionnaire.popup.updateSize();
-        map.addPopup(gnt.questionnaire.popup);
+        //map.addPopup(gnt.questionnaire.popup);
         
         //add a class to the form to recognize it as active
         $( '.olFramedCloudPopupContent form[name="' + popup_name + '"]' ).addClass( 'active' );
+
         
         // add values to the form the values are connected but the form element name
         // and the name value in the feature attributes
@@ -428,6 +428,10 @@ gnt.questionnaire.show_popup_for_feature = function(feature, popup_name) {
             }
             return value;
         });
+
+        //Create jQuery sliders and update popup size
+        gnt.questionnaire.create_widgets('.popupform.active');
+        gnt.questionnaire.popup.updateSize();
         
         //connect the event to the infowindow buttons
         $('form[name="' + popup_name + '"] button.save').click([feature],
@@ -860,7 +864,7 @@ gnt.questionnaire.init = function(forms,
             });
         
         // polyfill HTML 5 widgets
-        gnt.questionnaire.create_widgets('');
+        gnt.questionnaire.create_widgets('#forms');
         
         //the point where everything is done for callback
         if(callback !== undefined) {
@@ -876,37 +880,39 @@ The parameter css_selector can be used to specify where to search for html5 inpu
 */
 gnt.questionnaire.create_widgets = function(css_selector) {
     var i;
+    if(css_selector === '') {
+        css_selector = '*'
+    }
     //HTML 5 fallback create a slider if no browser support
     if(!Modernizr.inputtypes.range) {
-        var range_elements = $('input[type=range]');
+        var range_elements = $(css_selector).find('input[type=range]').each(function() {
         var min;
         var max;
         var step;
         var value;
         //hide the range inputs
-        $('input[type=range]').hide()
-        for(i = 0; i < range_elements.length; i++) {
-            min = $(range_elements[i]).attr('min');
-            max = $(range_elements[i]).attr('max');
-            step = $(range_elements[i]).attr('step');
-            value = $(range_elements[i]).attr('value');
-            name = $(range_elements[i]).attr('name');
-            $(range_elements[i]).after('<div class="slider ' + name + '" data-input="' + name + '"></div>');
-            //the step has to be a integer e.g. step is 1,2,3,4,,, in UI sliders
+        $(this).hide();
+        min = $(this).attr('min');
+        max = $(this).attr('max');
+        step = $(this).attr('step');
+        value = $(this).attr('value');
+        name = $(this).attr('name');
+        $(this).after('<div class="slider ' + name + '" data-input="' + name + '"></div>');
+        //the step has to be a integer e.g. step is 1,2,3,4,,, in UI sliders
             
             
-            $('.slider.' + name).slider({
-                'max': (max - min)/step,
-                'min': 0,
-                'step': 1,
-                'value': (value - min)/step,
-                'input_element': range_elements[i],
-                'change': function(event, ui) {
-                    $('input[name=' + $(this).data('input') + ']').attr('value', String(ui.value * step + Number(min)));
-                    $('input[name=' + $(this).data('input') + ']').change();
-                }
-            });
+        $('.slider.' + name).slider({
+            'max': (max - min)/step,
+            'min': 0,
+            'step': 1,
+            'value': (value - min)/step,
+            'input_element': this,
+            'change': function(event, ui) {
+                $($(this).slider( "option", "input_element")).attr('value', String(ui.value * step + Number(min)));
+                $($(this).slider( "option", "input_element")).change();
+            }
+        });
             
-        }
+        });
     }
 };
