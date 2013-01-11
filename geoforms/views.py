@@ -5,13 +5,24 @@ from geoforms.models import Questionnaire
 from django.template import RequestContext
 from django.views.decorators.csrf import ensure_csrf_cookie
 
+from django.conf import settings
+# we need srid of the questionnaire map
+from maps.models import Map
+
+
 @ensure_csrf_cookie
 def questionnaire(request, questionnaire_slug):
     """
     This view creates the whole questionnaire html.
     """
+    # At the moment questionnaires always use map named questionnaire map.
+    # This should not be hardcoded
+    map_srid = int(Map.objects.get(slug_name = 'questionnaire-map').projection)
     
-    quest = Questionnaire.on_site.select_related().get(slug = questionnaire_slug)
+#    quest = Questionnaire.on_site.select_related().get(slug = questionnaire_slug)
+    quest = Questionnaire.objects.filter(
+                      site__id__exact = settings.SITE_ID).transform(
+                      map_srid).select_related().get(slug = questionnaire_slug)
     form_list = quest.geoforms.all().order_by('questionnaireform__order')
     elements = {}
     popup_set = set(Geoform.objects.filter(page_type = 'popup').values_list('slug', flat=True))

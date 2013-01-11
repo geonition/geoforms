@@ -285,6 +285,7 @@ class Questionnaire(models.Model):
                              editable = False)
 
     on_site = CurrentSiteManager()
+    objects = geomodel.GeoManager()
     
     def get_absolute_url(self):
         """
