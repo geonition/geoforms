@@ -568,7 +568,7 @@ gnt.questionnaire.init = function(forms,
                     $('#main .span_right').switchClass('smallcontent', 'bigcontent', '500');
                 } else {
                     $('#main .span_left').switchClass('bigcontent', 'smallcontent', '300');
-                    $('#main .span_right').switchClass('bigcontent', 'smallcontent', '300');
+                    $('#main .span_right').switchClass('bigcontent', 'smallcontent', '300', 'swing', function(){ map.updateSize();});
                 }
                 //scroll to the right place
                 $('#main .span_left').scrollTop(0);
@@ -786,6 +786,7 @@ gnt.questionnaire.init = function(forms,
         
         var gf = new OpenLayers.Format.GeoJSON();
         var questionnaire_area_feature = gf.read( questionnaire_area );
+        //map.zoomTo(11);
         map.zoomToExtent( questionnaire_area_feature[0].geometry.getBounds().scale(questionnaire.scale_visible_area) );
         
         //set to annotations layer if visible
