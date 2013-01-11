@@ -50,3 +50,6 @@ def questionnaire(request, questionnaire_slug, template=''):
 def feedback(request, questionnaire_slug):
     return questionnaire(request, questionnaire_slug, 'kateva_feedback.html')
 
+def hslfeedback(request, questionnaire_slug):
+    return questionnaire(request, questionnaire_slug, 'hsl_feedback.html')
+
