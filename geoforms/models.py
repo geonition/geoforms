@@ -6,7 +6,7 @@ from django.core.urlresolvers import reverse
 from django.db import models
 from django.template.defaultfilters import slugify
 from django.template.loader import render_to_string
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext_lazy as _
 
 class GeoformElement(models.Model):
     """
@@ -23,12 +23,16 @@ class GeoformElement(models.Model):
     """
     slug = models.SlugField(max_length = 200,
                             editable = False,
-                            unique = True)
+                            unique = True,
+                            verbose_name = _('slug'))
     name = models.CharField(max_length = 200,
-                            help_text = render_to_string('help/geoform_element_name.html'))
+                            help_text = render_to_string('help/geoform_element_name.html'),
+                            verbose_name = _('name'))
     element_type = models.CharField(max_length = 50,
-                                    default = 'html')
-    html = models.TextField(help_text = render_to_string('help/geoform_element_html.html'))
+                                    default = 'html',
+                                    verbose_name = _('element type'))
+    html = models.TextField(help_text = render_to_string('help/geoform_element_html.html'),
+                            verbose_name = _('html'))
 
     def save(self, *args, **kwargs):
         self.slug = slugify("%s %s" % (self.name, self.id))[:200]
@@ -170,16 +174,20 @@ class Geoform(models.Model):
     """
     slug = models.SlugField(max_length = 200,
                             editable = False,
-                            unique = True)
-    name = models.CharField(max_length = 200)
+                            unique = True,
+                            verbose_name = _('slug'))
+    name = models.CharField(max_length = 200,
+                            verbose_name = _('name'))
     page_type = models.CharField(max_length = 5,
                                  choices = (
                                     ('popup', 'popup'),
                                     ('form','form')),
                                  default = 'form',
-                                 editable = False)
+                                 editable = False,
+                                 verbose_name = _('page type'))
     elements = models.ManyToManyField(GeoformElement,
-                                      through = 'FormElement')
+                                      through = 'FormElement',
+                                      verbose_name = _('elements'))
 
     def save(self, *args, **kwargs):
         self.slug = slugify("%s %s" % (self.name, self.id))[:200]
@@ -234,9 +242,12 @@ class FormElement(models.Model):
     This model orders the elements in a
     form to any required order.
     """
-    geoform = models.ForeignKey(Geoform)
-    element = models.ForeignKey(GeoformElement)
-    order = models.IntegerField(default=10)
+    geoform = models.ForeignKey(Geoform,
+                                verbose_name = _('page'))
+    element = models.ForeignKey(GeoformElement,
+                                verbose_name = _('element'))
+    order = models.IntegerField(default=10,
+                                verbose_name = _('order'))
         
     class Meta:
         verbose_name = _('page element')
@@ -248,23 +259,26 @@ class Questionnaire(models.Model):
     """
     geoforms = models.ManyToManyField(Geoform,
                                       through = 'QuestionnaireForm',
-                                      related_name = 'geoforms')
+                                      related_name = 'geoforms',
+                                      verbose_name = _('pages'))
     name = models.CharField(_('name of questionnaire'),
                             max_length = 200)
     slug = models.SlugField(max_length = 200,
                             editable = False,
-                            unique = True)
+                            unique = True,
+                            verbose_name = _('slug'))
     area = geomodel.PolygonField(_('area of questionnaire'),
                                  srid = getattr(settings,
                                                 'SPATIAL_REFERENCE_SYSTEM_ID',
                                                 4326),
                                  help_text = _('This is the initial area which will be visible on the questionnaire map. The map tools are on the up right corner of the map. To choose a tool you have to click on it so that the tool turnes yellow. To draw choose the drawing tool and start drawing. To stop drawing you have to doubleclick the map. It is also possible to modify the area by choosing the modify tool. Modification works by dragging the vertexes of the area to the new modified places.'))
-    show_area = models.BooleanField(verbose_name = _('Show area'),
+    show_area = models.BooleanField(verbose_name = _('show area'),
                                     help_text = _('Check the box to show the area to the user. Otherwise leave the checkbox unchecked.'))
-    scale_visible_area = models.IntegerField(verbose_name = _('Scale the visible area'),
+    scale_visible_area = models.IntegerField(verbose_name = _('scale the visible area'),
                                              default = 1,
                                              help_text = _('This number will be used to set the initial map extent. The map extent is counted by drawn area times this number.'))
     site = models.ForeignKey(Site,
+                             verbose_name = _('site'),
                              default = getattr(settings,
                                                'SITE_ID',
                                                1),
@@ -302,9 +316,12 @@ class QuestionnaireForm(models.Model):
     Also works as the manytomany relationship between
     questionnaires and forms.
     """
-    questionnaire = models.ForeignKey(Questionnaire)
-    geoform = models.ForeignKey(Geoform)
-    order = models.IntegerField(default=10)
+    questionnaire = models.ForeignKey(Questionnaire,
+                                      verbose_name = _('questionnaire'))
+    geoform = models.ForeignKey(Geoform,
+                                verbose_name = _('page'))
+    order = models.IntegerField(default=10,
+                                verbose_name = _('order'))
 
     def __unicode__(self):
         return u'questionnaire page'

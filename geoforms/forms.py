@@ -6,7 +6,7 @@ from django.conf import settings
 from django.forms.formsets import BaseFormSet
 from django.forms.models import BaseModelFormSet
 from django.template.defaultfilters import slugify
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext_lazy as _
 from geoforms.fields import TranslationField
 from geoforms.models import CheckboxElementModel
 from geoforms.models import DrawbuttonElementModel
@@ -36,7 +36,7 @@ class ElementForm(forms.ModelForm):
     of the form <label>label <input .../></label>
     """
     
-    question = TranslationField()
+    question = TranslationField(label = _('question'))
     
     def __init__(self, *args, **kwargs):
         """
@@ -125,9 +125,9 @@ class TextareaForm(ElementForm):
     
 class NumberElementForm(ElementForm):
     
-    min_value = forms.IntegerField(initial = 0)
-    max_value = forms.IntegerField(initial = 1000)
-    step = forms.FloatField(initial = 1)
+    min_value = forms.IntegerField(initial = 0, label = _('minimum value'))
+    max_value = forms.IntegerField(initial = 1000, label = _('maximum value'))
+    step = forms.FloatField(initial = 1, label = _('size for one step'))
     
     def __init__(self, *args, **kwargs):
         """
@@ -204,13 +204,13 @@ class NumberElementForm(ElementForm):
                   'step')
 
 class RangeElementForm(forms.ModelForm):
-    question = TranslationField()
-    min_label = TranslationField(label=_('label for minimum choice'))
-    max_label = TranslationField(label=_('label for maximum choice'))
-    initial_value = forms.FloatField(initial = 50.12)
-    min_value = forms.IntegerField(initial = 0)
-    max_value = forms.IntegerField(initial = 100)
-    step = forms.FloatField(initial = 0.01)
+    question = TranslationField(label = _('question'))
+    min_label = TranslationField(label = _('label for minimum choice'))
+    max_label = TranslationField(label = _('label for maximum choice'))
+    initial_value = forms.FloatField(initial = 50.12, label = _('initial value'))
+    min_value = forms.IntegerField(initial = 0, label = _('minimum value'))
+    max_value = forms.IntegerField(initial = 100, label = _('maximum value'))
+    step = forms.FloatField(initial = 0.01, label = _('size for one step'))
     
     def __init__(self, *args, **kwargs):
         """
@@ -380,18 +380,22 @@ class CheckboxElementFormSet(BaseFormSet):
          
 class DrawbuttonForm(forms.ModelForm):
     geometry_type = forms.ChoiceField(choices = (
-        ('point', _('place')),
-        ('route', _('route')),
-        ('area', _('area')),))
-    label = TranslationField()
+                                        ('point', _('place')),
+                                        ('route', _('route')),
+                                        ('area', _('area')),),
+                                      label = _('geometry type'))
+    label = TranslationField(label = _('button text'))
     color = forms.CharField(max_length = 7,
                             widget = ColorInput,
+                            label = _('color'),
                             help_text = _('The color of the feature to be drawn. The color is given as hexadecimal color e.g. #ffffff --> white, #000000 --> black, #ff0000 --> red, #00ff00 --> green, #0000ff --> blue.'))
     popup = forms.ChoiceField(choices = (('',''),),
+                              label = _('popup for the place, route or area'),
                               help_text = _('Choose the popup to use for the place, route, or area.'))
     max_amount = forms.IntegerField(min_value = 1,
                                     max_value = 1000,
                                     initial = 3,
+                                    label = _('max amount of answers'),
                                     help_text = _('This is the maximum number of allowed places/routes/areas that can be drawn by this drawbutton.'))
     
     
@@ -464,12 +468,15 @@ class DrawbuttonForm(forms.ModelForm):
         model = DrawbuttonElementModel
         fields = ('geometry_type',
                   'label',
-                  'color',)
+                  'color',
+                  'popup',
+                  'max_amount')
 
 class ParagraphForm(forms.ModelForm):
     
     text = TranslationField(field_class = forms.CharField,
                             widget = TranslationWidget(widget_class = forms.Textarea),
+                            label = _('text for the paragraph'),
                             help_text = _('This field takes as input any html tags. This enables you to style the text in any way you want. Here is a list of tags that can be used <a href="http://dev.w3.org/html5/spec/single-page.html#usage-summary">html5 tags</a>'))
     
     def __init__(self, *args, **kwargs):
@@ -523,4 +530,6 @@ class QuestionForm(forms.Form):
     for e.g. radio buttons
     """
     question = TranslationField()
+    
+    question = TranslationField(label = _('question'))
     
