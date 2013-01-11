@@ -13,8 +13,9 @@
 }
 .rangetext {
     width: 250px;
-    float: left;
+    display: inline-block;
     text-align: left;
+    padding: 0 15px 0 15px;
 }
 button.drawbutton {
     width: 80%;
@@ -65,9 +66,15 @@ button.drawbutton.second {
 
 .form_element input {
     max-width: 250px;
+    /*margin-top:5px;
+    float: left;
+    height:20px;*/
 }
 .form_element label {
-    display: block;
+    margin-left: 50px;
+    display: block; 
+    /*height: 25px; 
+    line-height: 25px;*/
     margin: 0.1em;
     text-align: left;
 }
@@ -80,7 +87,7 @@ button.drawbutton.second {
 
 /* HTML% fallbasck widgets*/
 .form_element .slider {
-    float: left;
+    display: inline-block;
     width: 250px;
     margin-left: 1em;
     margin-right: 1em;
@@ -141,9 +148,6 @@ button.drawbutton.second {
 }
 
 /* checkboxes and radiobuttons */
-.form_element label {
-    margin-left: 50px;
-}
 
 /* sliders in popups */
 .popupform .form_element .slider {
