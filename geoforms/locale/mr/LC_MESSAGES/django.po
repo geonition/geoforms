@@ -1,22 +1,21 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Translators:
 #   <pratikhublikar@gmail.com>, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: geonition\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-12 10:01-0600\n"
+"POT-Creation-Date: 2013-01-12 17:00-0600\n"
 "PO-Revision-Date: 2012-12-14 10:10+0000\n"
 "Last-Translator: pratikhublikar <pratikhublikar@gmail.com>\n"
-"Language-Team: Marathi (http://www.transifex.com/projects/p/geonition/"
-"language/mr/)\n"
-"Language: mr\n"
+"Language-Team: Marathi (http://www.transifex.com/projects/p/geonition/language/mr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: mr\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: admin.py:112 admin.py:159 admin.py:181
@@ -82,11 +81,9 @@ msgstr "रंग "
 #: forms.py:391
 msgid ""
 "The color of the feature to be drawn. The color is given as hexadecimal "
-"color e.g. #ffffff --> white, #000000 --> black, #ff0000 --> red, #00ff00 --"
-"> green, #0000ff --> blue."
-msgstr ""
-"फीचरचा रंग निवडा.रंग सह्दाशौंश अंका प्रमाणे ठरविण्यात येतो.#ffffff --> पांढरा , "
-"#000000 --> काळा, #ff0000 --> लाल, #00ff00 -->हिरवा, #0000ff -->  निळा."
+"color e.g. #ffffff --> white, #000000 --> black, #ff0000 --> red, #00ff00 "
+"--> green, #0000ff --> blue."
+msgstr "फीचरचा रंग निवडा.रंग सह्दाशौंश अंका प्रमाणे ठरविण्यात येतो.#ffffff --> पांढरा , #000000 --> काळा, #ff0000 --> लाल, #00ff00 -->हिरवा, #0000ff -->  निळा."
 
 #: forms.py:393
 msgid "popup for the place, route or area"
@@ -104,8 +101,7 @@ msgstr "उत्तरांचे कमाल परिमाण."
 msgid ""
 "This is the maximum number of allowed places/routes/areas that can be drawn "
 "by this drawbutton."
-msgstr ""
-"ह्या बटणाद्वारे मार्क करता येणाऱ्या  अनुमत  जागा, मार्ग आणि क्षेत्रांची ही कमाल संख्या आहे"
+msgstr "ह्या बटणाद्वारे मार्क करता येणाऱ्या  अनुमत  जागा, मार्ग आणि क्षेत्रांची ही कमाल संख्या आहे"
 
 #: forms.py:479
 msgid "text for the paragraph"
@@ -114,9 +110,9 @@ msgstr "परिच्छेदासाठी पाठ. "
 #: forms.py:480
 msgid ""
 "This field takes as input any html tags. This enables you to style the text "
-"in any way you want. Here is a list of tags that can be used <a href="
-"\"http://dev.w3.org/html5/spec/single-page.html#usage-summary\">html5 tags</"
-"a>"
+"in any way you want. Here is a list of tags that can be used <a "
+"href=\"http://dev.w3.org/html5/spec/single-page.html#usage-summary\">html5 "
+"tags</a>"
 msgstr ""
 
 #: models.py:27 models.py:178 models.py:269
@@ -257,21 +253,14 @@ msgstr "प्रश्नावलीचे क्षेत्र"
 
 #: models.py:274
 msgid ""
-"This is the initial area which will be visible on the questionnaire map. The "
-"map tools are on the up right corner of the map. To choose a tool you have "
+"This is the initial area which will be visible on the questionnaire map. The"
+" map tools are on the up right corner of the map. To choose a tool you have "
 "to click on it so that the tool turnes yellow. To draw choose the drawing "
 "tool and start drawing. To stop drawing you have to doubleclick the map. It "
 "is also possible to modify the area by choosing the modify tool. "
 "Modification works by dragging the vertexes of the area to the new modified "
 "places."
-msgstr ""
-"हे प्रारंभिक क्षेत्र प्रश्नावली नकाश्यावर  प्रदर्शित होईल.नकाश्याची साधनं वरच्या उजव्या "
-"कोपर्यात आहेत.\n"
-"साधन निवडण्या करिता त्यावर क्लिक करा जेणे करून ते साधन पिवळ्या रंगाचे दिसेल.मार्किंग चालू "
-"करण्यासाठी मार्किंग साधनाची निवड करावी.\n"
-"मार्किंग थांबविण्या करता नकाश्यावर डबल क्लिक करावे.आपण  मार्क केलेल्या क्षेत्रा मध्ये सुधारणा "
-"करण्यासाठी फेरबदलाचे साधन निवडावे.\n"
-"फेरबदल करण्या करिता मार्क केलेल्या क्षेत्राचे कोपरे निवडून साधारित जागे परंत खेचावे."
+msgstr "हे प्रारंभिक क्षेत्र प्रश्नावली नकाश्यावर  प्रदर्शित होईल.नकाश्याची साधनं वरच्या उजव्या कोपर्यात आहेत.\nसाधन निवडण्या करिता त्यावर क्लिक करा जेणे करून ते साधन पिवळ्या रंगाचे दिसेल.मार्किंग चालू करण्यासाठी मार्किंग साधनाची निवड करावी.\nमार्किंग थांबविण्या करता नकाश्यावर डबल क्लिक करावे.आपण  मार्क केलेल्या क्षेत्रा मध्ये सुधारणा करण्यासाठी फेरबदलाचे साधन निवडावे.\nफेरबदल करण्या करिता मार्क केलेल्या क्षेत्राचे कोपरे निवडून साधारित जागे परंत खेचावे."
 
 #: models.py:275
 msgid "show area"
@@ -323,8 +312,7 @@ msgstr "जागा  आखण्यासाठी नकाश्यावर
 
 #: templates/jstranslations.txt:6
 msgid "Click on the map to start drawing the route and doubleclick to finnish"
-msgstr ""
-"मार्ग आखण्यासाठी नकाश्यावर क्लिक करा आणि मार्ग पूर्ण करण्या करता डबल क्लिक करा  "
+msgstr "मार्ग आखण्यासाठी नकाश्यावर क्लिक करा आणि मार्ग पूर्ण करण्या करता डबल क्लिक करा  "
 
 #: templates/jstranslations.txt:7
 msgid "Click on the map to start drawing the area and doubleclick to finnish"
@@ -356,11 +344,7 @@ msgid ""
 "you for your answers! You can still continue modifying your answers by "
 "clicking the previous buttons. Quit the questionnaire by clicking the 'quit "
 "and go to home page' button."
-msgstr ""
-"आपली उत्तरं सेव करण्यात आलेली असून ही प्रश्नावली येथे संपन्न होते.आपण दिलेल्या उत्तरांसाठी "
-"आपले आभार. \n"
-"तुम्ही तुमची उत्तरं मागे जाण्याचा बटणावर क्लिक करून अजूनही  सुधारू शकता.प्रश्नावली सोडून "
-"जाण्यासाठी 'बंद करून होमपेजवर जा ' ह्या बटणावर क्लिक करा."
+msgstr "आपली उत्तरं सेव करण्यात आलेली असून ही प्रश्नावली येथे संपन्न होते.आपण दिलेल्या उत्तरांसाठी आपले आभार. \nतुम्ही तुमची उत्तरं मागे जाण्याचा बटणावर क्लिक करून अजूनही  सुधारू शकता.प्रश्नावली सोडून जाण्यासाठी 'बंद करून होमपेजवर जा ' ह्या बटणावर क्लिक करा."
 
 #: templates/questionnaire.html:76
 msgid "Quit and go to home page"
@@ -427,9 +411,7 @@ msgstr "अधिक "
 msgid ""
 "\n"
 "This is the HTML that represents the element widget.\n"
-msgstr ""
-"\n"
-"हे एच.टि.एम.एल  एलिमेन्टचे वर्णन करते.\n"
+msgstr "\nहे एच.टि.एम.एल  एलिमेन्टचे वर्णन करते.\n"
 
 #: templates/help/geoform_element_name.html:2
 msgid ""
@@ -437,7 +419,4 @@ msgid ""
 "This is the name of the element. The element name should be unique\n"
 "throughout the application so there cannot be two elements with the\n"
 "same name.\n"
-msgstr ""
-"\n"
-"हे एलिमेन्टचे नाव आहे.हे नाव पूर्ण अएप्लिकशन मध्ये \n"
-"एकमेव असावे जेणे करून २ एलिमेंट्सना एकाच नाव दिले जाणार  नाही.\n"
+msgstr "\nहे एलिमेन्टचे नाव आहे.हे नाव पूर्ण अएप्लिकशन मध्ये \nएकमेव असावे जेणे करून २ एलिमेंट्सना एकाच नाव दिले जाणार  नाही.\n"
