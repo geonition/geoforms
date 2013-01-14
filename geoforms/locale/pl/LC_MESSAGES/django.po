@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Translators:
-#   <mczepkiewicz@yahoo.pl>, 2012.
+#   <mczepkiewicz@yahoo.pl>, 2012-2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: geonition\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-13 10:01-0600\n"
-"PO-Revision-Date: 2012-11-26 13:30+0000\n"
-"Last-Translator: ksnabb <kristoffer.snabb@geonition.org>\n"
+"POT-Creation-Date: 2013-01-14 09:01-0600\n"
+"PO-Revision-Date: 2013-01-14 12:27+0000\n"
+"Last-Translator: 2michal3 <mczepkiewicz@yahoo.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/projects/p/geonition/"
 "language/pl/)\n"
 "Language: pl\n"
@@ -58,11 +58,11 @@ msgstr ""
 
 #: forms.py:383
 msgid "place"
-msgstr "Miejsce"
+msgstr "Punkt"
 
 #: forms.py:384
 msgid "route"
-msgstr "ścieżka"
+msgstr "Linia"
 
 #: forms.py:385
 msgid "area"
@@ -310,15 +310,17 @@ msgstr ""
 
 #: templates/jstranslations.txt:5
 msgid "Click on the map to draw the point"
-msgstr ""
+msgstr "Kliknij na mapie by zaznaczyć punkt"
 
 #: templates/jstranslations.txt:6
 msgid "Click on the map to start drawing the route and doubleclick to finnish"
 msgstr ""
+"Kliknij na mapie by zacząć rysować linię. Kliknij dwukrotnie by zakończyć"
 
 #: templates/jstranslations.txt:7
 msgid "Click on the map to start drawing the area and doubleclick to finnish"
 msgstr ""
+"Kliknij na mapie by zacząć rysować obszar. Kliknij dwukrotnie by zakończyć"
 
 #: templates/jstranslations.txt:10
 msgid "Annotations"
@@ -338,7 +340,7 @@ msgstr "Poprzednie"
 
 #: templates/questionnaire.html:61
 msgid "Your answers and finish"
-msgstr ""
+msgstr "odpowiedzi i zakończ"
 
 #: templates/questionnaire.html:70
 msgid ""
@@ -347,6 +349,10 @@ msgid ""
 "clicking the previous buttons. Quit the questionnaire by clicking the 'quit "
 "and go to home page' button."
 msgstr ""
+"To jest koniec ankiety. Dziękujemy za jej wypełnienie! Twoje odpowiedzi "
+"zostały zapisane. W dalszym ciągu możesz je modyfikować, klikając na "
+"przycisk \"Poprzednie\". Żeby wyjść z ankiety kliknij na przycisk \"Wyjdź i "
+"wróć do strony głównej\""
 
 #: templates/questionnaire.html:76
 msgid "Quit and go to home page"
@@ -371,27 +377,27 @@ msgstr "Zaznaczyłeś/aś"
 
 #: templates/questionnaire.html:142
 msgid "places"
-msgstr ""
+msgstr "miejsc"
 
 #: templates/questionnaire.html:148
 msgid "and answered one question"
-msgstr ""
+msgstr "i odpowiedziałeś/aś na jedno pytanie"
 
 #: templates/questionnaire.html:150
 msgid "and answered"
-msgstr ""
+msgstr "i odpowiedziałeś/aś"
 
 #: templates/questionnaire.html:150 templates/questionnaire.html.py:155
 msgid "questions"
-msgstr ""
+msgstr "pytań"
 
 #: templates/questionnaire.html:153
 msgid "You answered one question"
-msgstr ""
+msgstr "Odpowiedziałeś/aś na jedno pytanie"
 
 #: templates/questionnaire.html:155
 msgid "You answered"
-msgstr ""
+msgstr "Odpowiedziałeś/aś"
 
 #: templates/admin/geoforms/geoformelement/create_element.html:7
 msgid "Home"
