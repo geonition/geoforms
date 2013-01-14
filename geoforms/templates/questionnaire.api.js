@@ -548,8 +548,8 @@ gnt.questionnaire.init = function(forms,
         }
         // set the size according to active page
         if($('#page_' + (active_page + 1)).hasClass('bigcontent')) {
-            $('#main .span_left').switchClass('smallcontent', 'bigcontent', '3000');
-            $('#main .span_right').switchClass('smallcontent', 'bigcontent', '3000');
+            $('#main .span_left').switchClass('smallcontent', 'bigcontent', '300');
+            $('#main .span_right').switchClass('smallcontent', 'bigcontent', '300');
         }
         
         //create accordion
@@ -570,11 +570,11 @@ gnt.questionnaire.init = function(forms,
                 
                 //make content big if no drawbuttons on page
                 if(ui.newHeader.hasClass('bigcontent')) {
-                    $('#main .span_left').switchClass('smallcontent', 'bigcontent', '3000');
-                    $('#main .span_right').switchClass('smallcontent', 'bigcontent', '3000');
+                    $('#main .span_left').switchClass('smallcontent', 'bigcontent', '300');
+                    $('#main .span_right').switchClass('smallcontent', 'bigcontent', '300');
                 } else {
-                    $('#main .span_left').switchClass('bigcontent', 'smallcontent', '3000');
-                    $('#main .span_right').switchClass('bigcontent', 'smallcontent', '3000');
+                    $('#main .span_left').switchClass('bigcontent', 'smallcontent', '300');
+                    $('#main .span_right').switchClass('bigcontent', 'smallcontent', '300', 'swing', function(){ map.updateSize();});
                 }
                 
             }
