@@ -529,5 +529,7 @@ class QuestionForm(forms.Form):
     This is used to define the question
     for e.g. radio buttons
     """
+    question = TranslationField()
+    
     question = TranslationField(label = _('question'))
     
