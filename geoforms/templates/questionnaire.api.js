@@ -777,8 +777,20 @@ gnt.questionnaire.init = function(forms,
         
         select_feature_control.activate();
         
-        var gf = new OpenLayers.Format.GeoJSON();
+        var gf = new OpenLayers.Format.GeoJSON(),
+            source_proj,
+            target_proj;
         var questionnaire_area_feature = gf.read( questionnaire_area );
+        // Projection objects for transformations
+        if (questionnaire_area.crs !== undefined) {
+            source_proj = new OpenLayers.Projection(questionnaire_area.crs.properties.code);
+        }
+        else {
+            source_proj = new OpenLayers.Projection("EPSG:4326");
+        }
+        target_proj = new OpenLayers.Projection(map.getProjection());
+        // Transform geometry to map projection
+        questionnaire_area_feature[0].geometry.transform(source_proj, target_proj);
         map.zoomToExtent( questionnaire_area_feature[0].geometry.getBounds().scale(questionnaire.scale_visible_area) );
         
         //set to annotations layer if visible
@@ -794,16 +806,21 @@ gnt.questionnaire.init = function(forms,
             {
                 'success': function(data) {
                     if (data.features) {
-                        var pl = map.getLayersByName('Point Layer')[0];
-                        var rl = map.getLayersByName('Route Layer')[0];
-                        var al = map.getLayersByName('Area Layer')[0];
-                        var gf = new OpenLayers.Format.GeoJSON();
-                        var popupcontent = " default content ";
+                        var pl = map.getLayersByName('Point Layer')[0],
+                            rl = map.getLayersByName('Route Layer')[0],
+                            al = map.getLayersByName('Area Layer')[0],
+                            gf = new OpenLayers.Format.GeoJSON(),
+                            // Projection objects for transformations
+                            source_proj = new OpenLayers.Projection(data.crs.properties.code),
+                            target_proj = new OpenLayers.Projection(map.getProjection());
+                            popupcontent = " default content ";
            
                         for(var i = 0; i < data.features.length; i++) {
                             var feature = gf.parseFeature(data.features[i]);
                             //add values losed in parsing should be added again
-                            feature['private'] = data.features[i]['private']; 
+                            feature['private'] = data.features[i]['private'];
+                            // Transform geometry to map projection
+                            feature.geometry.transform(source_proj, target_proj);
                             feature.lonlat = gnt.questionnaire.get_popup_lonlat(feature.geometry);
                             
                             var popup_name = $('.drawbutton[name=' +

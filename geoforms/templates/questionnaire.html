@@ -108,13 +108,17 @@
 {% endblock content %}
 
 {% block javascript %}
-<script src="{{ STATIC_URL }}js/libs/OpenLayers-gnt.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/libs/proj4js-geonition.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/libs/OpenLayers-gnt.js"></script>
 <script type="text/javascript" src="{% url api_javascript %}"></script>
 <script type="text/javascript" src="{% url map_js map_slug_name=map_slug %}"></script>
 <script type="text/javascript">
 var data_group = 'Q-{{ questionnaire.slug }}';
 var questionnaire_area = {{ questionnaire.area.json|safe }};
-
+// add crs to area
+questionnaire_area['crs'] = {"type": "name", 
+                             "properties": {
+                                 "code": "EPSG:{{ questionnaire.area.srid|safe }}"}};
 // instead of using global varibles start using this object
 
 var questionnaire = {
@@ -123,6 +127,10 @@ var questionnaire = {
     'show_area': {{ questionnaire.show_area|lower }},
     'scale_visible_area': {{ questionnaire.scale_visible_area }}
 }
+// add crs to area
+questionnaire.questionnaire_area['crs'] = {"type": "name", 
+                                           "properties": {
+                                                "code": "EPSG:{{ questionnaire.area.srid|safe }}"}};
 
 function count_results() {
     var number_of_properties = 0;
