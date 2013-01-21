@@ -179,6 +179,37 @@ jQuery(document).ready(function() {
             count_results();
         });
         // KATEVA START
+        function make_style_getter(){
+            var current = 0;
+            var name2style = {};
+            var colorlist = ['#CC0000',
+                            '#FF0066',
+                            '#990099',
+                            '#3333CC',
+                            '#0099FF',
+                            '#29A3A3',
+                            '#297A29',
+                            '#33D633',
+                            '#E6E600',
+                            '#663300'];
+            return function(name){
+                if (!(name in name2style))
+                {
+                    name2style[name] = { 
+                        strokeWidth: 5,
+                        strokeColor: colorlist[current++ % 10],
+                        fillColor: 'black',
+                        cursor: 'pointer',
+                        fillOpacity : 0.1,
+                        pointRadius: 6
+                        };
+                };
+                return name2style[name];
+            };
+        };
+        var get_style_for_name = make_style_getter();
+
+
             var i,
                 highlightCtrl,
                 select_control,
@@ -204,6 +235,7 @@ jQuery(document).ready(function() {
                         }
                     })
                 });
+
             otherLayer.setVisibility(false);
             map.addLayer(otherLayer);
         var other = map.getLayersByName('Others Layer')[0];
@@ -226,6 +258,7 @@ jQuery(document).ready(function() {
                                             //add values losed in parsing should be added again
                                             feature['private'] = data.features[i]['private'];
                                             feature.lonlat = gnt.questionnaire.get_popup_lonlat(feature.geometry);
+                                            feature.style = get_style_for_name(feature.attributes.name);
                                             other.addFeatures(feature);
                                             comment = feature.attributes.form_values[0].value;
                                             user = feature.attributes.user;
