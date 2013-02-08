@@ -267,6 +267,8 @@ class Questionnaire(models.Model):
                             editable = False,
                             unique = True,
                             verbose_name = _('slug'))
+    description = models.TextField(blank = True,
+                                   verbose_name= _('description'))
     area = geomodel.PolygonField(_('area of questionnaire'),
                                  srid = getattr(settings,
                                                 'SPATIAL_REFERENCE_SYSTEM_ID',
