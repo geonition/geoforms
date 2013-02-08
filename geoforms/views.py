@@ -1,9 +1,14 @@
 from bs4 import BeautifulSoup
 from django.shortcuts import render_to_response
+from django.core.urlresolvers import reverse
+from django.utils import simplejson as json
 from geoforms.models import Geoform
 from geoforms.models import Questionnaire
 from django.template import RequestContext
 from django.views.decorators.csrf import ensure_csrf_cookie
+from datetime import date
+from geonition_utils.http import HttpResponse
+
 
 @ensure_csrf_cookie
 def questionnaire(request, questionnaire_slug):
@@ -44,3 +49,18 @@ def questionnaire(request, questionnaire_slug):
                               'questionnaire': quest,
                               'map_slug': 'questionnaire-map'},
                              context_instance = RequestContext(request))
+    
+def get_active_questionnaires(request):
+    today = date.today()
+    active_quest = Questionnaire.on_site.filter(start_date__lte=today).filter(end_date__gte=today)
+    questionnaires = []
+    for quest in active_quest:
+        cur_quest = {}
+        cur_quest['name'] = quest.name
+        cur_quest['area'] = json.loads(quest.area.json),
+        cur_quest['url'] = reverse('questionnaire', kwargs={'questionnaire_slug': quest.slug})
+        questionnaires.append(cur_quest)
+    
+    return HttpResponse(json.dumps(questionnaires))
+    
+    

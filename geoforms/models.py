@@ -283,6 +283,16 @@ class Questionnaire(models.Model):
                                                'SITE_ID',
                                                1),
                              editable = False)
+    start_date = models.DateField(null = True, 
+                                  blank = True,
+                                  verbose_name = _('questionnaire start date'))
+    end_date = models.DateField(null = True,
+                                blank = True,
+                                verbose_name = _('questionnaire end date'))
+    map = models.CharField(max_length = 50,
+                            null = True,
+                            blank = True,
+                            verbose_name = _('map'))
 
     on_site = CurrentSiteManager()
     objects = geomodel.GeoManager()
