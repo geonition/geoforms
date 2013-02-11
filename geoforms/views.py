@@ -11,7 +11,7 @@ from geonition_utils.http import HttpResponse
 
 
 @ensure_csrf_cookie
-def questionnaire(request, questionnaire_slug):
+def questionnaire(request, questionnaire_slug, template=''):
     """
     This view creates the whole questionnaire html.
     """
@@ -41,7 +41,9 @@ def questionnaire(request, questionnaire_slug):
         elements[popupform.slug] = popupform.elements.order_by('formelement__order', '?')
     
     form_list = form_list.filter(page_type = 'form')
-    return render_to_response('questionnaire.html',
+    if not template:
+        template = 'questionnaire.html'
+    return render_to_response(template,
                              {'form_list': form_list,
                               'popup_list': popup_list,
                               'bigcontent_forms': bigcontent_forms,
@@ -63,4 +65,5 @@ def get_active_questionnaires(request):
     
     return HttpResponse(json.dumps(questionnaires))
     
-    
+def feedback(request, questionnaire_slug):
+    return questionnaire(request, questionnaire_slug, 'kateva_feedback.html')
