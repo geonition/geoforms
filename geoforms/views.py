@@ -8,6 +8,7 @@ from django.template import RequestContext
 from django.views.decorators.csrf import ensure_csrf_cookie
 from datetime import date
 from geonition_utils.http import HttpResponse
+from django.utils.translation import ugettext as _
 
 
 @ensure_csrf_cookie
@@ -52,13 +53,23 @@ def questionnaire(request, questionnaire_slug):
     
 def get_active_questionnaires(request):
     today = date.today()
-    active_quest = Questionnaire.on_site.filter(start_date__lte=today).filter(end_date__gte=today)
+    active_quests = Questionnaire.on_site.filter(start_date__lte=today).filter(end_date__gte=today)
     questionnaires = []
-    for quest in active_quest:
+    for quest in active_quests:
         cur_quest = {}
+        cur_feature = {"type": "Feature",
+                       "id": quest.id,
+                       "geometry": json.loads(quest.area.json),
+                       "crs": {"type": "name",
+                              "properties": {
+                                  "code": "EPSG:" + str(quest.area.srid)
+                             }}
+                       }
         cur_quest['name'] = quest.name
-        cur_quest['area'] = json.loads(quest.area.json),
+        cur_quest['description'] = quest.description
+        cur_quest['area'] = cur_feature
         cur_quest['url'] = reverse('questionnaire', kwargs={'questionnaire_slug': quest.slug})
+        cur_quest['link_text'] = _('Go to the application..')
         questionnaires.append(cur_quest)
     
     return HttpResponse(json.dumps(questionnaires))
