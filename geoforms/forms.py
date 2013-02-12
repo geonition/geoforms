@@ -232,7 +232,7 @@ class RangeElementForm(forms.ModelForm):
             for lang in settings.LANGUAGES:
                 soup = BeautifulSoup(getattr(kwargs['instance'],
                                              'html_%s' % lang[0]))
-                question.append(soup.p.text)
+                question.append(soup.div['id'])
                 min_label.append(soup.span.text)
                 max_label.append(soup.span.next_sibling.next_sibling.text)
                 
