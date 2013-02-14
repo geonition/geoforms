@@ -60,10 +60,15 @@ button.drawbutton.second {
 .form_element input {
     max-width: 250px;
 }
+.form_element textarea {
+    max-width: 250px;
+    max-height: 80px;
+}
 .form_element label {
     display: block;
     margin: 0.1em;
     text-align: left;
+    max-width: 300px;
 }
 .form_element .ui-accordion p {
     padding: 0;
@@ -134,10 +139,6 @@ button.drawbutton.second {
     background-color: #F9F9F9;
 }
 
-/* checkboxes and radiobuttons */
-.form_element label {
-    margin-left: 50px;
-}
 
 /* sliders in popups */
 .popupform .form_element .slider {
