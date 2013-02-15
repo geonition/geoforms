@@ -107,7 +107,7 @@ class QuestionnaireAdmin(admin.OSMGeoAdmin, TranslationAdmin):
                           {'default_zoom': 4})['default_zoom']
     fieldsets = (
         (None, {
-            'fields': ('name', 'description', ('start_date', 'end_date'), 'area',)
+            'fields': ('name', 'description', ('start_date', 'end_date'), 'area', 'annotation_areas',)
         }),
         (_('Advanced options'), {
             'classes': ('collapse',),

@@ -296,6 +296,14 @@ class Questionnaire(models.Model):
                             blank = True,
                             verbose_name = _('map'))
 
+    annotation_areas = geomodel.MultiPolygonField(_('annotation areas'),
+                                 srid = getattr(settings,
+                                                'SPATIAL_REFERENCE_SYSTEM_ID',
+                                                4326),
+                                 null = True,
+                                 blank = True,
+                                 help_text = _(''))
+    
     on_site = CurrentSiteManager()
     objects = geomodel.GeoManager()
     
