@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-21 04:00-0600\n"
+"POT-Creation-Date: 2013-02-21 04:27-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: admin.py:112 admin.py:159 admin.py:181
+#: admin.py:112 admin.py:163 admin.py:185
 msgid "Advanced options"
 msgstr ""
 
@@ -202,11 +202,11 @@ msgstr ""
 msgid "elements"
 msgstr ""
 
-#: models.py:202 models.py:330
+#: models.py:202 models.py:343
 msgid "questionnaire page"
 msgstr ""
 
-#: models.py:203 models.py:331
+#: models.py:203 models.py:344
 msgid "questionnaire pages"
 msgstr ""
 
@@ -218,7 +218,7 @@ msgstr ""
 msgid "popups"
 msgstr ""
 
-#: models.py:236 models.py:246 models.py:322
+#: models.py:236 models.py:246 models.py:335
 msgid "page"
 msgstr ""
 
@@ -230,7 +230,7 @@ msgstr ""
 msgid "element"
 msgstr ""
 
-#: models.py:250 models.py:324
+#: models.py:250 models.py:337
 msgid "order"
 msgstr ""
 
@@ -246,11 +246,15 @@ msgstr ""
 msgid "name of questionnaire"
 msgstr ""
 
-#: models.py:270
+#: models.py:271
+msgid "description"
+msgstr ""
+
+#: models.py:272
 msgid "area of questionnaire"
 msgstr ""
 
-#: models.py:274
+#: models.py:276
 msgid ""
 "This is the initial area which will be visible on the questionnaire map. The "
 "map tools are on the up right corner of the map. To choose a tool you have "
@@ -261,36 +265,52 @@ msgid ""
 "places."
 msgstr ""
 
-#: models.py:275
+#: models.py:277
 msgid "show area"
 msgstr ""
 
-#: models.py:276
+#: models.py:278
 msgid ""
 "Check the box to show the area to the user. Otherwise leave the checkbox "
 "unchecked."
 msgstr ""
 
-#: models.py:277
+#: models.py:279
 msgid "scale the visible area"
 msgstr ""
 
-#: models.py:279
+#: models.py:281
 msgid ""
 "This number will be used to set the initial map extent. The map extent is "
 "counted by drawn area times this number."
 msgstr ""
 
-#: models.py:281
+#: models.py:283
 msgid "site"
 msgstr ""
 
-#: models.py:308 models.py:320
+#: models.py:290
+msgid "questionnaire start date"
+msgstr ""
+
+#: models.py:293
+msgid "questionnaire end date"
+msgstr ""
+
+#: models.py:297
+msgid "map"
+msgstr ""
+
+#: models.py:321 models.py:333
 msgid "questionnaire"
 msgstr ""
 
-#: models.py:309
+#: models.py:322
 msgid "questionnaires"
+msgstr ""
+
+#: views.py:72
+msgid "Go to the application.."
 msgstr ""
 
 #: widgets.py:34
@@ -358,35 +378,35 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
-#: templates/questionnaire.html:140
+#: templates/questionnaire.html:148
 msgid "You marked one place"
 msgstr ""
 
-#: templates/questionnaire.html:142
+#: templates/questionnaire.html:150
 msgid "You marked"
 msgstr ""
 
-#: templates/questionnaire.html:142
+#: templates/questionnaire.html:150
 msgid "places"
 msgstr ""
 
-#: templates/questionnaire.html:148
+#: templates/questionnaire.html:156
 msgid "and answered one question"
 msgstr ""
 
-#: templates/questionnaire.html:150
+#: templates/questionnaire.html:158
 msgid "and answered"
 msgstr ""
 
-#: templates/questionnaire.html:150 templates/questionnaire.html.py:155
+#: templates/questionnaire.html:158 templates/questionnaire.html.py:163
 msgid "questions"
 msgstr ""
 
-#: templates/questionnaire.html:153
+#: templates/questionnaire.html:161
 msgid "You answered one question"
 msgstr ""
 
-#: templates/questionnaire.html:155
+#: templates/questionnaire.html:163
 msgid "You answered"
 msgstr ""
 
