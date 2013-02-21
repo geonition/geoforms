@@ -1,17 +1,24 @@
 from bs4 import BeautifulSoup
 from django.shortcuts import render_to_response
+from django.core.urlresolvers import reverse
+from django.utils import simplejson as json
 from geoforms.models import Geoform
 from geoforms.models import Questionnaire
 from django.template import RequestContext
 from django.views.decorators.csrf import ensure_csrf_cookie
+from datetime import date
+from geonition_utils.http import HttpResponse
+from django.utils.translation import ugettext as _
+
 
 @ensure_csrf_cookie
 def questionnaire(request, questionnaire_slug):
     """
     This view creates the whole questionnaire html.
     """
-    
+
     quest = Questionnaire.on_site.select_related().get(slug = questionnaire_slug)
+        
     form_list = quest.geoforms.all().order_by('questionnaireform__order')
     elements = {}
     popup_set = set(Geoform.objects.filter(page_type = 'popup').values_list('slug', flat=True))
@@ -43,3 +50,28 @@ def questionnaire(request, questionnaire_slug):
                               'questionnaire': quest,
                               'map_slug': 'questionnaire-map'},
                              context_instance = RequestContext(request))
+    
+def get_active_questionnaires(request):
+    today = date.today()
+    active_quests = Questionnaire.on_site.filter(start_date__lte=today).filter(end_date__gte=today)
+    questionnaires = []
+    for quest in active_quests:
+        cur_quest = {}
+        cur_feature = {"type": "Feature",
+                       "id": quest.id,
+                       "geometry": json.loads(quest.area.json),
+                       "crs": {"type": "name",
+                              "properties": {
+                                  "code": "EPSG:" + str(quest.area.srid)
+                             }}
+                       }
+        cur_quest['name'] = quest.name
+        cur_quest['description'] = quest.description
+        cur_quest['area'] = cur_feature
+        cur_quest['url'] = reverse('questionnaire', kwargs={'questionnaire_slug': quest.slug})
+        cur_quest['link_text'] = _('Go to the application..')
+        questionnaires.append(cur_quest)
+    
+    return HttpResponse(json.dumps(questionnaires))
+    
+    

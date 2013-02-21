@@ -107,7 +107,7 @@ class QuestionnaireAdmin(admin.OSMGeoAdmin, TranslationAdmin):
                           {'default_zoom': 4})['default_zoom']
     fieldsets = (
         (None, {
-            'fields': ('name', 'area',)
+            'fields': ('name', 'description', ('start_date', 'end_date'), 'area',)
         }),
         (_('Advanced options'), {
             'classes': ('collapse',),
@@ -123,7 +123,11 @@ class QuestionnaireAdmin(admin.OSMGeoAdmin, TranslationAdmin):
         return super(QuestionnaireAdmin, self).change_view(request, object_id,
             form_url, extra_context=extra_context)
         
-    
+    class Media:
+        css = {
+            "all": ("css/questionnaire_admin.css",)
+        }
+        
 admin.site.register(GeoformElement, GeoformElementAdmin)
 admin.site.register(Questionnaire, QuestionnaireAdmin)
 

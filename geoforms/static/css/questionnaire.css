@@ -139,6 +139,20 @@ button.drawbutton.second {
     margin-left: 50px;
 }
 
+/* sliders in popups */
+.popupform .form_element .slider {
+    width: 70px;
+}
+
+.popupform .rangetext {
+    font-size: 0.9em;
+    width: 160px;
+}
+
+.popupform .shortslider {
+    width: auto;
+}
+
 /*
 phones
 */

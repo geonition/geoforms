@@ -389,11 +389,11 @@ gnt.questionnaire.show_popup_for_feature = function(feature, popup_name) {
         //create popup and put it on the map
         gnt.questionnaire.popup = feature.popup;
         map.addPopup(gnt.questionnaire.popup);
-        gnt.questionnaire.popup.updateSize();
-        map.addPopup(gnt.questionnaire.popup);
+        //map.addPopup(gnt.questionnaire.popup);
         
         //add a class to the form to recognize it as active
         $( '.olFramedCloudPopupContent form[name="' + popup_name + '"]' ).addClass( 'active' );
+
         
         // add values to the form the values are connected but the form element name
         // and the name value in the feature attributes
@@ -428,6 +428,10 @@ gnt.questionnaire.show_popup_for_feature = function(feature, popup_name) {
             }
             return value;
         });
+
+        //Create jQuery sliders and update popup size
+        gnt.questionnaire.create_widgets('.popupform.active');
+        gnt.questionnaire.popup.updateSize();
         
         //connect the event to the infowindow buttons
         $('form[name="' + popup_name + '"] button.save').click([feature],
@@ -544,8 +548,8 @@ gnt.questionnaire.init = function(forms,
         }
         // set the size according to active page
         if($('#page_' + (active_page + 1)).hasClass('bigcontent')) {
-            $('#main .span_left').switchClass('smallcontent', 'bigcontent', '3000');
-            $('#main .span_right').switchClass('smallcontent', 'bigcontent', '3000');
+            $('#main .span_left').switchClass('smallcontent', 'bigcontent', '300');
+            $('#main .span_right').switchClass('smallcontent', 'bigcontent', '300');
         }
         
         //create accordion
@@ -566,11 +570,11 @@ gnt.questionnaire.init = function(forms,
                 
                 //make content big if no drawbuttons on page
                 if(ui.newHeader.hasClass('bigcontent')) {
-                    $('#main .span_left').switchClass('smallcontent', 'bigcontent', '3000');
-                    $('#main .span_right').switchClass('smallcontent', 'bigcontent', '3000');
+                    $('#main .span_left').switchClass('smallcontent', 'bigcontent', '300');
+                    $('#main .span_right').switchClass('smallcontent', 'bigcontent', '300');
                 } else {
-                    $('#main .span_left').switchClass('bigcontent', 'smallcontent', '3000');
-                    $('#main .span_right').switchClass('bigcontent', 'smallcontent', '3000');
+                    $('#main .span_left').switchClass('bigcontent', 'smallcontent', '300');
+                    $('#main .span_right').switchClass('bigcontent', 'smallcontent', '300', 'swing', function(){ map.updateSize();});
                 }
                 
             }
@@ -773,8 +777,20 @@ gnt.questionnaire.init = function(forms,
         
         select_feature_control.activate();
         
-        var gf = new OpenLayers.Format.GeoJSON();
+        var gf = new OpenLayers.Format.GeoJSON(),
+            source_proj,
+            target_proj;
         var questionnaire_area_feature = gf.read( questionnaire_area );
+        // Projection objects for transformations
+        if (questionnaire_area.crs !== undefined) {
+            source_proj = new OpenLayers.Projection(questionnaire_area.crs.properties.code);
+        }
+        else {
+            source_proj = new OpenLayers.Projection("EPSG:4326");
+        }
+        target_proj = new OpenLayers.Projection(map.getProjection());
+        // Transform geometry to map projection
+        questionnaire_area_feature[0].geometry.transform(source_proj, target_proj);
         map.zoomToExtent( questionnaire_area_feature[0].geometry.getBounds().scale(questionnaire.scale_visible_area) );
         
         //set to annotations layer if visible
@@ -790,16 +806,21 @@ gnt.questionnaire.init = function(forms,
             {
                 'success': function(data) {
                     if (data.features) {
-                        var pl = map.getLayersByName('Point Layer')[0];
-                        var rl = map.getLayersByName('Route Layer')[0];
-                        var al = map.getLayersByName('Area Layer')[0];
-                        var gf = new OpenLayers.Format.GeoJSON();
-                        var popupcontent = " default content ";
+                        var pl = map.getLayersByName('Point Layer')[0],
+                            rl = map.getLayersByName('Route Layer')[0],
+                            al = map.getLayersByName('Area Layer')[0],
+                            gf = new OpenLayers.Format.GeoJSON(),
+                            // Projection objects for transformations
+                            source_proj = new OpenLayers.Projection(data.crs.properties.code),
+                            target_proj = new OpenLayers.Projection(map.getProjection());
+                            popupcontent = " default content ";
            
                         for(var i = 0; i < data.features.length; i++) {
                             var feature = gf.parseFeature(data.features[i]);
                             //add values losed in parsing should be added again
-                            feature['private'] = data.features[i]['private']; 
+                            feature['private'] = data.features[i]['private'];
+                            // Transform geometry to map projection
+                            feature.geometry.transform(source_proj, target_proj);
                             feature.lonlat = gnt.questionnaire.get_popup_lonlat(feature.geometry);
                             
                             var popup_name = $('.drawbutton[name=' +
@@ -860,7 +881,7 @@ gnt.questionnaire.init = function(forms,
             });
         
         // polyfill HTML 5 widgets
-        gnt.questionnaire.create_widgets('');
+        gnt.questionnaire.create_widgets('#forms');
         
         //the point where everything is done for callback
         if(callback !== undefined) {
@@ -876,37 +897,39 @@ The parameter css_selector can be used to specify where to search for html5 inpu
 */
 gnt.questionnaire.create_widgets = function(css_selector) {
     var i;
+    if(css_selector === '') {
+        css_selector = '*'
+    }
     //HTML 5 fallback create a slider if no browser support
     if(!Modernizr.inputtypes.range) {
-        var range_elements = $('input[type=range]');
+        var range_elements = $(css_selector).find('input[type=range]').each(function() {
         var min;
         var max;
         var step;
         var value;
         //hide the range inputs
-        $('input[type=range]').hide()
-        for(i = 0; i < range_elements.length; i++) {
-            min = $(range_elements[i]).attr('min');
-            max = $(range_elements[i]).attr('max');
-            step = $(range_elements[i]).attr('step');
-            value = $(range_elements[i]).attr('value');
-            name = $(range_elements[i]).attr('name');
-            $(range_elements[i]).after('<div class="slider ' + name + '" data-input="' + name + '"></div>');
-            //the step has to be a integer e.g. step is 1,2,3,4,,, in UI sliders
+        $(this).hide();
+        min = $(this).attr('min');
+        max = $(this).attr('max');
+        step = $(this).attr('step');
+        value = $(this).attr('value');
+        name = $(this).attr('name');
+        $(this).after('<div class="slider ' + name + '" data-input="' + name + '"></div>');
+        //the step has to be a integer e.g. step is 1,2,3,4,,, in UI sliders
             
             
-            $('.slider.' + name).slider({
-                'max': (max - min)/step,
-                'min': 0,
-                'step': 1,
-                'value': (value - min)/step,
-                'input_element': range_elements[i],
-                'change': function(event, ui) {
-                    $('input[name=' + $(this).data('input') + ']').attr('value', String(ui.value * step + Number(min)));
-                    $('input[name=' + $(this).data('input') + ']').change();
-                }
-            });
+        $('.slider.' + name).slider({
+            'max': (max - min)/step,
+            'min': 0,
+            'step': 1,
+            'value': (value - min)/step,
+            'input_element': this,
+            'change': function(event, ui) {
+                $($(this).slider( "option", "input_element")).attr('value', String(ui.value * step + Number(min)));
+                $($(this).slider( "option", "input_element")).change();
+            }
+        });
             
-        }
+        });
     }
 };
