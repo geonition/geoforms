@@ -204,7 +204,7 @@ class NumberElementForm(ElementForm):
                   'step')
 
 class RangeElementForm(forms.ModelForm):
-    question = TranslationField(label = _('question'))
+    #question = TranslationField(label = _('question'))
     min_label = TranslationField(label = _('label for minimum choice'))
     max_label = TranslationField(label = _('label for maximum choice'))
     initial_value = forms.FloatField(initial = 50.12, label = _('initial value'))
@@ -221,10 +221,9 @@ class RangeElementForm(forms.ModelForm):
         super(RangeElementForm, self).__init__(*args, **kwargs)
  
         # Set the form fields based on the model object
+        min_label = []
+        max_label = []
         if kwargs.has_key('instance'):
-            question = []
-            min_label = []
-            max_label = []
             initial_value = 50.12
             min_value = 0
             max_value = 100
@@ -232,26 +231,28 @@ class RangeElementForm(forms.ModelForm):
             for lang in settings.LANGUAGES:
                 soup = BeautifulSoup(getattr(kwargs['instance'],
                                              'html_%s' % lang[0]))
-                question.append(soup.div['id'])
-                min_label.append(soup.span.text)
-                max_label.append(soup.span.next_sibling.next_sibling.text)
+                print 'soup',soup
+                min_label.append(soup.p.text)
+                max_label.append(soup.p.next_sibling.text)
                 
                 initial_value = soup.input.get('value', 50.12)
                 min_value = soup.input.get('min', 0)
                 max_value = soup.input.get('max', 100)
                 step = soup.input.get('step', 0.01)
             
-            self.initial['question'] = question
-            self.initial['min_label'] = min_label
-            self.initial['max_label'] = max_label
             self.initial['initial_value'] = initial_value
             self.initial['min_value'] = min_value
             self.initial['max_value'] = max_value
             self.initial['step'] = step
+        else:
+            min_label.append("0: ")
+            max_label.append("100: ")
+        self.initial['min_label'] = min_label
+        self.initial['max_label'] = max_label
             
             
-    def render(self, question, min_label, max_label, name, value, attrs = {}):
-        return RangeElement().render(question,
+    def render(self, min_label, max_label, name, value, attrs = {}):
+        return RangeElement().render(
                                      min_label,
                                      max_label,
                                      name,
@@ -264,16 +265,15 @@ class RangeElementForm(forms.ModelForm):
         model = super(RangeElementForm, self).save(commit=False)
         
         if self.is_valid():
-            question = self.cleaned_data['question']
             min_label = self.cleaned_data['min_label']
             max_label = self.cleaned_data['max_label']
             
-            name = slugify("%sT%s" % (question[0][:200],
+            name = slugify("%sT%s" % (min_label[0][:200],
                                       str(datetime.utcnow())))
                 
             value = ''
             for i, lang in enumerate(settings.LANGUAGES):
-                gen_html = RangeElement().render(question[i],
+                gen_html = RangeElement().render(
                                                  min_label[i],
                                                  max_label[i],
                                                  name,
@@ -289,7 +289,7 @@ class RangeElementForm(forms.ModelForm):
                         gen_html)
                 setattr(model,
                         'name_%s' % lang[0],
-                        question[i][:200])
+                        min_label[i][:200])
         
         if commit:
             model.save()
@@ -298,7 +298,7 @@ class RangeElementForm(forms.ModelForm):
     
     class Meta:
         model = RangeElementModel
-        fields = ('question',
+        fields = (
                   'min_label',
                   'max_label',
                   'min_value',
