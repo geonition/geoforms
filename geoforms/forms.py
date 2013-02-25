@@ -233,7 +233,7 @@ class RangeElementForm(forms.ModelForm):
                                              'html_%s' % lang[0]))
                 print 'soup',soup
                 min_label.append(soup.p.text)
-                max_label.append(soup.p.next_sibling.text)
+                max_label.append(soup.p.next_sibling.next_sibling.text)
                 
                 initial_value = soup.input.get('value', 50.12)
                 min_value = soup.input.get('min', 0)

@@ -11,7 +11,11 @@
 /* legacy ends */
 
 .rangeinput {
-    width: 300px;
+}
+.range-question {
+    max-width: 400px;
+    margin-bottom: 55px;
+    background-color: #F7F6FA;
 }
 .rangeminmax {
     display: inline-block;
@@ -21,7 +25,6 @@
     display: inline-block;
     margin-left: 15px;
     margin-right: 15px;
-    margin-bottom: 15px;
 }
 #popups {
     display: none;

@@ -60,10 +60,10 @@ class RangeElement(Widget):
     set on the left and right side of the slider/range
     """
     def render(self, min_label, max_label, name, value, attrs={}):
-        return u'<div class=\"range-question\"><p class="range-min">%s</p><p class="range-max">%s</p><div class="rangeinput">0%s100</div>' % (
+        return u'<div class=\"range-question\"><p class="range-min">%s</p><div class="rangeinput">0%s100</div><p class="range-max">%s</p></div>' % (
                                                                           min_label,
-                                                                          max_label,
-                                                                          RangeInput().render(name, value, attrs=attrs))
+                                                                          RangeInput().render(name, value, attrs=attrs),
+                                                                          max_label)
 
 
 class TextElement(Widget):
