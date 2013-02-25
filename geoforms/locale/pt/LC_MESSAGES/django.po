@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Translators:
 #   <fred.lopes3@gmail.com>, 2012.
 #   <kristoffer.snabb@geonition.org>, 2012.
@@ -9,15 +9,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geonition\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-25 02:00-0600\n"
+"POT-Creation-Date: 2013-02-25 06:42-0600\n"
 "PO-Revision-Date: 2013-02-21 10:30+0000\n"
 "Last-Translator: ksnabb <kristoffer.snabb@geonition.org>\n"
-"Language-Team: Portuguese (http://www.transifex.com/projects/p/geonition/"
-"language/pt/)\n"
-"Language: pt\n"
+"Language-Team: Portuguese (http://www.transifex.com/projects/p/geonition/language/pt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: pt\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: admin.py:112 admin.py:163 admin.py:185
@@ -83,12 +82,9 @@ msgstr ""
 #: forms.py:391
 msgid ""
 "The color of the feature to be drawn. The color is given as hexadecimal "
-"color e.g. #ffffff --> white, #000000 --> black, #ff0000 --> red, #00ff00 --"
-"> green, #0000ff --> blue."
-msgstr ""
-"A cor da marca a ser desenhada. A cor é dada como uma cor hexadecimal e.g. "
-"#ffffff --> branco, #000000 --> preto, #ff0000 --> vermelho, #00ff00 --> "
-"verde, #0000ff --> azul."
+"color e.g. #ffffff --> white, #000000 --> black, #ff0000 --> red, #00ff00 "
+"--> green, #0000ff --> blue."
+msgstr "A cor da marca a ser desenhada. A cor é dada como uma cor hexadecimal e.g. #ffffff --> branco, #000000 --> preto, #ff0000 --> vermelho, #00ff00 --> verde, #0000ff --> azul."
 
 #: forms.py:393
 msgid "popup for the place, route or area"
@@ -106,9 +102,7 @@ msgstr ""
 msgid ""
 "This is the maximum number of allowed places/routes/areas that can be drawn "
 "by this drawbutton."
-msgstr ""
-"Este é o número máximo de lugares/caminhos/áreas que pode ser desenhado por "
-"este botão de desenho."
+msgstr "Este é o número máximo de lugares/caminhos/áreas que pode ser desenhado por este botão de desenho."
 
 #: forms.py:479
 msgid "text for the paragraph"
@@ -117,9 +111,9 @@ msgstr ""
 #: forms.py:480
 msgid ""
 "This field takes as input any html tags. This enables you to style the text "
-"in any way you want. Here is a list of tags that can be used <a href="
-"\"http://dev.w3.org/html5/spec/single-page.html#usage-summary\">html5 tags</"
-"a>"
+"in any way you want. Here is a list of tags that can be used <a "
+"href=\"http://dev.w3.org/html5/spec/single-page.html#usage-summary\">html5 "
+"tags</a>"
 msgstr ""
 
 #: models.py:27 models.py:178 models.py:269
@@ -264,21 +258,14 @@ msgstr "área do questionário"
 
 #: models.py:276
 msgid ""
-"This is the initial area which will be visible on the questionnaire map. The "
-"map tools are on the up right corner of the map. To choose a tool you have "
+"This is the initial area which will be visible on the questionnaire map. The"
+" map tools are on the up right corner of the map. To choose a tool you have "
 "to click on it so that the tool turnes yellow. To draw choose the drawing "
 "tool and start drawing. To stop drawing you have to doubleclick the map. It "
 "is also possible to modify the area by choosing the modify tool. "
 "Modification works by dragging the vertexes of the area to the new modified "
 "places."
-msgstr ""
-"Esta é a área inicial que estará visível no mapa do questionário. As "
-"ferramentas do mapa estão no canto direito superior do mapa. Para escolher "
-"uma ferramenta tens de clicar nela para que a ferramenta se torne amarela. "
-"Para desenhar escolhe a ferramenta de desenho e começa a desenhar. Para "
-"acabares de desenhar tens de fazer duplo clique no mapa. É também possível "
-"modificar a área escolhendo a ferramenta de modificar. A modificação "
-"funciona arrastando os vértices da área para os lugares novos modificados."
+msgstr "Esta é a área inicial que estará visível no mapa do questionário. As ferramentas do mapa estão no canto direito superior do mapa. Para escolher uma ferramenta tens de clicar nela para que a ferramenta se torne amarela. Para desenhar escolhe a ferramenta de desenho e começa a desenhar. Para acabares de desenhar tens de fazer duplo clique no mapa. É também possível modificar a área escolhendo a ferramenta de modificar. A modificação funciona arrastando os vértices da área para os lugares novos modificados."
 
 #: models.py:277
 msgid "show area"
@@ -288,9 +275,7 @@ msgstr ""
 msgid ""
 "Check the box to show the area to the user. Otherwise leave the checkbox "
 "unchecked."
-msgstr ""
-"Marca a caixa para mostrar a área ao utilizador. Caso contrário deixa a "
-"caixa de marcação desmarcada."
+msgstr "Marca a caixa para mostrar a área ao utilizador. Caso contrário deixa a caixa de marcação desmarcada."
 
 #: models.py:279
 msgid "scale the visible area"
@@ -300,9 +285,7 @@ msgstr ""
 msgid ""
 "This number will be used to set the initial map extent. The map extent is "
 "counted by drawn area times this number."
-msgstr ""
-"Este número será usado para definir a extensão inicial do mapa. A extensão "
-"do mapa é contada pela área desenhada multiplicada por este número."
+msgstr "Este número será usado para definir a extensão inicial do mapa. A extensão do mapa é contada pela área desenhada multiplicada por este número."
 
 #: models.py:283
 msgid "site"
@@ -350,13 +333,11 @@ msgstr "Clica no mapa para desenhar o ponto"
 
 #: templates/jstranslations.txt:6
 msgid "Click on the map to start drawing the route and doubleclick to finnish"
-msgstr ""
-"Clica no mapa para começar a desenhar o caminho e duplo clique para acabar"
+msgstr "Clica no mapa para começar a desenhar o caminho e duplo clique para acabar"
 
 #: templates/jstranslations.txt:7
 msgid "Click on the map to start drawing the area and doubleclick to finnish"
-msgstr ""
-"Clica no mapa para começar a desenhar a área e duplo clique para acabar "
+msgstr "Clica no mapa para começar a desenhar a área e duplo clique para acabar "
 
 #: templates/jstranslations.txt:10
 msgid "Annotations"
@@ -384,11 +365,7 @@ msgid ""
 "you for your answers! You can still continue modifying your answers by "
 "clicking the previous buttons. Quit the questionnaire by clicking the 'quit "
 "and go to home page' button."
-msgstr ""
-"Isto é o final do questionário e todas as tuas respostas foram gravadas. "
-"Obrigado pelas tuas respostas! Se quiseres mudar as tuas respostas clica nos "
-"botões \"anterior\". Para saíres do questionário clica no botão \"sair e ir "
-"para a página inicial\". "
+msgstr "Isto é o final do questionário e todas as tuas respostas foram gravadas. Obrigado pelas tuas respostas! Se quiseres mudar as tuas respostas clica nos botões \"anterior\". Para saíres do questionário clica no botão \"sair e ir para a página inicial\". "
 
 #: templates/questionnaire.html:76
 msgid "Quit and go to home page"
@@ -455,9 +432,7 @@ msgstr "adicionar"
 msgid ""
 "\n"
 "This is the HTML that represents the element widget.\n"
-msgstr ""
-"\n"
-"Isto é a HTML que representa o elemento do aparelho (widget).\n"
+msgstr "\nIsto é a HTML que representa o elemento do aparelho (widget).\n"
 
 #: templates/help/geoform_element_name.html:2
 msgid ""
@@ -465,7 +440,4 @@ msgid ""
 "This is the name of the element. The element name should be unique\n"
 "throughout the application so there cannot be two elements with the\n"
 "same name.\n"
-msgstr ""
-"\n"
-"Isto é o nome do elemento. O nome do elemento deve ser o mesmo por toda a "
-"aplicação portanto não pode haver dois elementos com o mesmo nome.\n"
+msgstr "\nIsto é o nome do elemento. O nome do elemento deve ser o mesmo por toda a aplicação portanto não pode haver dois elementos com o mesmo nome.\n"
