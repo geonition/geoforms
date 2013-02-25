@@ -35,8 +35,8 @@ class GeoformElement(models.Model):
                             verbose_name = _('html'))
 
     def save(self, *args, **kwargs):
+        super(GeoformElement, self).save(*args, **kwargs)
         self.slug = slugify("%s %s" % (self.name, self.id))[:200]
-        
         super(GeoformElement, self).save(*args, **kwargs)
     
     def __unicode__(self):
