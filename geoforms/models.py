@@ -35,6 +35,9 @@ class GeoformElement(models.Model):
                             verbose_name = _('html'))
 
     def save(self, *args, **kwargs):
+        if self.id is None:
+            super(GeoformElement, self).save(*args, **kwargs)
+        
         self.slug = slugify("%s %s" % (self.name, self.id))[:200]
         
         super(GeoformElement, self).save(*args, **kwargs)
@@ -190,6 +193,9 @@ class Geoform(models.Model):
                                       verbose_name = _('elements'))
 
     def save(self, *args, **kwargs):
+        if self.id is None:
+            super(Geoform, self).save(*args, **kwargs)
+
         self.slug = slugify("%s %s" % (self.name, self.id))[:200]
 
         super(Geoform, self).save(*args, **kwargs)
@@ -308,7 +314,9 @@ class Questionnaire(models.Model):
                        kwargs = {'questionnaire_slug': self.slug})
 
     def save(self, *args, **kwargs):
-        
+        if self.id is None:
+            super(Questionnaire, self).save(*args, **kwargs)
+
         self.slug = slugify("%s %s" % (self.name, self.id))[:200]
 
         super(Questionnaire, self).save(*args, **kwargs)
