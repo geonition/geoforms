@@ -180,7 +180,7 @@ class RangeElementAdmin(GeoformElementAdmin):
     form = RangeElementForm
     fieldsets = (
         (None, {
-            'fields': (
+            'fields': ('question',
                        'min_label',
                        'max_label',)
         }),

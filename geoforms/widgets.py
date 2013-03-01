@@ -59,11 +59,11 @@ class RangeElement(Widget):
     The RangeElement represents a range input with a question, min and max labels to be
     set on the left and right side of the slider/range
     """
-    def render(self, min_label, max_label, name, value, attrs={}):
-        return u'<div class=\"range-question\"><p class="range-min">%s</p><p class="range-max">%s</p><div class="rangeinput">0%s100</div>' % (
+    def render(self, question, min_label, max_label, name, value, attrs={}):
+        return u'<div id=\"%s\"><span class="range-min">%s</span>%s<span class="range-max">%s</span></div>' % (slugify(question),
                                                                           min_label,
-                                                                          max_label,
-                                                                          RangeInput().render(name, value, attrs=attrs))
+                                                                          RangeInput().render(name, value, attrs=attrs),
+                                                                          max_label)
 
 
 class TextElement(Widget):
