@@ -204,7 +204,7 @@ class NumberElementForm(ElementForm):
                   'step')
 
 class RangeElementForm(forms.ModelForm):
-    question = TranslationField(label = _('question'))
+    question = TranslationField(label = _('question'), required=False)
     min_label = TranslationField(label = _('label for minimum choice'))
     max_label = TranslationField(label = _('label for maximum choice'))
     initial_value = forms.FloatField(initial = 50.12, label = _('initial value'))
@@ -232,7 +232,10 @@ class RangeElementForm(forms.ModelForm):
             for lang in settings.LANGUAGES:
                 soup = BeautifulSoup(getattr(kwargs['instance'],
                                              'html_%s' % lang[0]))
-                question.append(soup.p.text)
+                if soup.p:
+                    question.append(soup.p.text)
+                else:
+                    question.append('')
                 min_label.append(soup.span.text)
                 max_label.append(soup.span.next_sibling.next_sibling.text)
                 
@@ -265,10 +268,12 @@ class RangeElementForm(forms.ModelForm):
         
         if self.is_valid():
             question = self.cleaned_data['question']
+            if not question:
+                question = ['']
             min_label = self.cleaned_data['min_label']
             max_label = self.cleaned_data['max_label']
             
-            name = slugify("%sT%s" % (question[0][:200],
+            name = slugify("%sT%s" % (min_label[0][:200],
                                       str(datetime.utcnow())))
                 
             value = ''
@@ -289,7 +294,7 @@ class RangeElementForm(forms.ModelForm):
                         gen_html)
                 setattr(model,
                         'name_%s' % lang[0],
-                        question[i][:200])
+                        min_label[i][:200])
         
         if commit:
             model.save()

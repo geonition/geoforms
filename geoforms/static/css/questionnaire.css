@@ -1,3 +1,37 @@
+/* Legacy styles for range elements, to be removed */
+.rangetext {
+    width: 250px;
+    display: inline-block;
+    text-align: left;
+}
+.popupform .rangetext {
+    font-size: 0.9em;
+    width: 160px;
+}
+/* legacy ends */
+
+.range-container {
+    text-align: left;
+    width: 75%;
+}
+.range-container p {
+    font-weight: bold !important;
+}
+.range-container span {
+    width: 27%;
+    display: inline-block;
+}
+.range-container input {
+    width: 250px;
+    margin: 20px;
+}
+.range-min-label {
+    text-align: right;
+}
+.range-max-label {
+    text-align: left;
+}
+
 #popups {
     display: none;
 }
@@ -150,11 +184,6 @@ button.drawbutton.second {
     width: 70px;
 }
 
-.popupform .rangetext {
-    font-size: 0.9em;
-    width: 160px;
-}
-
 .popupform .shortslider {
     width: auto;
 }
@@ -169,6 +198,23 @@ phones
     #content .ui-accordion-content {
         padding-left: 10px;
     }
+}
+@media (max-width:900px) {
+    .range-container {
+        background: #E4F5F5;
+    }
+.range-container span {
+    width: 100%;
+    display: block;
+    text-align: left;
+}
+.range-container input {
+    width: 80%;
+    display: block;
+}
+.slider {
+    width: 80% !important;
+}
 }
 
 /*feedback styles*/
