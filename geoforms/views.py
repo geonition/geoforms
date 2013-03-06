@@ -77,4 +77,4 @@ def get_active_questionnaires(request):
     return HttpResponse(json.dumps(questionnaires))
     
 def feedback(request, questionnaire_slug):
-    return questionnaire(request, questionnaire_slug, 'kateva_feedback.html')
+    return questionnaire(request, questionnaire_slug, 'questionnaire_feedback.html')
