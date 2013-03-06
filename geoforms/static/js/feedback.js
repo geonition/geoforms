@@ -128,11 +128,14 @@ function show_feedback() {
                 i,
                 feature,
                 anonymous_regexp,
-                popupcontent;
+                popupcontent,
+                source_proj = new OpenLayers.Projection(data.crs.properties.code),
+                target_proj = new OpenLayers.Projection(map.getProjection());
             for (i = 0; i < data.features.length; i += 1) {
                 feature = gf.parseFeature(data.features[i]);
                 //add values losed in parsing should be added again
                 feature['private'] = data.features[i]['private'];
+                feature.geometry.transform(source_proj, target_proj);
                 feature.lonlat = gnt.questionnaire.get_popup_lonlat(feature.geometry);
                 feature.style = get_style_for_name(feature.attributes.name);
                 other.addFeatures(feature);

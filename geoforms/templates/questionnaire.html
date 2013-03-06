@@ -108,6 +108,8 @@
 {% endblock content %}
 
 {% block javascript %}
+{% block extra_js %}
+{% endblock extra_js %}
 <script type="text/javascript" src="{{ STATIC_URL }}js/libs/proj4js-gnt.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/libs/OpenLayers-gnt.js"></script>
 <script type="text/javascript" src="{% url api_javascript %}"></script>
@@ -170,6 +172,8 @@ function count_results() {
     }
 }
 
+{% block questionnaire_init %}
+
 jQuery(document).ready(function() {
     gnt.questionnaire.init('#forms', '', '#forms', questionnaire_area, data_group, function() {
         
@@ -181,6 +185,8 @@ jQuery(document).ready(function() {
         });
     });
 });
+
+{% endblock questionnaire_init %}
 
 
 </script>

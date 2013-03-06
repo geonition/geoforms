@@ -1,0 +1,32 @@
+{% extends "questionnaire.html" %}
+{% load i18n %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/questionnaire.css" />
+{% endblock %}
+
+
+{% block content %}
+
+<ul class="feature_comments">
+</ul>
+    
+<p>
+Samanväriset pallukat ovat samaan kysymykseen liittyviä paikannuksia. Viemällä hiiren pallukan
+päälle voit tarkastella vastausta yksityiskohtaisemmin.
+</p>
+{% endblock content %}
+
+
+{% block extra_js %}
+<script src="{{ STATIC_URL }}js/feedback.js"></script>
+{% endblock extra_js %}
+{% block questionnaire_init %}
+
+jQuery(document).ready(function() {
+    gnt.questionnaire.init('#forms', '', '#forms', questionnaire_area, data_group, show_feedback );
+});
+{% endblock questionnaire_init %}
+
+
+
