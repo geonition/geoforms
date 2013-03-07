@@ -33,7 +33,6 @@ from geoforms.models import PopupModel
 from geoforms.models import PageModel
 from modeltranslation.admin import TranslationAdmin
 from modeltranslation.admin import TranslationTabularInline
-from kateva.models import KatevaPage
 
 class GeoformElementAdmin(TranslationAdmin, admin.ModelAdmin):
     list_display = ('name',
@@ -74,7 +73,6 @@ class PageAdmin(GeoformAdmin):
         return self.model.objects.filter(page_type = 'form')
 
 admin.site.register(PageModel, PageAdmin)
-admin.site.register(KatevaPage, PageAdmin)
 
 class PopupAdmin(GeoformAdmin):
     """
