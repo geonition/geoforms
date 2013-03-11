@@ -268,13 +268,16 @@ class RangeElementForm(forms.ModelForm):
         
         if self.is_valid():
             question = self.cleaned_data['question']
-            if not question:
-                question = ['']
             min_label = self.cleaned_data['min_label']
             max_label = self.cleaned_data['max_label']
             
-            name = slugify("%sT%s" % (min_label[0][:200],
-                                      str(datetime.utcnow())))
+            if not question:
+                question = ['']
+                name = slugify("%sT%s" % (min_label[0][:200],
+                                          str(datetime.utcnow())))
+            else:
+                name = slugify("%sT%s" % (question[0][:200],
+                                          str(datetime.utcnow())))
                 
             value = ''
             for i, lang in enumerate(settings.LANGUAGES):
@@ -292,9 +295,13 @@ class RangeElementForm(forms.ModelForm):
                 setattr(model,
                         'html_%s' % lang[0],
                         gen_html)
+                if question[i] != '':
+                    local_name = question[i][:200]
+                else:
+                    local_name = min_label[i][:200]
                 setattr(model,
                         'name_%s' % lang[0],
-                        min_label[i][:200])
+                        local_name)
         
         if commit:
             model.save()

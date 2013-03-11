@@ -10,6 +10,7 @@
 }
 /* legacy ends */
 
+/* range elements in non-popup forms*/
 .range-container {
     text-align: left;
     width: 75%;
@@ -31,6 +32,24 @@
 .range-max-label {
     text-align: left;
 }
+/* end range elements in non-popup forms */
+/* range elements in popup forms */
+.popupform .range-container {
+    background: #E4F5F5;
+}
+.popupform .range-container span {
+    width: 100%;
+    display: block;
+    text-align: left;
+}
+.popupform .range-container input {
+    width: 80%;
+    display: block;
+}
+.popupform .slider {
+    width: 80% !important;
+}
+/* end elements in popup forms */
 
 #popups {
     display: none;
@@ -179,14 +198,6 @@ button.drawbutton.second {
 }
 
 
-/* sliders in popups */
-.popupform .form_element .slider {
-    width: 70px;
-}
-
-.popupform .shortslider {
-    width: auto;
-}
 
 /*
 phones
