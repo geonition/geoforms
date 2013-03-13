@@ -1,7 +1,71 @@
+/* Legacy styles for range elements, to be removed */
+.rangetext {
+    width: 250px;
+    display: inline-block;
+    text-align: left;
+}
+.popupform .rangetext {
+    font-size: 0.9em;
+    width: 160px;
+}
+/* legacy ends */
+
+/* range elements in non-popup forms*/
+.range-container {
+    text-align: left;
+    width: 75%;
+}
+.range-container p {
+    font-weight: bold !important;
+}
+.range-container span {
+    width: 27%;
+    display: inline-block;
+}
+.range-container input {
+    width: 250px;
+    margin: 20px;
+}
+.range-min-label {
+    text-align: right;
+}
+.range-max-label {
+    text-align: left;
+}
+/* end range elements in non-popup forms */
+/* range elements in popup forms */
+.popupform .range-container {
+    background: #E4F5F5;
+}
+.popupform .range-container span {
+    width: 100%;
+    display: block;
+    text-align: left;
+}
+.popupform .range-container input {
+    width: 80%;
+    display: block;
+}
+.popupform .slider {
+    width: 80% !important;
+}
+.popupform .range-max-label {
+    width: 60% !important;
+    text-align: right !important;
+    padding-left: 40%; !important;
+}
+.popupform .range-min-label {
+    width: 60% !important;
+    text-align: left !important;
+    padding-right: 40%; !important;
+}
+/* end elements in popup forms */
+
 #popups {
     display: none;
 }
 .form_element {
+    margin-top: 20px;
     text-align: center;
     width: 100%;
 }
@@ -9,6 +73,7 @@
     text-align: left;
     min-height: 1em;
     margin-bottom: 0;
+    padding-left: 0px !important;
 }
 button.drawbutton {
     width: 80%;
@@ -57,13 +122,21 @@ button.drawbutton.second {
     margin: 5px 30px 5px 5px;
 }
 
-.form_element input {
+.form_element input[type="text"] {
+    max-width: 170px;
+}
+.form_element input[type="number"] {
+    max-width: 80px;
+}
+.form_element textarea {
     max-width: 250px;
+    max-height: 80px;
 }
 .form_element label {
     display: block;
     margin: 0.1em;
     text-align: left;
+    max-width: 300px;
 }
 .form_element .ui-accordion p {
     padding: 0;
@@ -134,24 +207,7 @@ button.drawbutton.second {
     background-color: #F9F9F9;
 }
 
-/* checkboxes and radiobuttons */
-.form_element label {
-    margin-left: 50px;
-}
 
-/* sliders in popups */
-.popupform .form_element .slider {
-    width: 70px;
-}
-
-.popupform .rangetext {
-    font-size: 0.9em;
-    width: 160px;
-}
-
-.popupform .shortslider {
-    width: auto;
-}
 
 /*
 phones
@@ -163,4 +219,55 @@ phones
     #content .ui-accordion-content {
         padding-left: 10px;
     }
+}
+@media (max-width:900px) {
+    .range-container {
+        background: #E4F5F5;
+    }
+.range-container span {
+    width: 100%;
+    display: block;
+    text-align: left;
+}
+.range-container input {
+    width: 80%;
+    display: block;
+}
+.slider {
+    width: 80% !important;
+}
+.range-max-label {
+    width: 60% !important;
+    text-align: right !important;
+    padding-left: 40%; !important;
+}
+.range-min-label {
+    width: 60% !important;
+    text-align: left !important;
+    padding-right: 40%; !important;
+}
+
+}
+
+/*feedback styles*/
+ul.feature_comments {
+    position: absolute;
+    z-index: 9999;
+    width:  330px;
+    right: 20px;
+    list-style: none;
+    padding: 0;
+}
+
+ul.feature_comments li {
+    background-color: #555555;
+    color: white;
+    opacity: 0.9;
+    padding: 1em;
+    border-color: #444444;
+    border: 1px solid #EEEEEE;
+    border-radius: 13px;
+    font-weight: bold;
+    position: absolute;
+    top: 0;
 }

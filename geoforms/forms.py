@@ -204,7 +204,7 @@ class NumberElementForm(ElementForm):
                   'step')
 
 class RangeElementForm(forms.ModelForm):
-    question = TranslationField(label = _('question'))
+    question = TranslationField(label = _('question'), required=False)
     min_label = TranslationField(label = _('label for minimum choice'))
     max_label = TranslationField(label = _('label for maximum choice'))
     initial_value = forms.FloatField(initial = 50.12, label = _('initial value'))
@@ -232,7 +232,10 @@ class RangeElementForm(forms.ModelForm):
             for lang in settings.LANGUAGES:
                 soup = BeautifulSoup(getattr(kwargs['instance'],
                                              'html_%s' % lang[0]))
-                question.append(soup.p.text)
+                if soup.p:
+                    question.append(soup.p.text)
+                else:
+                    question.append('')
                 min_label.append(soup.span.text)
                 max_label.append(soup.span.next_sibling.next_sibling.text)
                 
@@ -268,8 +271,13 @@ class RangeElementForm(forms.ModelForm):
             min_label = self.cleaned_data['min_label']
             max_label = self.cleaned_data['max_label']
             
-            name = slugify("%sT%s" % (question[0][:200],
-                                      str(datetime.utcnow())))
+            if not question:
+                question = ['']
+                name = slugify("%sT%s" % (min_label[0][:200],
+                                          str(datetime.utcnow())))
+            else:
+                name = slugify("%sT%s" % (question[0][:200],
+                                          str(datetime.utcnow())))
                 
             value = ''
             for i, lang in enumerate(settings.LANGUAGES):
@@ -287,9 +295,13 @@ class RangeElementForm(forms.ModelForm):
                 setattr(model,
                         'html_%s' % lang[0],
                         gen_html)
+                if question[i] != '':
+                    local_name = question[i][:200]
+                else:
+                    local_name = min_label[i][:200]
                 setattr(model,
                         'name_%s' % lang[0],
-                        question[i][:200])
+                        local_name)
         
         if commit:
             model.save()

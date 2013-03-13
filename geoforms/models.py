@@ -14,7 +14,7 @@ class GeoformElement(models.Model):
     geoform..
     The elements of a form is written in
     HTML 5,
-    
+
     The javascript will parse the html and
     create additional functionality and other
     required measures. The classes and data to
@@ -37,15 +37,14 @@ class GeoformElement(models.Model):
     def save(self, *args, **kwargs):
         if self.id is None:
             super(GeoformElement, self).save(*args, **kwargs)
-        
+
         self.slug = slugify("%s %s" % (self.name, self.id))[:200]
-        
         super(GeoformElement, self).save(*args, **kwargs)
-    
+
     def __unicode__(self):
         return u'%s-%s' % (self.name,
                            self.element_type)
-        
+
     class Meta:
         ordering = ['element_type']
         verbose_name = _('questionnaire page element')
@@ -57,80 +56,80 @@ class TextElementModel(GeoformElement):
     This is a proxy model to handle text inputs
     separately in the admin interface.
     """
-    
+
     def save(self, *args, **kwargs):
         self.element_type = 'text'
-        
+
         super(TextElementModel, self).save(*args, **kwargs)
-        
+
     class Meta:
         proxy = True
         verbose_name = _('text input')
         verbose_name_plural = _('text inputs')
-        
+
 class TextareaModel(GeoformElement):
     """
     This is a proxy model for TextArea elements
     """
     def save(self, *args, **kwargs):
         self.element_type = 'textarea'
-        
+
         super(TextareaModel, self).save(*args, **kwargs)
-    
+
     class Meta:
         proxy = True
         verbose_name = _('text area')
         verbose_name_plural = _('text areas')
-        
+
 class NumberElementModel(GeoformElement):
     """
     This is a proxy model for the number inputs
     """
     def save(self, *args, **kwargs):
         self.element_type = 'number'
-        
+
         super(NumberElementModel, self).save(*args, **kwargs)
 
     class Meta:
         proxy = True
         verbose_name = _('number input')
         verbose_name_plural = _('number inputs')
-        
+
 class RangeElementModel(GeoformElement):
     """
     This is a proxy model for the range inputs
     """
     def save(self, *args, **kwargs):
         self.element_type = 'range'
-        
+
         super(RangeElementModel, self).save(*args, **kwargs)
 
     class Meta:
         proxy = True
         verbose_name = _('range input')
         verbose_name_plural = _('range inputs')
-        
+
 class ParagraphElementModel(GeoformElement):
     """
     This is a proxy model for the number inputs
     """
     def save(self, *args, **kwargs):
         self.element_type = 'paragraph'
-        
+
         super(ParagraphElementModel, self).save(*args, **kwargs)
 
     class Meta:
         proxy = True
         verbose_name = _('paragraph')
         verbose_name_plural = _('paragraphs')
-        
+
 class RadioElementModel(GeoformElement):
     """
     This is a proxy model for the radiobuttons
     """
     def save(self, *args, **kwargs):
         self.element_type = 'radio'
-        
+
         super(RadioElementModel, self).save(*args, **kwargs)
 
     class Meta:
@@ -144,7 +143,7 @@ class CheckboxElementModel(GeoformElement):
     """
     def save(self, *args, **kwargs):
         self.element_type = 'checkbox'
-        
+
         super(CheckboxElementModel, self).save(*args, **kwargs)
 
     class Meta:
@@ -158,7 +157,7 @@ class DrawbuttonElementModel(GeoformElement):
     """
     def save(self, *args, **kwargs):
         self.element_type = 'drawbutton'
-        
+
         super(DrawbuttonElementModel, self).save(*args, **kwargs)
 
     class Meta:
@@ -167,7 +166,7 @@ class DrawbuttonElementModel(GeoformElement):
         verbose_name_plural = _('Draw buttons')
 
 
-#continue with real models       
+#continue with real models
 class Geoform(models.Model):
     """
     This is one form in a questionnaire
@@ -203,7 +202,7 @@ class Geoform(models.Model):
     def __unicode__(self):
         return u'%s - %s' % (self.name,
                              self.id)
-        
+
     class Meta:
         verbose_name = _('questionnaire page')
         verbose_name_plural = _('questionnaire pages')
@@ -215,28 +214,28 @@ class PopupModel(Geoform):
     Proxy model for geoform discuised as a
     popup.
     """
-    
+
     def save(self, *args, **kwargs):
         self.page_type = 'popup'
-        
+
         super(PopupModel, self).save(*args, **kwargs)
-        
+
     class Meta:
         proxy = True
         verbose_name = _('popup')
         verbose_name_plural = _('popups')
-        
+
 class PageModel(Geoform):
     """
     Proxy model for geoform discuised as a
     popup.
     """
-    
+
     def save(self, *args, **kwargs):
         self.page_type = 'form'
-        
+
         super(PageModel, self).save(*args, **kwargs)
-        
+
     class Meta:
         proxy = True
         verbose_name = _('page')
@@ -254,11 +253,11 @@ class FormElement(models.Model):
                                 verbose_name = _('element'))
     order = models.IntegerField(default=10,
                                 verbose_name = _('order'))
-        
+
     class Meta:
         verbose_name = _('page element')
         verbose_name_plural = _('page elements')
-        
+
 class Questionnaire(models.Model):
     """
     This is one questionnaire,
@@ -291,7 +290,7 @@ class Questionnaire(models.Model):
                                                'SITE_ID',
                                                1),
                              editable = False)
-    start_date = models.DateField(null = True, 
+    start_date = models.DateField(null = True,
                                   blank = True,
                                   verbose_name = _('questionnaire start date'))
     end_date = models.DateField(null = True,
@@ -304,7 +303,7 @@ class Questionnaire(models.Model):
 
     on_site = CurrentSiteManager()
     objects = geomodel.GeoManager()
-    
+
     def get_absolute_url(self):
         """
         Returns the absolute urls for this questionnaire for
@@ -346,13 +345,13 @@ class QuestionnaireForm(models.Model):
 
     def __unicode__(self):
         return u'questionnaire page'
-        
+
     class Meta:
         verbose_name = _('questionnaire page')
         verbose_name_plural = _('questionnaire pages')
-        
 
-        
+
+
 
 
 

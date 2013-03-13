@@ -14,7 +14,7 @@ gnt.questionnaire.popup; //only one popup at the time
 gnt.questionnaire.property_id;
 
 //fix for OpenLayers 2.12 RC5 check 29.5.2012 should be null and automatic
-OpenLayers.Popup.FramedCloud.prototype.maxSize = new OpenLayers.Size(370, 1024); 
+OpenLayers.Popup.FramedCloud.prototype.maxSize = new OpenLayers.Size(420, 640); 
 
 /*
 Draw Button is a drawing
