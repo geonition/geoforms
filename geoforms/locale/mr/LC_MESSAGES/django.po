@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geonition\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-25 18:00-0600\n"
+"POT-Creation-Date: 2013-03-03 18:00-0600\n"
 "PO-Revision-Date: 2013-02-21 10:30+0000\n"
 "Last-Translator: ksnabb <kristoffer.snabb@geonition.org>\n"
 "Language-Team: Marathi (http://www.transifex.com/projects/p/geonition/language/mr/)\n"
@@ -115,11 +115,11 @@ msgid ""
 "tags</a>"
 msgstr ""
 
-#: models.py:27 models.py:178 models.py:269
+#: models.py:27 models.py:181 models.py:275
 msgid "slug"
 msgstr "स्लग "
 
-#: models.py:30 models.py:180
+#: models.py:30 models.py:183
 msgid "name"
 msgstr "नाव"
 
@@ -131,131 +131,131 @@ msgstr "एलिमेंटचा प्रकार. "
 msgid "html"
 msgstr "एच.टि.एम.एल "
 
-#: models.py:48
+#: models.py:51
 msgid "questionnaire page element"
 msgstr "प्रश्नावलीचा पेज एलीमेंट"
 
-#: models.py:49
+#: models.py:52
 msgid "questionnaire page elements"
 msgstr "प्रश्नावलीचे पेज एलिमेंट्स"
 
-#: models.py:65
+#: models.py:68
 msgid "text input"
 msgstr "  पाठ माहिती "
 
-#: models.py:66
+#: models.py:69
 msgid "text inputs"
 msgstr "  पाठ माहिती "
 
-#: models.py:79
+#: models.py:82
 msgid "text area"
 msgstr "पाठ क्षेत्र"
 
-#: models.py:80
+#: models.py:83
 msgid "text areas"
 msgstr "पाठ क्षेत्र"
 
-#: models.py:93
+#: models.py:96
 msgid "number input"
 msgstr "अंक लिहा "
 
-#: models.py:94
+#: models.py:97
 msgid "number inputs"
 msgstr "संख्या "
 
-#: models.py:107
+#: models.py:110
 msgid "range input"
 msgstr "आवाका"
 
-#: models.py:108
+#: models.py:111
 msgid "range inputs"
 msgstr "आवाका"
 
-#: models.py:121
+#: models.py:124
 msgid "paragraph"
 msgstr "परीच्चेद "
 
-#: models.py:122
+#: models.py:125
 msgid "paragraphs"
 msgstr "परीच्चेद "
 
-#: models.py:135 models.py:136
+#: models.py:138 models.py:139
 msgid "Select one"
 msgstr "एक निवडा "
 
-#: models.py:149 models.py:150
+#: models.py:152 models.py:153
 msgid "Select multiple"
 msgstr "अनेक निवडा "
 
-#: models.py:163
+#: models.py:166
 msgid "Draw button"
 msgstr "आखणीचे बटन"
 
-#: models.py:164
+#: models.py:167
 msgid "Draw buttons"
 msgstr "आखणीचे बटन्स"
 
-#: models.py:187
+#: models.py:190
 msgid "page type"
 msgstr "पेजचा प्रकार"
 
-#: models.py:190
+#: models.py:193
 msgid "elements"
 msgstr "एलिमेंट "
 
-#: models.py:202 models.py:343
+#: models.py:208 models.py:351
 msgid "questionnaire page"
 msgstr "प्रश्नावलीचे पेज"
 
-#: models.py:203 models.py:344
+#: models.py:209 models.py:352
 msgid "questionnaire pages"
 msgstr "प्रश्नावलीचे पेजेस"
 
-#: models.py:220
+#: models.py:226
 msgid "popup"
 msgstr "पॉपप "
 
-#: models.py:221
+#: models.py:227
 msgid "popups"
 msgstr "पॉपप्स "
 
-#: models.py:236 models.py:246 models.py:335
+#: models.py:242 models.py:252 models.py:343
 msgid "page"
 msgstr "पेज "
 
-#: models.py:237 models.py:263
+#: models.py:243 models.py:269
 msgid "pages"
 msgstr "पेजेस "
 
-#: models.py:248
+#: models.py:254
 msgid "element"
 msgstr "एलिमेंट "
 
-#: models.py:250 models.py:337
+#: models.py:256 models.py:345
 msgid "order"
 msgstr "क्रम "
 
-#: models.py:253
+#: models.py:259
 msgid "page element"
 msgstr "पेज एलीमेंट"
 
-#: models.py:254
+#: models.py:260
 msgid "page elements"
 msgstr "पेज एलिमेंट्स"
 
-#: models.py:264
+#: models.py:270
 msgid "name of questionnaire"
 msgstr "प्रश्नावलीचे नाव "
 
-#: models.py:271
+#: models.py:277
 msgid "description"
 msgstr ""
 
-#: models.py:272
+#: models.py:278
 msgid "area of questionnaire"
 msgstr "प्रश्नावलीचे क्षेत्र"
 
-#: models.py:276
+#: models.py:282
 msgid ""
 "This is the initial area which will be visible on the questionnaire map. The"
 " map tools are on the up right corner of the map. To choose a tool you have "
@@ -266,47 +266,47 @@ msgid ""
 "places."
 msgstr "हे प्रारंभिक क्षेत्र प्रश्नावली नकाश्यावर  प्रदर्शित होईल.नकाश्याची साधनं वरच्या उजव्या कोपर्यात आहेत.\nसाधन निवडण्या करिता त्यावर क्लिक करा जेणे करून ते साधन पिवळ्या रंगाचे दिसेल.मार्किंग चालू करण्यासाठी मार्किंग साधनाची निवड करावी.\nमार्किंग थांबविण्या करता नकाश्यावर डबल क्लिक करावे.आपण  मार्क केलेल्या क्षेत्रा मध्ये सुधारणा करण्यासाठी फेरबदलाचे साधन निवडावे.\nफेरबदल करण्या करिता मार्क केलेल्या क्षेत्राचे कोपरे निवडून साधारित जागे परंत खेचावे."
 
-#: models.py:277
+#: models.py:283
 msgid "show area"
 msgstr "क्षेत्र दाखवा "
 
-#: models.py:278
+#: models.py:284
 msgid ""
 "Check the box to show the area to the user. Otherwise leave the checkbox "
 "unchecked."
 msgstr ""
 
-#: models.py:279
+#: models.py:285
 msgid "scale the visible area"
 msgstr ""
 
-#: models.py:281
+#: models.py:287
 msgid ""
 "This number will be used to set the initial map extent. The map extent is "
 "counted by drawn area times this number."
 msgstr "हि संख्या नकाश्याची  प्रारंभिक मर्यादा ठरवण्या करता उपयोगी आहे"
 
-#: models.py:283
+#: models.py:289
 msgid "site"
 msgstr "साईट "
 
-#: models.py:290
+#: models.py:296
 msgid "questionnaire start date"
 msgstr ""
 
-#: models.py:293
+#: models.py:299
 msgid "questionnaire end date"
 msgstr ""
 
-#: models.py:297
+#: models.py:303
 msgid "map"
 msgstr ""
 
-#: models.py:321 models.py:333
+#: models.py:329 models.py:341
 msgid "questionnaire"
 msgstr "प्रश्नावली "
 
-#: models.py:322
+#: models.py:330
 msgid "questionnaires"
 msgstr "प्रश्नावली "
 

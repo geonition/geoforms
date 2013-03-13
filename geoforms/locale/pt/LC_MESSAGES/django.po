@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geonition\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-25 18:00-0600\n"
+"POT-Creation-Date: 2013-03-03 18:00-0600\n"
 "PO-Revision-Date: 2013-02-21 10:30+0000\n"
 "Last-Translator: ksnabb <kristoffer.snabb@geonition.org>\n"
 "Language-Team: Portuguese (http://www.transifex.com/projects/p/geonition/language/pt/)\n"
@@ -116,11 +116,11 @@ msgid ""
 "tags</a>"
 msgstr ""
 
-#: models.py:27 models.py:178 models.py:269
+#: models.py:27 models.py:181 models.py:275
 msgid "slug"
 msgstr ""
 
-#: models.py:30 models.py:180
+#: models.py:30 models.py:183
 msgid "name"
 msgstr ""
 
@@ -132,131 +132,131 @@ msgstr ""
 msgid "html"
 msgstr ""
 
-#: models.py:48
+#: models.py:51
 msgid "questionnaire page element"
 msgstr "elemento de página do questionário"
 
-#: models.py:49
+#: models.py:52
 msgid "questionnaire page elements"
 msgstr "elementos de página do questionário"
 
-#: models.py:65
+#: models.py:68
 msgid "text input"
 msgstr "entrada de texto"
 
-#: models.py:66
+#: models.py:69
 msgid "text inputs"
 msgstr "entradas de texto"
 
-#: models.py:79
+#: models.py:82
 msgid "text area"
 msgstr "área de texto"
 
-#: models.py:80
+#: models.py:83
 msgid "text areas"
 msgstr "áreas de texto"
 
-#: models.py:93
+#: models.py:96
 msgid "number input"
 msgstr ""
 
-#: models.py:94
+#: models.py:97
 msgid "number inputs"
 msgstr "entradas de números"
 
-#: models.py:107
+#: models.py:110
 msgid "range input"
 msgstr "entrada de amplitude"
 
-#: models.py:108
+#: models.py:111
 msgid "range inputs"
 msgstr "entradas de amplitude"
 
-#: models.py:121
+#: models.py:124
 msgid "paragraph"
 msgstr "parágrafo"
 
-#: models.py:122
+#: models.py:125
 msgid "paragraphs"
 msgstr "parágrafos"
 
-#: models.py:135 models.py:136
+#: models.py:138 models.py:139
 msgid "Select one"
 msgstr "Escolha única"
 
-#: models.py:149 models.py:150
+#: models.py:152 models.py:153
 msgid "Select multiple"
 msgstr "Escolha múltipla"
 
-#: models.py:163
+#: models.py:166
 msgid "Draw button"
 msgstr "Botão de desenho"
 
-#: models.py:164
+#: models.py:167
 msgid "Draw buttons"
 msgstr "Botões de desenho"
 
-#: models.py:187
+#: models.py:190
 msgid "page type"
 msgstr ""
 
-#: models.py:190
+#: models.py:193
 msgid "elements"
 msgstr ""
 
-#: models.py:202 models.py:343
+#: models.py:208 models.py:351
 msgid "questionnaire page"
 msgstr "página do questionário"
 
-#: models.py:203 models.py:344
+#: models.py:209 models.py:352
 msgid "questionnaire pages"
 msgstr "páginas do questionário"
 
-#: models.py:220
+#: models.py:226
 msgid "popup"
 msgstr "pop-up"
 
-#: models.py:221
+#: models.py:227
 msgid "popups"
 msgstr "pop-ups"
 
-#: models.py:236 models.py:246 models.py:335
+#: models.py:242 models.py:252 models.py:343
 msgid "page"
 msgstr "página"
 
-#: models.py:237 models.py:263
+#: models.py:243 models.py:269
 msgid "pages"
 msgstr "páginas"
 
-#: models.py:248
+#: models.py:254
 msgid "element"
 msgstr ""
 
-#: models.py:250 models.py:337
+#: models.py:256 models.py:345
 msgid "order"
 msgstr ""
 
-#: models.py:253
+#: models.py:259
 msgid "page element"
 msgstr "elemento de página"
 
-#: models.py:254
+#: models.py:260
 msgid "page elements"
 msgstr "elementos de página"
 
-#: models.py:264
+#: models.py:270
 msgid "name of questionnaire"
 msgstr "nome do questionário"
 
-#: models.py:271
+#: models.py:277
 msgid "description"
 msgstr ""
 
-#: models.py:272
+#: models.py:278
 msgid "area of questionnaire"
 msgstr "área do questionário"
 
-#: models.py:276
+#: models.py:282
 msgid ""
 "This is the initial area which will be visible on the questionnaire map. The"
 " map tools are on the up right corner of the map. To choose a tool you have "
@@ -267,47 +267,47 @@ msgid ""
 "places."
 msgstr "Esta é a área inicial que estará visível no mapa do questionário. As ferramentas do mapa estão no canto direito superior do mapa. Para escolher uma ferramenta tens de clicar nela para que a ferramenta se torne amarela. Para desenhar escolhe a ferramenta de desenho e começa a desenhar. Para acabares de desenhar tens de fazer duplo clique no mapa. É também possível modificar a área escolhendo a ferramenta de modificar. A modificação funciona arrastando os vértices da área para os lugares novos modificados."
 
-#: models.py:277
+#: models.py:283
 msgid "show area"
 msgstr ""
 
-#: models.py:278
+#: models.py:284
 msgid ""
 "Check the box to show the area to the user. Otherwise leave the checkbox "
 "unchecked."
 msgstr "Marca a caixa para mostrar a área ao utilizador. Caso contrário deixa a caixa de marcação desmarcada."
 
-#: models.py:279
+#: models.py:285
 msgid "scale the visible area"
 msgstr ""
 
-#: models.py:281
+#: models.py:287
 msgid ""
 "This number will be used to set the initial map extent. The map extent is "
 "counted by drawn area times this number."
 msgstr "Este número será usado para definir a extensão inicial do mapa. A extensão do mapa é contada pela área desenhada multiplicada por este número."
 
-#: models.py:283
+#: models.py:289
 msgid "site"
 msgstr ""
 
-#: models.py:290
+#: models.py:296
 msgid "questionnaire start date"
 msgstr ""
 
-#: models.py:293
+#: models.py:299
 msgid "questionnaire end date"
 msgstr ""
 
-#: models.py:297
+#: models.py:303
 msgid "map"
 msgstr ""
 
-#: models.py:321 models.py:333
+#: models.py:329 models.py:341
 msgid "questionnaire"
 msgstr "questionário"
 
-#: models.py:322
+#: models.py:330
 msgid "questionnaires"
 msgstr "questionários"
 
