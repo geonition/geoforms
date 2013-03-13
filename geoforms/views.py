@@ -18,7 +18,7 @@ def questionnaire(request, questionnaire_slug):
     """
 
     quest = Questionnaire.on_site.select_related().get(slug = questionnaire_slug)
-        
+
     form_list = quest.geoforms.all().order_by('questionnaireform__order')
     elements = {}
     popup_set = set(Geoform.objects.filter(page_type = 'popup').values_list('slug', flat=True))
@@ -32,15 +32,15 @@ def questionnaire(request, questionnaire_slug):
         for e in popup_elements:
             soup = BeautifulSoup(e)
             popup_set.add(soup.button['data-popup'])
-            
+
         elements[form.slug] = form.elements.order_by('formelement__order', '?')
-        
+
     popup_list = Geoform.objects.filter(page_type = 'popup').filter(slug__in = popup_set)
-    
+
     #add the popup elements to elements
     for popupform in popup_list:
         elements[popupform.slug] = popupform.elements.order_by('formelement__order', '?')
-    
+
     form_list = form_list.filter(page_type = 'form')
     return render_to_response('questionnaire.html',
                              {'form_list': form_list,
@@ -50,7 +50,7 @@ def questionnaire(request, questionnaire_slug):
                               'questionnaire': quest,
                               'map_slug': 'questionnaire-map'},
                              context_instance = RequestContext(request))
-    
+
 def get_active_questionnaires(request):
     today = date.today()
     active_quests = Questionnaire.on_site.filter(start_date__lte=today).filter(end_date__gte=today)
@@ -69,9 +69,9 @@ def get_active_questionnaires(request):
         cur_quest['description'] = quest.description
         cur_quest['area'] = cur_feature
         cur_quest['url'] = reverse('questionnaire', kwargs={'questionnaire_slug': quest.slug})
-        cur_quest['link_text'] = _('Go to the application..')
+        #cur_quest['link_text'] = _('Go to the application..')
         questionnaires.append(cur_quest)
-    
-    return HttpResponse(json.dumps(questionnaires))
-    
-    
+
+    return HttpResponse(json.dumps({'questionnaires': questionnaires}))
+
+
