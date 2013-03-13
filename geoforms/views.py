@@ -71,10 +71,11 @@ def get_active_questionnaires(request):
         cur_quest['description'] = quest.description
         cur_quest['area'] = cur_feature
         cur_quest['url'] = reverse('questionnaire', kwargs={'questionnaire_slug': quest.slug})
-        #cur_quest['link_text'] = _('Go to the application..')
+        cur_quest['link_text'] = _('Go to the application..')
         questionnaires.append(cur_quest)
 
     return HttpResponse(json.dumps({'questionnaires': questionnaires}))
+#    return HttpResponse(json.dumps(questionnaires))
 
 
 def feedback(request, questionnaire_slug):

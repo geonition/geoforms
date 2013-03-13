@@ -88,7 +88,8 @@ class GeoformsTest(TestCase):
 
         response = self.client.get(reverse('active_questionnaires'))
         response_dict = json.loads(response.content)
-        self.assertEqual(len(response_dict['questionnaires']), 2)
+#        self.assertEqual(len(response_dict['questionnaires']), 2)
+        self.assertEqual(len(response_dict), 2)
 
     def test_slug_validity(self):
 
