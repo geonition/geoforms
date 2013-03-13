@@ -74,8 +74,8 @@ def get_active_questionnaires(request):
         cur_quest['link_text'] = _('Go to the application..')
         questionnaires.append(cur_quest)
 
-    return HttpResponse(json.dumps({'questionnaires': questionnaires}))
-#    return HttpResponse(json.dumps(questionnaires))
+#    return HttpResponse(json.dumps({'questionnaires': questionnaires}))
+    return HttpResponse(json.dumps(questionnaires))
 
 
 def feedback(request, questionnaire_slug):
