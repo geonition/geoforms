@@ -59,6 +59,19 @@
     text-align: left !important;
     padding-right: 40%; !important;
 }
+
+.popupform {
+    height: inherit;
+    overflow: auto;
+}
+
+.popup_feature_buttons {
+    background-color: #FFFFFF;
+    bottom: 0;
+    padding-top: 5px;
+    position: absolute;
+    width: 90%;
+}
 /* end elements in popup forms */
 
 #popups {
@@ -68,6 +81,9 @@
     margin-top: 20px;
     text-align: center;
     width: 100%;
+}
+.form_element.last {
+    margin-bottom: 30px;
 }
 .form_element p {
     text-align: left;
@@ -159,7 +175,7 @@ button.drawbutton.second {
     visibility: hidden;
 }
 #forms h3.ui-state-active, #forms h3.ui-state-active + div {
-    visibility: visible;    
+    visibility: visible;
 }
 #content h3.ui-state-default {
     display: none;

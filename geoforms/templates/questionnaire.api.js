@@ -2,7 +2,7 @@
 
 /*
  Questionnaire UI namespace
- 
+
  gnt.questionnaire
 */
 gnt.questionnaire = {};
@@ -14,7 +14,7 @@ gnt.questionnaire.popup; //only one popup at the time
 gnt.questionnaire.property_id;
 
 //fix for OpenLayers 2.12 RC5 check 29.5.2012 should be null and automatic
-OpenLayers.Popup.FramedCloud.prototype.maxSize = new OpenLayers.Size(420, 640); 
+OpenLayers.Popup.FramedCloud.prototype.maxSize = new OpenLayers.Size(420, 640);
 
 /*
 Draw Button is a drawing
@@ -58,14 +58,14 @@ active_class: the class to use when a button is activated
                         .appendTo( this.element.empty() )
                         .html( label )
                         .text();
-                
-                //add rule to layer for prefered rendering      
+
+                //add rule to layer for prefered rendering
                 var color = $(this.element).data('color');
                 var max = $(this.element).data('max');
                 var name = $(this.element).attr('name');
                 //add styling rules
                 if(!this.options.rule_added) {
-                    
+
                     var egraphic = '/images/svg/place_marker.svg?scale=1&color=' + color.substr(1);
                     var rule = new OpenLayers.Rule({
                         filter: new OpenLayers.Filter.Comparison({
@@ -107,7 +107,7 @@ active_class: the class to use when a button is activated
                     drawcontrol.layer.styleMap.styles['default'].addRules([rule]);
                     this.options.rule_added = true;
                 }
-                
+
                 //TOOLTIP
                 var tooltip = $(".tooltip");
                 if (tooltip.length === 0) {
@@ -121,7 +121,7 @@ active_class: the class to use when a button is activated
                 })
                 }
                 $(".tooltip").hide();
-            
+
                 return this;
             },
 
@@ -141,14 +141,14 @@ active_class: the class to use when a button is activated
                 var selectcontrol_id = this.options['selectcontrol'];
                 var selectcontrol = map.getControl(selectcontrol_id);
                 selectcontrol.activate();
-                
+
                 //TOOLTIP
                 $(".tooltip").hide();
-                
+
             },
             activate: function() {
                 if(this.element.attr('disabled') !== 'disabled') {
-                    
+
                     //unselect the others
                     $(".drawbutton." + this.options['active_class'])
                         .drawButton('deactivate');
@@ -159,11 +159,11 @@ active_class: the class to use when a button is activated
                     var selectcontrol_id = this.options['selectcontrol'];
                     var selectcontrol = map.getControl(selectcontrol_id);
                     selectcontrol.deactivate();
-                    
+
                     //change the temporary style of the layer
                     var color = $(this.element).data('color');
                     var name = $(this.element).attr('name');
-                    
+
                     var egraphic = '/images/svg/place_marker.svg?scale=1&color=' + color.substr(1);
                     if($('html').hasClass('lt-ie9')) {
                         egraphic = '/images/needle?color=' + color.substr(1);
@@ -172,18 +172,18 @@ active_class: the class to use when a button is activated
                         drawcontrol.layer.styleMap.styles.temporary.defaultStyle.graphicYOffset = -30;
                     }
                     drawcontrol.layer.styleMap.styles.temporary.defaultStyle.externalGraphic = egraphic;
-                    
+
                     //add map class to body
                     if(!$('body').hasClass('map')) {
                         $('body').addClass('map');
                     }
                 }
-                
+
                 //TOOLTIP
                 var tooltip = $(".tooltip");
-                
+
                 if(this.options.geography_type === "point") {
-                    $(".tooltip").html(help.point[0]);   
+                    $(".tooltip").html(help.point[0]);
                 } else if (this.options.geography_type === "route") {
                     $(".tooltip").html(help.route[0]);
                 } else if (this.options.geography_type === "area") {
@@ -201,7 +201,7 @@ active_class: the class to use when a button is activated
                 var selectcontrol_id = this.options['selectcontrol'];
                 var selectcontrol = map.getControl(selectcontrol_id);
                 selectcontrol.activate();
-                
+
                 //TOOLTIP
                 $(".tooltip").hide();
             },
@@ -223,7 +223,7 @@ on where to show a popup for each feature.
 */
 gnt.questionnaire.get_popup_lonlat = function(geometry) {
     var lonlat;
-    
+
     if ( geometry.id.search( "Point" ) !== -1) {
         lonlat = new OpenLayers.LonLat(
                         geometry.x,
@@ -245,45 +245,45 @@ gnt.questionnaire.get_popup_lonlat = function(geometry) {
  connected to the save button in the popup form
 */
 gnt.questionnaire.save_handler = function(evt) {
-    
+
     //get the form data
     var popup_values = $('form.popupform.active').serializeArray();
 
     //set form value attributes for feature
     evt.data[0].attributes.form_values = popup_values;
-    
+
     //Get the geojson
     var gf = new OpenLayers.Format.GeoJSON();
     var geojson = gf.write(evt.data[0]);
-    
+
     var feature_json = $.parseJSON( geojson );
-        
-    
+
+
     //Assigning Privacy to the Feature if private=false
     var private_field_set = false;
     for ( var i = 0;i < popup_values.length; i++ ) {
-        
+
         if ( popup_values[i]["name"] === "private" ) {
             private_field_set = true;
             if( popup_values[i]['value'] === 'false') {
                 feature_json['private'] = false;
-                evt.data[0]['private'] = false; 
+                evt.data[0]['private'] = false;
             } else {
                 feature_json['private'] = true;
                 evt.data[0]['private'] = true;
-            } 
+            }
         }
-        
+
         //evt.data[0].private = "false";
     }
-    
+
     if( !private_field_set ) {
         feature_json['private'] = true;
         evt.data[0]['private'] = true;
     }
     geojson = feature_json;
-    
-      
+
+
     //Save the JSON
     if (evt.data[0].fid === undefined || evt.data[0].fid === null) {
         gnt.geo.create_feature('@me', data_group, geojson, {
@@ -302,17 +302,17 @@ gnt.questionnaire.save_handler = function(evt) {
                     amount = map.getLayersByName('Area Layer')[0].getFeaturesByAttribute('name', new_feature.attributes.name).length;
                 }
                 new_feature.fid = data.id;
-                
+
                 //disable the button if max amount of features has been drawn
                 var max = $('button[name=' + new_feature.attributes.name + ']').data('max');
                 if(max !== undefined &&
                    amount >= max) {
                     $('button[name=' + new_feature.attributes.name + ']').drawButton('disable');
                 }
-                
+
             }
         });
-        
+
     } else {
         //update the feature
         gnt.geo.update_feature(undefined,
@@ -326,13 +326,13 @@ gnt.questionnaire.save_handler = function(evt) {
 
     //set the popup form as not active
     $( 'form.popupform.active' ).removeClass( 'active' );
-    
+
     //remove popup from map
     if(gnt.questionnaire.popup !== undefined) {
         map.removePopup(gnt.questionnaire.popup);
         gnt.questionnaire.popup = undefined;
     }
-    
+
 }
 
 /*
@@ -340,7 +340,7 @@ gnt.questionnaire.save_handler = function(evt) {
  connected to the remove button in the popup form.
 */
 gnt.questionnaire.remove_handler = function(evt) {
-    
+
     //enable drawbutton if amount of feature under max
     var max = $('button[name=' + evt.data[0].attributes.name + ']').data('max');
     var amount = evt.data[0].layer.getFeaturesByAttribute('name', evt.data[0].attributes.name).length - 1;
@@ -372,9 +372,9 @@ Expects there to be a feature.popup created
 that can be called.
 */
 gnt.questionnaire.show_popup_for_feature = function(feature, popup_name) {
-    
+
     if ( feature.popup !== undefined ) {
-        
+
         if( popup_name === undefined ) {
             popup_name = $('.drawbutton[name=' +
                            feature.attributes.name +
@@ -385,39 +385,39 @@ gnt.questionnaire.show_popup_for_feature = function(feature, popup_name) {
             map.removePopup( gnt.questionnaire.popup );
             gnt.questionnaire.popup = undefined;
         }
-        
+
         //create popup and put it on the map
         gnt.questionnaire.popup = feature.popup;
         map.addPopup(gnt.questionnaire.popup);
         //map.addPopup(gnt.questionnaire.popup);
-        
+
         //add a class to the form to recognize it as active
         $( '.olFramedCloudPopupContent form[name="' + popup_name + '"]' ).addClass( 'active' );
 
-        
+
         // add values to the form the values are connected but the form element name
         // and the name value in the feature attributes
         if(feature.attributes.form_values === undefined) {
             feature.attributes.form_values = [];
         }
-        
+
         $('form.popupform.active :input').val(function (index, value) {
-            
+
             //reserved inputs like private and other feature root values
             if( $(this).attr('name') === 'private' ) { //should be a checkbox
-                
+
                 $(this).attr( 'checked', !feature['private'] )
             }
-            
+
             for(var i = 0; i < feature.attributes.form_values.length; i++) {
                 var val_obj = feature.attributes.form_values[i];
-                
+
                 if($(this).attr('name') === val_obj.name) {
-                
+
                     //this shuold be done for all kinds of multiple value inputs
                     if($(this).attr('type') === 'checkbox' &&
                        $(this).attr('value') === val_obj.value) { //check checkboxes
-                        
+
                         $(this).attr( 'checked', true);
                         return value;
                     } else if($(this).attr( 'type' ) === 'checkbox') {
@@ -432,11 +432,11 @@ gnt.questionnaire.show_popup_for_feature = function(feature, popup_name) {
         //Create jQuery sliders and update popup size
         gnt.questionnaire.create_widgets('.popupform.active');
         gnt.questionnaire.popup.updateSize();
-        
+
         //connect the event to the infowindow buttons
-        $('form[name="' + popup_name + '"] button.save').click([feature],
+        $('form[name="' + popup_name + '"] + div.popup_feature_buttons button.save').click([feature],
                                                                gnt.questionnaire.save_handler);
-        $('form[name="' + popup_name + '"] button.remove').click([feature],
+        $('form[name="' + popup_name + '"] + div.popup_feature_buttons button.remove').click([feature],
                                                                  gnt.questionnaire.remove_handler);
 
         return true;
@@ -458,7 +458,7 @@ gnt.questionnaire.show_popup_for_feature = function(feature, popup_name) {
  to be shown as the content in popup.
 */
 gnt.questionnaire.feature_added = function(evt) {
-    
+
     //get the right lonlat for the popup position
     evt.lonlat = gnt.questionnaire.get_popup_lonlat(evt.geometry);
 
@@ -471,13 +471,13 @@ gnt.questionnaire.feature_added = function(evt) {
     if( popup_name !== undefined ) {
         popupcontent = $('#' + popup_name).html();
     }
-    
+
     evt.popupClass = OpenLayers.Popup.FramedCloud;
     evt.data = {
         'contentHTML': popupcontent
     };
     evt.attributes.name = name;
-    
+
     //the createPopup function did not seem to work so here
     evt.popup = new OpenLayers.Popup.FramedCloud(
                         evt.id,
@@ -487,14 +487,14 @@ gnt.questionnaire.feature_added = function(evt) {
                         null,
                         false,
                         undefined);
-    
+
     gnt.questionnaire.show_popup_for_feature(evt, popup_name);
 
     //deactivate the map and the drawing
     //unselect the button
     $(".drawbutton.ui-state-active")
         .drawButton( 'deactivate' );
-        
+
     evt.layer.redraw();
 }
 
@@ -519,7 +519,7 @@ gnt.questionnaire.on_feature_unselect_handler = function(evt) {
 
 /*
  This function should be called onload to initialize a questionnaire
- 
+
  forms -- jQuery selector to all the forms that should be created/handled
  popups -- JQuery selector to all popup forms used
  accordion -- jquery selector for the accordion,
@@ -535,11 +535,11 @@ gnt.questionnaire.init = function(forms,
                                   questionnaire_area,
                                   data_group,
                                   callback) {
-    
+
     //create a session for the anonymoususer
     gnt.auth.create_session();
-    
-    
+
+
     if( accordion !== undefined ) {
         var origHash = location.hash.split('#')[1];
         var active_page = 0;
@@ -551,7 +551,7 @@ gnt.questionnaire.init = function(forms,
             $('#main .span_left').switchClass('smallcontent', 'bigcontent', '300');
             $('#main .span_right').switchClass('smallcontent', 'bigcontent', '300');
         }
-        
+
         //create accordion
         $( accordion ).accordion({
             active: active_page,
@@ -567,7 +567,7 @@ gnt.questionnaire.init = function(forms,
                 $('#main .span_left').scrollTop(0);
             },
             changestart: function(event, ui) {
-                
+
                 //make content big if no drawbuttons on page
                 if(ui.newHeader.hasClass('bigcontent')) {
                     $('#main .span_left').switchClass('smallcontent', 'bigcontent', '300');
@@ -576,10 +576,10 @@ gnt.questionnaire.init = function(forms,
                     $('#main .span_left').switchClass('bigcontent', 'smallcontent', '300');
                     $('#main .span_right').switchClass('bigcontent', 'smallcontent', '300', 'swing', function(){ map.updateSize();});
                 }
-                
+
             }
         });
-        
+
         $( window ).bind( 'hashchange', function(event) {
             var newHash = location.hash.split( '#' )[1];
             var newActive = newHash.slice(5) - 1;
@@ -590,7 +590,7 @@ gnt.questionnaire.init = function(forms,
             }
         });
     }
-    
+
     //get the properties and set them to the inputs
     gnt.geo.get_properties('@me',
                            data_group,
@@ -645,7 +645,7 @@ gnt.questionnaire.init = function(forms,
                                     } else {
                                         gnt.questionnaire.npvalues[evt.currentTarget.name] = new_value;
                                     }
-                                    
+
                                     if(gnt.questionnaire.property_id === undefined) {
                                         gnt.geo.create_property('@me',
                                                                 data_group,
@@ -663,7 +663,7 @@ gnt.questionnaire.init = function(forms,
                                     }
                                 });
                             }});
-    
+
     gnt.maps.create_map('map', function(map) {
         //annotations from the questionnaire creater
         var annotationLayer = new OpenLayers.Layer.Vector(
@@ -723,13 +723,13 @@ gnt.questionnaire.init = function(forms,
                             }
                         })
                     });
-        
+
 
         map.addLayers([annotationLayer,
                        areaLayer,
                        routeLayer,
                        pointLayer]);
-    
+
         var pointcontrol = new OpenLayers.Control.DrawFeature(pointLayer,
                                     OpenLayers.Handler.Point,
                                     {'id': 'pointcontrol',
@@ -742,7 +742,7 @@ gnt.questionnaire.init = function(forms,
                                     OpenLayers.Handler.Polygon,
                                     {'id': 'areacontrol',
                                     'featureAdded': gnt.questionnaire.feature_added})
-        
+
         //select feature control
         var select_feature_control = new OpenLayers.Control.SelectFeature(
                 [pointLayer, routeLayer, areaLayer],
@@ -755,12 +755,12 @@ gnt.questionnaire.init = function(forms,
                 multiple: false,
                 hover: false
                 });
-        
+
         map.addControls([select_feature_control,
                          pointcontrol,
                          routecontrol,
                          areacontrol ]);
-        
+
         // create the form specific element widgets
         $( ".drawbutton.point" ).drawButton({
             drawcontrol: "pointcontrol",
@@ -774,9 +774,9 @@ gnt.questionnaire.init = function(forms,
             drawcontrol: "areacontrol",
             geography_type: "area"
         });
-        
+
         select_feature_control.activate();
-        
+
         var gf = new OpenLayers.Format.GeoJSON(),
             source_proj,
             target_proj;
@@ -792,13 +792,13 @@ gnt.questionnaire.init = function(forms,
         // Transform geometry to map projection
         questionnaire_area_feature[0].geometry.transform(source_proj, target_proj);
         map.zoomToExtent( questionnaire_area_feature[0].geometry.getBounds().scale(questionnaire.scale_visible_area) );
-        
+
         //set to annotations layer if visible
         if(questionnaire.show_area) {
             annotationLayer.addFeatures(questionnaire_area_feature);
         }
-        
-       
+
+
         //get the users feature if any
         gnt.geo.get_features(undefined,
                              data_group,
@@ -814,7 +814,7 @@ gnt.questionnaire.init = function(forms,
                             source_proj = new OpenLayers.Projection(data.crs.properties.code),
                             target_proj = new OpenLayers.Projection(map.getProjection());
                             popupcontent = " default content ";
-           
+
                         for(var i = 0; i < data.features.length; i++) {
                             var feature = gf.parseFeature(data.features[i]);
                             //add values losed in parsing should be added again
@@ -822,11 +822,11 @@ gnt.questionnaire.init = function(forms,
                             // Transform geometry to map projection
                             feature.geometry.transform(source_proj, target_proj);
                             feature.lonlat = gnt.questionnaire.get_popup_lonlat(feature.geometry);
-                            
+
                             var popup_name = $('.drawbutton[name=' +
                                             feature.attributes.name +
                                             ']').data('popup');
-                            
+
                             if(feature.geometry.CLASS_NAME === 'OpenLayers.Geometry.Point') {
                                 pl.addFeatures(feature);
                             } else if(feature.geometry.CLASS_NAME === 'OpenLayers.Geometry.LineString') {
@@ -835,7 +835,7 @@ gnt.questionnaire.init = function(forms,
                                 al.addFeatures(feature);
                             }
                             popupcontent = $('#' + popup_name).html();
-                            
+
                             feature.popupClass = OpenLayers.Popup.FramedCloud;
                             feature.data = {
                                 contentHTML: popupcontent
@@ -850,7 +850,7 @@ gnt.questionnaire.init = function(forms,
                                                 null,
                                                 false);
                         }
-                            
+
                         //disable drawbuttons that has max number of features
                         $('button.drawbutton.point').each(function(index, element) {
                             var amount = pl.getFeaturesByAttribute('name', $(element).attr('name')).length;
@@ -879,10 +879,10 @@ gnt.questionnaire.init = function(forms,
                     }
                 }
             });
-        
+
         // polyfill HTML 5 widgets
         gnt.questionnaire.create_widgets('#forms');
-        
+
         //the point where everything is done for callback
         if(callback !== undefined) {
             callback();
@@ -916,8 +916,8 @@ gnt.questionnaire.create_widgets = function(css_selector) {
         name = $(this).attr('name');
         $(this).after('<div class="slider ' + name + '" data-input="' + name + '"></div>');
         //the step has to be a integer e.g. step is 1,2,3,4,,, in UI sliders
-            
-            
+
+
         $('.slider.' + name).slider({
             'max': (max - min)/step,
             'min': 0,
@@ -929,7 +929,7 @@ gnt.questionnaire.create_widgets = function(css_selector) {
                 $($(this).slider( "option", "input_element")).change();
             }
         });
-            
+
         });
     }
 };

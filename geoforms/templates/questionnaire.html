@@ -7,7 +7,7 @@
 
 
 {% block content %}
-    
+
 <ul class="breadcrumb">
     <li class="disk hover base_bgcolor" onclick="window.location = '{% url dashboard %}'">
         <a href="{% url dashboard %}">
@@ -23,7 +23,7 @@
         </h3>
     </li>
 </ul>
-    
+
 <div id="forms">
     {% for form in form_list %}
         <h3 id="page_{{ forloop.counter }}" class="page_{{ forloop.counter }} {% if form.name in bigcontent_forms %}bigcontent{% else %}smallcontent{% endif %}">
@@ -40,8 +40,8 @@
                         {% endfor %}
                     {% endif %}
                 {% endfor %}
-            
-            
+
+
             <div class="form_element">
                 <div class="prev_next_controls">
                 {% if forloop.first %}
@@ -52,11 +52,11 @@
                 {% endif %}
                 </div>
             </div>
-            
+
             </form>
         </div>
         {% if forloop.last %}
-            
+
         <h3 id="page_{{ forloop.counter|add:1 }}" class="page_{{ forloop.counter|add:1 }} bigcontent">
             {% trans "Your answers and finish" %} {{ forloop.counter|add:1 }}/{{ form_list|length|add:1 }}
         </h3>
@@ -84,24 +84,30 @@
 <div id="popups">
     {% for form in popup_list %}
         <div id="{{ form.slug }}">
-            
+
             <form name="{{ form.slug }}" method="post" action="#" class="popupform">
                 {% for key, value in elements.items %}
                     {% if key == form.slug %}
                         {% for element in value %}
-                        <div class="form_element">
+                            {% if not forloop.last %}
+                            <div class="form_element">
+                            {% else %}
+                            <div class="form_element last">
+                            {% endif %}
                             {{ element.html|safe }}
                         </div>
                         {% endfor %}
                     {% endif %}
                 {% endfor %}
+            </form>
+            <div class="popup_feature_buttons">
                 <button type="button" class="remove">
                     {% trans 'Remove' %}
                 </button>
                 <button type="button" class="save">
                     {% trans 'Save' %}
                 </button>
-            </form>
+            </div>
         </div>
     {% endfor %}
 </div>
@@ -118,7 +124,7 @@
 var data_group = 'Q-{{ questionnaire.slug }}';
 var questionnaire_area = {{ questionnaire.area.json|safe }};
 // add crs to area
-questionnaire_area['crs'] = {"type": "name", 
+questionnaire_area['crs'] = {"type": "name",
                              "properties": {
                                  "code": "EPSG:{{ questionnaire.area.srid|safe }}"}};
 // instead of using global varibles start using this object
@@ -130,7 +136,7 @@ var questionnaire = {
     'scale_visible_area': {{ questionnaire.scale_visible_area }}
 }
 // add crs to area
-questionnaire.questionnaire_area['crs'] = {"type": "name", 
+questionnaire.questionnaire_area['crs'] = {"type": "name",
                                            "properties": {
                                                 "code": "EPSG:{{ questionnaire.area.srid|safe }}"}};
 
@@ -143,7 +149,7 @@ function count_results() {
     var number_of_routes = map.getLayersByName('Route Layer')[0].features.length;
     var number_of_areas = map.getLayersByName('Area Layer')[0].features.length;
     var number_of_features = number_of_places + number_of_routes + number_of_areas;
-    
+
     if( number_of_features === 0 ) {
         $('span.number_of_features').html("");
     } else if( number_of_features === 1) {
@@ -164,10 +170,10 @@ function count_results() {
     } else {
         $('span.number_of_properties').html('{% trans "You answered" %} ' + number_of_properties + ' {% trans "questions" %}');
     }
-    
-    if ( number_of_properties === 0 && number_of_features !== 0 ) {    
+
+    if ( number_of_properties === 0 && number_of_features !== 0 ) {
         $( 'span.number_of_features' ).append('.');
-    } else if ( number_of_properties !== 0 ) {    
+    } else if ( number_of_properties !== 0 ) {
         $( 'span.number_of_properties' ).append('.');
     }
 }
@@ -176,10 +182,10 @@ function count_results() {
 
 jQuery(document).ready(function() {
     gnt.questionnaire.init('#forms', '', '#forms', questionnaire_area, data_group, function() {
-        
+
         //count the amount of answeres given
         count_results();
-        
+
         $('#forms').bind('accordionchangestart', function(event, ui) {
             count_results();
         });
