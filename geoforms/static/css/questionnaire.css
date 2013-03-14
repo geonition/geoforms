@@ -65,12 +65,21 @@
     overflow: auto;
 }
 
+.lt-ie9 .popupform .padding {
+    height: 30px;
+}
+
 .popup_feature_buttons {
     background-color: #FFFFFF;
     bottom: 0;
     padding-top: 5px;
     position: absolute;
     width: 90%;
+    z-index: 3
+}
+
+.lt-ie9 .popup_feature_buttons {
+    bottom: 5px;
 }
 /* end elements in popup forms */
 
@@ -83,7 +92,7 @@
     width: 100%;
 }
 .form_element.last {
-    margin-bottom: 30px;
+    /*margin-bottom: 30px;*/
 }
 .form_element p {
     text-align: left;
