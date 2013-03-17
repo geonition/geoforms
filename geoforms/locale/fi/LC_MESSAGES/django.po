@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geonition\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-10 19:00-0500\n"
+"POT-Creation-Date: 2013-03-13 19:00-0500\n"
 "PO-Revision-Date: 2013-02-28 14:10+0000\n"
 "Last-Translator: msjohans <mikko.johansson@aalto.fi>\n"
 "Language-Team: Finnish (http://www.transifex.com/projects/p/geonition/language/fi/)\n"
@@ -24,7 +24,7 @@ msgstr ""
 msgid "Advanced options"
 msgstr "Lisäasetukset"
 
-#: forms.py:39 forms.py:207 forms.py:532
+#: forms.py:39 forms.py:207 forms.py:544
 msgid "question"
 msgstr "kysymys"
 
@@ -52,64 +52,64 @@ msgstr "maximi otsikko"
 msgid "initial value"
 msgstr "alkuarvo"
 
-#: forms.py:310 forms.py:348
+#: forms.py:322 forms.py:360
 msgid "option"
 msgstr "valinta"
 
-#: forms.py:383
+#: forms.py:395
 msgid "place"
 msgstr "paikan"
 
-#: forms.py:384
+#: forms.py:396
 msgid "route"
 msgstr "reitti"
 
-#: forms.py:385
+#: forms.py:397
 msgid "area"
 msgstr "alue"
 
-#: forms.py:386
+#: forms.py:398
 msgid "geometry type"
 msgstr "geometrian typpi"
 
-#: forms.py:387
+#: forms.py:399
 msgid "button text"
 msgstr "napin teksti"
 
-#: forms.py:390
+#: forms.py:402
 msgid "color"
 msgstr "väri"
 
-#: forms.py:391
+#: forms.py:403
 msgid ""
 "The color of the feature to be drawn. The color is given as hexadecimal "
 "color e.g. #ffffff --> white, #000000 --> black, #ff0000 --> red, #00ff00 "
 "--> green, #0000ff --> blue."
 msgstr "Käyttäjän piirtämän paikannuksen väri. Väri syötetään heksadesimaali muodossa esim. #ffffff (valkoinen), #000000 (musta), #ff0000 (punainen), #00ff00 (vihreä), #0000ff (sininen) "
 
-#: forms.py:393
+#: forms.py:405
 msgid "popup for the place, route or area"
 msgstr "paikan, reitin tai alueen ponnahdusikkuna "
 
-#: forms.py:394 forms.py:413
+#: forms.py:406 forms.py:425
 msgid "Choose the popup to use for the place, route, or area."
 msgstr "Valitse ponnahdusikkuna jonka käyttäjä näkee sen jälkeen kun hän on piirtänyt paikannuksen."
 
-#: forms.py:398
+#: forms.py:410
 msgid "max amount of answers"
 msgstr "vastausten maksimimäärä"
 
-#: forms.py:399
+#: forms.py:411
 msgid ""
 "This is the maximum number of allowed places/routes/areas that can be drawn "
 "by this drawbutton."
 msgstr "Tämä on suurin sallittu paikannusten määrä, joita tällä piirtonapilla voi piirtää."
 
-#: forms.py:479
+#: forms.py:491
 msgid "text for the paragraph"
 msgstr "kappaleen teksti"
 
-#: forms.py:480
+#: forms.py:492
 msgid ""
 "This field takes as input any html tags. This enables you to style the text "
 "in any way you want. Here is a list of tags that can be used <a "
@@ -117,11 +117,11 @@ msgid ""
 "tags</a>"
 msgstr "Tähän kenttään voi kirjoittaa HTML koodia. Tämä mahdollistaa tekstin tyylittelyä esim. <a href=\"http://dev.w3.org/html5/spec/single-page.html#usage-summary\">html5 tags</a>"
 
-#: models.py:27 models.py:181 models.py:275
+#: models.py:27 models.py:180 models.py:274
 msgid "slug"
 msgstr ""
 
-#: models.py:30 models.py:183
+#: models.py:30 models.py:182
 msgid "name"
 msgstr "nimi"
 
@@ -133,131 +133,131 @@ msgstr "elementin tyyppi"
 msgid "html"
 msgstr "html"
 
-#: models.py:51
+#: models.py:50
 msgid "questionnaire page element"
 msgstr "kyselysivun elementti"
 
-#: models.py:52
+#: models.py:51
 msgid "questionnaire page elements"
 msgstr "kyselysivujen elementit"
 
-#: models.py:68
+#: models.py:67
 msgid "text input"
 msgstr "Teksti syöttökenttä"
 
-#: models.py:69
+#: models.py:68
 msgid "text inputs"
 msgstr "teksti syöttökenttiä"
 
-#: models.py:82
+#: models.py:81
 msgid "text area"
 msgstr "Tekstikenttä"
 
-#: models.py:83
+#: models.py:82
 msgid "text areas"
 msgstr "Tekstikenttiä"
 
-#: models.py:96
+#: models.py:95
 msgid "number input"
 msgstr "numeronsyöttökenttä"
 
-#: models.py:97
+#: models.py:96
 msgid "number inputs"
 msgstr "numeroiden syöttökenttiä"
 
-#: models.py:110
+#: models.py:109
 msgid "range input"
 msgstr "liukukytkin"
 
-#: models.py:111
+#: models.py:110
 msgid "range inputs"
 msgstr "liukukytkimiä"
 
-#: models.py:124
+#: models.py:123
 msgid "paragraph"
 msgstr "tekstikappale"
 
-#: models.py:125
+#: models.py:124
 msgid "paragraphs"
 msgstr "tekstikappaleita"
 
-#: models.py:138 models.py:139
+#: models.py:137 models.py:138
 msgid "Select one"
 msgstr "valitse yksi"
 
-#: models.py:152 models.py:153
+#: models.py:151 models.py:152
 msgid "Select multiple"
 msgstr "valitse monta"
 
-#: models.py:166
+#: models.py:165
 msgid "Draw button"
 msgstr "piirtonappi"
 
-#: models.py:167
+#: models.py:166
 msgid "Draw buttons"
 msgstr "piirtonappeja"
 
-#: models.py:190
+#: models.py:189
 msgid "page type"
 msgstr "sivun tyyppi"
 
-#: models.py:193
+#: models.py:192
 msgid "elements"
 msgstr "elementiti"
 
-#: models.py:208 models.py:351
+#: models.py:207 models.py:350
 msgid "questionnaire page"
 msgstr "kyselysivu"
 
-#: models.py:209 models.py:352
+#: models.py:208 models.py:351
 msgid "questionnaire pages"
 msgstr "kyselysivuja"
 
-#: models.py:226
+#: models.py:225
 msgid "popup"
 msgstr "popup"
 
-#: models.py:227
+#: models.py:226
 msgid "popups"
 msgstr "popupit"
 
-#: models.py:242 models.py:252 models.py:343
+#: models.py:241 models.py:251 models.py:342
 msgid "page"
 msgstr "sivu"
 
-#: models.py:243 models.py:269
+#: models.py:242 models.py:268
 msgid "pages"
 msgstr "sivut"
 
-#: models.py:254
+#: models.py:253
 msgid "element"
 msgstr "elementti"
 
-#: models.py:256 models.py:345
+#: models.py:255 models.py:344
 msgid "order"
 msgstr "järjestys"
 
-#: models.py:259
+#: models.py:258
 msgid "page element"
 msgstr "kyselysivun elementti"
 
-#: models.py:260
+#: models.py:259
 msgid "page elements"
 msgstr "kyselysivujen elementit"
 
-#: models.py:270
+#: models.py:269
 msgid "name of questionnaire"
 msgstr "kyselyn nimi"
 
-#: models.py:277
+#: models.py:276
 msgid "description"
 msgstr ""
 
-#: models.py:278
+#: models.py:277
 msgid "area of questionnaire"
 msgstr "kyselyn alue"
 
-#: models.py:282
+#: models.py:281
 msgid ""
 "This is the initial area which will be visible on the questionnaire map. The"
 " map tools are on the up right corner of the map. To choose a tool you have "
@@ -268,51 +268,51 @@ msgid ""
 "places."
 msgstr "Tämä on alue johon kysely kohdistuu. Kartan piirtotyökalut ovat kartan oikeassa yläkulmassa. Valitse työkalu napsauttamalla työkalua siten, että se muuttuu keltaiseksi. Piirtääksesi alueen valitse alue työkalu ja napsauta karttaa alueen reunalla kunnes alue on täysin merkitty. Piirto lopetetaan tuplaklikkauksella. Voit myös myöhemmin muokata aluetta valitsemalla alueen muokkaustyökalun. Voit muokkaustyökalun avulla raahata alueen kulmia siten, että alue on oikein merkitty."
 
-#: models.py:283
+#: models.py:282
 msgid "show area"
 msgstr "näytä alue"
 
-#: models.py:284
+#: models.py:283
 msgid ""
 "Check the box to show the area to the user. Otherwise leave the checkbox "
 "unchecked."
 msgstr "Valitse jos haluat, että alue näkyy käyttäjälle. Muuten jätä tyhjäksi."
 
-#: models.py:285
+#: models.py:284
 msgid "scale the visible area"
 msgstr "skaalaa näkyvään alueeseen"
 
-#: models.py:287
+#: models.py:286
 msgid ""
 "This number will be used to set the initial map extent. The map extent is "
 "counted by drawn area times this number."
 msgstr "Tätä numeroa käytetään laskemaan kartan aloitusnäkymä. Aloitusnäkymä lasketaan merkityn alueen koko kertaa tämä numero. "
 
-#: models.py:289
+#: models.py:288
 msgid "site"
 msgstr ""
 
-#: models.py:296
+#: models.py:295
 msgid "questionnaire start date"
 msgstr "kyselyn alkamispäivä"
 
-#: models.py:299
+#: models.py:298
 msgid "questionnaire end date"
 msgstr "kyselyn loppumispäivä"
 
-#: models.py:303
+#: models.py:302
 msgid "map"
 msgstr "kartta"
 
-#: models.py:329 models.py:341
+#: models.py:328 models.py:340
 msgid "questionnaire"
 msgstr "kysely"
 
-#: models.py:330
+#: models.py:329
 msgid "questionnaires"
 msgstr "kyselyt"
 
-#: views.py:72
+#: views.py:74
 msgid "Go to the application.."
 msgstr "Siirry sovellukseen.."
 
@@ -372,44 +372,44 @@ msgstr "Tämä on kyselyn viimeinen sivu ja vastuksesi on tallennettu. Kiitos va
 msgid "Quit and go to home page"
 msgstr "Lopeta ja siirry etusivulle"
 
-#: templates/questionnaire.html:99
+#: templates/questionnaire.html:105
 msgid "Remove"
 msgstr "Poista"
 
-#: templates/questionnaire.html:102
+#: templates/questionnaire.html:108
 #: templates/admin/geoforms/geoformelement/create_element.html:41
 msgid "Save"
 msgstr "Tallenna"
 
-#: templates/questionnaire.html:148
+#: templates/questionnaire.html:156
 msgid "You marked one place"
 msgstr "Olet merkinnyt yhden paikan"
 
-#: templates/questionnaire.html:150
+#: templates/questionnaire.html:158
 msgid "You marked"
 msgstr "Olet merkinnyt"
 
-#: templates/questionnaire.html:150
+#: templates/questionnaire.html:158
 msgid "places"
 msgstr "paikkaa"
 
-#: templates/questionnaire.html:156
+#: templates/questionnaire.html:164
 msgid "and answered one question"
 msgstr "ja vastannut yhteen kysymykseen"
 
-#: templates/questionnaire.html:158
+#: templates/questionnaire.html:166
 msgid "and answered"
 msgstr "ja antanut"
 
-#: templates/questionnaire.html:158 templates/questionnaire.html.py:163
+#: templates/questionnaire.html:166 templates/questionnaire.html.py:171
 msgid "questions"
 msgstr "vastausta"
 
-#: templates/questionnaire.html:161
+#: templates/questionnaire.html:169
 msgid "You answered one question"
 msgstr "Olet vastannut yhteen kysymykseen"
 
-#: templates/questionnaire.html:163
+#: templates/questionnaire.html:171
 msgid "You answered"
 msgstr "Olet antanut"
 
