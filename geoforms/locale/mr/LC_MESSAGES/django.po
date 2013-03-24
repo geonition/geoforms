@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geonition\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-13 19:00-0500\n"
+"POT-Creation-Date: 2013-03-17 19:00-0500\n"
 "PO-Revision-Date: 2013-02-21 10:30+0000\n"
 "Last-Translator: ksnabb <kristoffer.snabb@geonition.org>\n"
 "Language-Team: Marathi (http://www.transifex.com/projects/p/geonition/language/mr/)\n"
@@ -370,44 +370,44 @@ msgstr "आपली उत्तरं सेव करण्यात आल�
 msgid "Quit and go to home page"
 msgstr "पेज सोडून होमपेज वर या "
 
-#: templates/questionnaire.html:105
+#: templates/questionnaire.html:106
 msgid "Remove"
 msgstr "काढा "
 
-#: templates/questionnaire.html:108
+#: templates/questionnaire.html:109
 #: templates/admin/geoforms/geoformelement/create_element.html:41
 msgid "Save"
 msgstr "सेव करा "
 
-#: templates/questionnaire.html:156
+#: templates/questionnaire.html:157
 msgid "You marked one place"
 msgstr "आपण एक जागा मार्क केली आहे."
 
-#: templates/questionnaire.html:158
+#: templates/questionnaire.html:159
 msgid "You marked"
 msgstr ""
 
-#: templates/questionnaire.html:158
+#: templates/questionnaire.html:159
 msgid "places"
 msgstr "जागा"
 
-#: templates/questionnaire.html:164
+#: templates/questionnaire.html:165
 msgid "and answered one question"
 msgstr "आणि  एका  प्रश्नाचे  उत्तर  दिले  आहे"
 
-#: templates/questionnaire.html:166
+#: templates/questionnaire.html:167
 msgid "and answered"
 msgstr "आणि उत्तर दिले"
 
-#: templates/questionnaire.html:166 templates/questionnaire.html.py:171
+#: templates/questionnaire.html:167 templates/questionnaire.html.py:172
 msgid "questions"
 msgstr "प्रश्न "
 
-#: templates/questionnaire.html:169
+#: templates/questionnaire.html:170
 msgid "You answered one question"
 msgstr "आपण एका प्रश्नाचे उत्तर दिले"
 
-#: templates/questionnaire.html:171
+#: templates/questionnaire.html:172
 msgid "You answered"
 msgstr ""
 
