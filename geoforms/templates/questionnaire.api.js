@@ -587,8 +587,17 @@ gnt.questionnaire.init = function(forms,
             if(curActive !== newActive) {
                 $( accordion ).accordion('activate',
                                          newActive);
+                //Sometimes there is need to have custom content on one page only
+                $( accordion ).trigger({
+                        type: "accordionPageChange",
+                        page: newActive
+                });
             }
         });
+        // This function should be implemented as a geoforms html element
+        if (accordionPageChangeHandler !== undefined) {
+            $( accordion ).on('accordionPageChange', accordionPageChangeHandler);
+        }
     }
 
     //get the properties and set them to the inputs
