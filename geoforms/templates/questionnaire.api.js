@@ -595,7 +595,7 @@ gnt.questionnaire.init = function(forms,
             }
         });
         // This function should be implemented as a geoforms html element
-        if (accordionPageChangeHandler !== undefined) {
+        if (window.accordionPageChangeHandler !== undefined) {
             $( accordion ).on('accordionPageChange', accordionPageChangeHandler);
         }
     }
