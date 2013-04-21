@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-#   <fred.lopes3@gmail.com>, 2012.
-#   <kristoffer.snabb@geonition.org>, 2012.
+# FredGIS <fred.lopes3@gmail.com>, 2012
+# ksnabb <kristoffer.snabb@geonition.org>, 2012
 msgid ""
 msgstr ""
 "Project-Id-Version: geonition\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-07 19:00-0500\n"
+"POT-Creation-Date: 2013-04-14 19:00-0500\n"
 "PO-Revision-Date: 2013-02-21 10:30+0000\n"
 "Last-Translator: ksnabb <kristoffer.snabb@geonition.org>\n"
 "Language-Team: Portuguese (http://www.transifex.com/projects/p/geonition/language/pt/)\n"
