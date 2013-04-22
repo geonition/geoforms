@@ -139,14 +139,16 @@ function show_feedback() {
                 feature.lonlat = gnt.questionnaire.get_popup_lonlat(feature.geometry);
                 feature.style = get_style_for_name(feature.attributes.name);
                 other.addFeatures(feature);
-                comment = feature.attributes.form_values[0].value;
+                if (feature.attributes.form_values.length > 0){
+                    comment = feature.attributes.form_values[0].value;
+                    $('#other .comment').text(comment);
+                }
                 user = feature.attributes.user;
                 // set the right content
                 anonymous_regexp = new RegExp('T[0-9]+.[0-9]+R[0-9]+.[0-9]+');
                 if (!anonymous_regexp.test(user)) {
                     $('#other .username').text(user);
                 }
-                $('#other .comment').text(comment);
                 //get the content
                 popupcontent = $('#other').html();
                 feature.popupClass = OpenLayers.Popup.FramedCloud;
