@@ -4,13 +4,15 @@
 # 
 # Translators:
 # ksnabb <kristoffer.snabb@geonition.org>, 2012
+# ksnabb <kristoffer.snabb@geonition.org>, 2012
 # msjohans <mikko.johansson@aalto.fi>, 2012
 # msjohans <mikko.johansson@aalto.fi>, 2013
+# msjohans <mikko.johansson@aalto.fi>, 2012-2013
 msgid ""
 msgstr ""
 "Project-Id-Version: geonition\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-14 19:00-0500\n"
+"POT-Creation-Date: 2013-04-21 19:00-0500\n"
 "PO-Revision-Date: 2013-02-28 14:10+0000\n"
 "Last-Translator: msjohans <mikko.johansson@aalto.fi>\n"
 "Language-Team: Finnish (http://www.transifex.com/projects/p/geonition/language/fi/)\n"
