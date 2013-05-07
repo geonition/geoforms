@@ -107,13 +107,14 @@ class QuestionnaireAdmin(admin.OSMGeoAdmin, TranslationAdmin):
                           {'default_zoom': 4})['default_zoom']
     fieldsets = (
         (None, {
-            'fields': ('name', 'description', ('start_date', 'end_date'), 'area', 'annotation_areas',)
+            'fields': ('name', 'description', ('start_date', 'end_date'), 'area',)
         }),
         (_('Advanced options'), {
             'classes': ('collapse',),
             'fields': ('show_area', 'scale_visible_area',)
         }),
     )
+    #Following fields
     openlayers_url = '%s%s' % (getattr(settings, 'STATIC_URL', '/'), 'js/libs/OpenLayers.js')
     extra_js = (reverse_lazy('osmextra'),)
     

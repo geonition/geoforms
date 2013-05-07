@@ -301,13 +301,16 @@ class Questionnaire(models.Model):
                             blank = True,
                             verbose_name = _('map'))
 
-    annotation_areas = geomodel.MultiPolygonField(_('annotation areas'),
+    detailed_areas = geomodel.MultiPolygonField(_('detailed areas'),
                                  srid = getattr(settings,
                                                 'SPATIAL_REFERENCE_SYSTEM_ID',
                                                 4326),
                                  null = True,
                                  blank = True,
-                                 help_text = _(''))
+                                 help_text = _('These detailed focus areas of the questionnaire.'))
+    show_detailed_areas = models.BooleanField(default = False,
+                                    verbose_name = _('show detailed areas'),
+                                    help_text = _('Check the box to show the detailed areas to the user. Otherwise leave the checkbox unchecked.'))
     
     on_site = CurrentSiteManager()
     objects = geomodel.GeoManager()
