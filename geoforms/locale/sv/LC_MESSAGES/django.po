@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-#   <kristoffer.snabb@geonition.org>, 2012.
-# Kristoffer Vilhelm Snabb <kristoffer.snabb@geonition.org>, 2013.
+# ksnabb <kristoffer.snabb@geonition.org>, 2012
+# ksnabb <kristoffer.snabb@geonition.org>, 2013
+# ksnabb <kristoffer.snabb@geonition.org>, 2012-2013
 msgid ""
 msgstr ""
 "Project-Id-Version: geonition\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-17 19:00-0500\n"
+"POT-Creation-Date: 2013-05-05 19:00-0500\n"
 "PO-Revision-Date: 2013-02-25 13:23+0000\n"
 "Last-Translator: ksnabb <kristoffer.snabb@geonition.org>\n"
 "Language-Team: Swedish (http://www.transifex.com/projects/p/geonition/language/sv/)\n"
@@ -23,7 +24,7 @@ msgstr ""
 msgid "Advanced options"
 msgstr "Avancerade inställningar"
 
-#: forms.py:39 forms.py:207 forms.py:544
+#: forms.py:39 forms.py:207 forms.py:546
 msgid "question"
 msgstr "fråga"
 

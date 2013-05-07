@@ -272,7 +272,7 @@ class RangeElementForm(forms.ModelForm):
             max_label = self.cleaned_data['max_label']
             
             if not question:
-                question = ['']
+                question = ['']* len(settings.LANGUAGES)
                 name = slugify("%sT%s" % (min_label[0][:200],
                                           str(datetime.utcnow())))
             else:
