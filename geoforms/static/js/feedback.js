@@ -39,7 +39,6 @@ function makeHighlightCtrl() {
                                      username +
                                      ' ' +
                                      create_time_string + '</li>';
-                    console.log(feat_str);
                     $('ul.feature_comments').prepend(feat_str);
                     show_list_item = $('ul.feature_comments li.' + e.feature.id);
                     show_list_item.stop(true, true);
