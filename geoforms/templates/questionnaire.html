@@ -29,12 +29,12 @@
         <h3 id="page_{{ forloop.counter }}" class="page_{{ forloop.counter }} {% if form.name in bigcontent_forms %}bigcontent{% else %}smallcontent{% endif %}">
             {{ forloop.counter }}/{{ form_list|length|add:1 }} {{ form.name }}
         </h3>
-        <div>
+        <div data-page="{{ forloop.counter}}">
             <form name="{{ form.slug }}" method="post" action="#">
                 {% for key, value in elements.items %}
                     {% if key == form.slug %}
                         {% for element in value %}
-                        <div class="form_element">
+                        <div class="form_element" data-element-type="{{element.element_type}}">
                             {{ element.html|safe }}
                         </div>
                         {% endfor %}
@@ -190,10 +190,46 @@ jQuery(document).ready(function() {
         $('#forms').bind('accordionchangestart', function(event, ui) {
             count_results();
         });
+
+        /* begin WMS element handling */
+        gnt.questionnaire.extra_layers = Array();
+        $('[data-element-type="wms-layer"]').each(function() {
+            var name = $(this).children().first().attr('data-layer-name');
+            var url = $(this).children().first().attr('data-layer-url');
+            var page = parseInt($(this).closest('[data-page]').attr('data-page'));
+            var layer = new OpenLayers.Layer.WMS(
+                "extra_layer", 
+                url, 
+                {layers: name, transparent: true});
+                                                          
+            gnt.questionnaire.extra_layers.push({
+                page_number : page,
+                layer : layer
+                });
+            map.addLayer(layer);
+            if (page == 1){
+                layer.setVisibility(true);
+            }
+            else {
+                layer.setVisibility(false);
+            }
+            });
+        /* end WMS element handling */
     });
 });
 
 {% endblock questionnaire_init %}
+function accordionPageChangeHandler(event) {
+    for (var i=0; i < gnt.questionnaire.extra_layers.length; i++) {
+        var layer = gnt.questionnaire.extra_layers[i];
+        if (event.page !== layer.page_number) {
+           layer.layer.setVisibility(false);
+        }
+        else {
+            layer.layer.setVisibility(true);
+        }
+    }
+}
 
 
 </script>

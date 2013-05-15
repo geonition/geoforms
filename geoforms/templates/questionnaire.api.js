@@ -590,7 +590,7 @@ gnt.questionnaire.init = function(forms,
                 //Sometimes there is need to have custom content on one page only
                 $( accordion ).trigger({
                         type: "accordionPageChange",
-                        page: newActive
+                        page: newActive + 1 // counter starts from 1
                 });
             }
         });
@@ -942,3 +942,4 @@ gnt.questionnaire.create_widgets = function(css_selector) {
         });
     }
 };
+
