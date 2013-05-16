@@ -501,8 +501,10 @@ class ParagraphForm(forms.ModelForm):
             for lang in settings.LANGUAGES:
                 soup = BeautifulSoup(getattr(kwargs['instance'],
                                              'html_%s' % lang[0]))
-                soup.html.unwrap()
-                soup.body.unwrap()
+                if soup.html is not None:
+                    soup.html.unwrap()
+                if soup.body is not None:
+                    soup.body.unwrap()
                 soup.p.unwrap() #remove the p tags
                 initial_values.append(soup)
             
