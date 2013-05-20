@@ -25,8 +25,9 @@ def questionnaire(request, questionnaire_slug, template=''):
     bigcontent_forms = set()
     for form in form_list:
         popup_elements = form.elements.filter(element_type = 'drawbutton').values_list('html', flat=True)
+        wms_elements = form.elements.filter(element_type = 'wms-layer')
 
-        if len(popup_elements) == 0:
+        if len(popup_elements) == 0 and len(wms_elements) == 0:
             bigcontent_forms.add(form.name)
 
         for e in popup_elements:
