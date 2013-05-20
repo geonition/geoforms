@@ -195,7 +195,6 @@ jQuery(document).ready(function() {
         gnt.questionnaire.extra_layers = Array();
         $('[data-element-type="wms-layer"]').each(function() {
             var name = $(this).children().first().attr('data-layer-name');
-            var long_name = $(this).children().first().attr('data-layer-long-name');
             var url = $(this).children().first().attr('data-layer-url');
             var page = parseInt($(this).closest('[data-page]').attr('data-page'));
             var layer = new OpenLayers.Layer.WMS(
@@ -205,7 +204,6 @@ jQuery(document).ready(function() {
                                                           
             gnt.questionnaire.extra_layers.push({
                 page_number : page,
-                long_name : long_name,
                 layer : layer
                 });
             map.addLayer(layer);
