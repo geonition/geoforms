@@ -116,6 +116,7 @@
 
 {% block javascript %}
 {% block extra_js %}
+<script type="text/javascript" src="{{ STATIC_URL }}js/feedback.js"></script>
 {% endblock extra_js %}
 <script type="text/javascript" src="{{ STATIC_URL }}js/libs/proj4js-gnt.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/libs/OpenLayers-gnt.js"></script>
@@ -202,6 +203,7 @@ jQuery(document).ready(function() {
                     .addClass('wms-layerswitcher')
                     )
                 );
+        var sld_getter = make_sld_getter();
         $('[data-element-type="wms-layer"]').each(function() {
             var name = $(this).children().first().attr('data-layer-name');
             var long_name = $(this).children().first().attr('data-layer-long-name');
@@ -210,7 +212,12 @@ jQuery(document).ready(function() {
             var layer = new OpenLayers.Layer.WMS(
                 "extra_layer", 
                 url, 
-                {layers: name, transparent: true});
+                {
+                    "layers": name,
+                    "transparent": true,
+                    "version": "1.1.1",
+                    "SLD_BODY": sld_getter(name)
+                });
                                                           
             gnt.questionnaire.extra_layers.push({
                 page_number : page,
