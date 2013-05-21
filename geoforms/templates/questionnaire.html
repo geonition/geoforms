@@ -193,8 +193,18 @@ jQuery(document).ready(function() {
 
         /* begin WMS element handling */
         gnt.questionnaire.extra_layers = Array();
+        $('#map').append(
+                $('<div></div>')
+                .attr('id', 'wms-layerswitcher-container')
+                .append('<strong>{% trans "Choose Layers to show" %}</strong>')
+                .append(
+                    $('<ul></ul>')
+                    .addClass('wms-layerswitcher')
+                    )
+                );
         $('[data-element-type="wms-layer"]').each(function() {
             var name = $(this).children().first().attr('data-layer-name');
+            var long_name = $(this).children().first().attr('data-layer-long-name');
             var url = $(this).children().first().attr('data-layer-url');
             var page = parseInt($(this).closest('[data-page]').attr('data-page'));
             var layer = new OpenLayers.Layer.WMS(
@@ -204,30 +214,52 @@ jQuery(document).ready(function() {
                                                           
             gnt.questionnaire.extra_layers.push({
                 page_number : page,
+                long_name : long_name,
                 layer : layer
                 });
             map.addLayer(layer);
-            if (page == 1){
-                layer.setVisibility(true);
-            }
-            else {
-                layer.setVisibility(false);
-            }
-            });
+            makeWMSLayerSwitcher(1);
         /* end WMS element handling */
+        });
     });
 });
 
 {% endblock questionnaire_init %}
 function accordionPageChangeHandler(event) {
+    makeWMSLayerSwitcher(event.page);
+}
+function makeLayerToggler(layer) {
+    var myLayer = layer;
+    function myFunc(e) {
+        myLayer.setVisibility(e.target.checked);
+    }
+    return myFunc;
+}
+function makeWMSLayerSwitcher(page_number) {
+    $('#wms-layerswitcher-container ul').html('');
+    var page_has_wms_layers = false;
     for (var i=0; i < gnt.questionnaire.extra_layers.length; i++) {
         var layer = gnt.questionnaire.extra_layers[i];
-        if (event.page !== layer.page_number) {
+        if (page_number !== layer.page_number) {
            layer.layer.setVisibility(false);
         }
         else {
             layer.layer.setVisibility(true);
+            page_has_wms_layers = true;
+            
+            $('#wms-layerswitcher-container ul').append(
+                    $('<li></li>')
+                    .append($('<input type="checkbox">')
+                        .attr('checked', true)
+                        .change(makeLayerToggler(layer.layer)))
+                    .append(layer.long_name)
+                );
         }
+    }
+    if (page_has_wms_layers) {
+        $('#wms-layerswitcher-container').show();
+    } else {
+        $('#wms-layerswitcher-container').hide();
     }
 }
 
