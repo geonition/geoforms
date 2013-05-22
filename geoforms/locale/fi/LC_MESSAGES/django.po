@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: geonition\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-22 03:22-0500\n"
-"PO-Revision-Date: 2013-05-22 08:23+0000\n"
+"PO-Revision-Date: 2013-05-22 08:40+0000\n"
 "Last-Translator: sellonen <sakari.ellonen@mapita.fi>\n"
 "Language-Team: Finnish (http://www.transifex.com/projects/p/geonition/language/fi/)\n"
 "MIME-Version: 1.0\n"
@@ -376,7 +376,7 @@ msgstr "Edellinen"
 
 #: templates/questionnaire.html:61
 msgid "Your answers and finish"
-msgstr "Sinun vastauksesi ja lopetus"
+msgstr "Kiitos vastauksistasi!"
 
 #: templates/questionnaire.html:70
 msgid ""
@@ -384,7 +384,7 @@ msgid ""
 "you for your answers! You can still continue modifying your answers by "
 "clicking the previous buttons. Quit the questionnaire by clicking the 'quit "
 "and go to home page' button."
-msgstr "Tämä on kyselyn viimeinen sivu ja antamasi tiedot on tallennettu. Kiitos vastauksistasi! Voit vielä palata muokkaamaan vastauksiasi edellinen-painikkeella. Kysely päättyy, kun painat 'lopeta ja siirry etusivulle' -painiketta."
+msgstr "Voit halutessasi siirtyä etusivun kautta vastaamaan muihin kyselyihin tai palata muokkaamaan vastauksiasi painikkeella \"edellinen\"."
 
 #: templates/questionnaire.html:76
 msgid "Quit and go to home page"
