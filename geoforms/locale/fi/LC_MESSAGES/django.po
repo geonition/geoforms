@@ -8,13 +8,15 @@
 # msjohans <mikko.johansson@aalto.fi>, 2012
 # msjohans <mikko.johansson@aalto.fi>, 2013
 # msjohans <mikko.johansson@aalto.fi>, 2012-2013
+# sellonen <sakari.ellonen@mapita.fi>, 2013
+# sellonen <sakari.ellonen@mapita.fi>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: geonition\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-07 03:13-0500\n"
-"PO-Revision-Date: 2013-05-07 08:10+0000\n"
-"Last-Translator: msjohans <mikko.johansson@aalto.fi>\n"
+"POT-Creation-Date: 2013-05-22 03:22-0500\n"
+"PO-Revision-Date: 2013-05-22 08:23+0000\n"
+"Last-Translator: sellonen <sakari.ellonen@mapita.fi>\n"
 "Language-Team: Finnish (http://www.transifex.com/projects/p/geonition/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,11 +24,11 @@ msgstr ""
 "Language: fi\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: admin.py:112 admin.py:163 admin.py:185
+#: admin.py:112 admin.py:164 admin.py:186
 msgid "Advanced options"
 msgstr "Lisäasetukset"
 
-#: forms.py:39 forms.py:207 forms.py:546
+#: forms.py:39 forms.py:207 forms.py:548
 msgid "question"
 msgstr "kysymys"
 
@@ -207,11 +209,11 @@ msgstr "sivun tyyppi"
 msgid "elements"
 msgstr "elementiti"
 
-#: models.py:207 models.py:350
+#: models.py:207 models.py:361
 msgid "questionnaire page"
 msgstr "kyselysivu"
 
-#: models.py:208 models.py:351
+#: models.py:208 models.py:362
 msgid "questionnaire pages"
 msgstr "kyselysivuja"
 
@@ -223,7 +225,7 @@ msgstr "popup"
 msgid "popups"
 msgstr "popupit"
 
-#: models.py:241 models.py:251 models.py:342
+#: models.py:241 models.py:251 models.py:353
 msgid "page"
 msgstr "sivu"
 
@@ -235,7 +237,7 @@ msgstr "sivut"
 msgid "element"
 msgstr "elementti"
 
-#: models.py:255 models.py:344
+#: models.py:255 models.py:355
 msgid "order"
 msgstr "järjestys"
 
@@ -253,7 +255,7 @@ msgstr "kyselyn nimi"
 
 #: models.py:276
 msgid "description"
-msgstr ""
+msgstr "kuvaus"
 
 #: models.py:277
 msgid "area of questionnaire"
@@ -306,17 +308,31 @@ msgstr "kyselyn loppumispäivä"
 msgid "map"
 msgstr "kartta"
 
-#: models.py:328 models.py:340
+#: models.py:304
+msgid "detailed areas"
+msgstr ""
+
+#: models.py:310
+msgid "These detailed focus areas of the questionnaire."
+msgstr ""
+
+#: models.py:312
+msgid "show detailed areas"
+msgstr ""
+
+#: models.py:313
+msgid ""
+"Check the box to show the detailed areas to the user. Otherwise leave the "
+"checkbox unchecked."
+msgstr ""
+
+#: models.py:339 models.py:351
 msgid "questionnaire"
 msgstr "kysely"
 
-#: models.py:329
+#: models.py:340
 msgid "questionnaires"
 msgstr "kyselyt"
-
-#: views.py:74
-msgid "Go to the application.."
-msgstr "Siirry sovellukseen.."
 
 #: widgets.py:34
 msgid "place icon"
@@ -383,37 +399,41 @@ msgstr "Poista"
 msgid "Save"
 msgstr "Tallenna"
 
-#: templates/questionnaire.html:157
+#: templates/questionnaire.html:158
 msgid "You marked one place"
 msgstr "Olet merkinnyt yhden paikan"
 
-#: templates/questionnaire.html:159
+#: templates/questionnaire.html:160
 msgid "You marked"
 msgstr "Olet merkinnyt"
 
-#: templates/questionnaire.html:159
+#: templates/questionnaire.html:160
 msgid "places"
 msgstr "paikkaa"
 
-#: templates/questionnaire.html:165
+#: templates/questionnaire.html:166
 msgid "and answered one question"
 msgstr "ja vastannut yhteen kysymykseen"
 
-#: templates/questionnaire.html:167
+#: templates/questionnaire.html:168
 msgid "and answered"
 msgstr "ja antanut"
 
-#: templates/questionnaire.html:167 templates/questionnaire.html.py:172
+#: templates/questionnaire.html:168 templates/questionnaire.html.py:173
 msgid "questions"
 msgstr "vastausta"
 
-#: templates/questionnaire.html:170
+#: templates/questionnaire.html:171
 msgid "You answered one question"
 msgstr "Olet vastannut yhteen kysymykseen"
 
-#: templates/questionnaire.html:172
+#: templates/questionnaire.html:173
 msgid "You answered"
 msgstr "Olet antanut"
+
+#: templates/questionnaire.html:200
+msgid "Choose Layers to show"
+msgstr "Valitse näkyvät karttatasot"
 
 #: templates/admin/geoforms/geoformelement/create_element.html:7
 msgid "Home"

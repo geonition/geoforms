@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geonition\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-07 03:13-0500\n"
-"PO-Revision-Date: 2013-02-21 10:30+0000\n"
+"POT-Creation-Date: 2013-05-22 03:22-0500\n"
+"PO-Revision-Date: 2013-05-22 08:22+0000\n"
 "Last-Translator: ksnabb <kristoffer.snabb@geonition.org>\n"
 "Language-Team: Marathi (http://www.transifex.com/projects/p/geonition/language/mr/)\n"
 "MIME-Version: 1.0\n"
@@ -19,11 +19,11 @@ msgstr ""
 "Language: mr\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: admin.py:112 admin.py:163 admin.py:185
+#: admin.py:112 admin.py:164 admin.py:186
 msgid "Advanced options"
 msgstr "उद्धारित पर्याय."
 
-#: forms.py:39 forms.py:207 forms.py:546
+#: forms.py:39 forms.py:207 forms.py:548
 msgid "question"
 msgstr "प्रश्न "
 
@@ -204,11 +204,11 @@ msgstr "पेजचा प्रकार"
 msgid "elements"
 msgstr "एलिमेंट "
 
-#: models.py:207 models.py:350
+#: models.py:207 models.py:361
 msgid "questionnaire page"
 msgstr "प्रश्नावलीचे पेज"
 
-#: models.py:208 models.py:351
+#: models.py:208 models.py:362
 msgid "questionnaire pages"
 msgstr "प्रश्नावलीचे पेजेस"
 
@@ -220,7 +220,7 @@ msgstr "पॉपप "
 msgid "popups"
 msgstr "पॉपप्स "
 
-#: models.py:241 models.py:251 models.py:342
+#: models.py:241 models.py:251 models.py:353
 msgid "page"
 msgstr "पेज "
 
@@ -232,7 +232,7 @@ msgstr "पेजेस "
 msgid "element"
 msgstr "एलिमेंट "
 
-#: models.py:255 models.py:344
+#: models.py:255 models.py:355
 msgid "order"
 msgstr "क्रम "
 
@@ -303,17 +303,31 @@ msgstr ""
 msgid "map"
 msgstr ""
 
-#: models.py:328 models.py:340
+#: models.py:304
+msgid "detailed areas"
+msgstr ""
+
+#: models.py:310
+msgid "These detailed focus areas of the questionnaire."
+msgstr ""
+
+#: models.py:312
+msgid "show detailed areas"
+msgstr ""
+
+#: models.py:313
+msgid ""
+"Check the box to show the detailed areas to the user. Otherwise leave the "
+"checkbox unchecked."
+msgstr ""
+
+#: models.py:339 models.py:351
 msgid "questionnaire"
 msgstr "प्रश्नावली "
 
-#: models.py:329
+#: models.py:340
 msgid "questionnaires"
 msgstr "प्रश्नावली "
-
-#: views.py:74
-msgid "Go to the application.."
-msgstr "उपयोजने कडे जा "
 
 #: widgets.py:34
 msgid "place icon"
@@ -380,36 +394,40 @@ msgstr "काढा "
 msgid "Save"
 msgstr "सेव करा "
 
-#: templates/questionnaire.html:157
+#: templates/questionnaire.html:158
 msgid "You marked one place"
 msgstr "आपण एक जागा मार्क केली आहे."
 
-#: templates/questionnaire.html:159
+#: templates/questionnaire.html:160
 msgid "You marked"
 msgstr ""
 
-#: templates/questionnaire.html:159
+#: templates/questionnaire.html:160
 msgid "places"
 msgstr "जागा"
 
-#: templates/questionnaire.html:165
+#: templates/questionnaire.html:166
 msgid "and answered one question"
 msgstr "आणि  एका  प्रश्नाचे  उत्तर  दिले  आहे"
 
-#: templates/questionnaire.html:167
+#: templates/questionnaire.html:168
 msgid "and answered"
 msgstr "आणि उत्तर दिले"
 
-#: templates/questionnaire.html:167 templates/questionnaire.html.py:172
+#: templates/questionnaire.html:168 templates/questionnaire.html.py:173
 msgid "questions"
 msgstr "प्रश्न "
 
-#: templates/questionnaire.html:170
+#: templates/questionnaire.html:171
 msgid "You answered one question"
 msgstr "आपण एका प्रश्नाचे उत्तर दिले"
 
-#: templates/questionnaire.html:172
+#: templates/questionnaire.html:173
 msgid "You answered"
+msgstr ""
+
+#: templates/questionnaire.html:200
+msgid "Choose Layers to show"
 msgstr ""
 
 #: templates/admin/geoforms/geoformelement/create_element.html:7
