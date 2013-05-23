@@ -11,7 +11,7 @@ function make_style_getter(){
     return function(name){
         if (!(name in name2color))
         {
-            name2color[name] = colorlist[current++ % 10];
+            name2color[name] = colorlist[current++ % 20];
         }
         return { 
                 strokeWidth: 5,
@@ -147,7 +147,9 @@ function parse_features(data){
                     );
                 }
                 for (var a_value in feature.attributes.form_values[a_name]){
-                    if (a_value.indexOf(' ') != -1 || !(isNaN(Number(a_value)))){
+                    if (a_value.indexOf(' ') != -1 ||
+                            !(isNaN(Number(a_value))) ||
+                            (a_value.charCodeAt(0) >= 'A'.charCodeAt(0) && a_value.charCodeAt(0) <= 'Z'.charCodeAt(0))){
                         continue;
                     }
                     var a_v_key = simple_hash([f_name, a_name, a_value].join('-AND-'));
