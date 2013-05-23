@@ -147,6 +147,10 @@ function parse_features(data){
                     );
                 }
                 for (var a_value in feature.attributes.form_values[a_name]){
+                    if (a_value.indexOf(' ') != -1 || !(isNaN(Number(a_value)))){
+                        console.log('open question: ' + a_value);
+                        continue;
+                    }
                     var a_v_key = simple_hash([f_name, a_name, a_value].join('-AND-'));
 
                     if (!(a_v_key in attribute2id_list)){
