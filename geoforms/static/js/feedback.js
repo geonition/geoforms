@@ -261,3 +261,50 @@ function restyle_form_values(feature){
     feature.attributes.form_values = new_vals;
     return feature;
 }
+function make_sld_getter(){
+    var current = 0;
+    var colorlist = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b', '#e377c2', '#7f7f7f', '#bcbd22', '#17becf'];
+    /* REMOVE WHITESPACE BECAUSE OTHERWISE HTTP-GET WILL BE VERY LONG
+var sld = '<?xml version="1.0" encoding="ISO-8859-1"?>';
+sld += '<StyledLayerDescriptor version="1.0.0"';
+sld += '    xsi:schemaLocation="http://www.opengis.net/sld StyledLayerDescriptor.xsd" ';
+sld += '    xmlns="http://www.opengis.net/sld"';
+sld += '    xmlns:ogc="http://www.opengis.net/ogc"';
+sld += '    xmlns:xlink="http://www.w3.org/1999/xlink"';
+sld += '    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">';
+sld += '  <NamedLayer>';
+sld += '    <Name>NAME</Name>';
+sld += '    <UserStyle>';
+sld += '    <Title>SLD Cook Book: Line w2th border</Title>';
+sld += '      <FeatureTypeStyle>';
+sld += '         <Rule>';
+sld += '          <LineSymbolizer>';
+sld += '            <Stroke>';
+sld += '              <CssParameter name="stroke">#333333</CssParameter>';
+sld += '              <CssParameter name="stroke-width">7</CssParameter>';
+sld += '              <CssParameter name="stroke-linecap">round</CssParameter>';
+sld += '            </Stroke> ';
+sld += '          </LineSymbolizer>';
+sld += '        </Rule>';
+sld += '      </FeatureTypeStyle>';
+sld += '      <FeatureTypeStyle>';
+sld += '         <Rule>';
+sld += '          <LineSymbolizer>';
+sld += '          <Stroke>';
+sld += '              <CssParameter name="stroke">COLOR</CssParameter>';
+sld += '              <CssParameter name="stroke-width">5</CssParameter>';
+sld += '              <CssParameter name="stroke-linecap">round</CssParameter>';
+sld += '            </Stroke>';
+sld += '          </LineSymbolizer>';
+sld += '         </Rule>';
+sld += '      </FeatureTypeStyle>';
+sld += '    </UserStyle>';
+sld += '  </NamedLayer>';
+sld += '</StyledLayerDescriptor>';
+*/
+    var sld = '<?xml version="1.0" encoding="ISO-8859-1"?><StyledLayerDescriptor version="1.0.0" xsi:schemaLocation="http://www.opengis.net/sld StyledLayerDescriptor.xsd" xmlns="http://www.opengis.net/sld" xmlns:ogc="http://www.opengis.net/ogc" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"> <NamedLayer> <Name>NAME</Name> <UserStyle> <Title>SLD Cook Book: Line w2th border</Title> <FeatureTypeStyle> <Rule> <LineSymbolizer> <Stroke> <CssParameter name="stroke">#333333</CssParameter> <CssParameter name="stroke-width">7</CssParameter> <CssParameter name="stroke-linecap">round</CssParameter> </Stroke> </LineSymbolizer> </Rule> </FeatureTypeStyle> <FeatureTypeStyle> <Rule> <LineSymbolizer> <Stroke> <CssParameter name="stroke">COLOR</CssParameter> <CssParameter name="stroke-width">5</CssParameter> <CssParameter name="stroke-linecap">round</CssParameter> </Stroke> </LineSymbolizer> </Rule> </FeatureTypeStyle> </UserStyle> </NamedLayer></StyledLayerDescriptor>';
+    return function(name){
+        var mysld = sld.replace('NAME',name);
+        return mysld.replace('COLOR', colorlist[current++ % 10]);
+    };
+};
