@@ -72,12 +72,14 @@ function parse_features(data){
                 $('#analysis-ctrl ul').append(
                     $('<li></li>').append(
                         $('<input type="checkbox">')
+                        .css('margin-right','5px')
                         .addClass('feature-level-ctrl')
                         .attr('id',feature.attributes.name)
                         .attr('value',feature.attributes.name)
                         .attr('checked','checked')
                     ).append(
                         $('<label></label>')
+                        .css('color',feature.style.strokeColor)
                         .text(feature.attributes.name)
                         .attr('for',feature.attributes.name)
                     ).change(toggleVisibility)
