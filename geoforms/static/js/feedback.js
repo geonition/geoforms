@@ -1,62 +1,9 @@
+feature_name2id_list = {};
+vizu_features = {};
 
-function makeHighlightCtrl() {
-    hctrl = new OpenLayers.Control.SelectFeature(
-        map.getControl('selectcontrol').layers.concat(map.getLayersByName('Others Layer')[0]),
-        {
-            hover: true,
-            highlightOnly: true,
-            multiple: true,
-            renderIntent: 'highlight',
-            eventListeners: {
-                featurehighlighted: function (e) {
-                    //fix for unhighlight in OpenLayers not always triggering
-                    $('ul.feature_comments li:visible').fadeOut(500);
-                    var feat_str = '<li class="' +e.feature.id +'">';
-                    feat_str += e.feature.attributes.name + '<br />';
-                    for (i = 0; i < e.feature.attributes.form_values.length; i += 1) {
-                                feat_str += '<br />' + e.feature.attributes.form_values[i].name +
-                                                 '<br />' +
-                                                 e.feature.attributes.form_values[i].value +'<br />';
-                            /*} else if ($('ul.feature_comments li.' + e.feature.id + ' span.comment').text() !== e.feature.attributes.form_values[i].value) {
-                                $('ul.feature_comments li.' + e.feature.id + ' span.comment').text(e.feature.attributes.form_values[i].value);
-                            }*/
-                    }
-                    var create_time_string,
-                        username,
-                        anonymous_regexp,
-                        show_list_item = $('ul.feature_comments li.' + e.feature.id);
-                        username = e.feature.attributes.user;
-                        anonymous_regexp = new RegExp('T[0-9]+.[0-9]+R[0-9]+.[0-9]+');
-                        if (anonymous_regexp.test(username) || username === undefined) {
-                            username = '';
-                        }
-                        create_time_string = '';
-                        if (e.feature.attributes.time !== undefined) {
-                            create_time_string = $.datepicker.formatDate('D, d M yy',
-                                                     $.datepicker.parseDate('yy-mm-dd', e.feature.attributes.time.create_time.split('T')[0]));
-                        }
-                    feat_str += '<br /><br />' +
-                                     username +
-                                     ' ' +
-                                     create_time_string + '</li>';
-                    $('ul.feature_comments').prepend(feat_str);
-                    show_list_item = $('ul.feature_comments li.' + e.feature.id);
-                    show_list_item.stop(true, true);
-                    show_list_item.fadeIn(500);
-                },
-                featureunhighlighted: function (e) {
-                    var hide_list_item = $('ul.feature_comments li.' + e.feature.id);
-                    hide_list_item.stop(true, true);
-                    hide_list_item.fadeOut(500);
-                }
-            }
-        }
-    );
-    return hctrl;
-}
 function make_style_getter(){
     var current = 0;
-    var name2style = {};
+    var name2color = {};
     var colorlist = ['#CC0000',
                     '#990099',
                     '#3333CC',
@@ -67,173 +14,158 @@ function make_style_getter(){
                     '#E6E600',
                     '#663300'];
     return function(name){
-        if (!(name in name2style))
+        if (!(name in name2color))
         {
-            name2style[name] = { 
+            name2color[name] = colorlist[current++ % 10];
+        }
+        return { 
                 strokeWidth: 5,
-                strokeColor: colorlist[current++ % 10],
+                strokeColor: name2color[name],
                 fillColor: 'black',
                 cursor: 'pointer',
                 fillOpacity : 0.1,
                 pointRadius: 6
-                };
         };
-        return name2style[name];
     };
 };
-var default_style = {
-                    strokeWidth: 3,
-                    strokeColor: 'red',
-                    //strokeColor: '#aaaaff',
-                    cursor: 'pointer',
-                    fillColor: '#aaaaff',
-                    fillOpacity: 0.3,
-                    pointRadius: 5
-                };
-var highlight_style = {
-                    strokeWidth: 3,
-                    strokeColor: '#555555',
-                    cursor: 'pointer',
-                    fillColor: '#555555',
-                    fillOpacity: 0.3,
-                    pointRadius: 5
-                }
-
-//
-// This is the function to be called as the last argument to gnt.questionnaire.init()
-function show_feedback() {
-        
-    var get_style_for_name = make_style_getter();
-
-    var i,
-        highlightCtrl,
-        select_control,
-        others_feature_collected = false,
-        otherLayer = new OpenLayers.Layer.Vector("Others Layer", {
-            styleMap: new OpenLayers.StyleMap({
-                'default': default_style,
-                'highlight': highlight_style
-                })
-        });
-
-    otherLayer.setVisibility(false);
-    map.addLayer(otherLayer);
-    var other = map.getLayersByName('Others Layer')[0];
-    function handle_success(data) {
-        if (data.features) {
-            var gf = new OpenLayers.Format.GeoJSON(),
-                user,
-                comment,
-                i,
-                feature,
-                anonymous_regexp,
-                popupcontent,
-                source_proj = new OpenLayers.Projection(data.crs.properties.code),
-                target_proj = new OpenLayers.Projection(map.getProjection());
-            for (i = 0; i < data.features.length; i += 1) {
-                feature = gf.parseFeature(data.features[i]);
-                //add values losed in parsing should be added again
-                feature['private'] = data.features[i]['private'];
-                feature.geometry.transform(source_proj, target_proj);
-                feature.lonlat = gnt.questionnaire.get_popup_lonlat(feature.geometry);
-                feature.style = get_style_for_name(feature.attributes.name);
-                other.addFeatures(feature);
-                if (feature.attributes.form_values.length > 0){
-                    comment = feature.attributes.form_values[0].value;
-                    $('#other .comment').text(comment);
-                }
-                user = feature.attributes.user;
-                // set the right content
-                anonymous_regexp = new RegExp('T[0-9]+.[0-9]+R[0-9]+.[0-9]+');
-                if (!anonymous_regexp.test(user)) {
-                    $('#other .username').text(user);
-                }
-                //get the content
-                popupcontent = $('#other').html();
-                feature.popupClass = OpenLayers.Popup.FramedCloud;
-                feature.popup = new OpenLayers.Popup.FramedCloud(
-                    feature.id,
-                    feature.lonlat,
-                    null,
-                    popupcontent,
-                    null,
-                    false
-                );
+function makeHighlightCtrl() {
+    hctrl = new OpenLayers.Control.SelectFeature(
+        map.getControl('selectcontrol').layers.concat(map.getLayersByName('Marking Layer')[0]),
+        {
+            hover: true,
+            highlightOnly: true,
+            multiple: true,
+            renderIntent: 'highlight',
+            eventListeners: {
+                featurehighlighted: show_feature_popup,
+                featureunhighlighted: hide_feature_popup
             }
         }
+    );
+    return hctrl;
+}
+function toggleVisibility(e){
+    var display = e.target.checked ? 'true' : 'none';
+    var id_list = feature_name2id_list[e.target.id];
+    var f;
+    for (var i=0; i < id_list.length; i++){
+        f = vizu_features[id_list[i]];
+        f.style['display'] = display;
     }
-    if (others_feature_collected === false) {
-        gnt.geo.get_features('@all',
-                             data_group,
-                             '',
-            {'success': handle_success});
-            
-        others_feature_collected = true;
-        other.setVisibility(true);
-    } else if (others_feature_collected === true) {
-        other.setVisibility(true);
+    var markingLayer = map.getLayersByName('Marking Layer')[0].redraw();
+}
+function parse_features(data){
+    if (data.features) {
+        var markingLayer = map.getLayersByName('Marking Layer')[0];
+        var get_style_for_name = make_style_getter();
+        var gf = new OpenLayers.Format.GeoJSON(),
+            i,
+            source_proj = new OpenLayers.Projection(data.crs.properties.code),
+            target_proj = new OpenLayers.Projection(map.getProjection());
+
+        $('.loading').remove();
+        $('#analysis-ctrl').prepend('<ul></ul>');
+        $('#analysis-ctrl').prepend('<h2>Choose features to show</h2>');
+        for (i = 0; i < data.features.length; i += 1) {
+            var feature = gf.parseFeature(data.features[i]);
+            feature.geometry.transform(source_proj, target_proj);
+            feature.lonlat = gnt.questionnaire.get_popup_lonlat(feature.geometry);
+            feature.style = get_style_for_name(feature.attributes.name);
+            feature = restyle_form_values(feature);
+            vizu_features[i] = feature;
+            if (!(feature.attributes.name in feature_name2id_list)){
+                feature_name2id_list[feature.attributes.name] = Array();
+                $('#analysis-ctrl ul').append(
+                    $('<li></li>').append(
+                        $('<input type="checkbox">')
+                        .addClass('feature-level-ctrl')
+                        .attr('id',feature.attributes.name)
+                        .attr('value',feature.attributes.name)
+                        .attr('checked','checked')
+                    ).append(
+                        $('<label></label>')
+                        .text(feature.attributes.name)
+                        .attr('for',feature.attributes.name)
+                    ).change(toggleVisibility)
+                    );
+            }
+            feature_name2id_list[feature.attributes.name].push(i);
+            markingLayer.addFeatures(feature);
+        }
     }
-    highlightCtrl = makeHighlightCtrl();
-    map.addControl(highlightCtrl);
-    highlightCtrl.activate();
+}
+function show_feedback() {
+    map.getLayersByName('Route Layer')[0].setVisibility(false);
+    map.getLayersByName('Point Layer')[0].setVisibility(false);
+    map.getLayersByName('Area Layer')[0].setVisibility(false);
+    var markingLayer = new OpenLayers.Layer.Vector("Marking Layer", {
+            styleMap: new OpenLayers.StyleMap({
+                'default': {
+                        strokeWidth: 3,
+                        strokeColor: 'red',
+                        cursor: 'pointer',
+                        fillColor: '#aaaaff',
+                        fillOpacity: 0.3,
+                        pointRadius: 5
+                    },
+                'highlight': {
+                        strokeWidth: 3,
+                        strokeColor: '#555555',
+                        cursor: 'pointer',
+                        fillColor: '#555555',
+                        fillOpacity: 0.3,
+                        pointRadius: 5
+                    }
+                })
+        });
+    map.addLayer(markingLayer);
     // The select_control needs to be deactivated and activated to make
     // hover and select on different layers to work together (done by setLayer)
-    select_control = map.getControl('selectcontrol');
-    select_control.setLayer((select_control.layers).concat(otherLayer));
+    var select_control = map.getControl('selectcontrol');
+    select_control.setLayer((select_control.layers).concat(markingLayer));
 
+    $('#main #content').prepend(
+            $('<div></div>')
+            .attr('id','analysis-ctrl')
+            ).append('<h2 class="loading">Loading...</h2>');
+    gnt.geo.get_features('@all',
+                         data_group,
+                         '',
+        {'success': parse_features});
+    var highlightCtrl = makeHighlightCtrl();
+    map.addControl(highlightCtrl);
+    highlightCtrl.activate();
 }
-function make_sld_getter(){
-    /* REMOVE WHITESPACE BECAUSE OTHERWISE HTTP-GET WILL BE VERY LONG
-var sld = '<?xml version="1.0" encoding="ISO-8859-1"?>';
-sld += '<StyledLayerDescriptor version="1.0.0"';
-sld += '    xsi:schemaLocation="http://www.opengis.net/sld StyledLayerDescriptor.xsd" ';
-sld += '    xmlns="http://www.opengis.net/sld"';
-sld += '    xmlns:ogc="http://www.opengis.net/ogc"';
-sld += '    xmlns:xlink="http://www.w3.org/1999/xlink"';
-sld += '    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">';
-sld += '  <NamedLayer>';
-sld += '    <Name>NAME</Name>';
-sld += '    <UserStyle>';
-sld += '    <Title>SLD Cook Book: Line w2th border</Title>';
-sld += '      <FeatureTypeStyle>';
-sld += '         <Rule>';
-sld += '          <LineSymbolizer>';
-sld += '            <Stroke>';
-sld += '              <CssParameter name="stroke">#333333</CssParameter>';
-sld += '              <CssParameter name="stroke-width">7</CssParameter>';
-sld += '              <CssParameter name="stroke-linecap">round</CssParameter>';
-sld += '            </Stroke> ';
-sld += '          </LineSymbolizer>';
-sld += '        </Rule>';
-sld += '      </FeatureTypeStyle>';
-sld += '      <FeatureTypeStyle>';
-sld += '         <Rule>';
-sld += '          <LineSymbolizer>';
-sld += '          <Stroke>';
-sld += '              <CssParameter name="stroke">COLOR</CssParameter>';
-sld += '              <CssParameter name="stroke-width">5</CssParameter>';
-sld += '              <CssParameter name="stroke-linecap">round</CssParameter>';
-sld += '            </Stroke>';
-sld += '          </LineSymbolizer>';
-sld += '         </Rule>';
-sld += '      </FeatureTypeStyle>';
-sld += '    </UserStyle>';
-sld += '  </NamedLayer>';
-sld += '</StyledLayerDescriptor>';
-*/
-    var current = 0;
-    var name2color = {};
-    var colorlist = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b', '#e377c2', '#7f7f7f', '#bcbd22', '#17becf'];
-    var sld = '<?xml version="1.0" encoding="ISO-8859-1"?><StyledLayerDescriptor version="1.0.0" xsi:schemaLocation="http://www.opengis.net/sld StyledLayerDescriptor.xsd" xmlns="http://www.opengis.net/sld" xmlns:ogc="http://www.opengis.net/ogc" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"> <NamedLayer> <Name>NAME</Name> <UserStyle> <Title>SLD Cook Book: Line w2th border</Title> <FeatureTypeStyle> <Rule> <LineSymbolizer> <Stroke> <CssParameter name="stroke">#333333</CssParameter> <CssParameter name="stroke-width">7</CssParameter> <CssParameter name="stroke-linecap">round</CssParameter> </Stroke> </LineSymbolizer> </Rule> </FeatureTypeStyle> <FeatureTypeStyle> <Rule> <LineSymbolizer> <Stroke> <CssParameter name="stroke">COLOR</CssParameter> <CssParameter name="stroke-width">5</CssParameter> <CssParameter name="stroke-linecap">round</CssParameter> </Stroke> </LineSymbolizer> </Rule> </FeatureTypeStyle> </UserStyle> </NamedLayer></StyledLayerDescriptor>';
-    return function(name){
-        var color = '';
-        if (!(name in name2color)) {
-            color = colorlist[current++ % 10];
-            name2color[name] = color;
-        } else {
-            color = name2color[name];
+
+function hide_feature_popup(e){
+    $('div.feature_comments').hide();
+}
+function show_feature_popup(e){
+    $('.feature_comments').html('').hide();
+    $('.feature_comments').append('<div class="feature-name">'+e.feature.attributes.name+'</div>');
+    var form_values = e.feature.attributes.form_values;
+    for (var name in form_values) {
+        $('.feature_comments').append('<div class="feature-attribute-name">'+name+'</div>');
+        var ul = $('<ul></ul>');
+        for (j = 0; j < form_values[name].length; j++) {
+            ul.append(
+                $('<li></li>').html(form_values[name][j])
+                );
         }
-        var mysld = sld.replace('NAME',name);
-        return mysld.replace('COLOR', color);
-    };
-};
+        $('.feature_comments').append(ul);
+    }
+    $('.feature_comments').show();
+}
+function restyle_form_values(feature){
+    var new_vals = {};
+    var form_values = feature.attributes.form_values;
+    for (i = 0; i < form_values.length; i += 1) {
+        var v = form_values[i];
+        if (!(v.name in new_vals)){
+            new_vals[v.name] = Array();
+        }
+        new_vals[v.name].push(v.value);
+    }
+    feature.attributes.form_values = new_vals;
+    return feature;
+}
