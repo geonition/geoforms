@@ -40,7 +40,8 @@ function makeHighlightCtrl() {
     return hctrl;
 }
 function toggleVisibility(e){
-    var display = e.target.checked ? 'true' : 'none';
+    var display = e.target.checked ? 'checked' : 'none';
+    $('#'+e.target.id).closest('li').find('input').prop('checked',e.target.checked);
     var id_list = feature_name2id_list[e.target.id];
     var f;
     for (var i=0; i < id_list.length; i++){
