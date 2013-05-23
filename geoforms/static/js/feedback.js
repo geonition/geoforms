@@ -69,8 +69,8 @@ function simple_hash(s){
     var hash = 0;
     if (s.length == 0) return hash;
     for (i = 0; i < s.length; i++) {
-        char = s.charCodeAt(i);
-        hash = ((hash<<5)-hash)+char;
+        c = s.charCodeAt(i);
+        hash = ((hash<<5)-hash)+c;
         hash = hash & hash; // Convert to 32bit integer
     }
     hash = Math.abs(hash).toString();
