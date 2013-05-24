@@ -15,6 +15,23 @@
 <p>
 {% trans "Features originating from the same drawbutton are colored alike. Touch them with your mouse to see the comments! Filtering on long answers is not supported." %}
 </p>
+<div class="instructions">
+    <p><strong>Instructions for attribute selection</strong></p>
+    <p>
+    Assume your multiple-choice question had four options: w, x, y, and z. If x and y were checked above, it could have two distinct meanings: 
+    </p>
+    <ul style="list-style:none;margin-left: 38px">
+        <li>A) answers that include x or y ( {x}, {x,y}, {y,z}, {x,y,w}, ...)</li>
+        <li>B) answers that include neither w nor z ( {x}, {y}, {x,y} )</li>
+    </ul>
+
+    <p>
+    In order to get A, start from all checkboxes unchecked and check x and y. To get B, start from all checkboxes checked and then uncheck w and z.
+    </p>
+    <p>
+    For more detailed analysis you may use e.g. <a href="http://qgis.org/" target="_new">QuatumGIS</a>.
+    </p>
+</div>
 {% endblock content %}
 
 

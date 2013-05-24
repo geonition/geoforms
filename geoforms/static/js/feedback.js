@@ -1,3 +1,4 @@
+function show_feedback() {
 feature_name2id_list = {};
 vizu_features = {};
 attribute2id_list = {}
@@ -67,6 +68,7 @@ function simple_hash(s){
         return str2hash[s];
     }
     var hash = 0;
+    var c;
     if (s.length == 0) return hash;
     for (i = 0; i < s.length; i++) {
         c = s.charCodeAt(i);
@@ -186,49 +188,6 @@ function parse_features(data){
         }).remove();
     }
 }
-function show_feedback() {
-    map.getLayersByName('Route Layer')[0].setVisibility(false);
-    map.getLayersByName('Point Layer')[0].setVisibility(false);
-    map.getLayersByName('Area Layer')[0].setVisibility(false);
-    var markingLayer = new OpenLayers.Layer.Vector("Marking Layer", {
-            styleMap: new OpenLayers.StyleMap({
-                'default': {
-                        strokeWidth: 3,
-                        strokeColor: 'red',
-                        cursor: 'pointer',
-                        fillColor: '#aaaaff',
-                        fillOpacity: 0.3,
-                        pointRadius: 5
-                    },
-                'highlight': {
-                        strokeWidth: 3,
-                        strokeColor: '#555555',
-                        cursor: 'pointer',
-                        fillColor: '#555555',
-                        fillOpacity: 0.3,
-                        pointRadius: 5
-                    }
-                })
-        });
-    map.addLayer(markingLayer);
-    // The select_control needs to be deactivated and activated to make
-    // hover and select on different layers to work together (done by setLayer)
-    var select_control = map.getControl('selectcontrol');
-    select_control.setLayer((select_control.layers).concat(markingLayer));
-
-    $('#main #content').append(
-            $('<div></div>')
-            .attr('id','analysis-ctrl')
-            ).append('<h2 class="loading">Loading...</h2>');
-    gnt.geo.get_features('@all',
-                         data_group,
-                         '',
-        {'success': parse_features});
-    var highlightCtrl = makeHighlightCtrl();
-    map.addControl(highlightCtrl);
-    highlightCtrl.activate();
-}
-
 function hide_feature_popup(e){
     $('div.feature_comments').hide();
 }
@@ -261,6 +220,48 @@ function restyle_form_values(feature){
     feature.attributes.form_values = new_vals;
     return feature;
 }
+    map.getLayersByName('Route Layer')[0].setVisibility(false);
+    map.getLayersByName('Point Layer')[0].setVisibility(false);
+    map.getLayersByName('Area Layer')[0].setVisibility(false);
+    var markingLayer = new OpenLayers.Layer.Vector("Marking Layer", {
+            styleMap: new OpenLayers.StyleMap({
+                'default': {
+                        strokeWidth: 3,
+                        strokeColor: 'red',
+                        cursor: 'pointer',
+                        fillColor: '#aaaaff',
+                        fillOpacity: 0.3,
+                        pointRadius: 5
+                    },
+                'highlight': {
+                        strokeWidth: 3,
+                        strokeColor: '#555555',
+                        cursor: 'pointer',
+                        fillColor: '#555555',
+                        fillOpacity: 0.3,
+                        pointRadius: 5
+                    }
+                })
+        });
+    map.addLayer(markingLayer);
+    // The select_control needs to be deactivated and activated to make
+    // hover and select on different layers to work together (done by setLayer)
+    var select_control = map.getControl('selectcontrol');
+    select_control.setLayer((select_control.layers).concat(markingLayer));
+
+    $('.instructions').before(
+            $('<div></div>')
+            .attr('id','analysis-ctrl')
+            ).append('<h2 class="loading">Loading...</h2>');
+    gnt.geo.get_features('@all',
+                         data_group,
+                         '',
+        {'success': parse_features});
+    var highlightCtrl = makeHighlightCtrl();
+    map.addControl(highlightCtrl);
+    highlightCtrl.activate();
+}
+
 function make_sld_getter(){
     /* REMOVE WHITESPACE BECAUSE OTHERWISE HTTP-GET WILL BE VERY LONG
 var sld = '<?xml version="1.0" encoding="ISO-8859-1"?>';
