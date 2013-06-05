@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geonition\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-22 03:22-0500\n"
-"PO-Revision-Date: 2013-05-22 08:22+0000\n"
+"POT-Creation-Date: 2013-05-26 19:00-0500\n"
+"PO-Revision-Date: 2013-05-24 13:23+0000\n"
 "Last-Translator: ksnabb <kristoffer.snabb@geonition.org>\n"
 "Language-Team: Swedish (http://www.transifex.com/projects/p/geonition/language/sv/)\n"
 "MIME-Version: 1.0\n"
@@ -429,6 +429,17 @@ msgstr "Du svara"
 
 #: templates/questionnaire.html:200
 msgid "Choose Layers to show"
+msgstr ""
+
+#: templates/questionnaire_feedback.html:12
+msgid "Touch a feature with your mouse to see the comments!"
+msgstr ""
+
+#: templates/questionnaire_feedback.html:16
+msgid ""
+"Features originating from the same drawbutton are colored alike. Touch them "
+"with your mouse to see the comments! Filtering on long answers is not "
+"supported."
 msgstr ""
 
 #: templates/admin/geoforms/geoformelement/create_element.html:7
