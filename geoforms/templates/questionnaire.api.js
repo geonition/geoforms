@@ -417,10 +417,14 @@ gnt.questionnaire.show_popup_for_feature = function(feature, popup_name) {
                     //this shuold be done for all kinds of multiple value inputs
                     if($(this).attr('type') === 'checkbox' &&
                        $(this).attr('value') === val_obj.value) { //check checkboxes
-
                         $(this).attr( 'checked', true);
                         return value;
                     } else if($(this).attr( 'type' ) === 'checkbox') {
+                    } else if($(this).attr( 'type' ) === 'radio' &&
+                       $(this).attr('value') === val_obj.value) { //check radiobuttons
+                        $(this).prop( 'checked', true);
+                        return value;
+                    } else if($(this).attr( 'type' ) === 'radio') {
                     } else {
                         return val_obj.value;
                     }
