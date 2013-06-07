@@ -434,6 +434,7 @@ gnt.questionnaire.show_popup_for_feature = function(feature, popup_name) {
         gnt.questionnaire.popup.updateSize();
 
         //connect the event to the infowindow buttons
+        $('form[name="' + popup_name + '"] + div.popup_feature_buttons button').off();
         $('form[name="' + popup_name + '"] + div.popup_feature_buttons button.save').click([feature],
                                                                gnt.questionnaire.save_handler);
         $('form[name="' + popup_name + '"] + div.popup_feature_buttons button.remove').click([feature],
