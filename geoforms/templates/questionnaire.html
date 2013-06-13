@@ -117,6 +117,9 @@
 {% block javascript %}
 {% block extra_js %}
 <script type="text/javascript" src="{{ STATIC_URL }}js/feedback.js"></script>
+{% if request.META.HTTP_HOST == "oregonstateparks.maptionnaire.com" %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/parks.js"></script>
+{% endif %}
 {% endblock extra_js %}
 <script type="text/javascript" src="{{ STATIC_URL }}js/libs/proj4js-gnt.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/libs/OpenLayers-gnt.js"></script>
@@ -192,7 +195,10 @@ jQuery(document).ready(function() {
             count_results();
         });
 
-        /* begin WMS element handling */
+        {% if request.META.HTTP_HOST == "oregonstateparks.maptionnaire.com" %}
+        addParks();
+        {% endif %}
+        {% if WMS_ENABLED %}
         gnt.questionnaire.extra_layers = Array();
         $('#map').append(
                 $('<div></div>')
@@ -225,13 +231,15 @@ jQuery(document).ready(function() {
                 layer : layer
                 });
             map.addLayer(layer);
-        /* end WMS element handling */
         });
         makeWMSLayerSwitcher(1);
+        {% endif %}
     });
 });
 
 {% endblock questionnaire_init %}
+
+{% if WMS_ENABLED %}
 function accordionPageChangeHandler(event) {
     makeWMSLayerSwitcher(event.page);
 }
@@ -269,6 +277,7 @@ function makeWMSLayerSwitcher(page_number) {
         $('#wms-layerswitcher-container').hide();
     }
 }
+{% endif %}
 
 
 </script>
