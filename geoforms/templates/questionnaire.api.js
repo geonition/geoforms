@@ -12,6 +12,7 @@ gnt.questionnaire.npvalues = {};
 
 gnt.questionnaire.popup; //only one popup at the time
 gnt.questionnaire.property_id;
+gnt.questionnaire.is_mobile_user = false;
 
 //fix for OpenLayers 2.12 RC5 check 29.5.2012 should be null and automatic
 OpenLayers.Popup.FramedCloud.prototype.maxSize = new OpenLayers.Size(420, 640);
@@ -333,6 +334,12 @@ gnt.questionnaire.save_handler = function(evt) {
         gnt.questionnaire.popup = undefined;
     }
 
+    $('#mobile-popup').remove();
+    if (gnt.questionnaire.is_mobile_user){
+        $('body').removeClass('main map settings');
+        $('body').addClass('main');
+    }
+
 }
 
 /*
@@ -363,6 +370,7 @@ gnt.questionnaire.remove_handler = function(evt) {
         map.removePopup( gnt.questionnaire.popup );
         gnt.questionnaire.popup = undefined;
     }
+    $('#mobile-popup').remove();
 }
 
 /*
@@ -388,11 +396,24 @@ gnt.questionnaire.show_popup_for_feature = function(feature, popup_name) {
 
         //create popup and put it on the map
         gnt.questionnaire.popup = feature.popup;
-        map.addPopup(gnt.questionnaire.popup);
-        //map.addPopup(gnt.questionnaire.popup);
+        if (gnt.questionnaire.is_mobile_user) {
+            $('body').append(
+                $('<div></div>')
+                .attr('id','mobile-popup')
+                .attr('title','mobile-popup')
+                .css('background','white')
+                .html(feature.data.contentHTML)
+                );
+            $('#mobile-popup').dialog({
+                modal: true
+            });
+            $('.ui-dialog').addClass('form_element');
+            $('#mobile-popup form[name="' + popup_name + '"]' ).addClass( 'active' );
+        } else {
+            map.addPopup(gnt.questionnaire.popup);
+            $( '.olFramedCloudPopupContent form[name="' + popup_name + '"]' ).addClass( 'active' );
+        }
 
-        //add a class to the form to recognize it as active
-        $( '.olFramedCloudPopupContent form[name="' + popup_name + '"]' ).addClass( 'active' );
 
 
         // add values to the form the values are connected but the form element name
@@ -435,7 +456,9 @@ gnt.questionnaire.show_popup_for_feature = function(feature, popup_name) {
 
         //Create jQuery sliders and update popup size
         gnt.questionnaire.create_widgets('.popupform.active');
-        gnt.questionnaire.popup.updateSize();
+        if (!gnt.questionnaire.is_mobile_user) {
+            gnt.questionnaire.popup.updateSize();
+        }
 
         //connect the event to the infowindow buttons
         $('form[name="' + popup_name + '"] + div.popup_feature_buttons button').off();
@@ -543,6 +566,7 @@ gnt.questionnaire.init = function(forms,
 
     //create a session for the anonymoususer
     gnt.auth.create_session();
+    gnt.questionnaire.is_mobile_user = window.innerWidth < 770 ? true : false;
 
 
     if( accordion !== undefined ) {
