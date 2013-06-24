@@ -184,6 +184,8 @@ button.drawbutton.second {
     display: block;
     margin: 0.1em;
     text-align: left;
+}
+.popupform .form_element label {
     max-width: 300px;
 }
 .form_element .ui-accordion p {
