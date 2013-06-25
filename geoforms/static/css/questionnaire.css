@@ -10,6 +10,13 @@
 }
 /* legacy ends */
 
+/* This dims the background when jquery dialog is opened */
+.ui-widget-overlay {
+  opacity: .50 !important;
+  filter: Alpha(Opacity=50) !important;
+  background-color: rgb(50, 50, 50) !important;
+}
+
 #wms-layerswitcher-container {
     position: absolute;
     top: 20px;

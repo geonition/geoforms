@@ -400,7 +400,6 @@ gnt.questionnaire.show_popup_for_feature = function(feature, popup_name) {
             $('body').append(
                 $('<div></div>')
                 .attr('id','mobile-popup')
-                .attr('title','mobile-popup')
                 .css('background','white')
                 .html(feature.data.contentHTML)
                 );
@@ -409,6 +408,8 @@ gnt.questionnaire.show_popup_for_feature = function(feature, popup_name) {
             });
             $('.ui-dialog').addClass('form_element');
             $('#mobile-popup form[name="' + popup_name + '"]' ).addClass( 'active' );
+            $('.ui-dialog-titlebar').css('display','none');
+            $('#mobile-popup .popupform').css('max-height',window.innerHeight - 60);
         } else {
             map.addPopup(gnt.questionnaire.popup);
             $( '.olFramedCloudPopupContent form[name="' + popup_name + '"]' ).addClass( 'active' );
