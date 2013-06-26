@@ -10,6 +10,11 @@
 }
 /* legacy ends */
 
+.application-name {
+    margin-left: 20px;
+    margin-bottom: 12px;
+}
+
 /* This dims the background when jquery dialog is opened */
 .ui-widget-overlay {
   opacity: .50 !important;
