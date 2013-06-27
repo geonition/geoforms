@@ -953,6 +953,12 @@ gnt.questionnaire.create_widgets = function(css_selector) {
         step = $(this).attr('step');
         value = $(this).attr('value');
         name = $(this).attr('name');
+        // FF21 hack to change input type to text
+        try {
+            if(document.defaultView.getComputedStyle(this, null).getPropertyValue("display") == "inline-block") {
+                this.type="number";
+            }
+        } catch(err){};
         $(this).after('<div class="slider ' + name + '" data-input="' + name + '"></div>');
         //the step has to be a integer e.g. step is 1,2,3,4,,, in UI sliders
 

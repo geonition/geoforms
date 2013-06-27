@@ -95,6 +95,7 @@
     height: inherit;
     overflow: auto;
     min-width: 200px;
+    font-size: 13px;
 }
 
 .lt-ie9 .popupform .padding {
