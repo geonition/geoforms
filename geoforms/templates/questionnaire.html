@@ -69,6 +69,30 @@
                 <p>
                 {% trans "This is the end of the questionnaire and your answers has been saved. Thank you for your answers! You can still continue modifying your answers by clicking the previous buttons. Quit the questionnaire by clicking the 'quit and go to home page' button." %}
                 </p>
+                {% if request.META.HTTP_HOST == "oregonstateparks.maptionnaire.com" %}
+<p>
+Your input is important to us! One more way you can help is to share this survey with your friends, family and any one else who cares about the Columbia River Gorge.
+</p>
+    <div>
+        <div class="g-plusone" data-size="medium" data-annotation="bubble" data-href="http{% if request.is_secure %}s{% endif %}://{{ request.get_host }}{{ request.path }}"></div>
+        <script type="text/javascript">
+          //window.___gcfg = {lang: '{{ LANGUAGE_CODE }}'};
+          
+          (function() {
+            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+            po.src = 'https://apis.google.com/js/plusone.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+          })();
+        </script>
+        <!--[if !IE]> -->
+        <iframe src="https://platform.twitter.com/widgets/tweet_button.html?lang={{ LANGUAGE_CODE }}%26url=https%3A%2F%2F{{ request.get_host }}{{ request.path }}%26counturl=https%3A%2F%2F{{ request.get_host }}%26size=small"
+        style="width: 100px; height:20px; border: 0; overflow: hidden; background-color: transparent;"></iframe>
+        <iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2F{{ request.get_host }}{{ request.path }}&amp;send=false&amp;layout=button_count&amp;width=100&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font=verdana&amp;height=21" 
+        style="border:none; overflow:hidden; width: 100px; height:21px; background-color: transparent"></iframe>
+        <!-- <![endif]-->
+    </div>
+
+                {% endif %}
             </div>
             <div class="form_element">
                 <div class="prev_next_controls">
