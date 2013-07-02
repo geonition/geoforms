@@ -10,6 +10,18 @@
 }
 /* legacy ends */
 
+.application-name {
+    margin-left: 20px;
+    margin-bottom: 12px;
+}
+
+/* This dims the background when jquery dialog is opened */
+.ui-widget-overlay {
+  opacity: .50 !important;
+  filter: Alpha(Opacity=50) !important;
+  background-color: rgb(50, 50, 50) !important;
+}
+
 #wms-layerswitcher-container {
     position: absolute;
     top: 20px;
@@ -83,6 +95,7 @@
     height: inherit;
     overflow: auto;
     min-width: 200px;
+    font-size: 13px;
 }
 
 .lt-ie9 .popupform .padding {
@@ -184,6 +197,8 @@ button.drawbutton.second {
     display: block;
     margin: 0.1em;
     text-align: left;
+}
+.popupform .form_element label {
     max-width: 300px;
 }
 .form_element .ui-accordion p {
