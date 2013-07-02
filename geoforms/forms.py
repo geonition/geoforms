@@ -29,6 +29,7 @@ from geoforms.widgets import TextareaElement
 from geoforms.widgets import TranslationWidget
 from geoforms.widgets import RangeElement
 
+
 #element admin forms
 class ElementForm(forms.ModelForm):
     """
@@ -547,3 +548,4 @@ class QuestionForm(forms.Form):
     """
     question = TranslationField(label = _('question'))
     
+        

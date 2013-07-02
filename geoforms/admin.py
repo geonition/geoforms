@@ -34,6 +34,7 @@ from geoforms.models import PageModel
 from modeltranslation.admin import TranslationAdmin
 from modeltranslation.admin import TranslationTabularInline
 
+
 class GeoformElementAdmin(TranslationAdmin, admin.ModelAdmin):
     list_display = ('name',
                     'element_type',
@@ -251,7 +252,6 @@ class CheckboxElementAdmin(GeoformElementAdmin):
             initial_data = []
             question_data = {'question': []}
             checkboxelement = CheckboxElementModel.objects.get(id = object_id)
-            
             for i, lang in enumerate(settings.LANGUAGES):
                 html = getattr(checkboxelement,
                                'html_%s' % lang[0],

@@ -1,4 +1,5 @@
 {% extends "base_map.html" %}
+{% load url from future %}
 {% load i18n %}
 
 {% block stylesheet %}
@@ -9,8 +10,8 @@
 {% block content %}
 
 <ul class="breadcrumb">
-    <li class="disk hover base_bgcolor" onclick="window.location = '{% url dashboard %}'">
-        <a href="{% url dashboard %}">
+    <li class="disk hover base_bgcolor" onclick="window.location = '{% url "dashboard" %}'">
+        <a href="{% url 'dashboard' %}">
             <h3>
             {% trans 'Questionnaires' %}
             </h3>
@@ -73,7 +74,7 @@
             <div class="form_element">
                 <div class="prev_next_controls">
                     <a class="previous" href="#page_{{ forloop.counter }}">&larr;{% trans 'Previous' %}</a>
-                    <a class="previous" href="{% url dashboard %}">{% trans 'Quit and go to home page' %}</a>
+                    <a class="previous" href="{% url 'dashboard' %}">{% trans 'Quit and go to home page' %}</a>
                 </div>
             </div>
         </div>
@@ -123,8 +124,8 @@
 {% endblock extra_js %}
 <script type="text/javascript" src="{{ STATIC_URL }}js/libs/proj4js-gnt.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/libs/OpenLayers-gnt.js"></script>
-<script type="text/javascript" src="{% url api_javascript %}"></script>
-<script type="text/javascript" src="{% url map_js map_slug_name=map_slug %}"></script>
+<script type="text/javascript" src="{% url 'api_javascript' %}"></script>
+<script type="text/javascript" src="{% url 'map_js' map_slug_name=map_slug %}"></script>
 <script type="text/javascript">
 var data_group = 'Q-{{ questionnaire.slug }}';
 var questionnaire_area = {{ questionnaire.area.json|safe }};
