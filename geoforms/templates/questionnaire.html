@@ -62,13 +62,6 @@
         </h3>
         <div>
             <div class="form_element">
-                <span class="number_of_features">X</span>
-                <span class="number_of_properties">X</span>
-            </div>
-            <div class="form_element">
-                <p>
-                {% trans "This is the end of the questionnaire and your answers has been saved. Thank you for your answers! You can still continue modifying your answers by clicking the previous buttons. Quit the questionnaire by clicking the 'quit and go to home page' button." %}
-                </p>
                 {% if request.META.HTTP_HOST == "oregonstateparks.maptionnaire.com" %}
 <p>
 Your input is important to us! One more way you can help is to share this survey with your friends, family and any one else who cares about the Columbia River Gorge.
@@ -91,8 +84,16 @@ Your input is important to us! One more way you can help is to share this survey
         style="border:none; overflow:hidden; width: 100px; height:21px; background-color: transparent"></iframe>
         <!-- <![endif]-->
     </div>
+    {% else %}
+                <p>
+                {% trans "This is the end of the questionnaire and your answers has been saved. Thank you for your answers! You can still continue modifying your answers by clicking the previous buttons. Quit the questionnaire by clicking the 'quit and go to home page' button." %}
+                </p>
 
                 {% endif %}
+            </div>
+            <div class="form_element">
+                <span class="number_of_features">X</span>
+                <span class="number_of_properties">X</span>
             </div>
             <div class="form_element">
                 <div class="prev_next_controls">
