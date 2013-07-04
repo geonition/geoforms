@@ -36,7 +36,11 @@
                     {% if key == form.slug %}
                         {% for element in value %}
                         <div class="form_element" data-element-type="{{element.element_type}}">
-                            {{ element.html|safe }}
+                            {% if element.element_type == 'checkbox' or element.element_type == 'radio' %}
+                                {{ element.randomize|safe }}
+                            {% else %}
+                                {{ element.html|safe }}
+                            {% endif %}
                         </div>
                         {% endfor %}
                     {% endif %}
@@ -119,7 +123,11 @@ Your input is important to us! One more way you can help is to share this survey
                             {% else %}
                             <div class="form_element last">
                             {% endif %}
-                            {{ element.html|safe }}
+                            {% if element.element_type == 'checkbox' or element.element_type == 'radio' %}
+                                {{ element.randomize|safe }}
+                            {% else %}
+                                {{ element.html|safe }}
+                            {% endif %}
                         </div>
                         {% endfor %}
                     {% endif %}

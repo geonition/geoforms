@@ -7,6 +7,9 @@ from django.db import models
 from django.template.defaultfilters import slugify
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
+from bs4 import BeautifulSoup
+
+import random
 
 class GeoformElement(models.Model):
     """
@@ -44,6 +47,13 @@ class GeoformElement(models.Model):
     def __unicode__(self):
         return u'%s-%s' % (self.name,
                            self.element_type)
+
+    def randomize(self):
+        soup = BeautifulSoup(self.html)
+        title = soup('p')
+        cbs = soup('label')
+        random.shuffle(cbs)
+        return unicode(title[0]) + ''.join([unicode(w) for w in cbs])
 
     class Meta:
         ordering = ['element_type']
