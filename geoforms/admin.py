@@ -41,17 +41,17 @@ class GeoformElementAdmin(TranslationAdmin, admin.ModelAdmin):
                     'id',
                     'html')
     ordering = ['name']
-    
+
     def __init__(self, *args, **kwargs):
         super(GeoformElementAdmin, self).__init__(*args, **kwargs)
         sfields = ['element_type']
         for lang in settings.LANGUAGES:
             sfields.append('html_%s' % lang[0])
-            
+
         setattr(self,
                 'search_fields',
                 sfields)
-        
+
 
 class FormElementAdmin(admin.ModelAdmin):
     ordering = ['geoform', 'order']
@@ -65,7 +65,7 @@ class GeoformAdmin(TranslationAdmin, admin.ModelAdmin):
     inlines = [
         ElementInline
     ]
-    
+
 class PageAdmin(GeoformAdmin):
     """
     Page admin
@@ -81,7 +81,7 @@ class PopupAdmin(GeoformAdmin):
     """
     def queryset(self, request):
         return self.model.objects.filter(page_type = 'popup')
-    
+
 admin.site.register(PopupModel, PopupAdmin)
 
 class QuestionnaireFormAdmin(admin.ModelAdmin):
@@ -90,7 +90,7 @@ class QuestionnaireFormAdmin(admin.ModelAdmin):
 class GeoformInline(TranslationTabularInline):
     model = QuestionnaireForm
     extra = 0
-        
+
 class QuestionnaireAdmin(admin.OSMGeoAdmin, TranslationAdmin):
     list_display = ('name',)
     ordering = ['name']
@@ -118,18 +118,18 @@ class QuestionnaireAdmin(admin.OSMGeoAdmin, TranslationAdmin):
     #Following fields
     openlayers_url = '%s%s' % (getattr(settings, 'STATIC_URL', '/'), 'js/libs/OpenLayers.js')
     extra_js = (reverse_lazy('osmextra'),)
-    
+
     def change_view(self, request, object_id, form_url='', extra_context=None):
         extra_context = extra_context or {}
-        extra_context['slug'] = Questionnaire.on_site.get(pk = object_id).slug 
+        extra_context['slug'] = Questionnaire.on_site.get(pk = object_id).slug
         return super(QuestionnaireAdmin, self).change_view(request, object_id,
             form_url, extra_context=extra_context)
-        
+
     class Media:
         css = {
             "all": ("css/questionnaire_admin.css",)
         }
-        
+
 admin.site.register(GeoformElement, GeoformElementAdmin)
 admin.site.register(Questionnaire, QuestionnaireAdmin)
 
@@ -149,14 +149,14 @@ class TextareaAdmin(GeoformElementAdmin):
     This is the admin for adding textareas
     """
     form = TextareaForm
-    
+
     def queryset(self, request):
         return self.model.objects.filter(element_type = 'textarea')
-    
+
 admin.site.register(TextareaModel, TextareaAdmin)
 
 class NumberElementAdmin(GeoformElementAdmin):
-    
+
     form = NumberElementForm
     fieldsets = (
         (None, {
@@ -169,14 +169,14 @@ class NumberElementAdmin(GeoformElementAdmin):
                        'step')
         }),
     )
-    
+
     def queryset(self, request):
         return self.model.objects.filter(element_type = 'number')
-    
+
 admin.site.register(NumberElementModel, NumberElementAdmin)
 
 class RangeElementAdmin(GeoformElementAdmin):
-    
+
     form = RangeElementForm
     fieldsets = (
         (None, {
@@ -192,40 +192,40 @@ class RangeElementAdmin(GeoformElementAdmin):
                        'initial_value',)
         }),
     )
-    
+
     def queryset(self, request):
         return self.model.objects.filter(element_type = 'range')
-    
-    
+
+
 admin.site.register(RangeElementModel, RangeElementAdmin)
 
 class ParagraphElementAdmin(GeoformElementAdmin):
-    
+
     form = ParagraphForm
-    
+
     def queryset(self, request):
         return self.model.objects.filter(element_type = 'paragraph')
-    
+
 admin.site.register(ParagraphElementModel, ParagraphElementAdmin)
 
 class DrawbuttonElementAdmin(GeoformElementAdmin):
-    
+
     form = DrawbuttonForm
-    
+
     def queryset(self, request):
         return self.model.objects.filter(element_type = 'drawbutton')
-    
+
 admin.site.register(DrawbuttonElementModel, DrawbuttonElementAdmin)
 
 class CheckboxElementAdmin(GeoformElementAdmin):
-    
+
     form = CheckboxElementForm
     add_form_template = 'admin/geoforms/geoformelement/create_element.html'
     change_form_template = add_form_template
-    
+
     def queryset(self, request):
         return self.model.objects.filter(element_type = 'checkbox')
-    
+
     def add_view(self, request, form_url='', extra_context=None):
         if request.method == 'POST':
             ces = formset_factory(CheckboxElementForm,
@@ -240,7 +240,7 @@ class CheckboxElementAdmin(GeoformElementAdmin):
                                                             'current_app': self.admin_site.name,
                                                             'form': QuestionForm(),
                                                             'formset': formset_factory(CheckboxElementForm)})
-    
+
     def change_view(self, request, object_id, form_url='', extra_context=None):
         if request.method == 'POST':
             ces = formset_factory(CheckboxElementForm,
@@ -258,13 +258,15 @@ class CheckboxElementAdmin(GeoformElementAdmin):
                                '')
                 soup = BeautifulSoup(html)
                 question_data['question'].append(soup.p.text.strip())
+                if soup.find(attrs={'data-random': 'true'}):
+                    question_data['randomize'] = True
                 labels = soup.find_all('label')
                 for j, label in enumerate(labels):
                     if i == 0:
                         initial_data.append({u'label': [label.text.strip()]})
                     else:
                         initial_data[j]['label'].append(label.text.strip())
-            
+
             return super(CheckboxElementAdmin, self).change_view(request,
                                                               object_id,
                                                               form_url = '',
@@ -273,18 +275,18 @@ class CheckboxElementAdmin(GeoformElementAdmin):
                                                                 'form': QuestionForm(initial = question_data),
                                                                 'formset': formset_factory(CheckboxElementForm,
                                                                                            extra = 0)(initial = initial_data)})
-    
+
 admin.site.register(CheckboxElementModel, CheckboxElementAdmin)
 
 class RadioElementAdmin(GeoformElementAdmin):
-    
+
     form = RadioElementForm
     add_form_template = 'admin/geoforms/geoformelement/create_element.html'
     change_form_template = add_form_template
-    
+
     def queryset(self, request):
         return self.model.objects.filter(element_type = 'radio')
-    
+
     def add_view(self, request, form_url='', extra_context=None):
         if request.method == 'POST':
             res = formset_factory(RadioElementForm,
@@ -299,7 +301,7 @@ class RadioElementAdmin(GeoformElementAdmin):
                                                             'current_app': self.admin_site.name,
                                                             'form': QuestionForm(),
                                                             'formset': formset_factory(RadioElementForm)})
-    
+
     def change_view(self, request, object_id, form_url='', extra_context=None):
         if request.method == 'POST':
             res = formset_factory(RadioElementForm,
@@ -311,20 +313,22 @@ class RadioElementAdmin(GeoformElementAdmin):
             initial_data = []
             question_data = {'question': []}
             radioelement = RadioElementModel.objects.get(id = object_id)
-            
+
             for i, lang in enumerate(settings.LANGUAGES):
                 html = getattr(radioelement,
                                'html_%s' % lang[0],
                                '')
                 soup = BeautifulSoup(html)
                 question_data['question'].append(soup.p.text)
+                if soup.find(attrs={'data-random': 'true'}):
+                    question_data['randomize'] = True
                 labels = soup.find_all('label')
                 for j, label in enumerate(labels):
                     if i == 0:
                         initial_data.append({u'label': [label.text.strip()]})
                     else:
                         initial_data[j]['label'].append(label.text.strip())
-            
+
             return super(RadioElementAdmin, self).change_view(request,
                                                               object_id,
                                                               form_url = '',
@@ -333,8 +337,8 @@ class RadioElementAdmin(GeoformElementAdmin):
                                                                 'form': QuestionForm(initial = question_data),
                                                                 'formset': formset_factory(RadioElementForm,
                                                                                            extra = 0)(initial = initial_data)})
-    
+
 admin.site.register(RadioElementModel, RadioElementAdmin)
 
 
-    
+

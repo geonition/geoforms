@@ -1,6 +1,7 @@
 {% extends "base_map.html" %}
 {% load url from future %}
 {% load i18n %}
+{% load geoforms_extra %}
 
 {% block stylesheet %}
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/questionnaire.css" />
@@ -37,7 +38,7 @@
                         {% for element in value %}
                         <div class="form_element" data-element-type="{{element.element_type}}">
                             {% if element.element_type == 'checkbox' or element.element_type == 'radio' %}
-                                {{ element.randomize|safe }}
+                                {{ element.html|randomize_cb_rb:user|safe }}
                             {% else %}
                                 {{ element.html|safe }}
                             {% endif %}
@@ -82,7 +83,7 @@ Your input is important to us! One more way you can help is to share this survey
         <div class="g-plusone" data-size="medium" data-annotation="bubble" data-href="http{% if request.is_secure %}s{% endif %}://{{ request.get_host }}{{ request.path }}"></div>
         <script type="text/javascript">
           //window.___gcfg = {lang: '{{ LANGUAGE_CODE }}'};
-          
+
           (function() {
             var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
             po.src = 'https://apis.google.com/js/plusone.js';
@@ -92,7 +93,7 @@ Your input is important to us! One more way you can help is to share this survey
         <!--[if !IE]> -->
         <iframe src="https://platform.twitter.com/widgets/tweet_button.html?lang={{ LANGUAGE_CODE }}%26url=https%3A%2F%2F{{ request.get_host }}{{ request.path }}%26counturl=https%3A%2F%2F{{ request.get_host }}%26size=small"
         style="width: 100px; height:20px; border: 0; overflow: hidden; background-color: transparent;"></iframe>
-        <iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2F{{ request.get_host }}{{ request.path }}&amp;send=false&amp;layout=button_count&amp;width=100&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font=verdana&amp;height=21" 
+        <iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2F{{ request.get_host }}{{ request.path }}&amp;send=false&amp;layout=button_count&amp;width=100&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font=verdana&amp;height=21"
         style="border:none; overflow:hidden; width: 100px; height:21px; background-color: transparent"></iframe>
         <!-- <![endif]-->
     </div>
@@ -124,7 +125,7 @@ Your input is important to us! One more way you can help is to share this survey
                             <div class="form_element last">
                             {% endif %}
                             {% if element.element_type == 'checkbox' or element.element_type == 'radio' %}
-                                {{ element.randomize|safe }}
+                                {{ element.html|randomize_cb_rb:user|safe }}
                             {% else %}
                                 {{ element.html|safe }}
                             {% endif %}
@@ -249,15 +250,15 @@ jQuery(document).ready(function() {
             var url = $(this).children().first().attr('data-layer-url');
             var page = parseInt($(this).closest('[data-page]').attr('data-page'));
             var layer = new OpenLayers.Layer.WMS(
-                "extra_layer", 
-                url, 
+                "extra_layer",
+                url,
                 {
                     "layers": name,
                     "transparent": true,
                     "version": "1.1.1"/*,
                     "SLD_BODY": sld_getter(name)*/
                 });
-                                                          
+
             gnt.questionnaire.extra_layers.push({
                 page_number : page,
                 long_name : long_name,
@@ -294,7 +295,7 @@ function makeWMSLayerSwitcher(page_number) {
         else {
             layer.layer.setVisibility(true);
             page_has_wms_layers = true;
-            
+
             $('#wms-layerswitcher-container ul').append(
                     $('<li></li>')
                     .append($('<input type="checkbox">')
