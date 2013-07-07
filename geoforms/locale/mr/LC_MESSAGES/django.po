@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geonition\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-23 19:00-0500\n"
+"POT-Creation-Date: 2013-06-30 19:00-0500\n"
 "PO-Revision-Date: 2013-05-24 13:23+0000\n"
 "Last-Translator: ksnabb <kristoffer.snabb@geonition.org>\n"
 "Language-Team: Marathi (http://www.transifex.com/projects/p/geonition/language/mr/)\n"
@@ -365,7 +365,7 @@ msgstr "प्रश्नावली "
 msgid "Next"
 msgstr "पुढचे "
 
-#: templates/questionnaire.html:50 templates/questionnaire.html.py:75
+#: templates/questionnaire.html:50 templates/questionnaire.html.py:99
 msgid "Previous"
 msgstr "आधीचे "
 
@@ -381,52 +381,52 @@ msgid ""
 "and go to home page' button."
 msgstr "आपली उत्तरं सेव करण्यात आलेली असून ही प्रश्नावली येथे संपन्न होते.आपण दिलेल्या उत्तरांसाठी आपले आभार. \nतुम्ही तुमची उत्तरं मागे जाण्याचा बटणावर क्लिक करून अजूनही  सुधारू शकता.प्रश्नावली सोडून जाण्यासाठी 'बंद करून होमपेजवर जा ' ह्या बटणावर क्लिक करा."
 
-#: templates/questionnaire.html:76
+#: templates/questionnaire.html:100
 msgid "Quit and go to home page"
 msgstr "पेज सोडून होमपेज वर या "
 
-#: templates/questionnaire.html:106
+#: templates/questionnaire.html:130
 msgid "Remove"
 msgstr "काढा "
 
-#: templates/questionnaire.html:109
+#: templates/questionnaire.html:133
 #: templates/admin/geoforms/geoformelement/create_element.html:41
 msgid "Save"
 msgstr "सेव करा "
 
-#: templates/questionnaire.html:161
+#: templates/questionnaire.html:185
 msgid "You marked one place"
 msgstr "आपण एक जागा मार्क केली आहे."
 
-#: templates/questionnaire.html:163
+#: templates/questionnaire.html:187
 msgid "You marked"
 msgstr ""
 
-#: templates/questionnaire.html:163
+#: templates/questionnaire.html:187
 msgid "places"
 msgstr "जागा"
 
-#: templates/questionnaire.html:169
+#: templates/questionnaire.html:193
 msgid "and answered one question"
 msgstr "आणि  एका  प्रश्नाचे  उत्तर  दिले  आहे"
 
-#: templates/questionnaire.html:171
+#: templates/questionnaire.html:195
 msgid "and answered"
 msgstr "आणि उत्तर दिले"
 
-#: templates/questionnaire.html:171 templates/questionnaire.html.py:176
+#: templates/questionnaire.html:195 templates/questionnaire.html.py:200
 msgid "questions"
 msgstr "प्रश्न "
 
-#: templates/questionnaire.html:174
+#: templates/questionnaire.html:198
 msgid "You answered one question"
 msgstr "आपण एका प्रश्नाचे उत्तर दिले"
 
-#: templates/questionnaire.html:176
+#: templates/questionnaire.html:200
 msgid "You answered"
 msgstr ""
 
-#: templates/questionnaire.html:206
+#: templates/questionnaire.html:230
 msgid "Choose Layers to show"
 msgstr ""
 

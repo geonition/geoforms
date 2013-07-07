@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geonition\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-23 19:00-0500\n"
+"POT-Creation-Date: 2013-06-30 19:00-0500\n"
 "PO-Revision-Date: 2013-05-24 13:23+0000\n"
 "Last-Translator: ksnabb <kristoffer.snabb@geonition.org>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/projects/p/geonition/language/pt_BR/)\n"
@@ -369,7 +369,7 @@ msgstr "Questionários"
 msgid "Next"
 msgstr "Próxima"
 
-#: templates/questionnaire.html:50 templates/questionnaire.html.py:75
+#: templates/questionnaire.html:50 templates/questionnaire.html.py:99
 msgid "Previous"
 msgstr "Anterior"
 
@@ -385,52 +385,52 @@ msgid ""
 "and go to home page' button."
 msgstr "Este é o final do questionário, as respostas foram salvas, muito obrigada!\nVocê ainda pode modificar as respostas clicando nos botões \"anterior\". \nPara sair do questionário, clique em sair e ir para a página inicial."
 
-#: templates/questionnaire.html:76
+#: templates/questionnaire.html:100
 msgid "Quit and go to home page"
 msgstr "Sair e ir para a página inicial"
 
-#: templates/questionnaire.html:106
+#: templates/questionnaire.html:130
 msgid "Remove"
 msgstr "Remover"
 
-#: templates/questionnaire.html:109
+#: templates/questionnaire.html:133
 #: templates/admin/geoforms/geoformelement/create_element.html:41
 msgid "Save"
 msgstr "Gravar"
 
-#: templates/questionnaire.html:161
+#: templates/questionnaire.html:185
 msgid "You marked one place"
 msgstr "Você marcou um lugar"
 
-#: templates/questionnaire.html:163
+#: templates/questionnaire.html:187
 msgid "You marked"
 msgstr "Você marcou"
 
-#: templates/questionnaire.html:163
+#: templates/questionnaire.html:187
 msgid "places"
 msgstr "lugares"
 
-#: templates/questionnaire.html:169
+#: templates/questionnaire.html:193
 msgid "and answered one question"
 msgstr "e respondeu uma pergunta"
 
-#: templates/questionnaire.html:171
+#: templates/questionnaire.html:195
 msgid "and answered"
 msgstr "e respondeu"
 
-#: templates/questionnaire.html:171 templates/questionnaire.html.py:176
+#: templates/questionnaire.html:195 templates/questionnaire.html.py:200
 msgid "questions"
 msgstr "perguntas"
 
-#: templates/questionnaire.html:174
+#: templates/questionnaire.html:198
 msgid "You answered one question"
 msgstr "Você respondeu uma pergunta"
 
-#: templates/questionnaire.html:176
+#: templates/questionnaire.html:200
 msgid "You answered"
 msgstr "Você respondeu"
 
-#: templates/questionnaire.html:206
+#: templates/questionnaire.html:230
 msgid "Choose Layers to show"
 msgstr ""
 
