@@ -1,5 +1,5 @@
-from django.conf.urls.defaults import patterns
-from django.conf.urls.defaults import url
+from django.conf.urls import patterns
+from django.conf.urls import url
 
 urlpatterns = patterns('geoforms.views',
     url(r'^active/$',

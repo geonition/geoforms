@@ -1,5 +1,7 @@
 {% extends "base_map.html" %}
+{% load url from future %}
 {% load i18n %}
+{% load geoforms_extra %}
 
 {% block stylesheet %}
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/questionnaire.css" />
@@ -9,8 +11,8 @@
 {% block content %}
 
 <ul class="breadcrumb">
-    <li class="disk hover base_bgcolor" onclick="window.location = '{% url dashboard %}'">
-        <a href="{% url dashboard %}">
+    <li class="disk hover base_bgcolor" onclick="window.location = '{% url "dashboard" %}'">
+        <a href="{% url 'dashboard' %}">
             <h3>
             {% trans 'Questionnaires' %}
             </h3>
@@ -35,7 +37,11 @@
                     {% if key == form.slug %}
                         {% for element in value %}
                         <div class="form_element" data-element-type="{{element.element_type}}">
-                            {{ element.html|safe }}
+                            {% if element.element_type == 'checkbox' or element.element_type == 'radio' %}
+                                {{ element.html|randomize_cb_rb:user|safe }}
+                            {% else %}
+                                {{ element.html|safe }}
+                            {% endif %}
                         </div>
                         {% endfor %}
                     {% endif %}
@@ -70,7 +76,7 @@ Your input is important to us! One more way you can help is to share this survey
         <div class="g-plusone" data-size="medium" data-annotation="bubble" data-href="http{% if request.is_secure %}s{% endif %}://{{ request.get_host }}{{ request.path }}"></div>
         <script type="text/javascript">
           //window.___gcfg = {lang: '{{ LANGUAGE_CODE }}'};
-          
+
           (function() {
             var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
             po.src = 'https://apis.google.com/js/plusone.js';
@@ -80,7 +86,7 @@ Your input is important to us! One more way you can help is to share this survey
         <!--[if !IE]> -->
         <iframe src="https://platform.twitter.com/widgets/tweet_button.html?lang={{ LANGUAGE_CODE }}%26url=https%3A%2F%2F{{ request.get_host }}{{ request.path }}%26counturl=https%3A%2F%2F{{ request.get_host }}%26size=small"
         style="width: 100px; height:20px; border: 0; overflow: hidden; background-color: transparent;"></iframe>
-        <iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2F{{ request.get_host }}{{ request.path }}&amp;send=false&amp;layout=button_count&amp;width=100&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font=verdana&amp;height=21" 
+        <iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2F{{ request.get_host }}{{ request.path }}&amp;send=false&amp;layout=button_count&amp;width=100&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font=verdana&amp;height=21"
         style="border:none; overflow:hidden; width: 100px; height:21px; background-color: transparent"></iframe>
         <!-- <![endif]-->
     </div>
@@ -98,7 +104,7 @@ Your input is important to us! One more way you can help is to share this survey
             <div class="form_element">
                 <div class="prev_next_controls">
                     <a class="previous" href="#page_{{ forloop.counter }}">&larr;{% trans 'Previous' %}</a>
-                    <a class="previous" href="{% url dashboard %}">{% trans 'Quit and go to home page' %}</a>
+                    <a class="previous" href="{% url 'dashboard' %}">{% trans 'Quit and go to home page' %}</a>
                 </div>
             </div>
         </div>
@@ -119,7 +125,11 @@ Your input is important to us! One more way you can help is to share this survey
                             {% else %}
                             <div class="form_element last">
                             {% endif %}
-                            {{ element.html|safe }}
+                            {% if element.element_type == 'checkbox' or element.element_type == 'radio' %}
+                                {{ element.html|randomize_cb_rb:user|safe }}
+                            {% else %}
+                                {{ element.html|safe }}
+                            {% endif %}
                         </div>
                         {% endfor %}
                     {% endif %}
@@ -148,8 +158,8 @@ Your input is important to us! One more way you can help is to share this survey
 {% endblock extra_js %}
 <script type="text/javascript" src="{{ STATIC_URL }}js/libs/proj4js-gnt.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/libs/OpenLayers-gnt.js"></script>
-<script type="text/javascript" src="{% url api_javascript %}"></script>
-<script type="text/javascript" src="{% url map_js map_slug_name=map_slug %}"></script>
+<script type="text/javascript" src="{% url 'api_javascript' %}"></script>
+<script type="text/javascript" src="{% url 'map_js' map_slug_name=map_slug %}"></script>
 <script type="text/javascript">
 var data_group = 'Q-{{ questionnaire.slug }}';
 var questionnaire_area = {{ questionnaire.area.json|safe }};
@@ -241,15 +251,15 @@ jQuery(document).ready(function() {
             var url = $(this).children().first().attr('data-layer-url');
             var page = parseInt($(this).closest('[data-page]').attr('data-page'));
             var layer = new OpenLayers.Layer.WMS(
-                "extra_layer", 
-                url, 
+                "extra_layer",
+                url,
                 {
                     "layers": name,
                     "transparent": true,
                     "version": "1.1.1"/*,
                     "SLD_BODY": sld_getter(name)*/
                 });
-                                                          
+
             gnt.questionnaire.extra_layers.push({
                 page_number : page,
                 long_name : long_name,
@@ -286,7 +296,7 @@ function makeWMSLayerSwitcher(page_number) {
         else {
             layer.layer.setVisibility(true);
             page_has_wms_layers = true;
-            
+
             $('#wms-layerswitcher-container ul').append(
                     $('<li></li>')
                     .append($('<input type="checkbox">')

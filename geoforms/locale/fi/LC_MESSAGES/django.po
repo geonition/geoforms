@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geonition\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-16 19:00-0500\n"
+"POT-Creation-Date: 2013-06-30 19:00-0500\n"
 "PO-Revision-Date: 2013-05-24 13:23+0000\n"
 "Last-Translator: ksnabb <kristoffer.snabb@geonition.org>\n"
 "Language-Team: Finnish (http://www.transifex.com/projects/p/geonition/language/fi/)\n"
@@ -370,7 +370,7 @@ msgstr "kyselyitä"
 msgid "Next"
 msgstr "Seuraava"
 
-#: templates/questionnaire.html:50 templates/questionnaire.html.py:75
+#: templates/questionnaire.html:50 templates/questionnaire.html.py:99
 msgid "Previous"
 msgstr "Edellinen"
 
@@ -386,52 +386,52 @@ msgid ""
 "and go to home page' button."
 msgstr "Voit halutessasi siirtyä etusivun kautta vastaamaan muihin kyselyihin tai palata muokkaamaan vastauksiasi painikkeella \"edellinen\"."
 
-#: templates/questionnaire.html:76
+#: templates/questionnaire.html:100
 msgid "Quit and go to home page"
 msgstr "Lopeta ja siirry etusivulle"
 
-#: templates/questionnaire.html:106
+#: templates/questionnaire.html:130
 msgid "Remove"
 msgstr "Poista"
 
-#: templates/questionnaire.html:109
+#: templates/questionnaire.html:133
 #: templates/admin/geoforms/geoformelement/create_element.html:41
 msgid "Save"
 msgstr "Tallenna"
 
-#: templates/questionnaire.html:161
+#: templates/questionnaire.html:185
 msgid "You marked one place"
 msgstr "Olet merkinnyt yhden paikan"
 
-#: templates/questionnaire.html:163
+#: templates/questionnaire.html:187
 msgid "You marked"
 msgstr "Olet merkinnyt"
 
-#: templates/questionnaire.html:163
+#: templates/questionnaire.html:187
 msgid "places"
 msgstr "paikkaa"
 
-#: templates/questionnaire.html:169
+#: templates/questionnaire.html:193
 msgid "and answered one question"
 msgstr "ja vastannut yhteen kysymykseen"
 
-#: templates/questionnaire.html:171
+#: templates/questionnaire.html:195
 msgid "and answered"
 msgstr "ja antanut"
 
-#: templates/questionnaire.html:171 templates/questionnaire.html.py:176
+#: templates/questionnaire.html:195 templates/questionnaire.html.py:200
 msgid "questions"
 msgstr "vastausta"
 
-#: templates/questionnaire.html:174
+#: templates/questionnaire.html:198
 msgid "You answered one question"
 msgstr "Olet vastannut yhteen kysymykseen"
 
-#: templates/questionnaire.html:176
+#: templates/questionnaire.html:200
 msgid "You answered"
 msgstr "Olet antanut"
 
-#: templates/questionnaire.html:206
+#: templates/questionnaire.html:230
 msgid "Choose Layers to show"
 msgstr "Valitse näkyvät karttatasot"
 

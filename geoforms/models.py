@@ -7,6 +7,7 @@ from django.db import models
 from django.template.defaultfilters import slugify
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
+#from bs4 import BeautifulSoup
 
 class GeoformElement(models.Model):
     """
@@ -311,7 +312,7 @@ class Questionnaire(models.Model):
     show_detailed_areas = models.BooleanField(default = False,
                                     verbose_name = _('show detailed areas'),
                                     help_text = _('Check the box to show the detailed areas to the user. Otherwise leave the checkbox unchecked.'))
-    
+
     on_site = CurrentSiteManager()
     objects = geomodel.GeoManager()
 

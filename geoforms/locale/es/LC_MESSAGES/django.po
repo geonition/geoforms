@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geonition\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-16 19:00-0500\n"
+"POT-Creation-Date: 2013-06-30 19:00-0500\n"
 "PO-Revision-Date: 2013-05-24 13:23+0000\n"
 "Last-Translator: ksnabb <kristoffer.snabb@geonition.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/projects/p/geonition/language/es/)\n"
@@ -363,7 +363,7 @@ msgstr ""
 msgid "Next"
 msgstr ""
 
-#: templates/questionnaire.html:50 templates/questionnaire.html.py:75
+#: templates/questionnaire.html:50 templates/questionnaire.html.py:99
 msgid "Previous"
 msgstr ""
 
@@ -379,52 +379,52 @@ msgid ""
 "and go to home page' button."
 msgstr ""
 
-#: templates/questionnaire.html:76
+#: templates/questionnaire.html:100
 msgid "Quit and go to home page"
 msgstr ""
 
-#: templates/questionnaire.html:106
+#: templates/questionnaire.html:130
 msgid "Remove"
 msgstr ""
 
-#: templates/questionnaire.html:109
+#: templates/questionnaire.html:133
 #: templates/admin/geoforms/geoformelement/create_element.html:41
 msgid "Save"
 msgstr ""
 
-#: templates/questionnaire.html:161
+#: templates/questionnaire.html:185
 msgid "You marked one place"
 msgstr ""
 
-#: templates/questionnaire.html:163
+#: templates/questionnaire.html:187
 msgid "You marked"
 msgstr ""
 
-#: templates/questionnaire.html:163
+#: templates/questionnaire.html:187
 msgid "places"
 msgstr ""
 
-#: templates/questionnaire.html:169
+#: templates/questionnaire.html:193
 msgid "and answered one question"
 msgstr ""
 
-#: templates/questionnaire.html:171
+#: templates/questionnaire.html:195
 msgid "and answered"
 msgstr ""
 
-#: templates/questionnaire.html:171 templates/questionnaire.html.py:176
+#: templates/questionnaire.html:195 templates/questionnaire.html.py:200
 msgid "questions"
 msgstr ""
 
-#: templates/questionnaire.html:174
+#: templates/questionnaire.html:198
 msgid "You answered one question"
 msgstr ""
 
-#: templates/questionnaire.html:176
+#: templates/questionnaire.html:200
 msgid "You answered"
 msgstr ""
 
-#: templates/questionnaire.html:206
+#: templates/questionnaire.html:230
 msgid "Choose Layers to show"
 msgstr ""
 

@@ -47,7 +47,6 @@ class GeoformsTest(TestCase):
 
         self.client.login(username = 'admin', password = 'passwd')
         response = self.client.get(reverse('admin:geoforms_drawbuttonelementmodel_add'))
-#        import ipdb; ipdb.set_trace()
         self.assertContains(response, 'popup', msg_prefix='no popup field')
         self.assertContains(response, 'max_amount', msg_prefix='no max_amount field')
 
