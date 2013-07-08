@@ -314,10 +314,17 @@ phones
 
 /*feedback styles*/
 .feature_comments {
+    top: 0;
+}
+.user_info {
+    bottom: 0;
+}
+.analysis_popup {
+    font-size: 10px;
     position: absolute;
     z-index: 9999;
-    width:  330px;
-    right: 20px;
+    width:  260px;
+    right: 10px;
     padding: 0;
     background-color: #555555;
     color: white;
@@ -326,18 +333,17 @@ phones
     border: 1px solid #EEEEEE;
     border-radius: 13px;
     position: absolute;
-    top: 0;
 }
 
-.feature_comments .feature-name {
-    margin-bottom: 20px;
+.analysis_popup .name {
+    margin-bottom: 10px;
     color: white;
     font-weight: bold;
 }
-.feature_comments .feature-attribute-name {
+.analysis_popup .attribute-name {
     color: white;
 }
-.feature_comments ul {
-    padding: 0 0 0 40px;
-    margin: 1em 0;
+.analysis_popup ul {
+    padding: 0 0 0 30px;
+    margin: 0 0 7px 0;
 }
