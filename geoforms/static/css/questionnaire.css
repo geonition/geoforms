@@ -314,28 +314,28 @@ phones
 
 /*feedback styles*/
 .feature_comments {
-    top: 0;
+    right: 270px;
 }
 .user_info {
-    bottom: 0;
+    right: 5px;
 }
 .analysis_popup {
+    top: 0;
     font-size: 10px;
     position: absolute;
     z-index: 9999;
-    width:  260px;
-    right: 10px;
+    width:  240px;
     padding: 0;
     background-color: #555555;
     color: white;
-    padding: 1em;
+    padding: 10px;
     border-color: #444444;
     border: 1px solid #EEEEEE;
     border-radius: 13px;
     position: absolute;
 }
 
-.analysis_popup .name {
+.analysis_popup .name, .analysis_popup .username {
     margin-bottom: 10px;
     color: white;
     font-weight: bold;
@@ -344,6 +344,6 @@ phones
     color: white;
 }
 .analysis_popup ul {
-    padding: 0 0 0 30px;
-    margin: 0 0 7px 0;
+    padding: 0 0 0 20px;
+    margin: 0;
 }
