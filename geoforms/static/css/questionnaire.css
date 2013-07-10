@@ -313,6 +313,48 @@ phones
 }
 
 /*feedback styles*/
+.feedback-bold {
+font-weight: bold;
+}
+#property-ctrl, #feature-ctrl {
+    display:inline-block;
+    width:260px;
+    vertical-align:top;
+    padding:0 0 0 10px;
+}
+#feature-ctrl {
+    border-left:1px solid;
+}
+#property-ctrl, #feature-ctrl {
+    font-size: 12px;
+}
+#property-ctrl input, #feature-ctrl input{
+    height: 12px;
+}
+#property-ctrl input[type="checkbox"]{
+vertical-align: sub;
+margin-right: 3px;
+}
+.property-ctrl-min, .property-ctrl-max {
+    max-width: 45px;
+    margin-left: 5px;
+}
+ul.feature-ctrl-main, ul.property-ctrl-main {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+li.attr-ctrl ul, ul.mini-questionnaire, ul.question-level-ctrl {
+    list-style: none;
+    margin: 0 0 0 10px;
+    padding: 0;
+}
+.property-ctrl-andor, .feature-ctrl-andor {
+    margin-bottom: 3px;
+}
+.property-ctrl-andor label, .feature-ctrl-andor label {
+    margin-left: 3px;
+}
 .feature_comments {
     right: 270px;
 }
