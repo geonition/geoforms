@@ -670,6 +670,12 @@ gnt.questionnaire.init = function(forms,
                            'complete': function() {
                                 //bind on value change to save the values
                                 $(forms + ' :input:not(button)').change(function(evt) {
+                                    if (gnt.questionnaire.wait_time === undefined){
+                                        gnt.questionnaire.wait_time = 5000;
+                                    } else {
+                                        gnt.questionnaire.wait_time = 0;
+                                    }
+                                    setTimeout(function(){
                                     var new_value = evt.currentTarget.value;
                                     if(evt.currentTarget.type === 'checkbox') {
                                         new_value = [];
@@ -700,6 +706,7 @@ gnt.questionnaire.init = function(forms,
                                                                 '@null',
                                                                 property);
                                     }
+                                    }, gnt.questionnaire.wait_time);
                                 });
                             }});
 
