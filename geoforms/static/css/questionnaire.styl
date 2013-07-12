@@ -1,0 +1,394 @@
+/* Legacy styles for range elements, to be removed */
+.rangetext {
+    width: 250px;
+    display: inline-block;
+    text-align: left;
+}
+.popupform .rangetext {
+    font-size: 0.9em;
+    width: 160px;
+}
+/* legacy ends */
+
+.application-name {
+    margin-left: 20px;
+    margin-bottom: 12px;
+}
+
+/* This dims the background when jquery dialog is opened */
+.ui-widget-overlay {
+  opacity: .50 !important;
+  filter: Alpha(Opacity=50) !important;
+  background-color: rgb(50, 50, 50) !important;
+}
+
+#wms-layerswitcher-container {
+    position: absolute;
+    top: 20px;
+    left: 50px;
+    z-index: 2000;
+    background: white;
+    border: 1px solid;
+    padding: 5px 5px 5px 5px;
+    margin: 2px 0 0 0;
+}
+.wms-layerswitcher {
+    padding: 0;
+    list-style: none;
+    margin: 5px 0 0 0;
+}
+.wms-layerswitcher input {
+    margin-right: 5px;
+}
+
+/* range elements in non-popup forms*/
+.range-container {
+    text-align: left;
+    width: 75%;
+}
+.range-container p {
+    font-weight: bold !important;
+}
+.range-container span {
+    width: 27%;
+    display: inline-block;
+}
+.range-container input {
+    width: 250px;
+    margin: 20px;
+}
+.range-min-label {
+    text-align: right;
+}
+.range-max-label {
+    text-align: left;
+}
+/* end range elements in non-popup forms */
+/* range elements in popup forms */
+.popupform .range-container {
+    background: #E4F5F5;
+}
+.popupform .range-container span {
+    width: 100%;
+    display: block;
+    text-align: left;
+}
+.popupform .range-container input {
+    width: 80%;
+    display: block;
+}
+.popupform .slider {
+    width: 80% !important;
+}
+.popupform .range-max-label {
+    width: 60% !important;
+    text-align: right !important;
+    padding-left: 40%; !important;
+}
+.popupform .range-min-label {
+    width: 60% !important;
+    text-align: left !important;
+    padding-right: 40%; !important;
+}
+
+.popupform {
+    height: inherit;
+    overflow: auto;
+    min-width: 200px;
+    font-size: 13px;
+}
+
+.lt-ie9 .popupform .padding {
+    height: 30px;
+}
+
+.popup_feature_buttons {
+    background-color: #FFFFFF;
+    bottom: 0;
+    padding-top: 5px;
+    position: absolute;
+    width: 90%;
+    z-index: 3
+}
+
+.lt-ie9 .popup_feature_buttons {
+    bottom: 5px;
+}
+/* end elements in popup forms */
+
+#popups {
+    display: none;
+}
+
+.form_element
+  padding 10px
+  text-align center
+  width 100%
+
+  li 
+    text-align left
+
+  p     
+    text-align left
+    min-height 1em
+    margin-bottom 0
+    padding-left 0px !important
+
+
+  label 
+    display block
+    margin 2px
+    text-align left
+
+    input[type="text"], input[type="number"] 
+      max-width 170px
+      display block
+      margin-top 3px
+      margin-left 15px
+
+    input[type="checkbox"], input[type="radio"]
+      margin-left 15px
+
+  textarea 
+    max-width 250px
+    max-height 80px
+
+
+button.drawbutton {
+    width: 80%;
+    min-width: 250px;
+    max-width: 300px;
+    margin: 2px;
+}
+button.drawbutton span {
+    vertical-align: middle;
+}
+button.drawbutton img {
+    width: 34px;
+    height: 34px;
+    float: right;
+}
+
+.lt-ie9 button.drawbutton img {
+    display: none;
+    visibility: hidden;
+}
+
+button.drawbutton.first {
+    width: 49%;
+    float: left;
+}
+button.drawbutton.second {
+    width: 49%;
+    float: right;
+}
+/* previous and next buttons */
+.prev_next_controls {
+}
+.prev_next_controls a {
+    display: inline-block;
+    text-decoration: none;
+    text-transform: lowercase;
+    padding: 9px;
+    border-radius: 4px;
+    box-shadow: 0 0 3px 3px #DAD5D5;
+}
+.prev_next_controls a.next {
+    color: white;
+    margin: 5px 5px 5px 30px;
+}
+.prev_next_controls a.previous {
+    margin: 5px 30px 5px 5px;
+}
+
+.popupform .form_element label {
+    max-width: 300px;
+}
+.form_element .ui-accordion p {
+    padding: 0;
+}
+.left_align {
+    text-align: left;
+}
+
+/* HTML% fallback widgets*/
+.form_element .slider {
+    display: inline-block;
+    width: 250px;
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+/* jquery ui accordion modified */
+/*hide as default*/
+#forms h3, #forms h3 + div {
+    visibility: hidden;
+}
+#forms h3.ui-state-active, #forms h3.ui-state-active + div {
+    visibility: visible;
+}
+#content h3.ui-state-default {
+    display: none;
+}
+#content h3.ui-state-active {
+    display: block;
+    padding-left: 42px;
+    text-transform: uppercase;
+    font-size: 1.1em;
+    font-family: 'Signika Negative', sans-serif;
+    font-weight: 200;
+}
+#content .ui-accordion-content {
+    padding-left: 42px;
+    max-width: 1024px;
+}
+
+/* big content*/
+.span_left.bigcontent {
+    width: 100%;
+}
+.span_right.bigcontent {
+    left: auto;
+}
+/* the animation does not work well with bg color*/
+.lt-ie9 .span_right.bigcontent {
+    background-color: inherit;
+}
+
+/* element styling */
+
+/* tables */
+.form_element table {
+    table-layout: fixed;
+}
+.form_element table tr td {
+    padding: 0.4em;
+    border-top: 1px solid #DDD;
+    vertical-align: middle;
+}
+.form_element table tr td:nth-child(1) {
+    text-align: left;
+}
+.form_element table tbody tr:nth-child(odd) {
+    background-color: #F9F9F9;
+}
+
+
+
+/*
+phones
+*/
+@media (max-width:480px) {
+    #content h3.ui-state-active {
+        padding-left: 10px;
+    }
+    #content .ui-accordion-content {
+        padding-left: 10px;
+    }
+}
+@media (max-width:900px) {
+    .range-container {
+        background: #E4F5F5;
+    }
+.range-container span {
+    width: 100%;
+    display: block;
+    text-align: left;
+}
+.range-container input {
+    width: 80%;
+    display: block;
+}
+.slider {
+    width: 80% !important;
+}
+.range-max-label {
+    width: 60% !important;
+    text-align: right !important;
+    padding-left: 40%; !important;
+}
+.range-min-label {
+    width: 60% !important;
+    text-align: left !important;
+    padding-right: 40%; !important;
+}
+
+}
+
+/*feedback styles*/
+.feedback-bold {
+font-weight: bold;
+}
+#property-ctrl, #feature-ctrl {
+    display:inline-block;
+    width:260px;
+    vertical-align:top;
+    padding:0 0 0 10px;
+}
+#feature-ctrl {
+    border-left:1px solid;
+}
+#property-ctrl, #feature-ctrl {
+    font-size: 12px;
+}
+#property-ctrl input, #feature-ctrl input{
+    height: 12px;
+}
+#property-ctrl input[type="checkbox"]{
+vertical-align: sub;
+margin-right: 3px;
+}
+.property-ctrl-min, .property-ctrl-max {
+    max-width: 45px;
+    margin-left: 5px;
+}
+ul.feature-ctrl-main, ul.property-ctrl-main {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+li.attr-ctrl ul, ul.mini-questionnaire, ul.question-level-ctrl {
+    list-style: none;
+    margin: 0 0 0 10px;
+    padding: 0;
+}
+.property-ctrl-andor, .feature-ctrl-andor {
+    margin-bottom: 3px;
+}
+.property-ctrl-andor label, .feature-ctrl-andor label {
+    margin-left: 3px;
+}
+.feature_comments {
+    right: 270px;
+}
+.user_info {
+    right: 5px;
+}
+.analysis_popup {
+    top: 0;
+    font-size: 10px;
+    position: absolute;
+    z-index: 9999;
+    width:  240px;
+    padding: 0;
+    background-color: #555555;
+    color: white;
+    padding: 10px;
+    border-color: #444444;
+    border: 1px solid #EEEEEE;
+    border-radius: 13px;
+    position: absolute;
+}
+
+.analysis_popup .name, .analysis_popup .username {
+    margin-bottom: 10px;
+    color: white;
+    font-weight: bold;
+}
+.analysis_popup .attribute-name {
+    color: white;
+}
+.analysis_popup ul {
+    padding: 0 0 0 20px;
+    margin: 0;
+}
