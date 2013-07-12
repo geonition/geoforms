@@ -79,17 +79,13 @@
 .popupform .range-max-label {
   width: 60% !important;
   text-align: right !important;
-  padding-left: 40%;
-!important
+  padding-left: 40% !important;
 }
-!important
 .popupform .range-min-label {
   width: 60% !important;
   text-align: left !important;
-  padding-right: 40%;
-!important
+  padding-right: 40% !important;
 }
-!important
 .popupform {
   height: inherit;
   overflow: auto;
@@ -289,17 +285,13 @@ phones
   .range-max-label {
     width: 60% !important;
     text-align: right !important;
-    padding-left: 40%;
-!important
+    padding-left: 40% !important;
   }
-!important
   .range-min-label {
     width: 60% !important;
     text-align: left !important;
-    padding-right: 40%;
-!important
+    padding-right: 40% !important;
   }
-!important
 }
 /*feedback styles*/
 .feedback-bold {
