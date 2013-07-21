@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geonition\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-07 19:00-0500\n"
+"POT-Creation-Date: 2013-07-14 19:00-0500\n"
 "PO-Revision-Date: 2013-07-08 00:00+0000\n"
 "Last-Translator: ksnabb <kristoffer.snabb@geonition.org>\n"
 "Language-Team: Swedish (http://www.transifex.com/projects/p/geonition/language/sv/)\n"
@@ -370,7 +370,7 @@ msgstr "enkät"
 msgid "Next"
 msgstr "Nästa sida"
 
-#: templates/questionnaire.html:56 templates/questionnaire.html.py:105
+#: templates/questionnaire.html:56 templates/questionnaire.html.py:106
 msgid "Previous"
 msgstr "Föregående sida"
 
@@ -378,7 +378,7 @@ msgstr "Föregående sida"
 msgid "Your answers and finish"
 msgstr "Dina svar och avsluta"
 
-#: templates/questionnaire.html:76
+#: templates/questionnaire.html:95
 msgid ""
 "This is the end of the questionnaire and your answers has been saved. Thank "
 "you for your answers! You can still continue modifying your answers by "
@@ -386,52 +386,52 @@ msgid ""
 "and go to home page' button."
 msgstr "Det här är enkätens sista sida, dina svar har sparats. Tack för dina svar! Du kan ännu ändra på dina svar genom att välja 'Föregående sida'. Du kan avsluta och gå tillbaka till första sidan genom att klicka på 'avsluta och gå till första sidan'."
 
-#: templates/questionnaire.html:106
+#: templates/questionnaire.html:107
 msgid "Quit and go to home page"
 msgstr "Avbryt och gå till första sidan"
 
-#: templates/questionnaire.html:140
+#: templates/questionnaire.html:141
 msgid "Remove"
 msgstr "Ta bort"
 
-#: templates/questionnaire.html:143
+#: templates/questionnaire.html:144
 #: templates/admin/geoforms/geoformelement/create_element.html:42
 msgid "Save"
 msgstr "Spara"
 
-#: templates/questionnaire.html:195
+#: templates/questionnaire.html:196
 msgid "You marked one place"
 msgstr "Du markera ett ställe"
 
-#: templates/questionnaire.html:197
+#: templates/questionnaire.html:198
 msgid "You marked"
 msgstr "Du markera"
 
-#: templates/questionnaire.html:197
+#: templates/questionnaire.html:198
 msgid "places"
 msgstr "platser"
 
-#: templates/questionnaire.html:203
+#: templates/questionnaire.html:204
 msgid "and answered one question"
 msgstr "och svara på en fråga"
 
-#: templates/questionnaire.html:205
+#: templates/questionnaire.html:206
 msgid "and answered"
 msgstr "och svara på"
 
-#: templates/questionnaire.html:205 templates/questionnaire.html.py:210
+#: templates/questionnaire.html:206 templates/questionnaire.html.py:211
 msgid "questions"
 msgstr "frågor"
 
-#: templates/questionnaire.html:208
+#: templates/questionnaire.html:209
 msgid "You answered one question"
 msgstr "Du svara på en fråga"
 
-#: templates/questionnaire.html:210
+#: templates/questionnaire.html:211
 msgid "You answered"
 msgstr "Du svara"
 
-#: templates/questionnaire.html:240
+#: templates/questionnaire.html:241
 msgid "Choose Layers to show"
 msgstr ""
 
@@ -439,7 +439,7 @@ msgstr ""
 msgid "Touch a feature with your mouse to see the comments!"
 msgstr ""
 
-#: templates/questionnaire_feedback.html:16
+#: templates/questionnaire_feedback.html:18
 msgid ""
 "Features originating from the same drawbutton are colored alike. Touch them "
 "with your mouse to see the comments! Filtering on long answers is not "

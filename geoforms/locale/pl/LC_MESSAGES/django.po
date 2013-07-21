@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geonition\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-07 19:00-0500\n"
+"POT-Creation-Date: 2013-07-14 19:00-0500\n"
 "PO-Revision-Date: 2013-07-08 00:00+0000\n"
 "Last-Translator: ksnabb <kristoffer.snabb@geonition.org>\n"
 "Language-Team: Polish (http://www.transifex.com/projects/p/geonition/language/pl/)\n"
@@ -368,7 +368,7 @@ msgstr "Ankiety"
 msgid "Next"
 msgstr "Następne"
 
-#: templates/questionnaire.html:56 templates/questionnaire.html.py:105
+#: templates/questionnaire.html:56 templates/questionnaire.html.py:106
 msgid "Previous"
 msgstr "Poprzednie"
 
@@ -376,7 +376,7 @@ msgstr "Poprzednie"
 msgid "Your answers and finish"
 msgstr "odpowiedzi i zakończ"
 
-#: templates/questionnaire.html:76
+#: templates/questionnaire.html:95
 msgid ""
 "This is the end of the questionnaire and your answers has been saved. Thank "
 "you for your answers! You can still continue modifying your answers by "
@@ -384,52 +384,52 @@ msgid ""
 "and go to home page' button."
 msgstr "To jest koniec ankiety. Dziękujemy za jej wypełnienie! Twoje odpowiedzi zostały zapisane. W dalszym ciągu możesz je modyfikować, klikając na przycisk \"Poprzednie\". Żeby wyjść z ankiety kliknij na przycisk \"Wyjdź i wróć do strony głównej\""
 
-#: templates/questionnaire.html:106
+#: templates/questionnaire.html:107
 msgid "Quit and go to home page"
 msgstr "Wyjdź i wróć do strony głównej"
 
-#: templates/questionnaire.html:140
+#: templates/questionnaire.html:141
 msgid "Remove"
 msgstr "Usuń"
 
-#: templates/questionnaire.html:143
+#: templates/questionnaire.html:144
 #: templates/admin/geoforms/geoformelement/create_element.html:42
 msgid "Save"
 msgstr "Zapisz"
 
-#: templates/questionnaire.html:195
+#: templates/questionnaire.html:196
 msgid "You marked one place"
 msgstr "Zaznaczyłeś/aś jedno miejsce"
 
-#: templates/questionnaire.html:197
+#: templates/questionnaire.html:198
 msgid "You marked"
 msgstr "Zaznaczyłeś/aś"
 
-#: templates/questionnaire.html:197
+#: templates/questionnaire.html:198
 msgid "places"
 msgstr "miejsc"
 
-#: templates/questionnaire.html:203
+#: templates/questionnaire.html:204
 msgid "and answered one question"
 msgstr "i odpowiedziałeś/aś na jedno pytanie"
 
-#: templates/questionnaire.html:205
+#: templates/questionnaire.html:206
 msgid "and answered"
 msgstr "i odpowiedziałeś/aś"
 
-#: templates/questionnaire.html:205 templates/questionnaire.html.py:210
+#: templates/questionnaire.html:206 templates/questionnaire.html.py:211
 msgid "questions"
 msgstr "pytań"
 
-#: templates/questionnaire.html:208
+#: templates/questionnaire.html:209
 msgid "You answered one question"
 msgstr "Odpowiedziałeś/aś na jedno pytanie"
 
-#: templates/questionnaire.html:210
+#: templates/questionnaire.html:211
 msgid "You answered"
 msgstr "Odpowiedziałeś/aś"
 
-#: templates/questionnaire.html:240
+#: templates/questionnaire.html:241
 msgid "Choose Layers to show"
 msgstr ""
 
@@ -437,7 +437,7 @@ msgstr ""
 msgid "Touch a feature with your mouse to see the comments!"
 msgstr ""
 
-#: templates/questionnaire_feedback.html:16
+#: templates/questionnaire_feedback.html:18
 msgid ""
 "Features originating from the same drawbutton are colored alike. Touch them "
 "with your mouse to see the comments! Filtering on long answers is not "
