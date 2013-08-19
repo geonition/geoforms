@@ -233,7 +233,7 @@ jQuery(document).ready(function() {
         $('.popupform').each(function(){
             $(this)
             .prepend($('<div style="font-weight:bold;"></div>')
-                .prepend($('.drawbutton[data-popup="' + $(this).attr('name') + '"]').first().attr('name'))
+                .prepend($('.drawbutton[data-popup="' + $(this).attr('name') + '"]').first().find('span').text())
             );
         })
 
