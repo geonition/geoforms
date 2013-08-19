@@ -229,6 +229,13 @@ jQuery(document).ready(function() {
         $('#forms').bind('accordionchangestart', function(event, ui) {
             count_results();
         });
+        // add drawbutton name to popup
+        $('.popupform').each(function(){
+            $(this)
+            .prepend($('<div style="font-weight:bold;"></div>')
+                .prepend($('.drawbutton[data-popup="' + $(this).attr('name') + '"]').first().attr('name'))
+            );
+        })
 
         {% if request.META.HTTP_HOST == "oregonstateparks.maptionnaire.com" %}
         addParks();
@@ -244,7 +251,7 @@ jQuery(document).ready(function() {
                     .addClass('wms-layerswitcher')
                     )
                 );
-        //var sld_getter = make_sld_getter();
+        var sld_getter = make_sld_getter();
         $('[data-element-type="wms-layer"]').each(function() {
             var name = $(this).children().first().attr('data-layer-name');
             var long_name = $(this).children().first().attr('data-layer-long-name');
@@ -256,8 +263,8 @@ jQuery(document).ready(function() {
                 {
                     "layers": name,
                     "transparent": true,
-                    "version": "1.1.1"/*,
-                    "SLD_BODY": sld_getter(name)*/
+                    "version": "1.1.1",
+                    "SLD_BODY": sld_getter(name)
                 });
 
             gnt.questionnaire.extra_layers.push({
