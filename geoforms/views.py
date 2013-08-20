@@ -20,7 +20,7 @@ def lottery(request, questionnaire_slug):
     if request.POST:
         questionnaire = Questionnaire.objects.get(slug=questionnaire_slug)
         participant = LotteryParticipant(
-                email=request.raw_post_data,
+                email=request.body,
                 questionnaire=questionnaire)
         participant.save()
         return HttpResponse('success')
