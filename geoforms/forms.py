@@ -30,6 +30,7 @@ from geoforms.widgets import TranslationWidget
 from geoforms.widgets import RangeElement
 
 from django.forms import BooleanField
+from geoforms.models import LotteryParticipant
 
 
 #element admin forms
@@ -558,3 +559,7 @@ class QuestionForm(forms.Form):
                          label = _('randomize the order of the options'))
 
 
+class LotteryForm(forms.ModelForm):
+    class Meta:
+        model = LotteryParticipant
+        fields = ('email',)

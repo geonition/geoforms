@@ -4,11 +4,30 @@ from django.core.urlresolvers import reverse
 from django.utils import simplejson as json
 from geoforms.models import Geoform
 from geoforms.models import Questionnaire
+from geoforms.models import Lottery,LotteryParticipant
+from geoforms.forms import LotteryForm
 from django.template import RequestContext
 from django.views.decorators.csrf import ensure_csrf_cookie
 from datetime import date
 from geonition_utils.http import HttpResponse
 from django.utils.translation import ugettext as _
+
+
+
+@ensure_csrf_cookie
+def lottery(request, questionnaire_slug):
+    #import ipdb;ipdb.set_trace()
+    if request.POST:
+        questionnaire = Questionnaire.objects.get(slug=questionnaire_slug)
+        participant = LotteryParticipant(
+                email=request.raw_post_data,
+                questionnaire=questionnaire)
+        participant.save()
+        return HttpResponse('success')
+    else:
+        form = LotteryForm()
+        return HttpResponse(form.as_p())
+
 
 
 @ensure_csrf_cookie
@@ -46,13 +65,17 @@ def questionnaire(request, questionnaire_slug, template=''):
     form_list = form_list.filter(page_type = 'form')
     if not template:
         template = 'questionnaire.html'
+    lottery = Lottery.objects.filter(questionnaire=quest)
+    if lottery.exists():
+        lottery = lottery[0]
     return render_to_response(template,
                              {'form_list': form_list,
                               'popup_list': popup_list,
                               'bigcontent_forms': bigcontent_forms,
                               'elements': elements,
                               'questionnaire': quest,
-                              'map_slug': 'questionnaire-map'},
+                              'map_slug': 'questionnaire-map',
+                              'lottery' : lottery},
                              context_instance = RequestContext(request))
 
 def get_active_questionnaires(request):

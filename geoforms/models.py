@@ -362,6 +362,18 @@ class QuestionnaireForm(models.Model):
         verbose_name = _('questionnaire page')
         verbose_name_plural = _('questionnaire pages')
 
+class Lottery(models.Model):
+    questionnaire = models.ForeignKey(Questionnaire,
+                                      verbose_name = _('questionnaire'))
+    description = models.TextField(verbose_name = _('Description of lottery'))
+    thank_you_msg = models.TextField(verbose_name = _('Thank you message'))
+
+class LotteryParticipant(models.Model):
+    questionnaire = models.ForeignKey(Questionnaire,
+                                      verbose_name = _('questionnaire'))
+    email = models.EmailField()
+                            
+
 
 
 

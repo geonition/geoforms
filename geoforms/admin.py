@@ -31,8 +31,11 @@ from geoforms.models import TextareaModel
 from geoforms.models import RangeElementModel
 from geoforms.models import PopupModel
 from geoforms.models import PageModel
+from geoforms.models import Lottery
 from modeltranslation.admin import TranslationAdmin
 from modeltranslation.admin import TranslationTabularInline
+
+admin.site.register(Lottery, TranslationAdmin)
 
 
 class GeoformElementAdmin(TranslationAdmin, admin.ModelAdmin):

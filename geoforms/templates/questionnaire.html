@@ -67,6 +67,14 @@
             {% trans "Your answers and finish" %} {{ forloop.counter|add:1 }}/{{ form_list|length|add:1 }}
         </h3>
         <div>
+                {% if lottery %}
+                <p>
+                {{lottery.description}}
+                </p>
+                <div class="lottery">
+                </div>
+                {% endif %}
+
             <div class="form_element">
                 {% if request.META.HTTP_HOST == "oregonstateparks.maptionnaire.com" %}
 <p>
@@ -152,6 +160,9 @@ Your input is important to us! One more way you can help is to share this survey
 {% block javascript %}
 {% block extra_js %}
 <script type="text/javascript" src="{{ STATIC_URL }}js/feedback.js"></script>
+{% if lottery %}
+<script type="text/javascript" src="{{ STATIC_URL }}js/lottery.js"></script>
+{% endif %}
 {% if request.META.HTTP_HOST == "oregonstateparks.maptionnaire.com" %}
     <script type="text/javascript" src="{{ STATIC_URL }}js/parks.js"></script>
 {% endif %}
@@ -236,6 +247,9 @@ jQuery(document).ready(function() {
                 .prepend($('.drawbutton[data-popup="' + $(this).attr('name') + '"]').first().find('span').text())
             );
         })
+        {% if lottery %}
+        addLotteryForm(window.location.href + 'lottery', "{{lottery.thank_you_msg}}");
+        {% endif %}
 
         {% if request.META.HTTP_HOST == "oregonstateparks.maptionnaire.com" %}
         addParks();
