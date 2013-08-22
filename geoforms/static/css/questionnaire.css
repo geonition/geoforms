@@ -115,6 +115,9 @@
   text-align: center;
   width: 100%;
 }
+.popupform .form_element {
+  width: 90%;
+}
 .form_element li {
   text-align: left;
 }
@@ -130,20 +133,26 @@
   text-align: left;
 }
 .form_element label input[type="text"],
-.form_element label input[type="number"],
-.form_element label textarea {
+.form_element label input[type="number"]{
   max-width: 170px;
   display: block;
   margin-top: 3px;
   margin-left: 15px;
 }
+.form_element label textarea {
+  width: 320px;
+  display: block;
+  margin-top: 3px;
+  margin-left: 15px;
+  max-height: 400px;
+}
+.popupform .form_element label textarea {
+  max-width: 170px;
+  max-height: 120px;
+}
 .form_element label input[type="checkbox"],
 .form_element label input[type="radio"] {
   margin-left: 15px;
-}
-.form_element textarea {
-  max-width: 250px;
-  max-height: 80px;
 }
 button.drawbutton {
   width: 80%;
