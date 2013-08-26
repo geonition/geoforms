@@ -4,6 +4,7 @@ from geoforms.models import FormElement
 from geoforms.models import Questionnaire
 from geoforms.models import QuestionnaireForm
 from bs4 import BeautifulSoup
+from django.conf import settings
 
 def copyGeoform(g_id):
     geoform = Geoform.objects.get(id=g_id)
@@ -28,8 +29,10 @@ def copyGeoformElement(ge_id):
         html = BeautifulSoup(ge.html).button
         old_popup = Geoform.objects.get(slug=html['data-popup'])
         new_popup = Geoform.objects.get(id=copyGeoform(old_popup.id))
-        html['data-popup'] = new_popup.slug
-        ge.html = str(html)
+        for i, lang in enumerate(settings.LANGUAGES):
+            local_html = BeautifulSoup(getattr(ge,'html_%s' % lang[0],'')).button
+            local_html['data-popup'] = new_popup.slug
+            setattr(ge,'html_%s' % lang[0],str(local_html))
         ge.save()
     return ge.id
 

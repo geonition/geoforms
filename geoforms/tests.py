@@ -34,6 +34,7 @@ from geoforms.models import Questionnaire
 from geoforms.utils import copyQuestionnaire
 from geoforms.models import QuestionnaireForm,FormElement
 from bs4 import BeautifulSoup
+from django.conf import settings
 
 class CopyTest(TestCase):
     fixtures = ['en_example_questionnaire.json']
@@ -49,22 +50,29 @@ class CopyTest(TestCase):
                 self.assertNotEqual(fst.id,snd.id)
                 self.assertEqual(fst.html,snd.html)
             else: #different popup, otherwise similar
-                fst_soup = BeautifulSoup(fst.html).button.attrs
-                snd_soup = BeautifulSoup(snd.html).button.attrs
-                for key,value in fst_soup.items():
-                    if key == 'data-popup':
-                        self.assertNotEqual(
-                                snd_soup[key],
-                                fst_soup[key])
-                        fst_popup = Geoform.objects.get(slug=value)
-                        snd_popup = Geoform.objects.get(slug=snd_soup['data-popup'])
-                        geoforms_distinct_but_similar(self,
-                                fst_popup,
-                                snd_popup)
-                    else:
-                        self.assertEqual(
-                                snd_soup[key],
-                                fst_soup[key])
+                for i, lang in enumerate(settings.LANGUAGES):
+                    fst_soup = BeautifulSoup(getattr(fst,'html_%s' % lang[0],'')).button
+                    snd_soup = BeautifulSoup(getattr(snd,'html_%s' % lang[0],'')).button
+                    print 'button texts: ',fst_soup.text,snd_soup.text
+                    self.assertEqual(
+                            fst_soup.text,
+                            snd_soup.text)
+                    fst_soup = fst_soup.attrs
+                    snd_soup = snd_soup.attrs
+                    for key,value in fst_soup.items():
+                        if key == 'data-popup':
+                            self.assertNotEqual(
+                                    snd_soup[key],
+                                    fst_soup[key])
+                            fst_popup = Geoform.objects.get(slug=value)
+                            snd_popup = Geoform.objects.get(slug=snd_soup['data-popup'])
+                            geoforms_distinct_but_similar(self,
+                                    fst_popup,
+                                    snd_popup)
+                        else:
+                            self.assertEqual(
+                                    snd_soup[key],
+                                    fst_soup[key])
         q_ids = [q.id for q in Questionnaire.objects.all()]
         for q_id in q_ids:
             q = Questionnaire.objects.get(id=q_id)
