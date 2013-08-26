@@ -1,0 +1,279 @@
+[
+    {
+        "pk": 1, 
+        "model": "geoforms.geoformelement", 
+        "fields": {
+            "name": "Example multiple choice question:", 
+            "html_en": "<p>Example multiple choice question:</p><label><input type=\"checkbox\" name=\"example-multiple-choice-question\" value=\"multiple-choice\" /> Multiple choice</label><label><input type=\"checkbox\" name=\"example-multiple-choice-question\" value=\"questions-are\" /> questions are</label><label><input type=\"checkbox\" name=\"example-multiple-choice-question\" value=\"very-useful-for-classifying\" /> very useful for classifying</label><label><input type=\"checkbox\" name=\"example-multiple-choice-question\" value=\"the-response-data\" /> the response data!</label>", 
+            "html": "<p>Example multiple choice question:</p><label><input type=\"checkbox\" name=\"example-multiple-choice-question\" value=\"multiple-choice\" /> Multiple choice</label><label><input type=\"checkbox\" name=\"example-multiple-choice-question\" value=\"questions-are\" /> questions are</label><label><input type=\"checkbox\" name=\"example-multiple-choice-question\" value=\"very-useful-for-classifying\" /> very useful for classifying</label><label><input type=\"checkbox\" name=\"example-multiple-choice-question\" value=\"the-response-data\" /> the response data!</label>", 
+            "element_type": "checkbox", 
+            "name_en": "Example multiple choice question:", 
+            "slug": "example-multiple-choice-question-1"
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "geoforms.geoformelement", 
+        "fields": {
+            "name": "Example drawbutton", 
+            "html_en": "<button type=\"button\" data-color=\"#f47920\" class=\"drawbutton point\" data-max=\"3\" name=\"example-drawbutton\" data-popup=\"popup-2\"><img src=\"/images/svg/place_marker.svg?color=f47920\" alt=\"place icon\" /> Example drawbutton</button>", 
+            "html": "<button type=\"button\" data-color=\"#f47920\" class=\"drawbutton point\" data-max=\"3\" name=\"example-drawbutton\" data-popup=\"popup-2\"><img src=\"/images/svg/place_marker.svg?color=f47920\" alt=\"place icon\" /> Example drawbutton</button>", 
+            "element_type": "drawbutton", 
+            "name_en": "Example drawbutton", 
+            "slug": "example-drawbutton-3"
+        }
+    }, 
+    {
+        "pk": 5, 
+        "model": "geoforms.geoformelement", 
+        "fields": {
+            "name": "Another drawbutton", 
+            "html_en": "<button type=\"button\" data-color=\"#f47920\" class=\"drawbutton point\" data-max=\"3\" name=\"another-drawbutton\" data-popup=\"popup-3\"><img src=\"/images/svg/place_marker.svg?color=f47920\" alt=\"place icon\" /> Another drawbutton</button>", 
+            "html": "<button type=\"button\" data-color=\"#f47920\" class=\"drawbutton point\" data-max=\"3\" name=\"another-drawbutton\" data-popup=\"popup-3\"><img src=\"/images/svg/place_marker.svg?color=f47920\" alt=\"place icon\" /> Another drawbutton</button>", 
+            "element_type": "drawbutton", 
+            "name_en": "Another drawbutton", 
+            "slug": "another-drawbutton-5"
+        }
+    }, 
+    {
+        "pk": 7, 
+        "model": "geoforms.geoformelement", 
+        "fields": {
+            "name": "Your age:", 
+            "html_en": "<label>Your age: <input max=\"1000\" step=\"1.0\" type=\"number\" name=\"your-aget2013-08-23-080728973173\" min=\"0\" /></label>", 
+            "html": "<label>Your age: <input max=\"1000\" step=\"1.0\" type=\"number\" name=\"your-aget2013-08-23-080728973173\" min=\"0\" /></label>", 
+            "element_type": "number", 
+            "name_en": "Your age:", 
+            "slug": "your-age-7"
+        }
+    }, 
+    {
+        "pk": 6, 
+        "model": "geoforms.geoformelement", 
+        "fields": {
+            "name": "Paragraphs of text that explain what is being asked and why are highly recommended.", 
+            "html_en": "<p>Paragraphs of text that explain what is being asked and why are highly recommended.</p>", 
+            "html": "<p>Paragraphs of text that explain what is being asked and why are highly recommended.</p>", 
+            "element_type": "paragraph", 
+            "name_en": "Paragraphs of text that explain what is being asked and why are highly recommended.", 
+            "slug": "paragraphs-of-text-that-explain-what-is-being-asked-and-why-are-highly-recommended-6"
+        }
+    }, 
+    {
+        "pk": 9, 
+        "model": "geoforms.geoformelement", 
+        "fields": {
+            "name": "Please tell us about yourself.", 
+            "html_en": "<p>Please tell us about yourself.</p>", 
+            "html": "<p>Please tell us about yourself.</p>", 
+            "element_type": "paragraph", 
+            "name_en": "Please tell us about yourself.", 
+            "slug": "please-tell-us-about-yourself-9"
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "geoforms.geoformelement", 
+        "fields": {
+            "name": "You may only choose one of the options below:", 
+            "html_en": "<p>You may only choose one of the options below:</p><label><input type=\"radio\" name=\"you-may-only-choose-one-of-the-options-below\" value=\"either-this-one\" /> Either this one...</label><label><input type=\"radio\" name=\"you-may-only-choose-one-of-the-options-below\" value=\"or-this\" /> ... or this!</label>", 
+            "html": "<p>You may only choose one of the options below:</p><label><input type=\"radio\" name=\"you-may-only-choose-one-of-the-options-below\" value=\"either-this-one\" /> Either this one...</label><label><input type=\"radio\" name=\"you-may-only-choose-one-of-the-options-below\" value=\"or-this\" /> ... or this!</label>", 
+            "element_type": "radio", 
+            "name_en": "You may only choose one of the options below:", 
+            "slug": "you-may-only-choose-one-of-the-options-below-4"
+        }
+    }, 
+    {
+        "pk": 8, 
+        "model": "geoforms.geoformelement", 
+        "fields": {
+            "name": "Your occupation:", 
+            "html_en": "<label>Your occupation: <input type=\"text\" name=\"Your-occupation:\" /></label>", 
+            "html": "<label>Your occupation: <input type=\"text\" name=\"Your-occupation:\" /></label>", 
+            "element_type": "text", 
+            "name_en": "Your occupation:", 
+            "slug": "your-occupation-8"
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "geoforms.geoformelement", 
+        "fields": {
+            "name": "But open questions are of course also needed, don't you think?", 
+            "html_en": "<label>But open questions are of course also needed, don't you think? <textarea rows=\"10\" cols=\"40\" name=\"But-open-questions-are-of-course-also-needed,-don&#39;t-you-think?\"></textarea></label>", 
+            "html": "<label>But open questions are of course also needed, don't you think? <textarea rows=\"10\" cols=\"40\" name=\"But-open-questions-are-of-course-also-needed,-don&#39;t-you-think?\"></textarea></label>", 
+            "element_type": "textarea", 
+            "name_en": "But open questions are of course also needed, don't you think?", 
+            "slug": "but-open-questions-are-of-course-also-needed-dont-you-think-2"
+        }
+    }, 
+    {
+        "pk": 1, 
+        "model": "geoforms.geoform", 
+        "fields": {
+            "page_type": "form", 
+            "name_en": "My first questionnaire page", 
+            "slug": "my-first-questionnaire-page-1", 
+            "name": "My first questionnaire page"
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "geoforms.geoform", 
+        "fields": {
+            "page_type": "popup", 
+            "name_en": null, 
+            "slug": "popup-2", 
+            "name": "popup"
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "geoforms.geoform", 
+        "fields": {
+            "page_type": "popup", 
+            "name_en": null, 
+            "slug": "popup-3", 
+            "name": "popup"
+        }
+    }, 
+    {
+        "pk": 1, 
+        "model": "geoforms.formelement", 
+        "fields": {
+            "geoform": 2, 
+            "order": 0, 
+            "element": 1
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "geoforms.formelement", 
+        "fields": {
+            "geoform": 2, 
+            "order": 1, 
+            "element": 2
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "geoforms.formelement", 
+        "fields": {
+            "geoform": 3, 
+            "order": 0, 
+            "element": 4
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "geoforms.formelement", 
+        "fields": {
+            "geoform": 1, 
+            "order": 1, 
+            "element": 3
+        }
+    }, 
+    {
+        "pk": 5, 
+        "model": "geoforms.formelement", 
+        "fields": {
+            "geoform": 1, 
+            "order": 2, 
+            "element": 5
+        }
+    }, 
+    {
+        "pk": 6, 
+        "model": "geoforms.formelement", 
+        "fields": {
+            "geoform": 1, 
+            "order": 0, 
+            "element": 6
+        }
+    }, 
+    {
+        "pk": 8, 
+        "model": "geoforms.formelement", 
+        "fields": {
+            "geoform": 1, 
+            "order": 4, 
+            "element": 7
+        }
+    }, 
+    {
+        "pk": 9, 
+        "model": "geoforms.formelement", 
+        "fields": {
+            "geoform": 1, 
+            "order": 5, 
+            "element": 8
+        }
+    }, 
+    {
+        "pk": 7, 
+        "model": "geoforms.formelement", 
+        "fields": {
+            "geoform": 1, 
+            "order": 3, 
+            "element": 9
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "geoforms.questionnaire", 
+        "fields": {
+            "map": null, 
+            "description": "A description of the questionnaire.", 
+            "end_date": "2014-02-27", 
+            "area": "POLYGON ((-8209906.0174612002447248 4989061.0063645998016000, -8206237.0401039998978376 4986156.3992902003228664, -8205778.4179343003779650 4983022.4811310004442930, -8209829.5804329002276063 4979659.2518868995830417, -8210211.7655742997303605 4982716.7330179000273347, -8212046.2542527997866273 4984016.1624985001981258, -8211511.1950548999011517 4985697.7771206004545093, -8210670.3877438995987177 4986079.9622619003057480, -8210976.1358570000156760 4987838.0139122996479273, -8210899.6988286999985576 4988984.5693364003673196, -8209906.0174612002447248 4989061.0063645998016000))", 
+            "show_detailed_areas": false, 
+            "site": 1, 
+            "description_en": "A description of the questionnaire.", 
+            "scale_visible_area": 1, 
+            "show_area": true, 
+            "start_date": "2013-08-23", 
+            "detailed_areas": null, 
+            "name_en": "Another identical questionnaire in a different area", 
+            "slug": "another-identical-questionnaire-in-a-different-area-2", 
+            "name": "Another identical questionnaire in a different area"
+        }
+    }, 
+    {
+        "pk": 1, 
+        "model": "geoforms.questionnaire", 
+        "fields": {
+            "map": null, 
+            "description": "Short descriptions of the currently open questionnaires are shown here. You may also give the respondents the direct address to the questionnaires, and never show this front page to anyone.", 
+            "end_date": "2014-04-23", 
+            "area": "POLYGON ((-8239334.2733468003571033 4967887.9495326001197100, -8239831.1140305995941162 4969225.5975273996591568, -8238760.9956347001716495 4976104.9300720999017358, -8233410.4036555001512170 4985774.2141488995403051, -8232569.5963444998487830 4984436.5661541000008583, -8229512.1152135003358126 4982487.4219330996274948, -8231193.7298355000093579 4980308.9666272001340985, -8231155.5113214002922177 4979200.6297172000631690, -8234442.3035372002050281 4974499.7524784002453089, -8234212.9924523998051882 4972321.2971724998205900, -8235130.2367917001247406 4969646.0011828998103738, -8237385.1291257999837399 4969072.7234709002077579, -8237843.7512953998520970 4968766.9753577997907996, -8239334.2733468003571033 4967887.9495326001197100))", 
+            "show_detailed_areas": false, 
+            "site": 1, 
+            "description_en": "Short descriptions of the currently open questionnaires are shown here. You may also give the respondents the direct address to the questionnaires, and never show this front page to anyone.", 
+            "scale_visible_area": 1, 
+            "show_area": true, 
+            "start_date": "2013-08-23", 
+            "detailed_areas": null, 
+            "name_en": "Example questionnaire", 
+            "slug": "example-questionnaire-1", 
+            "name": "Example questionnaire"
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "geoforms.questionnaireform", 
+        "fields": {
+            "questionnaire": 1, 
+            "geoform": 1, 
+            "order": 0
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "geoforms.questionnaireform", 
+        "fields": {
+            "questionnaire": 2, 
+            "geoform": 1, 
+            "order": 0
+        }
+    }
+]
