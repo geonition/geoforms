@@ -252,7 +252,7 @@ jQuery(document).ready(function() {
         {% endif %}
 
         {% if request.META.HTTP_HOST == "ayk.asiatkartalle.fi" %}
-        gnt.maps.add_geojson_to_map('/static/ayk_pisteet.geojson','pisteet')
+        gnt.maps.add_geojson_to_map('/static/ayk_pisteet.geojson','pisteet');
         {% endif %}
 
         {% if request.META.HTTP_HOST == "oregonstateparks.maptionnaire.com" %}

@@ -1,5 +1,4 @@
 function addLotteryForm(url, thank_you_msg) {
-    console.log('url = ' + url);
     function getCookie(name) {
         var cookieValue = null;
         if (document.cookie && document.cookie != '') {
@@ -19,7 +18,6 @@ function addLotteryForm(url, thank_you_msg) {
     var beforeSend = function(xhr, settings) {
             xhr.setRequestHeader("X-CSRFToken", csrftoken);
         };
-    console.log('csrf = ' + csrftoken);
 
     $.ajax({
         url: url,
