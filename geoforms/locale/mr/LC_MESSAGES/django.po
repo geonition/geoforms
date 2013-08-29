@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geonition\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-18 19:00-0500\n"
-"PO-Revision-Date: 2013-07-08 00:00+0000\n"
+"POT-Creation-Date: 2013-08-25 19:00-0500\n"
+"PO-Revision-Date: 2013-08-26 00:00+0000\n"
 "Last-Translator: ksnabb <kristoffer.snabb@geonition.org>\n"
 "Language-Team: Marathi (http://www.transifex.com/projects/p/geonition/language/mr/)\n"
 "MIME-Version: 1.0\n"
@@ -19,96 +19,96 @@ msgstr ""
 "Language: mr\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: admin.py:113 admin.py:165 admin.py:187
+#: admin.py:116 admin.py:168 admin.py:190
 msgid "Advanced options"
 msgstr "उद्धारित पर्याय."
 
-#: forms.py:42 forms.py:210 forms.py:556
+#: forms.py:43 forms.py:211 forms.py:557
 msgid "question"
 msgstr "प्रश्न "
 
-#: forms.py:131 forms.py:214
+#: forms.py:132 forms.py:215
 msgid "minimum value"
 msgstr "किमान  मुल्य "
 
-#: forms.py:132 forms.py:215
+#: forms.py:133 forms.py:216
 msgid "maximum value"
 msgstr "कमाल मुल्य "
 
-#: forms.py:133 forms.py:216
+#: forms.py:134 forms.py:217
 msgid "size for one step"
 msgstr "एका लेवलचा आकारमान."
 
-#: forms.py:211
+#: forms.py:212
 msgid "label for minimum choice"
 msgstr "किमान पर्यायासाठी लेबल द्या."
 
-#: forms.py:212
+#: forms.py:213
 msgid "label for maximum choice"
 msgstr " कमाल पर्यायासाठी लेबल द्या."
 
-#: forms.py:213
+#: forms.py:214
 msgid "initial value"
 msgstr "प्रारंभिक संख्या"
 
-#: forms.py:325 forms.py:365
+#: forms.py:326 forms.py:366
 msgid "option"
 msgstr "पर्याय "
 
-#: forms.py:403
+#: forms.py:404
 msgid "place"
 msgstr "जागा "
 
-#: forms.py:404
+#: forms.py:405
 msgid "route"
 msgstr "मार्ग"
 
-#: forms.py:405
+#: forms.py:406
 msgid "area"
 msgstr "क्षेत्र"
 
-#: forms.py:406
+#: forms.py:407
 msgid "geometry type"
 msgstr "भौमितक प्रकार "
 
-#: forms.py:407
+#: forms.py:408
 msgid "button text"
 msgstr "बटणावरचे पाठ."
 
-#: forms.py:410
+#: forms.py:411
 msgid "color"
 msgstr "रंग "
 
-#: forms.py:411
+#: forms.py:412
 msgid ""
 "The color of the feature to be drawn. The color is given as hexadecimal "
 "color e.g. #ffffff --> white, #000000 --> black, #ff0000 --> red, #00ff00 "
 "--> green, #0000ff --> blue."
 msgstr "फीचरचा रंग निवडा.रंग सह्दाशौंश अंका प्रमाणे ठरविण्यात येतो.#ffffff --> पांढरा , #000000 --> काळा, #ff0000 --> लाल, #00ff00 -->हिरवा, #0000ff -->  निळा."
 
-#: forms.py:413
+#: forms.py:414
 msgid "popup for the place, route or area"
 msgstr "जागा, मार्ग आणि क्षेत्रासाठी पॉपप."
 
-#: forms.py:414 forms.py:433
+#: forms.py:415 forms.py:434
 msgid "Choose the popup to use for the place, route, or area."
 msgstr "जागा, मार्ग व क्षेत्रासाठी पोपप निवडावा. "
 
-#: forms.py:418
+#: forms.py:419
 msgid "max amount of answers"
 msgstr "उत्तरांचे कमाल परिमाण."
 
-#: forms.py:419
+#: forms.py:420
 msgid ""
 "This is the maximum number of allowed places/routes/areas that can be drawn "
 "by this drawbutton."
 msgstr "ह्या बटणाद्वारे मार्क करता येणाऱ्या  अनुमत  जागा, मार्ग आणि क्षेत्रांची ही कमाल संख्या आहे"
 
-#: forms.py:499
+#: forms.py:500
 msgid "text for the paragraph"
 msgstr "परिच्छेदासाठी पाठ. "
 
-#: forms.py:500
+#: forms.py:501
 msgid ""
 "This field takes as input any html tags. This enables you to style the text "
 "in any way you want. Here is a list of tags that can be used <a "
@@ -116,7 +116,7 @@ msgid ""
 "tags</a>"
 msgstr ""
 
-#: forms.py:558
+#: forms.py:559
 msgid "randomize the order of the options"
 msgstr ""
 
@@ -325,13 +325,21 @@ msgid ""
 "checkbox unchecked."
 msgstr ""
 
-#: models.py:340 models.py:352
+#: models.py:340 models.py:352 models.py:367 models.py:373
 msgid "questionnaire"
 msgstr "प्रश्नावली "
 
 #: models.py:341
 msgid "questionnaires"
 msgstr "प्रश्नावली "
+
+#: models.py:368
+msgid "Description of lottery"
+msgstr ""
+
+#: models.py:369
+msgid "Thank you message"
+msgstr ""
 
 #: widgets.py:34
 msgid "place icon"
@@ -369,7 +377,7 @@ msgstr "प्रश्नावली "
 msgid "Next"
 msgstr "पुढचे "
 
-#: templates/questionnaire.html:56 templates/questionnaire.html.py:106
+#: templates/questionnaire.html:56 templates/questionnaire.html.py:114
 msgid "Previous"
 msgstr "आधीचे "
 
@@ -377,7 +385,7 @@ msgstr "आधीचे "
 msgid "Your answers and finish"
 msgstr ""
 
-#: templates/questionnaire.html:95
+#: templates/questionnaire.html:103
 msgid ""
 "This is the end of the questionnaire and your answers has been saved. Thank "
 "you for your answers! You can still continue modifying your answers by "
@@ -385,52 +393,52 @@ msgid ""
 "and go to home page' button."
 msgstr "आपली उत्तरं सेव करण्यात आलेली असून ही प्रश्नावली येथे संपन्न होते.आपण दिलेल्या उत्तरांसाठी आपले आभार. \nतुम्ही तुमची उत्तरं मागे जाण्याचा बटणावर क्लिक करून अजूनही  सुधारू शकता.प्रश्नावली सोडून जाण्यासाठी 'बंद करून होमपेजवर जा ' ह्या बटणावर क्लिक करा."
 
-#: templates/questionnaire.html:107
+#: templates/questionnaire.html:115
 msgid "Quit and go to home page"
 msgstr "पेज सोडून होमपेज वर या "
 
-#: templates/questionnaire.html:141
+#: templates/questionnaire.html:149
 msgid "Remove"
 msgstr "काढा "
 
-#: templates/questionnaire.html:144
+#: templates/questionnaire.html:152
 #: templates/admin/geoforms/geoformelement/create_element.html:42
 msgid "Save"
 msgstr "सेव करा "
 
-#: templates/questionnaire.html:196
+#: templates/questionnaire.html:207
 msgid "You marked one place"
 msgstr "आपण एक जागा मार्क केली आहे."
 
-#: templates/questionnaire.html:198
+#: templates/questionnaire.html:209
 msgid "You marked"
 msgstr ""
 
-#: templates/questionnaire.html:198
+#: templates/questionnaire.html:209
 msgid "places"
 msgstr "जागा"
 
-#: templates/questionnaire.html:204
+#: templates/questionnaire.html:215
 msgid "and answered one question"
 msgstr "आणि  एका  प्रश्नाचे  उत्तर  दिले  आहे"
 
-#: templates/questionnaire.html:206
+#: templates/questionnaire.html:217
 msgid "and answered"
 msgstr "आणि उत्तर दिले"
 
-#: templates/questionnaire.html:206 templates/questionnaire.html.py:211
+#: templates/questionnaire.html:217 templates/questionnaire.html.py:222
 msgid "questions"
 msgstr "प्रश्न "
 
-#: templates/questionnaire.html:209
+#: templates/questionnaire.html:220
 msgid "You answered one question"
 msgstr "आपण एका प्रश्नाचे उत्तर दिले"
 
-#: templates/questionnaire.html:211
+#: templates/questionnaire.html:222
 msgid "You answered"
 msgstr ""
 
-#: templates/questionnaire.html:241
+#: templates/questionnaire.html:262
 msgid "Choose Layers to show"
 msgstr ""
 

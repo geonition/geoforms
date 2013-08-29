@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geonition\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-18 19:00-0500\n"
-"PO-Revision-Date: 2013-07-08 00:00+0000\n"
+"POT-Creation-Date: 2013-08-25 19:00-0500\n"
+"PO-Revision-Date: 2013-08-26 00:00+0000\n"
 "Last-Translator: ksnabb <kristoffer.snabb@geonition.org>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/projects/p/geonition/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -23,96 +23,96 @@ msgstr ""
 "Language: pt_BR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: admin.py:113 admin.py:165 admin.py:187
+#: admin.py:116 admin.py:168 admin.py:190
 msgid "Advanced options"
 msgstr "Opções avançadas"
 
-#: forms.py:42 forms.py:210 forms.py:556
+#: forms.py:43 forms.py:211 forms.py:557
 msgid "question"
 msgstr "pergunta"
 
-#: forms.py:131 forms.py:214
+#: forms.py:132 forms.py:215
 msgid "minimum value"
 msgstr "valor mínimo"
 
-#: forms.py:132 forms.py:215
+#: forms.py:133 forms.py:216
 msgid "maximum value"
 msgstr "valor máximo"
 
-#: forms.py:133 forms.py:216
+#: forms.py:134 forms.py:217
 msgid "size for one step"
 msgstr "tamanho de uma etapa"
 
-#: forms.py:211
+#: forms.py:212
 msgid "label for minimum choice"
 msgstr "rótulo para escolha mínima"
 
-#: forms.py:212
+#: forms.py:213
 msgid "label for maximum choice"
 msgstr "rótulo para escolha máxima"
 
-#: forms.py:213
+#: forms.py:214
 msgid "initial value"
 msgstr "valor inicial"
 
-#: forms.py:325 forms.py:365
+#: forms.py:326 forms.py:366
 msgid "option"
 msgstr "opção"
 
-#: forms.py:403
+#: forms.py:404
 msgid "place"
 msgstr "ponto"
 
-#: forms.py:404
+#: forms.py:405
 msgid "route"
 msgstr "linha"
 
-#: forms.py:405
+#: forms.py:406
 msgid "area"
 msgstr "polígono"
 
-#: forms.py:406
+#: forms.py:407
 msgid "geometry type"
 msgstr "tipo de geometria"
 
-#: forms.py:407
+#: forms.py:408
 msgid "button text"
 msgstr "botão de texto"
 
-#: forms.py:410
+#: forms.py:411
 msgid "color"
 msgstr "cor"
 
-#: forms.py:411
+#: forms.py:412
 msgid ""
 "The color of the feature to be drawn. The color is given as hexadecimal "
 "color e.g. #ffffff --> white, #000000 --> black, #ff0000 --> red, #00ff00 "
 "--> green, #0000ff --> blue."
 msgstr "A cor do recurso a ser desenhado. A cor é determinada como uma cor hexadecimal e.g. #ffffff --> branco, #000000 --> preto, #ff0000 --> vermelho, #00ff00 --> verde, #0000ff --> azul."
 
-#: forms.py:413
+#: forms.py:414
 msgid "popup for the place, route or area"
 msgstr "pop-up para lugar, caminho ou área"
 
-#: forms.py:414 forms.py:433
+#: forms.py:415 forms.py:434
 msgid "Choose the popup to use for the place, route, or area."
 msgstr "Escolhe o popup para o marcador, linha ou polígono"
 
-#: forms.py:418
+#: forms.py:419
 msgid "max amount of answers"
 msgstr "máxima quantidade de respostas"
 
-#: forms.py:419
+#: forms.py:420
 msgid ""
 "This is the maximum number of allowed places/routes/areas that can be drawn "
 "by this drawbutton."
 msgstr "Este é o número máximo de pontos/linhas/polígonos que podem ser desenhados por este botão de desenho."
 
-#: forms.py:499
+#: forms.py:500
 msgid "text for the paragraph"
 msgstr "texto do parágrafo"
 
-#: forms.py:500
+#: forms.py:501
 msgid ""
 "This field takes as input any html tags. This enables you to style the text "
 "in any way you want. Here is a list of tags that can be used <a "
@@ -120,7 +120,7 @@ msgid ""
 "tags</a>"
 msgstr "Este campo aceita como entrada qualquer tag de html. Isso permite que você altere o estilo do texto da maneira que você quiser. Aqui tem uma lista de tags que podem ser usadas <a href=\"http://dev.w3.org/html5/spec/single-page.html#usage-summary\">html5 tags</a>"
 
-#: forms.py:558
+#: forms.py:559
 msgid "randomize the order of the options"
 msgstr ""
 
@@ -329,13 +329,21 @@ msgid ""
 "checkbox unchecked."
 msgstr ""
 
-#: models.py:340 models.py:352
+#: models.py:340 models.py:352 models.py:367 models.py:373
 msgid "questionnaire"
 msgstr "questionário"
 
 #: models.py:341
 msgid "questionnaires"
 msgstr "questionários"
+
+#: models.py:368
+msgid "Description of lottery"
+msgstr ""
+
+#: models.py:369
+msgid "Thank you message"
+msgstr ""
 
 #: widgets.py:34
 msgid "place icon"
@@ -373,7 +381,7 @@ msgstr "Questionários"
 msgid "Next"
 msgstr "Próxima"
 
-#: templates/questionnaire.html:56 templates/questionnaire.html.py:106
+#: templates/questionnaire.html:56 templates/questionnaire.html.py:114
 msgid "Previous"
 msgstr "Anterior"
 
@@ -381,7 +389,7 @@ msgstr "Anterior"
 msgid "Your answers and finish"
 msgstr "Final"
 
-#: templates/questionnaire.html:95
+#: templates/questionnaire.html:103
 msgid ""
 "This is the end of the questionnaire and your answers has been saved. Thank "
 "you for your answers! You can still continue modifying your answers by "
@@ -389,52 +397,52 @@ msgid ""
 "and go to home page' button."
 msgstr "Este é o final do questionário, as respostas foram salvas, muito obrigada!\nVocê ainda pode modificar as respostas clicando nos botões \"anterior\". \nPara sair do questionário, clique em sair e ir para a página inicial."
 
-#: templates/questionnaire.html:107
+#: templates/questionnaire.html:115
 msgid "Quit and go to home page"
 msgstr "Sair e ir para a página inicial"
 
-#: templates/questionnaire.html:141
+#: templates/questionnaire.html:149
 msgid "Remove"
 msgstr "Remover"
 
-#: templates/questionnaire.html:144
+#: templates/questionnaire.html:152
 #: templates/admin/geoforms/geoformelement/create_element.html:42
 msgid "Save"
 msgstr "Gravar"
 
-#: templates/questionnaire.html:196
+#: templates/questionnaire.html:207
 msgid "You marked one place"
 msgstr "Você marcou um lugar"
 
-#: templates/questionnaire.html:198
+#: templates/questionnaire.html:209
 msgid "You marked"
 msgstr "Você marcou"
 
-#: templates/questionnaire.html:198
+#: templates/questionnaire.html:209
 msgid "places"
 msgstr "lugares"
 
-#: templates/questionnaire.html:204
+#: templates/questionnaire.html:215
 msgid "and answered one question"
 msgstr "e respondeu uma pergunta"
 
-#: templates/questionnaire.html:206
+#: templates/questionnaire.html:217
 msgid "and answered"
 msgstr "e respondeu"
 
-#: templates/questionnaire.html:206 templates/questionnaire.html.py:211
+#: templates/questionnaire.html:217 templates/questionnaire.html.py:222
 msgid "questions"
 msgstr "perguntas"
 
-#: templates/questionnaire.html:209
+#: templates/questionnaire.html:220
 msgid "You answered one question"
 msgstr "Você respondeu uma pergunta"
 
-#: templates/questionnaire.html:211
+#: templates/questionnaire.html:222
 msgid "You answered"
 msgstr "Você respondeu"
 
-#: templates/questionnaire.html:241
+#: templates/questionnaire.html:262
 msgid "Choose Layers to show"
 msgstr ""
 
