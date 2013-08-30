@@ -26,6 +26,7 @@ function addLotteryForm(url, thank_you_msg) {
         function(data) {
             var empty_form = $(data.msg); 
             $('.lottery')
+                .append($('<a href="http://ayk.asiatkartalle.fi/static/rekisteriseloste_ayk.doc">Rekisteriseloste</a><br /><br />'))
                 .append(empty_form
                     .append($('<button></button>')
                         .text('Save')
