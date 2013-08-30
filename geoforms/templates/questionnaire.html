@@ -251,9 +251,6 @@ jQuery(document).ready(function() {
         addLotteryForm(window.location.href + 'lottery', "{{lottery.thank_you_msg}}");
         {% endif %}
 
-        {% if request.META.HTTP_HOST == "ayk.asiatkartalle.fi" %}
-        gnt.maps.add_geojson_to_map('/static/ayk_pisteet.geojson','pisteet');
-        {% endif %}
 
         {% if request.META.HTTP_HOST == "oregonstateparks.maptionnaire.com" %}
         addParks();
@@ -269,7 +266,7 @@ jQuery(document).ready(function() {
                     .addClass('wms-layerswitcher')
                     )
                 );
-        var sld_getter = make_sld_getter();
+        //var sld_getter = make_sld_getter();
         $('[data-element-type="wms-layer"]').each(function() {
             var name = $(this).children().first().attr('data-layer-name');
             var long_name = $(this).children().first().attr('data-layer-long-name');
@@ -281,8 +278,8 @@ jQuery(document).ready(function() {
                 {
                     "layers": name,
                     "transparent": true,
-                    "version": "1.1.1",
-                    "SLD_BODY": sld_getter(name)
+                    "version": "1.1.1"//,
+                //    "SLD_BODY": sld_getter(name)
                 });
 
             gnt.questionnaire.extra_layers.push({

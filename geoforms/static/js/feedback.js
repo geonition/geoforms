@@ -1,1 +1,536 @@
-!function(){this.show_feedback=function(){var e,t,r,a,n,i,l,o,s,p,c,u,d,f,h,m,y,g,b,v,k,C,x,w,L,_,S,N,O,P,A;return h=function(){var e,t,r;return t=0,r={},e=["#1f77b4","#ff7f0e","#2ca02c","#d62728","#9467bd","#8c564b","#e377c2","#7f7f7f","#bcbd22","#17becf","#9edae5","#98df8a","#aec7e8","#ffbb78","#ff9896","#c5b0d5","#c49c94","#f7b6d2","#c7c7c7","#dbdb8d"],function(a){return a in r||(r[a]=e[t++%20]),{strokeWidth:5,strokeColor:r[a],fillColor:"black",cursor:"pointer",fillOpacity:.1,pointRadius:6}}},f=function(){var e;return e=new OpenLayers.Control.SelectFeature(map.getControl("selectcontrol").layers.concat(map.getLayersByName("Marking Layer")[0]),{hover:!0,highlightOnly:!0,multiple:!0,renderIntent:"highlight",eventListeners:{featurehighlighted:C,featureunhighlighted:p}})},x=function(e){var t,r,a;if(e in w)return w[e];if(r=0,t=void 0,0===e.length)return r;for(a=0;a<e.length;)t=e.charCodeAt(a),r=(r<<5)-r+t,r&=r,a++;for(r=Math.abs(r);r in v;)r++;return v[r]=e,r=r.toString(),w[e]=r,r},r=function(e,t){return $("ul.feature-ctrl-main").append($("<li></li>").addClass("feature-level-ctrl").append($('<input type="checkbox">').addClass("feature-level-ctrl").attr("id",e).attr("value",e).prop("checked",!1).change(L)).append($("<label></label>").addClass("feedback-bold").css("color",t.style.strokeColor).text(e).attr("for",e)).append($("<ul></ul>").addClass("mini-questionnaire").addClass(e).hide()))},t=function(e,t){return $("ul.property-ctrl-main").append($("<li></li>").html($("<div></div>").css("padding",0).addClass("feedback-bold").text(t)).append($("<ul></ul>").addClass("question-level-ctrl").addClass(e)))},L=function(e){var t,r,a,n,o,s,p,c,u,d,f;for(t=e.target.checked?"checked":"none",o=function(){var t,r,n,l;for(n=i[e.target.id],l=[],t=0,r=n.length;r>t;t++)a=n[t],l.push(A[a]);return l}(),s=0,u=o.length;u>s;s++)r=o[s],r.style.display=t;for(p=0,d=o.length;d>p;p++)r=o[p],P[r.attributes.user]===!1&&(r.style.display="none");for(c=0,f=o.length;f>c;c++)r=o[c],l[r.attributes.id]===!1&&(r.style.display="none");return n=$(e.target).closest("li.feature-level-ctrl").find(".mini-questionnaire"),"none"===t?n.hide():n.show(),map.getLayersByName("Marking Layer")[0].redraw()},S=function(e){var t,r,a,n,i,l,o;if(r={},0===e.length)return r;for(n=0,l=e.length;l>n;n++)for(t=e[n],i=0,o=t.length;o>i;i++)a=t[i],r[a]=!0;return r},u=function(e){var t,r,a,n,i,l,o,s,p,c,u,d;if(r={},0===e.length)return r;for(c=e[0],n=0,o=c.length;o>n;n++)a=c[n],r[a]=!0;if(1===e.length)return r;for(u=e[0],i=0,s=u.length;s>i;i++)for(a=u[i],d=e.slice(1),l=0,p=d.length;p>l;l++)if(t=d[l],-1===t.indexOf(a)){delete r[a];break}return r},o=function(e){var t,r,a,o,s,p;for(r=[],$(e.target).closest(".mini-questionnaire").find('input[type="checkbox"].attribute-level-ctrl').each(function(){return this.checked?r.push(n[this.value]):void 0}),a=$('.feature-ctrl-andor input[value="and"]').first().prop("checked")?u(r):S(r),p=i[$(e.target).closest("li.feature-level-ctrl").find("input.feature-level-ctrl").attr("id")],o=0,s=p.length;s>o;o++)t=p[o],l[t]=t in a?!0:!1;return $(e.target).closest("li.feature-level-ctrl").find("input.feature-level-ctrl").change()},s=function(){var e,t,r,n,i,l,o;o=[],$("input.property-ctrl-boolean").each(function(){return this.checked?o.push(a[this.value]):void 0}),r=$('.property-ctrl-andor input[value="and"]').first().prop("checked")?u(o):S(o),n={},$("input.property-ctrl-min").each(function(){return n[this.name]=[parseInt(this.value)]}),$("input.property-ctrl-max").each(function(){return n[this.name].push(parseInt(this.value))});for(l in r)for(i in n)if(t=$("input#exclude-"+i).first().prop("checked"),l in N){if(!(i in N[l])){if(!t)continue;delete r[l]}e=N[l][i],e>=n[i][0]&&e<=n[i][1]||delete r[l]}else{if(!t)continue;delete r[l]}for(l in P)P[l]=l in r?!0:!1;return $("input.feature-level-ctrl").change()},g=function(e){var r,n,i,l,o,p,c,u,f,h,m,y,g,b,v,k;if(n=function(){var e,t,n,i,l,o,h,g;for(t=function(){return $("ul."+c).append($("<li></li>").append($("<label></label>").attr("for","min-"+c).append("Min:").append($("<input>").addClass("property-ctrl-min").attr("type","text").attr("id","min-"+c).attr("name",c)).change(s))).append($("<li></li>").append($("<label></label>").attr("for","max-"+c).append("Max:").append($("<input>").addClass("property-ctrl-max").attr("type","text").attr("id","max-"+c).attr("name",c)).change(s))).append($("<li></li>").append($("<label></label>").attr("for","exclude-"+c).append($("<input>").addClass("property-ctrl-exclude").attr("type","checkbox").attr("id","exclude-"+c).attr("name",c)).change(s).append("Exclude people who did not answer")))},e=function(){return $("ul."+c).append($("<li></li>").append($("<label></label>").attr("for",i).append($("<input>").addClass("property-ctrl-boolean").attr("type","checkbox").attr("id",i).val(i).attr("checked","checked")).change(s).append(n)))},g=[],l=0,o=r.length;o>l;l++)n=r[l],isNaN(Number(n))?(d(n)||(n="*long-answer"),i=x(c+"-AND-"+n),i in m||(e(),m[i]=!0),null==a[i]&&(a[i]=Array()),g.push(a[i].push(p.user))):(c in y||t(),n=parseInt(n),null==N[h=p.user]&&(N[h]={}),N[p.user][c]=n,null==u[c]&&(u[c]=n),n>u[c]&&(u[c]=n),null==f[c]&&(f[c]=n),n<f[c]?g.push(f[c]=n):g.push(void 0));return g},e.entry){for(o={user:!0,time:!0,id:!0,group:!0},y={},m={},u={},f={},k=e.entry,g=0,b=k.length;b>g;g++)if(p=k[g],!("form_values"in p)){null==O[v=p.user]&&(O[v]={});for(c in p)r=p[c],c in o||(h=c.split("t201")[0],c=x(h),c in y||t(c,h),r instanceof Array||(r=[r]),O[p.user][h]=r,n(),y[c]=!0)}for(c in u)i=u[c],$('input.property-ctrl-max[name="'+c+'"]').val(i);for(c in f)l=f[c],$('input.property-ctrl-min[name="'+c+'"]').val(l);return $("ul.property-ctrl-main ul").filter(function(){return $(this).find("li").length<2}).parent().remove(),$("#property-ctrl .loading").remove()}},y=function(t){var a,s,p,c,u,f,m,y,g,v,k,C,w,L;if(t.features){for(k=map.getLayersByName("Marking Layer")[0],y=h(),g=new OpenLayers.Format.GeoJSON,w=new OpenLayers.Projection(t.crs.properties.code),L=new OpenLayers.Projection(map.getProjection()),$("#feature-ctrl").append($("<ul></ul>").addClass("feature-ctrl-main")),$("#feature-ctrl").prepend("<h2>Choose features to show</h2>"),$("#property-ctrl").prepend("<h2>Filter respondents</h2>"),C={},v=0;v<t.features.length;){m=g.parseFeature(t.features[v]),f=m.attributes.name,m.geometry.transform(w,L),m.lonlat=gnt.questionnaire.get_popup_lonlat(m.geometry),m.style=y(f),m.style.display="none",m.attributes.id=v,m=b(m),A[v]=m,P[m.attributes.user]=!0,f in i||(i[f]=Array(),r(f,m)),i[f].push(v);for(a in m.attributes.form_values){u=x([f,a].join("-AND-")),u in C||(C[u]=!0,$("."+f).append($("<li></li>").addClass("attr-ctrl").append($("<div></div>").css("color",m.style.strokeColor).html(a)).append($("<ul></ul>").addClass(u))));for(p in m.attributes.form_values[a]){if(!d(p)){if(!isNaN(Number(p)))continue;p="*long-answer"}s=x([f,a,p].join("-AND-")),s in n||(n[s]=Array(),$("."+u).append($("<li></li>").append($('<input type="checkbox">').addClass("attribute-level-ctrl").attr("id",s).attr("value",s).attr("checked","checked").change(o)).append($("<label></label>").css("color",m.style.strokeColor).text(p).attr("for",s)))),n[s].push(v)}}k.addFeatures(m),v+=1}for(c in A)l[c]=!0;return e(),$(".attr-ctrl").filter(function(){return $(this).find("li").length<2}).remove(),$('.feature-ctrl-andor input[value="or"]').prop("checked",!0),$(".feature-ctrl-andor input").change(_),$("#feature-ctrl .loading").remove(),$("input.feature-level-ctrl").first().prop("checked",!0).change()}},_=function(){return $("li.feature-level-ctrl").each(function(){return $(this).find("input.attribute-level-ctrl").first().change()})},d=function(e){return-1===e.indexOf(" ")&&e.charCodeAt(0)>="a".charCodeAt(0)&&e.charCodeAt(0)<="z".charCodeAt(0)?!0:!1},p=function(){return $("div.analysis_popup").hide()},C=function(e){var t,r,a,n,i,l,o,s,p,c,u;$(".analysis_popup").html("").hide(),$(".feature_comments").append('<div class="name">'+e.feature.attributes.name+"</div>"),a=e.feature.attributes.form_values;for(n in a){$(".feature_comments").append('<div class="attribute-name">'+n+"</div>"),l=$("<ul></ul>");for(s in a[n])l.append($("<li></li>").html(s));$(".feature_comments").append(l)}o=e.feature.attributes.user,$(".user_info").prepend($("<div>user: "+o+"</div>").addClass("username")),u=O[o];for(i in u){for(r=u[i],$(".user_info").append('<div class="attribute-name">'+i+"</div>"),l=$("<ul></ul>"),p=0,c=r.length;c>p;p++)t=r[p],l.append($("<li></li>").html(t));$(".user_info").append(l)}return $(".analysis_popup").show()},b=function(e){var t,r,a,n;for(a={},t=e.attributes.form_values,r=0;r<t.length;)n=t[r],n.name in a||(a[n.name]={}),a[n.name][n.value]=!0,r+=1;return e.attributes.form_values=a,e},e=function(){return $(".mini-questionnaire").prepend($("<label>Check all</label>").css("font-weight","bold").prepend($('<input type="checkbox">').css("margin-right","3px").prop("checked",!0).change(function(e){return $(e.target).closest(".mini-questionnaire").find('input[type="checkbox"]').prop("checked",e.target.checked),$(e.target).closest(".mini-questionnaire").find('input[type="checkbox"].attribute-level-ctrl').last().change()}))),$(".property-ctrl-general").append($("<label>Check all</label>").css("font-weight","bold").prepend($('<input type="checkbox">').css("margin-right","3px").prop("checked",!0).change(function(e){return $("input.property-ctrl-boolean").prop("checked",e.target.checked),s()})))},P={},l={},i={},A={},n={},a={},N={},v={},w={},O={},$(".property-ctrl-andor input").change(s),$('.property-ctrl-andor input[value="or"]').first().prop("checked",!0),$(".span_right").css("left","570px"),$(".span_left").css("width","570px"),$("a#feedback").hide(),map.getLayersByName("Route Layer")[0].setVisibility(!1),map.getLayersByName("Point Layer")[0].setVisibility(!1),map.getLayersByName("Area Layer")[0].setVisibility(!1),m=new OpenLayers.Layer.Vector("Marking Layer",{styleMap:new OpenLayers.StyleMap({"default":{strokeWidth:3,strokeColor:"red",cursor:"pointer",fillColor:"#aaaaff",fillOpacity:.3,pointRadius:5},highlight:{strokeWidth:3,strokeColor:"#555555",cursor:"pointer",fillColor:"#555555",fillOpacity:.3,pointRadius:5}})}),map.addLayer(m),k=map.getControl("selectcontrol"),k.setLayer(k.layers.concat(m)),$("#property-ctrl").prepend('<div class="loading">Loading data... please wait</div>'),$("#feature-ctrl").prepend('<div class="loading">Loading data... please wait</div>'),gnt.geo.get_features("@all",data_group,"",{success:y}),gnt.geo.get_properties("@all",data_group,"@null","@all",{success:g}),c=f(),map.addControl(c),c.activate()},this.make_sld_getter=function(){var e,t,r,a;return t=0,r={},e=["#1f77b4","#ff7f0e","#2ca02c","#d62728","#9467bd","#8c564b","#e377c2","#7f7f7f","#bcbd22","#17becf"],a='<?xml version="1.0" encoding="ISO-8859-1"?><StyledLayerDescriptor version="1.0.0" xsi:schemaLocation="http://www.opengis.net/sld StyledLayerDescriptor.xsd" xmlns="http://www.opengis.net/sld" xmlns:ogc="http://www.opengis.net/ogc" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"> <NamedLayer> <Name>NAME</Name> <UserStyle> <Title>SLD Cook Book: Line w2th border</Title> <FeatureTypeStyle> <Rule> <LineSymbolizer> <Stroke> <CssParameter name="stroke">#333333</CssParameter> <CssParameter name="stroke-width">7</CssParameter> <CssParameter name="stroke-linecap">round</CssParameter> </Stroke> </LineSymbolizer> </Rule> </FeatureTypeStyle> <FeatureTypeStyle> <Rule> <LineSymbolizer> <Stroke> <CssParameter name="stroke">COLOR</CssParameter> <CssParameter name="stroke-width">5</CssParameter> <CssParameter name="stroke-linecap">round</CssParameter> </Stroke> </LineSymbolizer> </Rule> </FeatureTypeStyle> </UserStyle> </NamedLayer></StyledLayerDescriptor>',function(n){var i,l;return i="",n in r?i=r[n]:(i=e[t++%10],r[n]=i),l=a.replace("NAME",n),l.replace("COLOR",i)}}}.call(this);
+// Generated by CoffeeScript 1.6.3
+(function() {
+  this.show_feedback = function() {
+    var add_check_all_elements, add_ctrl_for_question, add_toggle_ctrl_for_feature, answer2user_list, attribute2id_list, feature_name2id_list, feature_visible, filter_visible_features, filter_visible_users, hide_feature_popup, highlightCtrl, intersection, is_multiple_choice, makeHighlightCtrl, make_style_getter, markingLayer, parse_features, parse_properties, restyle_form_values, seen_hashes, select_control, show_feature_popup, simple_hash, str2hash, toggleVisibility, trigger_filtering_by_attributes, union, user2num_answer, user2properties, user_visible, vizu_features;
+    make_style_getter = function() {
+      var colorlist, current, name2color;
+      current = 0;
+      name2color = {};
+      colorlist = ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf", "#9edae5", "#98df8a", "#aec7e8", "#ffbb78", "#ff9896", "#c5b0d5", "#c49c94", "#f7b6d2", "#c7c7c7", "#dbdb8d"];
+      return function(name) {
+        if (!(name in name2color)) {
+          name2color[name] = colorlist[current++ % 20];
+        }
+        return {
+          strokeWidth: 5,
+          strokeColor: name2color[name],
+          fillColor: "black",
+          cursor: "pointer",
+          fillOpacity: 0.1,
+          pointRadius: 6
+        };
+      };
+    };
+    makeHighlightCtrl = function() {
+      var hctrl;
+      hctrl = new OpenLayers.Control.SelectFeature(map.getControl("selectcontrol").layers.concat(map.getLayersByName("Marking Layer")[0]), {
+        hover: true,
+        highlightOnly: true,
+        multiple: true,
+        renderIntent: "highlight",
+        eventListeners: {
+          featurehighlighted: show_feature_popup,
+          featureunhighlighted: hide_feature_popup
+        }
+      });
+      return hctrl;
+    };
+    simple_hash = function(s) {
+      var c, hash, i;
+      if (s in str2hash) {
+        return str2hash[s];
+      }
+      hash = 0;
+      c = void 0;
+      if (s.length === 0) {
+        return hash;
+      }
+      i = 0;
+      while (i < s.length) {
+        c = s.charCodeAt(i);
+        hash = ((hash << 5) - hash) + c;
+        hash = hash & hash;
+        i++;
+      }
+      hash = Math.abs(hash);
+      while (hash in seen_hashes) {
+        hash++;
+      }
+      seen_hashes[hash] = s;
+      hash = hash.toString();
+      str2hash[s] = hash;
+      return hash;
+    };
+    add_toggle_ctrl_for_feature = function(f_name, feature) {
+      return $('ul.feature-ctrl-main').append($('<li></li>').addClass('feature-level-ctrl').append($('<input type="checkbox">').addClass('feature-level-ctrl').attr('id', f_name).attr('value', f_name).prop('checked', false).change(toggleVisibility)).append($('<label></label>').addClass('feedback-bold').css('color', feature.style.strokeColor).text(f_name).attr('for', f_name)).append($('<ul></ul>').addClass('mini-questionnaire').addClass(f_name).hide()));
+    };
+    add_ctrl_for_question = function(question, question_long) {
+      return $('ul.property-ctrl-main').append($('<li></li>').html($('<div></div>').css('padding', 0).addClass('feedback-bold').text(question_long)).append($('<ul></ul>').addClass('question-level-ctrl').addClass(question)));
+    };
+    toggleVisibility = function(e) {
+      var display, f, f_id, miniquiz, toggled_features, _i, _j, _k, _len, _len1, _len2;
+      display = (e.target.checked ? "checked" : "none");
+      toggled_features = (function() {
+        var _i, _len, _ref, _results;
+        _ref = feature_name2id_list[e.target.id];
+        _results = [];
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          f_id = _ref[_i];
+          _results.push(vizu_features[f_id]);
+        }
+        return _results;
+      })();
+      for (_i = 0, _len = toggled_features.length; _i < _len; _i++) {
+        f = toggled_features[_i];
+        f.style['display'] = display;
+      }
+      for (_j = 0, _len1 = toggled_features.length; _j < _len1; _j++) {
+        f = toggled_features[_j];
+        if (user_visible[f.attributes.user] === false) {
+          f.style['display'] = 'none';
+        }
+      }
+      for (_k = 0, _len2 = toggled_features.length; _k < _len2; _k++) {
+        f = toggled_features[_k];
+        if (feature_visible[f.attributes.id] === false) {
+          f.style['display'] = 'none';
+        }
+      }
+      miniquiz = $(e.target).closest('li.feature-level-ctrl').find('.mini-questionnaire');
+      if (display === 'none') {
+        miniquiz.hide();
+      } else {
+        miniquiz.show();
+      }
+      return map.getLayersByName("Marking Layer")[0].redraw();
+    };
+    union = function(list_of_arrays) {
+      var a, r, x, _i, _j, _len, _len1;
+      r = {};
+      if (list_of_arrays.length === 0) {
+        return r;
+      }
+      for (_i = 0, _len = list_of_arrays.length; _i < _len; _i++) {
+        a = list_of_arrays[_i];
+        for (_j = 0, _len1 = a.length; _j < _len1; _j++) {
+          x = a[_j];
+          r[x] = true;
+        }
+      }
+      return r;
+    };
+    intersection = function(list_of_arrays) {
+      var a, r, x, _i, _j, _k, _len, _len1, _len2, _ref, _ref1, _ref2;
+      r = {};
+      if (list_of_arrays.length === 0) {
+        return r;
+      }
+      _ref = list_of_arrays[0];
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        x = _ref[_i];
+        r[x] = true;
+      }
+      if (list_of_arrays.length === 1) {
+        return r;
+      }
+      _ref1 = list_of_arrays[0];
+      for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
+        x = _ref1[_j];
+        _ref2 = list_of_arrays.slice(1);
+        for (_k = 0, _len2 = _ref2.length; _k < _len2; _k++) {
+          a = _ref2[_k];
+          if ((a.indexOf(x)) === -1) {
+            delete r[x];
+            break;
+          }
+        }
+      }
+      return r;
+    };
+    filter_visible_features = function(e) {
+      var feature, feature_lists, filtered_features, _i, _len, _ref;
+      feature_lists = [];
+      $(e.target).closest('.mini-questionnaire').find('input[type="checkbox"].attribute-level-ctrl').each(function() {
+        if (this.checked) {
+          return feature_lists.push(attribute2id_list[this.value]);
+        }
+      });
+      if ($('.feature-ctrl-andor input[value="and"]').first().prop('checked')) {
+        filtered_features = intersection(feature_lists);
+      } else {
+        filtered_features = union(feature_lists);
+      }
+      _ref = feature_name2id_list[$(e.target).closest('li.feature-level-ctrl').find('input.feature-level-ctrl').attr('id')];
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        feature = _ref[_i];
+        feature_visible[feature] = feature in filtered_features ? true : false;
+      }
+      return $(e.target).closest('li.feature-level-ctrl').find('input.feature-level-ctrl').change();
+    };
+    filter_visible_users = function(e) {
+      var answer, exclude, filtered_users, num_answers, question, user, user_lists;
+      user_lists = [];
+      $('input.property-ctrl-boolean').each(function() {
+        if (this.checked) {
+          return user_lists.push(answer2user_list[this.value]);
+        }
+      });
+      if ($('.property-ctrl-andor input[value="and"]').first().prop('checked')) {
+        filtered_users = intersection(user_lists);
+      } else {
+        filtered_users = union(user_lists);
+      }
+      num_answers = {};
+      $('input.property-ctrl-min').each(function() {
+        return num_answers[this.name] = [parseInt(this.value)];
+      });
+      $('input.property-ctrl-max').each(function() {
+        return num_answers[this.name].push(parseInt(this.value));
+      });
+      for (user in filtered_users) {
+        for (question in num_answers) {
+          exclude = $('input#exclude-' + question).first().prop('checked');
+          if (!(user in user2num_answer)) {
+            if (exclude) {
+              delete filtered_users[user];
+            } else {
+              continue;
+            }
+            continue;
+          }
+          if (!(question in user2num_answer[user])) {
+            if (exclude) {
+              delete filtered_users[user];
+            } else {
+              continue;
+            }
+          }
+          answer = user2num_answer[user][question];
+          if (!(answer >= num_answers[question][0] && answer <= num_answers[question][1])) {
+            delete filtered_users[user];
+          }
+        }
+      }
+      for (user in user_visible) {
+        user_visible[user] = user in filtered_users ? true : false;
+      }
+      return $('input.feature-level-ctrl').change();
+    };
+    parse_properties = function(data) {
+      var answers, make_property_ctrl, max_val, min_val, non_questions, property, question, question2max_value, question2min_value, question_long, seen_answers, seen_questions, _i, _len, _name, _ref;
+      make_property_ctrl = function() {
+        var add_multiple_choice_ctrl, add_number_ctrl, answ, answ_key, _i, _len, _name, _results;
+        add_number_ctrl = function() {
+          return $('ul.' + question).append($('<li></li>').append($('<label></label>').attr('for', 'min-' + question).append('Min:').append($('<input>').addClass('property-ctrl-min').attr('type', 'text').attr('id', 'min-' + question).attr('name', question)).change(filter_visible_users))).append($('<li></li>').append($('<label></label>').attr('for', 'max-' + question).append('Max:').append($('<input>').addClass('property-ctrl-max').attr('type', 'text').attr('id', 'max-' + question).attr('name', question)).change(filter_visible_users))).append($('<li></li>').append($('<label></label>').attr('for', 'exclude-' + question).append($('<input>').addClass('property-ctrl-exclude').attr('type', 'checkbox').attr('id', 'exclude-' + question).attr('name', question)).change(filter_visible_users).append('Exclude people who did not answer')));
+        };
+        add_multiple_choice_ctrl = function() {
+          return $('ul.' + question).append($('<li></li>').append($('<label></label>').attr('for', answ_key).append($('<input>').addClass('property-ctrl-boolean').attr('type', 'checkbox').attr('id', answ_key).val(answ_key).attr('checked', 'checked')).change(filter_visible_users).append(answ)));
+        };
+        _results = [];
+        for (_i = 0, _len = answers.length; _i < _len; _i++) {
+          answ = answers[_i];
+          if (!isNaN(Number(answ))) {
+            if (!(question in seen_questions)) {
+              add_number_ctrl();
+            }
+            answ = parseInt(answ);
+            if (user2num_answer[_name = property.user] == null) {
+              user2num_answer[_name] = {};
+            }
+            user2num_answer[property.user][question] = answ;
+            if (question2max_value[question] == null) {
+              question2max_value[question] = answ;
+            }
+            if (answ > question2max_value[question]) {
+              question2max_value[question] = answ;
+            }
+            if (question2min_value[question] == null) {
+              question2min_value[question] = answ;
+            }
+            if (answ < question2min_value[question]) {
+              _results.push(question2min_value[question] = answ);
+            } else {
+              _results.push(void 0);
+            }
+          } else {
+            if (!is_multiple_choice(answ)) {
+              answ = '*long-answer';
+            }
+            answ_key = simple_hash(question + '-AND-' + answ);
+            if (!(answ_key in seen_answers)) {
+              add_multiple_choice_ctrl();
+              seen_answers[answ_key] = true;
+            }
+            if (answer2user_list[answ_key] == null) {
+              answer2user_list[answ_key] = Array();
+            }
+            _results.push(answer2user_list[answ_key].push(property.user));
+          }
+        }
+        return _results;
+      };
+      if (data.entry) {
+        non_questions = {
+          'user': true,
+          'time': true,
+          'id': true,
+          'group': true
+        };
+        seen_questions = {};
+        seen_answers = {};
+        question2max_value = {};
+        question2min_value = {};
+        _ref = data.entry;
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          property = _ref[_i];
+          if ('form_values' in property) {
+            continue;
+          }
+          if (user2properties[_name = property.user] == null) {
+            user2properties[_name] = {};
+          }
+          for (question in property) {
+            answers = property[question];
+            if (!(question in non_questions)) {
+              question_long = question.split('t201')[0];
+              question = simple_hash(question_long);
+              if (!(question in seen_questions)) {
+                add_ctrl_for_question(question, question_long);
+              }
+              if (!(answers instanceof Array)) {
+                answers = [answers];
+              }
+              user2properties[property.user][question_long] = answers;
+              make_property_ctrl();
+              seen_questions[question] = true;
+            }
+          }
+        }
+        for (question in question2max_value) {
+          max_val = question2max_value[question];
+          $("input.property-ctrl-max[name=\"" + question + "\"]").val(max_val);
+        }
+        for (question in question2min_value) {
+          min_val = question2min_value[question];
+          $("input.property-ctrl-min[name=\"" + question + "\"]").val(min_val);
+        }
+        $("ul.property-ctrl-main ul").filter(function() {
+          return $(this).find("li").length < 2;
+        }).parent().remove();
+        return $('#property-ctrl .loading').remove();
+      }
+    };
+    parse_features = function(data) {
+      var a_name, a_v_key, a_value, f, f_a_key, f_name, feature, get_style_for_name, gf, i, markingLayer, seen_f_a_keys, source_proj, target_proj;
+      if (data.features) {
+        markingLayer = map.getLayersByName("Marking Layer")[0];
+        get_style_for_name = make_style_getter();
+        gf = new OpenLayers.Format.GeoJSON();
+        source_proj = new OpenLayers.Projection(data.crs.properties.code);
+        target_proj = new OpenLayers.Projection(map.getProjection());
+        $("#feature-ctrl").append($("<ul></ul>").addClass("feature-ctrl-main"));
+        $("#feature-ctrl").prepend("<h2>Choose features to show</h2>");
+        $("#property-ctrl").prepend("<h2>Filter respondents</h2>");
+        seen_f_a_keys = {};
+        i = 0;
+        while (i < data.features.length) {
+          feature = gf.parseFeature(data.features[i]);
+          f_name = feature.attributes.name;
+          feature.geometry.transform(source_proj, target_proj);
+          feature.lonlat = gnt.questionnaire.get_popup_lonlat(feature.geometry);
+          feature.style = get_style_for_name(f_name);
+          feature.style.display = 'none';
+          feature.attributes.id = i;
+          feature = restyle_form_values(feature);
+          vizu_features[i] = feature;
+          user_visible[feature.attributes.user] = true;
+          if (!(f_name in feature_name2id_list)) {
+            feature_name2id_list[f_name] = Array();
+            add_toggle_ctrl_for_feature(f_name, feature);
+          }
+          feature_name2id_list[f_name].push(i);
+          for (a_name in feature.attributes.form_values) {
+            f_a_key = simple_hash([f_name, a_name].join("-AND-"));
+            if (!(f_a_key in seen_f_a_keys)) {
+              seen_f_a_keys[f_a_key] = true;
+              $('.' + f_name).append($('<li></li>').addClass('attr-ctrl').append($('<div></div>').css('color', feature.style.strokeColor).html(a_name)).append($('<ul></ul>').addClass(f_a_key)));
+            }
+            for (a_value in feature.attributes.form_values[a_name]) {
+              if (!is_multiple_choice(a_value)) {
+                if (isNaN(Number(a_value))) {
+                  a_value = '*long-answer';
+                } else {
+                  continue;
+                }
+              }
+              a_v_key = simple_hash([f_name, a_name, a_value].join("-AND-"));
+              if (!(a_v_key in attribute2id_list)) {
+                attribute2id_list[a_v_key] = Array();
+                $('.' + f_a_key).append($('<li></li>').append($('<input type="checkbox">').addClass('attribute-level-ctrl').attr('id', a_v_key).attr('value', a_v_key).attr('checked', 'checked').change(filter_visible_features)).append($('<label></label>').css('color', feature.style.strokeColor).text(a_value).attr('for', a_v_key)));
+              }
+              attribute2id_list[a_v_key].push(i);
+            }
+          }
+          markingLayer.addFeatures(feature);
+          i += 1;
+        }
+        for (f in vizu_features) {
+          feature_visible[f] = true;
+        }
+        add_check_all_elements();
+        $(".attr-ctrl").filter(function() {
+          return $(this).find("li").length < 2;
+        }).remove();
+        $('.feature-ctrl-andor input[value="or"]').prop('checked', true);
+        $('.feature-ctrl-andor input').change(trigger_filtering_by_attributes);
+        $('#feature-ctrl .loading').remove();
+        return $('input.feature-level-ctrl').first().prop('checked', true).change();
+      }
+    };
+    trigger_filtering_by_attributes = function() {
+      return $('li.feature-level-ctrl').each(function() {
+        return $(this).find('input.attribute-level-ctrl').first().change();
+      });
+    };
+    is_multiple_choice = function(answer) {
+      if ((answer.indexOf(" ") === -1) && (answer.charCodeAt(0) >= "a".charCodeAt(0) && answer.charCodeAt(0) <= "z".charCodeAt(0))) {
+        return true;
+      }
+      return false;
+    };
+    hide_feature_popup = function() {
+      return $("div.analysis_popup").hide();
+    };
+    show_feature_popup = function(e) {
+      var answ, answers, form_values, name, question, ul, user, value, _i, _len, _ref;
+      $(".analysis_popup").html("").hide();
+      $(".feature_comments").append("<div class=\"name\">" + e.feature.attributes.name + "</div>");
+      form_values = e.feature.attributes.form_values;
+      for (name in form_values) {
+        $(".feature_comments").append("<div class=\"attribute-name\">" + name + "</div>");
+        ul = $("<ul></ul>");
+        for (value in form_values[name]) {
+          ul.append($("<li></li>").html(value));
+        }
+        $(".feature_comments").append(ul);
+      }
+      user = e.feature.attributes.user;
+      $('.user_info').prepend($("<div>user: " + user + "</div>").addClass('username'));
+      _ref = user2properties[user];
+      for (question in _ref) {
+        answers = _ref[question];
+        $('.user_info').append('<div class=\"attribute-name\">' + question + '</div>');
+        ul = $("<ul></ul>");
+        for (_i = 0, _len = answers.length; _i < _len; _i++) {
+          answ = answers[_i];
+          ul.append($("<li></li>").html(answ));
+        }
+        $(".user_info").append(ul);
+      }
+      return $(".analysis_popup").show();
+    };
+    restyle_form_values = function(feature) {
+      var form_values, i, new_vals, v;
+      new_vals = {};
+      form_values = feature.attributes.form_values;
+      i = 0;
+      while (i < form_values.length) {
+        v = form_values[i];
+        if (!(v.name in new_vals)) {
+          new_vals[v.name] = {};
+        }
+        new_vals[v.name][v.value] = true;
+        i += 1;
+      }
+      feature.attributes.form_values = new_vals;
+      return feature;
+    };
+    add_check_all_elements = function() {
+      $('.mini-questionnaire').prepend($('<label>Check all</label>').css('font-weight', 'bold').prepend($('<input type="checkbox">').css('margin-right', '3px').prop('checked', true).change(function(e) {
+        $(e.target).closest('.mini-questionnaire').find('input[type="checkbox"]').prop('checked', e.target.checked);
+        return $(e.target).closest('.mini-questionnaire').find('input[type="checkbox"].attribute-level-ctrl').last().change();
+      })));
+      return $('.property-ctrl-general').append($('<label>Check all</label>').css('font-weight', 'bold').prepend($('<input type="checkbox">').css('margin-right', '3px').prop('checked', true).change(function(e) {
+        $('input.property-ctrl-boolean').prop('checked', e.target.checked);
+        return filter_visible_users();
+      })));
+    };
+    user_visible = {};
+    feature_visible = {};
+    feature_name2id_list = {};
+    vizu_features = {};
+    attribute2id_list = {};
+    answer2user_list = {};
+    user2num_answer = {};
+    seen_hashes = {};
+    str2hash = {};
+    user2properties = {};
+    $('.property-ctrl-andor input').change(filter_visible_users);
+    $('.property-ctrl-andor input[value="or"]').first().prop('checked', true);
+    $('.span_right').css('left', '570px');
+    $('.span_left').css('width', '570px');
+    $('a#feedback').hide();
+    map.getLayersByName("Route Layer")[0].setVisibility(false);
+    map.getLayersByName("Point Layer")[0].setVisibility(false);
+    map.getLayersByName("Area Layer")[0].setVisibility(false);
+    markingLayer = new OpenLayers.Layer.Vector("Marking Layer", {
+      styleMap: new OpenLayers.StyleMap({
+        "default": {
+          strokeWidth: 3,
+          strokeColor: "red",
+          cursor: "pointer",
+          fillColor: "#aaaaff",
+          fillOpacity: 0.3,
+          pointRadius: 5
+        },
+        highlight: {
+          strokeWidth: 3,
+          strokeColor: "#555555",
+          cursor: "pointer",
+          fillColor: "#555555",
+          fillOpacity: 0.3,
+          pointRadius: 5
+        }
+      })
+    });
+    map.addLayer(markingLayer);
+    select_control = map.getControl("selectcontrol");
+    select_control.setLayer(select_control.layers.concat(markingLayer));
+    $("#property-ctrl").prepend('<div class="loading">Loading data... please wait</div>');
+    $("#feature-ctrl").prepend('<div class="loading">Loading data... please wait</div>');
+    gnt.geo.get_features("@all", data_group, "", {
+      success: parse_features
+    });
+    gnt.geo.get_properties("@all", data_group, '@null', '@all', {
+      success: parse_properties
+    });
+    highlightCtrl = makeHighlightCtrl();
+    map.addControl(highlightCtrl);
+    return highlightCtrl.activate();
+  };
+
+  this.make_sld_getter = function(labelname) {
+    var colorlist, current, name2color, sld;
+    current = 0;
+    if (typeof labelname === 'undefined') {
+      labelname = "Numero";
+    }
+    name2color = {};
+    colorlist = ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf"];
+    sld = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?><StyledLayerDescriptor version=\"1.0.0\" xsi:schemaLocation=\"http://www.opengis.net/sld StyledLayerDescriptor.xsd\"  xmlns=\"http://www.opengis.net/sld\" xmlns:ogc=\"http://www.opengis.net/ogc\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"> <NamedLayer> <Name>NAME</Name> <UserStyle> <Title>SLD Cook Book: Line with border</Title> <FeatureTypeStyle> <Rule> <LineSymbolizer> <Stroke> <CssParameter name=\"stroke\">#333333</CssParameter> <CssParameter name=\"stroke-width\">7</CssParameter> <CssParameter name=\"stroke-linecap\">round</CssParameter> </Stroke>  </LineSymbolizer> </Rule> </FeatureTypeStyle> <FeatureTypeStyle> <Rule> <LineSymbolizer> <Stroke> <CssParameter name=\"stroke\">COLOR</CssParameter> <CssParameter name=\"stroke-width\">5</CssParameter> <CssParameter name=\"stroke-linecap\">round</CssParameter> </Stroke> </LineSymbolizer> </Rule> </FeatureTypeStyle> <FeatureTypeStyle> <Rule> <PointSymbolizer> <Graphic> <Mark> <WellKnownName>circle</WellKnownName> <Fill> <CssParameter name=\"fill\">COLOR</CssParameter> </Fill> <Stroke> <CssParameter name=\"stroke\">COLOR</CssParameter> <CssParameter name=\"stroke-width\">2</CssParameter> </Stroke> </Mark> <Size>7</Size> </Graphic> </PointSymbolizer> <TextSymbolizer> <Label> <ogc:PropertyName>LABELNAME</ogc:PropertyName> </Label> <Fill> <CssParameter name=\"fill\">COLOR</CssParameter> </Fill> </TextSymbolizer> </Rule> </FeatureTypeStyle> </UserStyle> </NamedLayer></StyledLayerDescriptor>";
+    return function(name) {
+      var color, mysld;
+      color = "";
+      if (!(name in name2color)) {
+        color = colorlist[current++ % 10];
+        name2color[name] = color;
+      } else {
+        color = name2color[name];
+      }
+      mysld = sld.replace("NAME", name);
+      mysld = mysld.replace("LABELNAME", labelname);
+      return mysld.replace("COLOR", color);
+    };
+  };
+
+}).call(this);
