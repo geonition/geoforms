@@ -1,21 +1,23 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
+# Translators:
+# sellonen <sakari.ellonen@mapita.fi>, 2013
+# sellonen <sakari.ellonen@mapita.fi>, 2013
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: geonition\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-08-29 19:00-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2013-08-29 12:00+0000\n"
+"Last-Translator: sellonen <sakari.ellonen@mapita.fi>\n"
+"Language-Team: German <webmaster@mapita.fi>\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: admin.py:116 admin.py:168 admin.py:190
 msgid "Advanced options"
@@ -329,7 +331,7 @@ msgstr ""
 
 #: models.py:341
 msgid "questionnaires"
-msgstr ""
+msgstr "Fragebogen"
 
 #: models.py:368
 msgid "Description of lottery"
@@ -353,15 +355,19 @@ msgstr ""
 
 #: templates/jstranslations.txt:5
 msgid "Click on the map to draw the point"
-msgstr ""
+msgstr "Klicken Sie auf die Karte, um einen Punkt zu setzen"
 
 #: templates/jstranslations.txt:6
 msgid "Click on the map to start drawing the route and doubleclick to finnish"
 msgstr ""
+"Klicken Sie auf die Karte, um eine Route zu beginnen, doppelklicken Sie um "
+"sie zu beenden."
 
 #: templates/jstranslations.txt:7
 msgid "Click on the map to start drawing the area and doubleclick to finnish"
 msgstr ""
+"Klicken Sie auf die Karte, um damit zu beginnen eine Fläche zu zeichnen, "
+"doppelklicken Sie um sie zu beenden."
 
 #: templates/jstranslations.txt:10
 msgid "Annotations"
@@ -369,19 +375,19 @@ msgstr ""
 
 #: templates/questionnaire.html:17
 msgid "Questionnaires"
-msgstr ""
+msgstr "Fragebogen"
 
 #: templates/questionnaire.html:54 templates/questionnaire.html.py:57
 msgid "Next"
-msgstr ""
+msgstr "Nächste Seite"
 
 #: templates/questionnaire.html:56 templates/questionnaire.html.py:114
 msgid "Previous"
-msgstr ""
+msgstr "Zurück"
 
 #: templates/questionnaire.html:67
 msgid "Your answers and finish"
-msgstr ""
+msgstr "Danke für Ihre Teilnahme"
 
 #: templates/questionnaire.html:103
 msgid ""
@@ -390,19 +396,23 @@ msgid ""
 "clicking the previous buttons. Quit the questionnaire by clicking the 'quit "
 "and go to home page' button."
 msgstr ""
+"Der Fragebogen ist jetzt zu Ende und Ihre Antworten wurden gespeichert. "
+"Vielen Dank für Ihre Zeit! Sie können Ihre Antworten noch einmal bearbeiten, "
+"wenn Sie auf den \"zurück\"-Knopf klicken. Um den Fragebogen zu beenden, "
+"klicken Sie auf \"Beenden und zurück auf die Startseite gehen\"."
 
 #: templates/questionnaire.html:115
 msgid "Quit and go to home page"
-msgstr ""
+msgstr "Beenden und zurück auf die Startseite gehen"
 
 #: templates/questionnaire.html:149
 msgid "Remove"
-msgstr ""
+msgstr "Löschen"
 
 #: templates/questionnaire.html:152
 #: templates/admin/geoforms/geoformelement/create_element.html:42
 msgid "Save"
-msgstr ""
+msgstr "Speichern"
 
 #: templates/questionnaire.html:207
 msgid "You marked one place"
