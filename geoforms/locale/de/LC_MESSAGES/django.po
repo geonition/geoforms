@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Translators:
 # sellonen <sakari.ellonen@mapita.fi>, 2013
 # sellonen <sakari.ellonen@mapita.fi>, 2013
@@ -9,14 +9,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geonition\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-29 19:00-0500\n"
+"POT-Creation-Date: 2013-08-30 19:01-0500\n"
 "PO-Revision-Date: 2013-08-29 12:00+0000\n"
 "Last-Translator: sellonen <sakari.ellonen@mapita.fi>\n"
 "Language-Team: German <webmaster@mapita.fi>\n"
-"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: admin.py:116 admin.py:168 admin.py:190
@@ -82,8 +82,8 @@ msgstr ""
 #: forms.py:412
 msgid ""
 "The color of the feature to be drawn. The color is given as hexadecimal "
-"color e.g. #ffffff --> white, #000000 --> black, #ff0000 --> red, #00ff00 --"
-"> green, #0000ff --> blue."
+"color e.g. #ffffff --> white, #000000 --> black, #ff0000 --> red, #00ff00 "
+"--> green, #0000ff --> blue."
 msgstr ""
 
 #: forms.py:414
@@ -111,9 +111,9 @@ msgstr ""
 #: forms.py:501
 msgid ""
 "This field takes as input any html tags. This enables you to style the text "
-"in any way you want. Here is a list of tags that can be used <a href="
-"\"http://dev.w3.org/html5/spec/single-page.html#usage-summary\">html5 tags</"
-"a>"
+"in any way you want. Here is a list of tags that can be used <a "
+"href=\"http://dev.w3.org/html5/spec/single-page.html#usage-summary\">html5 "
+"tags</a>"
 msgstr ""
 
 #: forms.py:559
@@ -262,8 +262,8 @@ msgstr ""
 
 #: models.py:282
 msgid ""
-"This is the initial area which will be visible on the questionnaire map. The "
-"map tools are on the up right corner of the map. To choose a tool you have "
+"This is the initial area which will be visible on the questionnaire map. The"
+" map tools are on the up right corner of the map. To choose a tool you have "
 "to click on it so that the tool turnes yellow. To draw choose the drawing "
 "tool and start drawing. To stop drawing you have to doubleclick the map. It "
 "is also possible to modify the area by choosing the modify tool. "
@@ -359,15 +359,11 @@ msgstr "Klicken Sie auf die Karte, um einen Punkt zu setzen"
 
 #: templates/jstranslations.txt:6
 msgid "Click on the map to start drawing the route and doubleclick to finnish"
-msgstr ""
-"Klicken Sie auf die Karte, um eine Route zu beginnen, doppelklicken Sie um "
-"sie zu beenden."
+msgstr "Klicken Sie auf die Karte, um eine Route zu beginnen, doppelklicken Sie um sie zu beenden."
 
 #: templates/jstranslations.txt:7
 msgid "Click on the map to start drawing the area and doubleclick to finnish"
-msgstr ""
-"Klicken Sie auf die Karte, um damit zu beginnen eine Fläche zu zeichnen, "
-"doppelklicken Sie um sie zu beenden."
+msgstr "Klicken Sie auf die Karte, um damit zu beginnen eine Fläche zu zeichnen, doppelklicken Sie um sie zu beenden."
 
 #: templates/jstranslations.txt:10
 msgid "Annotations"
@@ -395,11 +391,7 @@ msgid ""
 "you for your answers! You can still continue modifying your answers by "
 "clicking the previous buttons. Quit the questionnaire by clicking the 'quit "
 "and go to home page' button."
-msgstr ""
-"Der Fragebogen ist jetzt zu Ende und Ihre Antworten wurden gespeichert. "
-"Vielen Dank für Ihre Zeit! Sie können Ihre Antworten noch einmal bearbeiten, "
-"wenn Sie auf den \"zurück\"-Knopf klicken. Um den Fragebogen zu beenden, "
-"klicken Sie auf \"Beenden und zurück auf die Startseite gehen\"."
+msgstr "Der Fragebogen ist jetzt zu Ende und Ihre Antworten wurden gespeichert. Vielen Dank für Ihre Zeit! Sie können Ihre Antworten noch einmal bearbeiten, wenn Sie auf den \"zurück\"-Knopf klicken. Um den Fragebogen zu beenden, klicken Sie auf \"Beenden und zurück auf die Startseite gehen\"."
 
 #: templates/questionnaire.html:115
 msgid "Quit and go to home page"
@@ -446,7 +438,7 @@ msgstr ""
 msgid "You answered"
 msgstr ""
 
-#: templates/questionnaire.html:266
+#: templates/questionnaire.html:263
 msgid "Choose Layers to show"
 msgstr ""
 
