@@ -10,6 +10,7 @@
 
 {% block content %}
 
+{% comment %}
 <ul class="breadcrumb">
     <li class="disk hover base_bgcolor" onclick="window.location = '{% url "dashboard" %}'">
         <a href="{% url 'dashboard' %}">
@@ -20,6 +21,7 @@
     </li>
     <li class="separator base_bgcolor"></li>
 </ul>
+{% endcomment %}
 <div class="application-name base_textcolor">
         <h3>
             {{ questionnaire.name }}
