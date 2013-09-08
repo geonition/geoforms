@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geonition\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-30 19:01-0500\n"
-"PO-Revision-Date: 2013-08-29 12:00+0000\n"
-"Last-Translator: sellonen <sakari.ellonen@mapita.fi>\n"
+"POT-Creation-Date: 2013-09-06 19:01-0500\n"
+"PO-Revision-Date: 2013-09-06 00:01+0000\n"
+"Last-Translator: ksnabb <kristoffer.snabb@geonition.org>\n"
 "Language-Team: German <webmaster@mapita.fi>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -369,23 +369,19 @@ msgstr "Klicken Sie auf die Karte, um damit zu beginnen eine Fläche zu zeichnen
 msgid "Annotations"
 msgstr ""
 
-#: templates/questionnaire.html:17
-msgid "Questionnaires"
-msgstr "Fragebogen"
-
-#: templates/questionnaire.html:54 templates/questionnaire.html.py:57
+#: templates/questionnaire.html:56 templates/questionnaire.html.py:59
 msgid "Next"
 msgstr "Nächste Seite"
 
-#: templates/questionnaire.html:56 templates/questionnaire.html.py:114
+#: templates/questionnaire.html:58 templates/questionnaire.html.py:116
 msgid "Previous"
 msgstr "Zurück"
 
-#: templates/questionnaire.html:67
+#: templates/questionnaire.html:69
 msgid "Your answers and finish"
 msgstr "Danke für Ihre Teilnahme"
 
-#: templates/questionnaire.html:103
+#: templates/questionnaire.html:105
 msgid ""
 "This is the end of the questionnaire and your answers has been saved. Thank "
 "you for your answers! You can still continue modifying your answers by "
@@ -393,52 +389,52 @@ msgid ""
 "and go to home page' button."
 msgstr "Der Fragebogen ist jetzt zu Ende und Ihre Antworten wurden gespeichert. Vielen Dank für Ihre Zeit! Sie können Ihre Antworten noch einmal bearbeiten, wenn Sie auf den \"zurück\"-Knopf klicken. Um den Fragebogen zu beenden, klicken Sie auf \"Beenden und zurück auf die Startseite gehen\"."
 
-#: templates/questionnaire.html:115
+#: templates/questionnaire.html:117
 msgid "Quit and go to home page"
 msgstr "Beenden und zurück auf die Startseite gehen"
 
-#: templates/questionnaire.html:149
+#: templates/questionnaire.html:151
 msgid "Remove"
 msgstr "Löschen"
 
-#: templates/questionnaire.html:152
+#: templates/questionnaire.html:154
 #: templates/admin/geoforms/geoformelement/create_element.html:42
 msgid "Save"
 msgstr "Speichern"
 
-#: templates/questionnaire.html:207
+#: templates/questionnaire.html:209
 msgid "You marked one place"
 msgstr ""
 
-#: templates/questionnaire.html:209
+#: templates/questionnaire.html:211
 msgid "You marked"
 msgstr ""
 
-#: templates/questionnaire.html:209
+#: templates/questionnaire.html:211
 msgid "places"
 msgstr ""
 
-#: templates/questionnaire.html:215
+#: templates/questionnaire.html:217
 msgid "and answered one question"
 msgstr ""
 
-#: templates/questionnaire.html:217
+#: templates/questionnaire.html:219
 msgid "and answered"
 msgstr ""
 
-#: templates/questionnaire.html:217 templates/questionnaire.html.py:222
+#: templates/questionnaire.html:219 templates/questionnaire.html.py:224
 msgid "questions"
 msgstr ""
 
-#: templates/questionnaire.html:220
+#: templates/questionnaire.html:222
 msgid "You answered one question"
 msgstr ""
 
-#: templates/questionnaire.html:222
+#: templates/questionnaire.html:224
 msgid "You answered"
 msgstr ""
 
-#: templates/questionnaire.html:263
+#: templates/questionnaire.html:265
 msgid "Choose Layers to show"
 msgstr ""
 
