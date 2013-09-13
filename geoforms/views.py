@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 from django.shortcuts import render_to_response
 from django.core.urlresolvers import reverse
+from django.core.exceptions import ObjectDoesNotExist
 from django.utils import simplejson as json
 from geoforms.models import Geoform
 from geoforms.models import Questionnaire
@@ -36,7 +37,10 @@ def questionnaire(request, questionnaire_slug, template=''):
     This view creates the whole questionnaire html.
     """
 
-    quest = Questionnaire.on_site.select_related().get(slug = questionnaire_slug)
+    try:
+        quest = Questionnaire.on_site.select_related().get(slug = questionnaire_slug)
+    except ObjectDoesNotExist:
+        return render_to_response('geoforms_error.html',{'error_message':'Questionnaire not found'},context_instance=RequestContext(request))
 
     form_list = quest.geoforms.all().order_by('questionnaireform__order')
     elements = {}
