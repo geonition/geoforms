@@ -268,6 +268,9 @@ jQuery(document).ready(function() {
                     .addClass('wms-layerswitcher')
                     )
                 );
+        {% if request.META.HTTP_HOST == "oregonstateparks.maptionnaire.com" %}
+        $('#wms-layerswitcher-container').hide();
+        {% endif %}
         //var sld_getter = make_sld_getter();
         $('[data-element-type="wms-layer"]').each(function() {
             var name = $(this).children().first().attr('data-layer-name');
@@ -335,6 +338,18 @@ function makeWMSLayerSwitcher(page_number) {
     } else {
         $('#wms-layerswitcher-container').hide();
     }
+    {% if request.META.HTTP_HOST == "oregonstateparks.maptionnaire.com" %}
+    zoompage = 2;
+    $('a.next').css('visibility','visible');
+    if (page_number === zoompage){
+        map.getLayersByName('Choosables')[0].setVisibility(false);
+        map.getLayersByName('Zoomable Parks')[0].setVisibility(true);
+        $('a.next').css('visibility','hidden');
+        $('div#visited-parks').hide();
+    }/* else if (page_number === 1) {
+        map.getLayersByName('Zoomable Parks')[0].setVisibility(false);
+    }*/
+    {% endif %}
 }
 {% endif %}
 
