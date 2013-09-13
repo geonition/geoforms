@@ -12,12 +12,13 @@ from django.views.decorators.csrf import ensure_csrf_cookie
 from datetime import date
 from geonition_utils.http import HttpResponse
 from django.utils.translation import ugettext as _
-
+from django.utils.translation import get_language
+from django.utils.translation import to_locale
+from django.core.cache import cache
 
 
 @ensure_csrf_cookie
 def lottery(request, questionnaire_slug):
-    #import ipdb;ipdb.set_trace()
     if request.POST:
         questionnaire = Questionnaire.objects.get(slug=questionnaire_slug)
         participant = LotteryParticipant(
@@ -35,12 +36,21 @@ def lottery(request, questionnaire_slug):
 def questionnaire(request, questionnaire_slug, template=''):
     """
     This view creates the whole questionnaire html.
+    By default response of this view is cached in Django.
+    To turn cache off comment line 94.
+    If you want to use the cache choose cache backend of your choice, 
+    see Django documentation.
     """
 
     try:
         quest = Questionnaire.on_site.select_related().get(slug = questionnaire_slug)
     except ObjectDoesNotExist:
         return render_to_response('geoforms_error.html',{'error_message':'Questionnaire not found'},context_instance=RequestContext(request))
+    q_id = quest.id
+    # Check if cached version is available
+    lang = to_locale(get_language()).lower() #
+    if cache.get('questionnaire_resp_{0}'.format(lang), version=q_id) is not None:
+        return cache.get('questionnaire_resp_{0}'.format(lang), version=q_id)
 
     form_list = quest.geoforms.all().order_by('questionnaireform__order')
     elements = {}
@@ -72,7 +82,7 @@ def questionnaire(request, questionnaire_slug, template=''):
     lottery = Lottery.objects.filter(questionnaire=quest)
     if lottery.exists():
         lottery = lottery[0]
-    return render_to_response(template,
+    resp =  render_to_response(template,
                              {'form_list': form_list,
                               'popup_list': popup_list,
                               'bigcontent_forms': bigcontent_forms,
@@ -81,6 +91,9 @@ def questionnaire(request, questionnaire_slug, template=''):
                               'map_slug': 'questionnaire-map',
                               'lottery' : lottery},
                              context_instance = RequestContext(request))
+    # Cache the response. To turn cache off comment the following line
+    cache.set('questionnaire_resp_{0}'.format(lang), resp, 1800, version=q_id)
+    return resp
 
 def get_active_questionnaires(request):
     today = date.today()
