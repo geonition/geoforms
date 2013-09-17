@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geonition\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-13 19:01-0500\n"
-"PO-Revision-Date: 2013-09-11 13:50+0000\n"
+"POT-Creation-Date: 2013-09-16 19:00-0500\n"
+"PO-Revision-Date: 2013-09-17 07:19+0000\n"
 "Last-Translator: sellonen <sakari.ellonen@mapita.fi>\n"
 "Language-Team: German <webmaster@mapita.fi>\n"
 "MIME-Version: 1.0\n"
@@ -404,7 +404,7 @@ msgstr "Speichern"
 
 #: templates/questionnaire.html:209
 msgid "You marked one place"
-msgstr ""
+msgstr "Sie haben ein Ort markiert"
 
 #: templates/questionnaire.html:211
 msgid "You marked"
@@ -416,11 +416,11 @@ msgstr "Orte markiert"
 
 #: templates/questionnaire.html:217
 msgid "and answered one question"
-msgstr ""
+msgstr "und eine Frage beantwortet."
 
 #: templates/questionnaire.html:219
 msgid "and answered"
-msgstr ""
+msgstr "und"
 
 #: templates/questionnaire.html:219 templates/questionnaire.html.py:224
 msgid "questions"
