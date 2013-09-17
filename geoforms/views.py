@@ -49,8 +49,9 @@ def questionnaire(request, questionnaire_slug, template=''):
     q_id = quest.id
     # Check if cached version is available
     lang = to_locale(get_language()).lower() #
-    if cache.get('questionnaire_resp_{0}'.format(lang), version=q_id) is not None:
-        return cache.get('questionnaire_resp_{0}'.format(lang), version=q_id)
+    cache_id = 'questionnaire_resp_{0}_{1}'.format(request.META['HTTP_HOST'],lang)
+    if cache.get(cache_id, version=q_id) is not None:
+        return cache.get(cache_id, version=q_id)
 
     form_list = quest.geoforms.all().order_by('questionnaireform__order')
     elements = {}
@@ -92,7 +93,7 @@ def questionnaire(request, questionnaire_slug, template=''):
                               'lottery' : lottery},
                              context_instance = RequestContext(request))
     # Cache the response. To turn cache off comment the following line
-    cache.set('questionnaire_resp_{0}'.format(lang), resp, 1800, version=q_id)
+    cache.set(cache_id, resp, 1800, version=q_id)
     return resp
 
 def get_active_questionnaires(request):
