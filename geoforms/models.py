@@ -322,7 +322,7 @@ class Questionnaire(models.Model):
         preview purposes.
         """
         return reverse('questionnaire',
-                       kwargs = {'questionnaire_slug': self.slug})
+                       kwargs = {'questionnaire_id': self.id})
 
     def save(self, *args, **kwargs):
         if self.id is None:

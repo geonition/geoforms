@@ -18,9 +18,9 @@ from django.core.cache import cache
 
 
 @ensure_csrf_cookie
-def lottery(request, questionnaire_slug):
+def lottery(request, questionnaire_id):
     if request.POST:
-        questionnaire = Questionnaire.objects.get(slug=questionnaire_slug)
+        questionnaire = Questionnaire.objects.get(id=questionnaire_id)
         participant = LotteryParticipant(
                 email=request.body,
                 questionnaire=questionnaire)
@@ -33,7 +33,7 @@ def lottery(request, questionnaire_slug):
 
 
 @ensure_csrf_cookie
-def questionnaire(request, questionnaire_slug, template=''):
+def questionnaire(request, questionnaire_id, template=''):
     """
     This view creates the whole questionnaire html.
     By default response of this view is cached in Django.
@@ -43,19 +43,19 @@ def questionnaire(request, questionnaire_slug, template=''):
     """
 
     try:
-        quest = Questionnaire.on_site.select_related().get(slug = questionnaire_slug)
+        quest = Questionnaire.on_site.select_related().get(id = questionnaire_id)
     except ObjectDoesNotExist:
         return render_to_response('geoforms_error.html',{'error_message':'Questionnaire not found'},context_instance=RequestContext(request))
     q_id = quest.id
     # Check if cached version is available
     lang = to_locale(get_language()).lower() #
     cache_id = 'questionnaire_resp_{0}_{1}'.format(request.META['HTTP_HOST'],lang)
-    if cache.get(cache_id, version=q_id) is not None:
+    if not template and cache.get(cache_id, version=q_id) is not None:
         return cache.get(cache_id, version=q_id)
 
     form_list = quest.geoforms.all().order_by('questionnaireform__order')
     elements = {}
-    #popup_set = set(Geoform.objects.filter(page_type = 'popup').values_list('slug', flat=True))
+    #popup_set = set(Geoform.objects.filter(page_type = 'popup').values_list('id', flat=True))
     popup_set = set()
     bigcontent_forms = set()
     for form in form_list:
@@ -93,7 +93,8 @@ def questionnaire(request, questionnaire_slug, template=''):
                               'lottery' : lottery},
                              context_instance = RequestContext(request))
     # Cache the response. To turn cache off comment the following line
-    cache.set(cache_id, resp, 1800, version=q_id)
+    if not template:
+        cache.set(cache_id, resp, 1800, version=q_id)
     return resp
 
 def get_active_questionnaires(request):
@@ -113,7 +114,7 @@ def get_active_questionnaires(request):
         cur_quest['name'] = quest.name
         cur_quest['description'] = quest.description
         cur_quest['area'] = cur_feature
-        cur_quest['project_url'] = reverse('questionnaire', kwargs={'questionnaire_slug': quest.slug})
+        cur_quest['project_url'] = reverse('questionnaire', kwargs={'questionnaire_id': quest.id})
 #        cur_quest['link_text'] = _('Go to the application..')
         questionnaires.append(cur_quest)
 
@@ -122,5 +123,5 @@ def get_active_questionnaires(request):
 #    return HttpResponse(json.dumps(questionnaires))
 
 
-def feedback(request, questionnaire_slug):
-    return questionnaire(request, questionnaire_slug, 'questionnaire_feedback.html')
+def feedback(request, questionnaire_id):
+    return questionnaire(request, questionnaire_id, 'questionnaire_feedback.html')
