@@ -63,6 +63,7 @@
 /* range elements in popup forms */
 .popupform .range-container {
   background: #e4f5f5;
+  width: 100%;
 }
 .popupform .range-container span {
   width: 100%;
