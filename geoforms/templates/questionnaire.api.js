@@ -546,10 +546,173 @@ gnt.questionnaire.on_feature_unselect_handler = function(evt) {
     gnt.questionnaire.popup = undefined;
 }
 
+gnt.questionnaire.gnt_getters = [];
+gnt.questionnaire.gnt_getters.push(function(){
+    //get the properties and set them to the inputs
+    gnt.geo.get_properties('@me',
+                           data_group,
+                           '@null',
+                           '@all',
+                           {'success': function(data) {
+                                gnt.questionnaire.property_id = data.id;
+                                $('#forms :input:not(button)').each(function(i) {
+                                    //if many results use the last one
+                                    if(data['totalResults'] !== undefined) {
+                                        var nr = data['totalResults'];
+                                        data = data['entry'][nr - 1];
+                                    }
+                                    if(data[this.name] !== undefined) {
+                                        if(this.type === 'radio') {
+                                            if(this.value === data[this.name]) {
+                                                $(this).attr('checked', true);
+                                            }
+                                        } else if(this.type === 'textarea') {
+                                            $(this).text(data[this.name]);
+                                        } else if(this.type === 'checkbox') {
+                                            for(var j = 0; j < data[this.name].length; j++) {
+                                                if($(this).attr('value') === data[this.name][j]) {
+                                                    $(this).attr('checked', 'checked');
+                                                }
+                                            }
+                                        } else {
+                                            this.value = data[this.name];
+                                        }
+                                    }
+                                    gnt.questionnaire.npvalues = data;
+                                    delete gnt.questionnaire.npvalues['user'];
+                                    delete gnt.questionnaire.npvalues['time'];
+                                    delete gnt.questionnaire.npvalues['id'];
+                                    delete gnt.questionnaire.npvalues['group'];
+                                });
+                           },
+                           'complete': function() {
+                                //bind on value change to save the values
+                                $('#forms :input:not(button)').change(function(evt) {
+                                    if (gnt.questionnaire.wait_time === undefined){
+                                        gnt.questionnaire.wait_time = 5000;
+                                    } else {
+                                        gnt.questionnaire.wait_time = 0;
+                                    }
+                                    setTimeout(function(){
+                                    var new_value = evt.currentTarget.value;
+                                    if(evt.currentTarget.type === 'checkbox') {
+                                        new_value = [];
+                                        $('[name=' + evt.currentTarget.name + ']:checkbox:checked').each(function() {
+                                            new_value.push($(this).attr('value'));
+                                        });
+                                    }
+                                    var property = {};
+                                    property[evt.currentTarget.name] = new_value;
+                                    if(new_value === '' || new_value === []) {
+                                        delete gnt.questionnaire.npvalues[evt.currentTarget.name];
+                                    } else {
+                                        gnt.questionnaire.npvalues[evt.currentTarget.name] = new_value;
+                                    }
+
+                                    if(gnt.questionnaire.property_id === undefined) {
+                                        gnt.geo.create_property('@me',
+                                                                data_group,
+                                                                '@null',
+                                                                property,
+                                                                {'success': function(data) {
+                                                                    gnt.questionnaire.property_id = data.id;
+                                                                }});
+                                    } else {
+                                        property.id = gnt.questionnaire.property_id;
+                                        gnt.geo.update_property('@me',
+                                                                data_group,
+                                                                '@null',
+                                                                property);
+                                    }
+                                    }, gnt.questionnaire.wait_time);
+                                });
+                            }});
+});
+gnt.questionnaire.gnt_getters.push(function(){
+        //get the users feature if any
+        gnt.geo.get_features(undefined,
+                             data_group,
+                             '',
+            {
+                'success': function(data) {
+                    if (data.features) {
+                        var pl = map.getLayersByName('Point Layer')[0],
+                            rl = map.getLayersByName('Route Layer')[0],
+                            al = map.getLayersByName('Area Layer')[0],
+                            gf = new OpenLayers.Format.GeoJSON(),
+                            // Projection objects for transformations
+                            source_proj = new OpenLayers.Projection(data.crs.properties.code),
+                            target_proj = new OpenLayers.Projection(map.getProjection());
+                            popupcontent = " default content ";
+
+                        for(var i = 0; i < data.features.length; i++) {
+                            var feature = gf.parseFeature(data.features[i]);
+                            //add values losed in parsing should be added again
+                            feature['private'] = data.features[i]['private'];
+                            // Transform geometry to map projection
+                            feature.geometry.transform(source_proj, target_proj);
+                            feature.lonlat = gnt.questionnaire.get_popup_lonlat(feature.geometry);
+
+                            var popup_name = $('.drawbutton[name=' +
+                                            feature.attributes.name +
+                                            ']').data('popup');
+
+                            if(feature.geometry.CLASS_NAME === 'OpenLayers.Geometry.Point') {
+                                pl.addFeatures(feature);
+                            } else if(feature.geometry.CLASS_NAME === 'OpenLayers.Geometry.LineString') {
+                                rl.addFeatures(feature);
+                            } else if(feature.geometry.CLASS_NAME === 'OpenLayers.Geometry.Polygon') {
+                                al.addFeatures(feature);
+                            }
+                            popupcontent = $('#' + popup_name).html();
+
+                            feature.popupClass = OpenLayers.Popup.FramedCloud;
+                            feature.data = {
+                                contentHTML: popupcontent
+                            };
+
+                            //the createPopup function did not seem to work so here
+                            feature.popup = new OpenLayers.Popup.FramedCloud(
+                                                feature.id,
+                                                feature.lonlat,
+                                                null,
+                                                feature.data.contentHTML,
+                                                null,
+                                                false);
+                        }
+
+                        //disable drawbuttons that has max number of features
+                        $('button.drawbutton.point').each(function(index, element) {
+                            var amount = pl.getFeaturesByAttribute('name', $(element).attr('name')).length;
+                            var max = $(element).data('max');
+                            if(max !== undefined &&
+                               amount >= max) {
+                                $('button[name=' + $(element).attr('name') + ']').drawButton('disable');
+                            }
+                        });
+                        $('button.drawbutton.route').each(function(index, element) {
+                            var amount = rl.getFeaturesByAttribute('name', $(element).attr('name')).length;
+                            var max = $(element).data('max');
+                            if(max !== undefined &&
+                               amount >= max) {
+                                $('button[name=' + $(element).attr('name') + ']').drawButton('disable');
+                            }
+                        });
+                        $('button.drawbutton.area').each(function(index, element) {
+                            var amount = al.getFeaturesByAttribute('name', $(element).attr('name')).length;
+                            var max = $(element).data('max');
+                            if(max !== undefined &&
+                               amount >= max) {
+                                $('button[name=' + $(element).attr('name') + ']').drawButton('disable');
+                            }
+                        });
+                    }
+                }
+            });
+});
 /*
  This function should be called onload to initialize a questionnaire
 
- forms -- jQuery selector to all the forms that should be created/handled
  popups -- JQuery selector to all popup forms used
  accordion -- jquery selector for the accordion,
               if undefined no accordion is used
@@ -558,15 +721,12 @@ gnt.questionnaire.on_feature_unselect_handler = function(evt) {
  data_group -- the group that should be used and where the data is stored
  callback -- function to be called after the questionnaire has been set up
 */
-gnt.questionnaire.init = function(forms,
-                                  popups,
+gnt.questionnaire.init = function(popups,
                                   accordion,
                                   questionnaire_area,
                                   data_group,
                                   callback) {
 
-    //create a session for the anonymoususer
-    gnt.auth.create_session();
     gnt.questionnaire.is_mobile_user = window.innerWidth < 770 ? true : false;
 
 
@@ -630,85 +790,6 @@ gnt.questionnaire.init = function(forms,
         }
     }
 
-    //get the properties and set them to the inputs
-    gnt.geo.get_properties('@me',
-                           data_group,
-                           '@null',
-                           '@all',
-                           {'success': function(data) {
-                                gnt.questionnaire.property_id = data.id;
-                                $(forms + ' :input:not(button)').each(function(i) {
-                                    //if many results use the last one
-                                    if(data['totalResults'] !== undefined) {
-                                        var nr = data['totalResults'];
-                                        data = data['entry'][nr - 1];
-                                    }
-                                    if(data[this.name] !== undefined) {
-                                        if(this.type === 'radio') {
-                                            if(this.value === data[this.name]) {
-                                                $(this).attr('checked', true);
-                                            }
-                                        } else if(this.type === 'textarea') {
-                                            $(this).text(data[this.name]);
-                                        } else if(this.type === 'checkbox') {
-                                            for(var j = 0; j < data[this.name].length; j++) {
-                                                if($(this).attr('value') === data[this.name][j]) {
-                                                    $(this).attr('checked', 'checked');
-                                                }
-                                            }
-                                        } else {
-                                            this.value = data[this.name];
-                                        }
-                                    }
-                                    gnt.questionnaire.npvalues = data;
-                                    delete gnt.questionnaire.npvalues['user'];
-                                    delete gnt.questionnaire.npvalues['time'];
-                                    delete gnt.questionnaire.npvalues['id'];
-                                    delete gnt.questionnaire.npvalues['group'];
-                                });
-                           },
-                           'complete': function() {
-                                //bind on value change to save the values
-                                $(forms + ' :input:not(button)').change(function(evt) {
-                                    if (gnt.questionnaire.wait_time === undefined){
-                                        gnt.questionnaire.wait_time = 5000;
-                                    } else {
-                                        gnt.questionnaire.wait_time = 0;
-                                    }
-                                    setTimeout(function(){
-                                    var new_value = evt.currentTarget.value;
-                                    if(evt.currentTarget.type === 'checkbox') {
-                                        new_value = [];
-                                        $('[name=' + evt.currentTarget.name + ']:checkbox:checked').each(function() {
-                                            new_value.push($(this).attr('value'));
-                                        });
-                                    }
-                                    var property = {};
-                                    property[evt.currentTarget.name] = new_value;
-                                    if(new_value === '' || new_value === []) {
-                                        delete gnt.questionnaire.npvalues[evt.currentTarget.name];
-                                    } else {
-                                        gnt.questionnaire.npvalues[evt.currentTarget.name] = new_value;
-                                    }
-
-                                    if(gnt.questionnaire.property_id === undefined) {
-                                        gnt.geo.create_property('@me',
-                                                                data_group,
-                                                                '@null',
-                                                                property,
-                                                                {'success': function(data) {
-                                                                    gnt.questionnaire.property_id = data.id;
-                                                                }});
-                                    } else {
-                                        property.id = gnt.questionnaire.property_id;
-                                        gnt.geo.update_property('@me',
-                                                                data_group,
-                                                                '@null',
-                                                                property);
-                                    }
-                                    }, gnt.questionnaire.wait_time);
-                                });
-                            }});
 
     gnt.maps.create_map('map', function(map) {
         //annotations from the questionnaire creater
@@ -845,89 +926,16 @@ gnt.questionnaire.init = function(forms,
         }
 
 
-        //get the users feature if any
-        gnt.geo.get_features(undefined,
-                             data_group,
-                             '',
-            {
-                'success': function(data) {
-                    if (data.features) {
-                        var pl = map.getLayersByName('Point Layer')[0],
-                            rl = map.getLayersByName('Route Layer')[0],
-                            al = map.getLayersByName('Area Layer')[0],
-                            gf = new OpenLayers.Format.GeoJSON(),
-                            // Projection objects for transformations
-                            source_proj = new OpenLayers.Projection(data.crs.properties.code),
-                            target_proj = new OpenLayers.Projection(map.getProjection());
-                            popupcontent = " default content ";
-
-                        for(var i = 0; i < data.features.length; i++) {
-                            var feature = gf.parseFeature(data.features[i]);
-                            //add values losed in parsing should be added again
-                            feature['private'] = data.features[i]['private'];
-                            // Transform geometry to map projection
-                            feature.geometry.transform(source_proj, target_proj);
-                            feature.lonlat = gnt.questionnaire.get_popup_lonlat(feature.geometry);
-
-                            var popup_name = $('.drawbutton[name=' +
-                                            feature.attributes.name +
-                                            ']').data('popup');
-
-                            if(feature.geometry.CLASS_NAME === 'OpenLayers.Geometry.Point') {
-                                pl.addFeatures(feature);
-                            } else if(feature.geometry.CLASS_NAME === 'OpenLayers.Geometry.LineString') {
-                                rl.addFeatures(feature);
-                            } else if(feature.geometry.CLASS_NAME === 'OpenLayers.Geometry.Polygon') {
-                                al.addFeatures(feature);
-                            }
-                            popupcontent = $('#' + popup_name).html();
-
-                            feature.popupClass = OpenLayers.Popup.FramedCloud;
-                            feature.data = {
-                                contentHTML: popupcontent
-                            };
-
-                            //the createPopup function did not seem to work so here
-                            feature.popup = new OpenLayers.Popup.FramedCloud(
-                                                feature.id,
-                                                feature.lonlat,
-                                                null,
-                                                feature.data.contentHTML,
-                                                null,
-                                                false);
-                        }
-
-                        //disable drawbuttons that has max number of features
-                        $('button.drawbutton.point').each(function(index, element) {
-                            var amount = pl.getFeaturesByAttribute('name', $(element).attr('name')).length;
-                            var max = $(element).data('max');
-                            if(max !== undefined &&
-                               amount >= max) {
-                                $('button[name=' + $(element).attr('name') + ']').drawButton('disable');
-                            }
-                        });
-                        $('button.drawbutton.route').each(function(index, element) {
-                            var amount = rl.getFeaturesByAttribute('name', $(element).attr('name')).length;
-                            var max = $(element).data('max');
-                            if(max !== undefined &&
-                               amount >= max) {
-                                $('button[name=' + $(element).attr('name') + ']').drawButton('disable');
-                            }
-                        });
-                        $('button.drawbutton.area').each(function(index, element) {
-                            var amount = al.getFeaturesByAttribute('name', $(element).attr('name')).length;
-                            var max = $(element).data('max');
-                            if(max !== undefined &&
-                               amount >= max) {
-                                $('button[name=' + $(element).attr('name') + ']').drawButton('disable');
-                            }
-                        });
-                    }
-                }
-            });
 
         // polyfill HTML 5 widgets
         gnt.questionnaire.create_widgets('#forms');
+
+        //create a session for the anonymoususer
+        gnt.auth.create_session(function(){
+            for(var i=0;i<gnt.questionnaire.gnt_getters.length;i++){
+                gnt.questionnaire.gnt_getters[i]();
+            }
+        });
 
         //the point where everything is done for callback
         if(callback !== undefined) {

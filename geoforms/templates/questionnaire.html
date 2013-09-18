@@ -234,7 +234,7 @@ function count_results() {
 {% block questionnaire_init %}
 
 jQuery(document).ready(function() {
-    gnt.questionnaire.init('#forms', '', '#forms', questionnaire_area, data_group, function() {
+    gnt.questionnaire.init('', '#forms', questionnaire_area, data_group, function() {
 
         //count the amount of answeres given
         count_results();
