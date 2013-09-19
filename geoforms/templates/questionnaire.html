@@ -234,30 +234,25 @@ function count_results() {
 {% block questionnaire_init %}
 
 jQuery(document).ready(function() {
-    gnt.questionnaire.init('', '#forms', questionnaire_area, data_group, function() {
+    gnt.questionnaire.init('', '#forms', questionnaire_area, data_group);
 
-        //count the amount of answeres given
-        count_results();
-
-        $('#forms').bind('accordionchangestart', function(event, ui) {
-            count_results();
-        });
-        // add drawbutton name to popup
-        $('.popupform').each(function(){
-            $(this)
-            .prepend($('<div style="font-weight:bold;"></div>')
-                .prepend($('.drawbutton[data-popup="' + $(this).attr('name') + '"]').first().find('span').text())
-            );
-        })
-        {% if lottery %}
-        addLotteryForm(window.location.href + 'lottery', "{{lottery.thank_you_msg}}");
-        {% endif %}
+    {% if lottery %}
+    addLotteryForm(window.location.href + 'lottery', "{{lottery.thank_you_msg}}");
+    {% endif %}
 
 
-        {% if request.META.HTTP_HOST == "oregonstateparks.maptionnaire.com" %}
-        addParks();
-        {% endif %}
-        {% if WMS_ENABLED %}
+    {% if request.META.HTTP_HOST == "oregonstateparks.maptionnaire.com" %}
+    function check_map_loaded(){
+        if (gnt.questionnaire.map_loaded){
+            addParks();
+        } else {
+            setTimeout(check_map_loaded,200);
+        }
+    }
+    {% endif %}
+});
+
+gnt.questionnaire.create_extra_layers = function(){
         gnt.questionnaire.extra_layers = Array();
         $('#map').append(
                 $('<div></div>')
@@ -295,9 +290,7 @@ jQuery(document).ready(function() {
             map.addLayer(layer);
         });
         makeWMSLayerSwitcher(1);
-        {% endif %}
-    });
-});
+}
 
 {% endblock questionnaire_init %}
 
@@ -346,9 +339,7 @@ function makeWMSLayerSwitcher(page_number) {
         map.getLayersByName('Zoomable Parks')[0].setVisibility(true);
         $('a.next').css('visibility','hidden');
         $('div#visited-parks').hide();
-    }/* else if (page_number === 1) {
-        map.getLayersByName('Zoomable Parks')[0].setVisibility(false);
-    }*/
+    }
     {% endif %}
 }
 {% endif %}

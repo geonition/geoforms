@@ -13,6 +13,7 @@ gnt.questionnaire.npvalues = {};
 gnt.questionnaire.popup; //only one popup at the time
 gnt.questionnaire.property_id;
 gnt.questionnaire.is_mobile_user = false;
+gnt.questionnaire.map_loaded = false;
 
 //fix for OpenLayers 2.12 RC5 check 29.5.2012 should be null and automatic
 OpenLayers.Popup.FramedCloud.prototype.maxSize = new OpenLayers.Size(420, 640);
@@ -710,26 +711,7 @@ gnt.questionnaire.gnt_getters.push(function(){
                 }
             });
 });
-/*
- This function should be called onload to initialize a questionnaire
-
- popups -- JQuery selector to all popup forms used
- accordion -- jquery selector for the accordion,
-              if undefined no accordion is used
- questionnaire_area -- geojson geometry polygon describint the area of the
-                       questionnaire
- data_group -- the group that should be used and where the data is stored
- callback -- function to be called after the questionnaire has been set up
-*/
-gnt.questionnaire.init = function(popups,
-                                  accordion,
-                                  questionnaire_area,
-                                  data_group,
-                                  callback) {
-
-    gnt.questionnaire.is_mobile_user = window.innerWidth < 770 ? true : false;
-
-
+gnt.questionnaire.create_accordion = function(accordion){
     if( accordion !== undefined ) {
         var origHash = location.hash.split('#')[1];
         var active_page = 0;
@@ -784,14 +766,13 @@ gnt.questionnaire.init = function(popups,
                 });
             }
         });
-        // This function should be implemented as a geoforms html element
+
         if (window.accordionPageChangeHandler !== undefined) {
             $( accordion ).on('accordionPageChange', accordionPageChangeHandler);
         }
     }
-
-
-    gnt.maps.create_map('map', function(map) {
+}
+gnt.questionnaire.create_geoform_layers = function() {
         //annotations from the questionnaire creater
         var annotationLayer = new OpenLayers.Layer.Vector(
                     layer_names.annotationsLayer,
@@ -924,25 +905,62 @@ gnt.questionnaire.init = function(popups,
         if(questionnaire.show_area) {
             annotationLayer.addFeatures(questionnaire_area_feature);
         }
+        $('.popupform').each(function(){
+            $(this)
+            .prepend($('<div style="font-weight:bold;"></div>')
+                .prepend($('.drawbutton[data-popup="' + $(this).attr('name') + '"]').first().find('span').text())
+            );
+        })
 
 
+}
+/*
+ This function should be called onload to initialize a questionnaire
 
-        // polyfill HTML 5 widgets
-        gnt.questionnaire.create_widgets('#forms');
+ popups -- JQuery selector to all popup forms used
+ accordion -- jquery selector for the accordion,
+              if undefined no accordion is used
+ questionnaire_area -- geojson geometry polygon describint the area of the
+                       questionnaire
+ data_group -- the group that should be used and where the data is stored
+ callback -- function to be called after the questionnaire has been set up
+*/
+gnt.questionnaire.init = function(popups,
+                                  accordion,
+                                  questionnaire_area,
+                                  data_group) {
 
-        //create a session for the anonymoususer
-        gnt.auth.create_session(function(){
-            for(var i=0;i<gnt.questionnaire.gnt_getters.length;i++){
-                gnt.questionnaire.gnt_getters[i]();
-            }
+    gnt.questionnaire.is_mobile_user = window.innerWidth < 770 ? true : false;
+    gnt.questionnaire.create_accordion(accordion);
+
+    var map_loaded = gnt.maps.create_map('map');
+    if (map_loaded){
+        gnt.questionnaire.after_map_loaded();
+    }
+            // polyfill HTML 5 widgets
+
+};
+
+gnt.questionnaire.add_result_counter = function(){
+        $('#forms').bind('accordionchangestart', function(event, ui) {
+            count_results();
         });
+}
 
-        //the point where everything is done for callback
-        if(callback !== undefined) {
-            callback();
+gnt.questionnaire.after_map_loaded = function() {
+    gnt.questionnaire.create_geoform_layers();
+    gnt.questionnaire.create_extra_layers();
+    gnt.questionnaire.add_result_counter();
+
+    gnt.questionnaire.create_widgets('#forms');
+
+    //create a session for the anonymoususer
+    gnt.auth.create_session(function(){
+        for(var i=0;i<gnt.questionnaire.gnt_getters.length;i++){
+            gnt.questionnaire.gnt_getters[i]();
         }
     });
-};
+}
 
 /*
 This function creates widgets for HTML5 elements for browsers that do not support them.
