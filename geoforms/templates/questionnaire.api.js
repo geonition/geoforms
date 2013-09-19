@@ -933,8 +933,8 @@ gnt.questionnaire.init = function(popups,
     gnt.questionnaire.is_mobile_user = window.innerWidth < 770 ? true : false;
     gnt.questionnaire.create_accordion(accordion);
 
-    var map_loaded = gnt.maps.create_map('map');
-    if (map_loaded){
+    gnt.questionnaire.map_loaded = gnt.maps.create_map('map');
+    if (gnt.questionnaire.map_loaded){
         gnt.questionnaire.after_map_loaded();
     }
             // polyfill HTML 5 widgets
