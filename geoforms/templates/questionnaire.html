@@ -243,7 +243,7 @@ jQuery(document).ready(function() {
 
     {% if request.META.HTTP_HOST == "oregonstateparks.maptionnaire.com" %}
     function check_map_loaded(){
-        if (gnt.questionnaire.map_loaded){
+        if (gnt.map_loaded){
             addParks();
         } else {
             setTimeout(check_map_loaded,200);

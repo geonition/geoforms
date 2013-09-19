@@ -13,7 +13,7 @@ gnt.questionnaire.npvalues = {};
 gnt.questionnaire.popup; //only one popup at the time
 gnt.questionnaire.property_id;
 gnt.questionnaire.is_mobile_user = false;
-gnt.questionnaire.map_loaded = false;
+gnt.map_loaded = false;
 
 //fix for OpenLayers 2.12 RC5 check 29.5.2012 should be null and automatic
 OpenLayers.Popup.FramedCloud.prototype.maxSize = new OpenLayers.Size(420, 640);
@@ -933,9 +933,9 @@ gnt.questionnaire.init = function(popups,
     gnt.questionnaire.is_mobile_user = window.innerWidth < 770 ? true : false;
     gnt.questionnaire.create_accordion(accordion);
 
-    gnt.questionnaire.map_loaded = gnt.maps.create_map('map');
-    if (gnt.questionnaire.map_loaded){
-        gnt.questionnaire.after_map_loaded();
+    gnt.map_loaded = gnt.maps.create_map('map');
+    if (gnt.map_loaded){
+        gnt.after_map_loaded();
     }
             // polyfill HTML 5 widgets
 
@@ -947,7 +947,7 @@ gnt.questionnaire.add_result_counter = function(){
         });
 }
 
-gnt.questionnaire.after_map_loaded = function() {
+gnt.after_map_loaded = function() {
     gnt.questionnaire.create_geoform_layers();
     gnt.questionnaire.create_extra_layers();
     gnt.questionnaire.add_result_counter();
