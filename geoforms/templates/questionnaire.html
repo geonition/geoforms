@@ -295,7 +295,6 @@ gnt.questionnaire.create_extra_layers = function(){
 
 {% endblock questionnaire_init %}
 
-{% if WMS_ENABLED %}
 function accordionPageChangeHandler(event) {
     makeWMSLayerSwitcher(event.page);
 }
@@ -343,7 +342,6 @@ function makeWMSLayerSwitcher(page_number) {
     }
     {% endif %}
 }
-{% endif %}
 
 
 </script>
