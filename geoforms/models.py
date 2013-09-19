@@ -7,6 +7,7 @@ from django.db import models
 from django.template.defaultfilters import slugify
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
+from django.core.cache import cache
 #from bs4 import BeautifulSoup
 
 class GeoformElement(models.Model):
@@ -325,6 +326,7 @@ class Questionnaire(models.Model):
                        kwargs = {'questionnaire_id': self.id})
 
     def save(self, *args, **kwargs):
+        cache.clear()
         if self.id is None:
             super(Questionnaire, self).save(*args, **kwargs)
 
