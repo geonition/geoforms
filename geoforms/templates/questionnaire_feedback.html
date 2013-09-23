@@ -65,6 +65,14 @@
 
 jQuery(document).ready(function() {
     gnt.questionnaire.init('', '#forms', questionnaire_area, data_group);
+    function check_map_loaded(){
+        if (gnt.map_loaded){
+            show_feedback();
+        } else {
+            setTimeout(check_map_loaded,200);
+        }
+    }
+    check_map_loaded();
 });
 {% endblock questionnaire_init %}
 
