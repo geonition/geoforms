@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geonition\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-16 19:00-0500\n"
+"POT-Creation-Date: 2013-09-20 19:00-0500\n"
 "PO-Revision-Date: 2013-09-06 00:01+0000\n"
 "Last-Translator: ksnabb <kristoffer.snabb@geonition.org>\n"
 "Language-Team: Marathi (http://www.transifex.com/projects/p/geonition/language/mr/)\n"
@@ -120,147 +120,147 @@ msgstr ""
 msgid "randomize the order of the options"
 msgstr ""
 
-#: models.py:28 models.py:181 models.py:275
+#: models.py:29 models.py:182 models.py:276
 msgid "slug"
 msgstr "स्लग "
 
-#: models.py:31 models.py:183
+#: models.py:32 models.py:184
 msgid "name"
 msgstr "नाव"
 
-#: models.py:34
+#: models.py:35
 msgid "element type"
 msgstr "एलिमेंटचा प्रकार. "
 
-#: models.py:36
+#: models.py:37
 msgid "html"
 msgstr "एच.टि.एम.एल "
 
-#: models.py:51
+#: models.py:52
 msgid "questionnaire page element"
 msgstr "प्रश्नावलीचा पेज एलीमेंट"
 
-#: models.py:52
+#: models.py:53
 msgid "questionnaire page elements"
 msgstr "प्रश्नावलीचे पेज एलिमेंट्स"
 
-#: models.py:68
+#: models.py:69
 msgid "text input"
 msgstr "  पाठ माहिती "
 
-#: models.py:69
+#: models.py:70
 msgid "text inputs"
 msgstr "  पाठ माहिती "
 
-#: models.py:82
+#: models.py:83
 msgid "text area"
 msgstr "पाठ क्षेत्र"
 
-#: models.py:83
+#: models.py:84
 msgid "text areas"
 msgstr "पाठ क्षेत्र"
 
-#: models.py:96
+#: models.py:97
 msgid "number input"
 msgstr "अंक लिहा "
 
-#: models.py:97
+#: models.py:98
 msgid "number inputs"
 msgstr "संख्या "
 
-#: models.py:110
+#: models.py:111
 msgid "range input"
 msgstr "आवाका"
 
-#: models.py:111
+#: models.py:112
 msgid "range inputs"
 msgstr "आवाका"
 
-#: models.py:124
+#: models.py:125
 msgid "paragraph"
 msgstr "परीच्चेद "
 
-#: models.py:125
+#: models.py:126
 msgid "paragraphs"
 msgstr "परीच्चेद "
 
-#: models.py:138 models.py:139
+#: models.py:139 models.py:140
 msgid "Select one"
 msgstr "एक निवडा "
 
-#: models.py:152 models.py:153
+#: models.py:153 models.py:154
 msgid "Select multiple"
 msgstr "अनेक निवडा "
 
-#: models.py:166
+#: models.py:167
 msgid "Draw button"
 msgstr "आखणीचे बटन"
 
-#: models.py:167
+#: models.py:168
 msgid "Draw buttons"
 msgstr "आखणीचे बटन्स"
 
-#: models.py:190
+#: models.py:191
 msgid "page type"
 msgstr "पेजचा प्रकार"
 
-#: models.py:193
+#: models.py:194
 msgid "elements"
 msgstr "एलिमेंट "
 
-#: models.py:208 models.py:362
+#: models.py:209 models.py:364
 msgid "questionnaire page"
 msgstr "प्रश्नावलीचे पेज"
 
-#: models.py:209 models.py:363
+#: models.py:210 models.py:365
 msgid "questionnaire pages"
 msgstr "प्रश्नावलीचे पेजेस"
 
-#: models.py:226
+#: models.py:227
 msgid "popup"
 msgstr "पॉपप "
 
-#: models.py:227
+#: models.py:228
 msgid "popups"
 msgstr "पॉपप्स "
 
-#: models.py:242 models.py:252 models.py:354
+#: models.py:243 models.py:253 models.py:356
 msgid "page"
 msgstr "पेज "
 
-#: models.py:243 models.py:269
+#: models.py:244 models.py:270
 msgid "pages"
 msgstr "पेजेस "
 
-#: models.py:254
+#: models.py:255
 msgid "element"
 msgstr "एलिमेंट "
 
-#: models.py:256 models.py:356
+#: models.py:257 models.py:358
 msgid "order"
 msgstr "क्रम "
 
-#: models.py:259
+#: models.py:260
 msgid "page element"
 msgstr "पेज एलीमेंट"
 
-#: models.py:260
+#: models.py:261
 msgid "page elements"
 msgstr "पेज एलिमेंट्स"
 
-#: models.py:270
+#: models.py:271
 msgid "name of questionnaire"
 msgstr "प्रश्नावलीचे नाव "
 
-#: models.py:277
+#: models.py:278
 msgid "description"
 msgstr ""
 
-#: models.py:278
+#: models.py:279
 msgid "area of questionnaire"
 msgstr "प्रश्नावलीचे क्षेत्र"
 
-#: models.py:282
+#: models.py:283
 msgid ""
 "This is the initial area which will be visible on the questionnaire map. The"
 " map tools are on the up right corner of the map. To choose a tool you have "
@@ -271,73 +271,73 @@ msgid ""
 "places."
 msgstr "हे प्रारंभिक क्षेत्र प्रश्नावली नकाश्यावर  प्रदर्शित होईल.नकाश्याची साधनं वरच्या उजव्या कोपर्यात आहेत.\nसाधन निवडण्या करिता त्यावर क्लिक करा जेणे करून ते साधन पिवळ्या रंगाचे दिसेल.मार्किंग चालू करण्यासाठी मार्किंग साधनाची निवड करावी.\nमार्किंग थांबविण्या करता नकाश्यावर डबल क्लिक करावे.आपण  मार्क केलेल्या क्षेत्रा मध्ये सुधारणा करण्यासाठी फेरबदलाचे साधन निवडावे.\nफेरबदल करण्या करिता मार्क केलेल्या क्षेत्राचे कोपरे निवडून साधारित जागे परंत खेचावे."
 
-#: models.py:283
+#: models.py:284
 msgid "show area"
 msgstr "क्षेत्र दाखवा "
 
-#: models.py:284
+#: models.py:285
 msgid ""
 "Check the box to show the area to the user. Otherwise leave the checkbox "
 "unchecked."
 msgstr ""
 
-#: models.py:285
+#: models.py:286
 msgid "scale the visible area"
 msgstr ""
 
-#: models.py:287
+#: models.py:288
 msgid ""
 "This number will be used to set the initial map extent. The map extent is "
 "counted by drawn area times this number."
 msgstr "हि संख्या नकाश्याची  प्रारंभिक मर्यादा ठरवण्या करता उपयोगी आहे"
 
-#: models.py:289
+#: models.py:290
 msgid "site"
 msgstr "साईट "
 
-#: models.py:296
+#: models.py:297
 msgid "questionnaire start date"
 msgstr ""
 
-#: models.py:299
+#: models.py:300
 msgid "questionnaire end date"
 msgstr ""
 
-#: models.py:303
+#: models.py:304
 msgid "map"
 msgstr ""
 
-#: models.py:305
+#: models.py:306
 msgid "detailed areas"
 msgstr ""
 
-#: models.py:311
+#: models.py:312
 msgid "These detailed focus areas of the questionnaire."
 msgstr ""
 
-#: models.py:313
+#: models.py:314
 msgid "show detailed areas"
 msgstr ""
 
-#: models.py:314
+#: models.py:315
 msgid ""
 "Check the box to show the detailed areas to the user. Otherwise leave the "
 "checkbox unchecked."
 msgstr ""
 
-#: models.py:340 models.py:352 models.py:367 models.py:373
+#: models.py:342 models.py:354 models.py:369 models.py:375
 msgid "questionnaire"
 msgstr "प्रश्नावली "
 
-#: models.py:341
+#: models.py:343
 msgid "questionnaires"
 msgstr "प्रश्नावली "
 
-#: models.py:368
+#: models.py:370
 msgid "Description of lottery"
 msgstr ""
 
-#: models.py:369
+#: models.py:371
 msgid "Thank you message"
 msgstr ""
 
@@ -434,7 +434,7 @@ msgstr "आपण एका प्रश्नाचे उत्तर दि�
 msgid "You answered"
 msgstr ""
 
-#: templates/questionnaire.html:265
+#: templates/questionnaire.html:261
 msgid "Choose Layers to show"
 msgstr ""
 

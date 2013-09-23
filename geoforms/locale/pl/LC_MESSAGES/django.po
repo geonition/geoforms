@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geonition\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-16 19:00-0500\n"
+"POT-Creation-Date: 2013-09-20 19:00-0500\n"
 "PO-Revision-Date: 2013-09-06 00:01+0000\n"
 "Last-Translator: ksnabb <kristoffer.snabb@geonition.org>\n"
 "Language-Team: Polish (http://www.transifex.com/projects/p/geonition/language/pl/)\n"
@@ -119,147 +119,147 @@ msgstr ""
 msgid "randomize the order of the options"
 msgstr ""
 
-#: models.py:28 models.py:181 models.py:275
+#: models.py:29 models.py:182 models.py:276
 msgid "slug"
 msgstr ""
 
-#: models.py:31 models.py:183
+#: models.py:32 models.py:184
 msgid "name"
 msgstr ""
 
-#: models.py:34
+#: models.py:35
 msgid "element type"
 msgstr ""
 
-#: models.py:36
+#: models.py:37
 msgid "html"
 msgstr ""
 
-#: models.py:51
+#: models.py:52
 msgid "questionnaire page element"
 msgstr ""
 
-#: models.py:52
+#: models.py:53
 msgid "questionnaire page elements"
 msgstr ""
 
-#: models.py:68
+#: models.py:69
 msgid "text input"
 msgstr ""
 
-#: models.py:69
+#: models.py:70
 msgid "text inputs"
 msgstr ""
 
-#: models.py:82
+#: models.py:83
 msgid "text area"
 msgstr ""
 
-#: models.py:83
+#: models.py:84
 msgid "text areas"
 msgstr ""
 
-#: models.py:96
+#: models.py:97
 msgid "number input"
 msgstr ""
 
-#: models.py:97
+#: models.py:98
 msgid "number inputs"
 msgstr ""
 
-#: models.py:110
+#: models.py:111
 msgid "range input"
 msgstr ""
 
-#: models.py:111
+#: models.py:112
 msgid "range inputs"
 msgstr ""
 
-#: models.py:124
+#: models.py:125
 msgid "paragraph"
 msgstr ""
 
-#: models.py:125
+#: models.py:126
 msgid "paragraphs"
 msgstr ""
 
-#: models.py:138 models.py:139
+#: models.py:139 models.py:140
 msgid "Select one"
 msgstr ""
 
-#: models.py:152 models.py:153
+#: models.py:153 models.py:154
 msgid "Select multiple"
 msgstr ""
 
-#: models.py:166
+#: models.py:167
 msgid "Draw button"
 msgstr ""
 
-#: models.py:167
+#: models.py:168
 msgid "Draw buttons"
 msgstr ""
 
-#: models.py:190
+#: models.py:191
 msgid "page type"
 msgstr ""
 
-#: models.py:193
+#: models.py:194
 msgid "elements"
 msgstr ""
 
-#: models.py:208 models.py:362
+#: models.py:209 models.py:364
 msgid "questionnaire page"
 msgstr ""
 
-#: models.py:209 models.py:363
+#: models.py:210 models.py:365
 msgid "questionnaire pages"
 msgstr ""
 
-#: models.py:226
+#: models.py:227
 msgid "popup"
 msgstr ""
 
-#: models.py:227
+#: models.py:228
 msgid "popups"
 msgstr ""
 
-#: models.py:242 models.py:252 models.py:354
+#: models.py:243 models.py:253 models.py:356
 msgid "page"
 msgstr ""
 
-#: models.py:243 models.py:269
+#: models.py:244 models.py:270
 msgid "pages"
 msgstr ""
 
-#: models.py:254
+#: models.py:255
 msgid "element"
 msgstr ""
 
-#: models.py:256 models.py:356
+#: models.py:257 models.py:358
 msgid "order"
 msgstr ""
 
-#: models.py:259
+#: models.py:260
 msgid "page element"
 msgstr ""
 
-#: models.py:260
+#: models.py:261
 msgid "page elements"
 msgstr ""
 
-#: models.py:270
+#: models.py:271
 msgid "name of questionnaire"
 msgstr ""
 
-#: models.py:277
+#: models.py:278
 msgid "description"
 msgstr ""
 
-#: models.py:278
+#: models.py:279
 msgid "area of questionnaire"
 msgstr ""
 
-#: models.py:282
+#: models.py:283
 msgid ""
 "This is the initial area which will be visible on the questionnaire map. The"
 " map tools are on the up right corner of the map. To choose a tool you have "
@@ -270,73 +270,73 @@ msgid ""
 "places."
 msgstr ""
 
-#: models.py:283
+#: models.py:284
 msgid "show area"
 msgstr ""
 
-#: models.py:284
+#: models.py:285
 msgid ""
 "Check the box to show the area to the user. Otherwise leave the checkbox "
 "unchecked."
 msgstr ""
 
-#: models.py:285
+#: models.py:286
 msgid "scale the visible area"
 msgstr ""
 
-#: models.py:287
+#: models.py:288
 msgid ""
 "This number will be used to set the initial map extent. The map extent is "
 "counted by drawn area times this number."
 msgstr ""
 
-#: models.py:289
+#: models.py:290
 msgid "site"
 msgstr ""
 
-#: models.py:296
+#: models.py:297
 msgid "questionnaire start date"
 msgstr ""
 
-#: models.py:299
+#: models.py:300
 msgid "questionnaire end date"
 msgstr ""
 
-#: models.py:303
+#: models.py:304
 msgid "map"
 msgstr ""
 
-#: models.py:305
+#: models.py:306
 msgid "detailed areas"
 msgstr ""
 
-#: models.py:311
+#: models.py:312
 msgid "These detailed focus areas of the questionnaire."
 msgstr ""
 
-#: models.py:313
+#: models.py:314
 msgid "show detailed areas"
 msgstr ""
 
-#: models.py:314
+#: models.py:315
 msgid ""
 "Check the box to show the detailed areas to the user. Otherwise leave the "
 "checkbox unchecked."
 msgstr ""
 
-#: models.py:340 models.py:352 models.py:367 models.py:373
+#: models.py:342 models.py:354 models.py:369 models.py:375
 msgid "questionnaire"
 msgstr ""
 
-#: models.py:341
+#: models.py:343
 msgid "questionnaires"
 msgstr ""
 
-#: models.py:368
+#: models.py:370
 msgid "Description of lottery"
 msgstr ""
 
-#: models.py:369
+#: models.py:371
 msgid "Thank you message"
 msgstr ""
 
@@ -433,7 +433,7 @@ msgstr "Odpowiedziałeś/aś na jedno pytanie"
 msgid "You answered"
 msgstr "Odpowiedziałeś/aś"
 
-#: templates/questionnaire.html:265
+#: templates/questionnaire.html:261
 msgid "Choose Layers to show"
 msgstr ""
 
