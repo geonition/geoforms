@@ -253,6 +253,8 @@ jQuery(document).ready(function() {
     {% endif %}
 });
 
+{% endblock questionnaire_init %}
+
 gnt.questionnaire.create_extra_layers = function(){
         gnt.questionnaire.extra_layers = Array();
         $('#map').append(
@@ -292,8 +294,6 @@ gnt.questionnaire.create_extra_layers = function(){
         });
         makeWMSLayerSwitcher(1);
 }
-
-{% endblock questionnaire_init %}
 
 function accordionPageChangeHandler(event) {
     makeWMSLayerSwitcher(event.page);
