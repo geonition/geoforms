@@ -153,6 +153,20 @@ class CheckboxElementModel(GeoformElement):
         verbose_name = _('Select multiple')
         verbose_name_plural = _('Select multiple')
 
+class SelectElementModel(GeoformElement):
+    """
+    This is a proxy model for the select dropdowns
+    """
+    def save(self, *args, **kwargs):
+        self.element_type = 'select'
+
+        super(SelectElementModel, self).save(*args, **kwargs)
+
+    class Meta:
+        proxy = True
+        verbose_name = _('Dropdown')
+        verbose_name_plural = _('Dropdowns')
+
 class DrawbuttonElementModel(GeoformElement):
     """
     This is a proxy model for the drawbuttons
@@ -374,7 +388,7 @@ class LotteryParticipant(models.Model):
     questionnaire = models.ForeignKey(Questionnaire,
                                       verbose_name = _('questionnaire'))
     email = models.EmailField()
-                            
+
 
 
 

@@ -18,6 +18,7 @@ from geoforms.models import RadioElementModel
 from geoforms.models import TextElementModel
 from geoforms.models import TextareaModel
 from geoforms.models import RangeElementModel
+from geoforms.models import SelectElementModel
 from geoforms.widgets import CheckboxElement
 from geoforms.widgets import ColorInput
 from geoforms.widgets import Drawbutton
@@ -28,6 +29,7 @@ from geoforms.widgets import TextElement
 from geoforms.widgets import TextareaElement
 from geoforms.widgets import TranslationWidget
 from geoforms.widgets import RangeElement
+from geoforms.widgets import OptionElement
 
 from django.forms import BooleanField
 from geoforms.models import LotteryParticipant
@@ -398,6 +400,50 @@ class CheckboxElementFormSet(BaseFormSet):
             model_values['id'] = self.data['id']
 
         CheckboxElementModel(**model_values).save()
+
+class SelectElementForm(forms.ModelForm):
+    label = TranslationField(label = _('option'))
+
+    class Meta:
+        model = SelectElementModel
+        fields = ('label',)
+
+class SelectElementFormSet(BaseFormSet):
+    """
+    Select elements needs to be saved at one time
+    """
+
+    def __init__(self, *args, **kwargs):
+        super(SelectElementFormSet, self).__init__(*args, **kwargs)
+
+    def save(self):
+        qform = QuestionForm(self.data)
+        model_values = {}
+        name = ''
+        if qform.is_valid():
+            name = slugify(qform.cleaned_data['question'][0])
+            randomize = qform.cleaned_data['randomize']
+            for i, lang in enumerate(settings.LANGUAGES):
+                model_values['name_%s' % lang[0]] = qform.cleaned_data['question'][i]
+                model_values['html_%s' % lang[0]] = u'<p>{0}<select name="{1}" >'.format(
+                                                                                    qform.cleaned_data['question'][i],
+                                                                                    name)
+        attrs = {'data-random': 'true'} if randomize else {}
+        forms_count = len(self.forms)
+        for i, form in enumerate(self.forms):
+
+            if form.is_valid():
+                for j, lang in enumerate(settings.LANGUAGES):
+                    model_values['html_%s' % lang[0]] += OptionElement().render(form.cleaned_data['label'][j],
+                                                                                     slugify(form.cleaned_data['label'][j]),
+                                                                                     attrs)
+                    if i+1 == forms_count:
+                        model_values['html_%s' % lang[0]] += '</select></p>'
+
+        if self.data.has_key('id'):
+            model_values['id'] = self.data['id']
+
+        SelectElementModel(**model_values).save()
 
 class DrawbuttonForm(forms.ModelForm):
     geometry_type = forms.ChoiceField(choices = (
