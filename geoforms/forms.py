@@ -461,7 +461,7 @@ class DrawbuttonForm(forms.ModelForm):
                               help_text = _('Choose the popup to use for the place, route, or area.'))
     max_amount = forms.IntegerField(min_value = 1,
                                     max_value = 1000,
-                                    initial = 3,
+                                    initial = 10,
                                     label = _('max amount of answers'),
                                     help_text = _('This is the maximum number of allowed places/routes/areas that can be drawn by this drawbutton.'))
 
@@ -485,7 +485,7 @@ class DrawbuttonForm(forms.ModelForm):
             label = []
             color = u'#000000'
             popup = u''
-            max_amount = u'3'
+            max_amount = u'10'
             for lang in settings.LANGUAGES:
                 lang_html = getattr(kwargs['instance'],
                                     'html_%s' % lang[0])
@@ -498,7 +498,7 @@ class DrawbuttonForm(forms.ModelForm):
                     geometry_type = soup.button.get('class', [u'',u'point'])[1]
                     color = soup.button.get('data-color', u'#ff00ee')
                     popup = soup.button.get('data-popup', u'basic')
-                    max_amount = soup.button.get('data-max', u'3')
+                    max_amount = soup.button.get('data-max', u'10')
 
             self.initial['geometry_type'] = geometry_type
             self.initial['label'] = label
