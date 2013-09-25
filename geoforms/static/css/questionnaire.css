@@ -42,8 +42,12 @@
   text-align: left;
   width: 75%;
 }
-.range-container p {
-  font-weight: bold !important;
+.form_element[data-element-type="range"] p,
+.form_element[data-element-type="checkbox"] p,
+.form_element[data-element-type="radio"] p,
+.form_element[data-element-type="textarea"] label,
+.form_element[data-element-type="text"] label {
+  font-weight: bold;
 }
 .range-container span {
   width: 27%;

@@ -131,9 +131,9 @@ Your input is important to us! One more way you can help is to share this survey
                     {% if key == form.slug %}
                         {% for element in value %}
                             {% if not forloop.last %}
-                            <div class="form_element">
+                            <div class="form_element" data-element-type="{{element.element_type}}">
                             {% else %}
-                            <div class="form_element last">
+                            <div class="form_element last" data-element-type="{{element.element_type}}">
                             {% endif %}
                             {% if element.element_type == 'checkbox' or element.element_type == 'radio' %}
                                 {{ element.html|randomize_cb_rb:user|safe }}
