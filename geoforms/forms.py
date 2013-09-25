@@ -29,8 +29,8 @@ from geoforms.widgets import TextElement
 from geoforms.widgets import TextareaElement
 from geoforms.widgets import TranslationWidget
 from geoforms.widgets import RangeElement
-from geoforms.widgets import OptionElement
 
+from django.forms.widgets import Select
 from django.forms import BooleanField
 from geoforms.models import LotteryParticipant
 
@@ -425,20 +425,21 @@ class SelectElementFormSet(BaseFormSet):
             randomize = qform.cleaned_data['randomize']
             for i, lang in enumerate(settings.LANGUAGES):
                 model_values['name_%s' % lang[0]] = qform.cleaned_data['question'][i]
-                model_values['html_%s' % lang[0]] = u'<p>{0}<select name="{1}" >'.format(
-                                                                                    qform.cleaned_data['question'][i],
-                                                                                    name)
+                model_values['html_%s' % lang[0]] = u'<p>{0}'.format(qform.cleaned_data['question'][i])
+
         attrs = {'data-random': 'true'} if randomize else {}
         forms_count = len(self.forms)
+        choises = {}
         for i, form in enumerate(self.forms):
-
             if form.is_valid():
                 for j, lang in enumerate(settings.LANGUAGES):
-                    model_values['html_%s' % lang[0]] += OptionElement().render(form.cleaned_data['label'][j],
-                                                                                     slugify(form.cleaned_data['label'][j]),
-                                                                                     attrs)
+                    if not choises.has_key(lang[0]):
+                        choises[lang[0]] =[('','',)]
+
+                    choises[lang[0]].append((slugify(form.cleaned_data['label'][j]), form.cleaned_data['label'][j]))
                     if i+1 == forms_count:
-                        model_values['html_%s' % lang[0]] += '</select></p>'
+                        model_values['html_%s' % lang[0]] += Select().render(name, '', attrs, choises[lang[0]])
+                        model_values['html_%s' % lang[0]] += '</p>'
 
         if self.data.has_key('id'):
             model_values['id'] = self.data['id']
