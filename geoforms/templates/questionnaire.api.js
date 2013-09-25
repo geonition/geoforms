@@ -17,6 +17,7 @@ gnt.map_loaded = false;
 
 //fix for OpenLayers 2.12 RC5 check 29.5.2012 should be null and automatic
 OpenLayers.Popup.FramedCloud.prototype.maxSize = new OpenLayers.Size(420, 640);
+OpenLayers.Popup.FramedCloud.prototype.minSize = new OpenLayers.Size(320, 140);
 
 /*
 Draw Button is a drawing
