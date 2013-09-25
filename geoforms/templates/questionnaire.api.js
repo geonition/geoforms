@@ -974,7 +974,8 @@ gnt.questionnaire.create_widgets = function(css_selector) {
         css_selector = '*'
     }
     //HTML 5 fallback create a slider if no browser support
-    if(!Modernizr.inputtypes.range) {
+    //if(!Modernizr.inputtypes.range) { 
+    if(true) { // At the moment Chrome range element fires a billion change events while sliding, so let's use jquery widgets everywhere.
         var range_elements = $(css_selector).find('input[type=range]').each(function() {
         var min;
         var max;
