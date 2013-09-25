@@ -17,6 +17,9 @@ from geoforms.forms import TextareaForm
 from geoforms.forms import TextElementForm
 from geoforms.forms import QuestionForm
 from geoforms.forms import RangeElementForm
+from geoforms.forms import SelectElementForm
+from geoforms.forms import SelectElementFormSet
+from geoforms.models import SelectElementModel
 from geoforms.models import CheckboxElementModel
 from geoforms.models import DrawbuttonElementModel
 from geoforms.models import GeoformElement
@@ -343,5 +346,66 @@ class RadioElementAdmin(GeoformElementAdmin):
 
 admin.site.register(RadioElementModel, RadioElementAdmin)
 
+class SelectElementAdmin(GeoformElementAdmin):
+
+    form = SelectElementForm
+    add_form_template = 'admin/geoforms/geoformelement/create_element.html'
+    change_form_template = add_form_template
+
+    def queryset(self, request):
+        return self.model.objects.filter(element_type = 'select')
+
+    def add_view(self, request, form_url='', extra_context=None):
+        if request.method == 'POST':
+            res = formset_factory(SelectElementForm,
+                                  formset=SelectElementFormSet)
+            rs = res(request.POST)
+            rs.save()
+            return HttpResponseRedirect(reverse('admin:geoforms_selectelementmodel_changelist'))
+        else:
+            return super(SelectElementAdmin, self).add_view(request,
+                                                           form_url = '',
+                                                           extra_context = {
+                                                            'current_app': self.admin_site.name,
+                                                            'form': QuestionForm(),
+                                                            'formset': formset_factory(SelectElementForm)})
+
+    def change_view(self, request, object_id, form_url='', extra_context=None):
+        if request.method == 'POST':
+            res = formset_factory(SelectElementForm,
+                                  formset=SelectElementFormSet)
+            rs = res(request.POST)
+            rs.save()
+            return HttpResponseRedirect(reverse('admin:geoforms_selectelementmodel_changelist'))
+        else:
+            initial_data = []
+            question_data = {'question': []}
+            selectelement = SelectElementModel.objects.get(id = object_id)
+
+            for i, lang in enumerate(settings.LANGUAGES):
+                html = getattr(selectelement,
+                               'html_%s' % lang[0],
+                               '')
+                soup = BeautifulSoup(html)
+                question_data['question'].append(soup.p.contents[0])
+                if soup.find(attrs={'data-random': 'true'}):
+                    question_data['randomize'] = True
+                options = soup.find_all('option')
+                for j, option in enumerate(options):
+                    if i == 0:
+                        initial_data.append({u'label': [option.text.strip()]})
+                    else:
+                        initial_data[j]['label'].append(option.text.strip())
+
+            return super(SelectElementAdmin, self).change_view(request,
+                                                              object_id,
+                                                              form_url = '',
+                                                              extra_context = {
+                                                                'current_app': self.admin_site.name,
+                                                                'form': QuestionForm(initial = question_data),
+                                                                'formset': formset_factory(SelectElementForm,
+                                                                                           extra = 0)(initial = initial_data)})
+
+admin.site.register(SelectElementModel, SelectElementAdmin)
 
 

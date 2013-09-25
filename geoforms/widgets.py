@@ -7,7 +7,8 @@ from django.forms.widgets import Widget
 from django.template.defaultfilters import slugify
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext as _
-from geonition_utils.widgets import ColorInput    
+from django.utils.html import format_html
+from geonition_utils.widgets import ColorInput
 from geonition_utils.widgets import NumberInput
 from geonition_utils.widgets import Paragraph
 from geonition_utils.widgets import RangeInput
@@ -38,12 +39,12 @@ class Drawbutton(Widget):
         elif geometry_type == 'area':
             symbol = '<img src="/images/svg/area_marker.svg?color=%s" alt="%s" />' % (color[1:],
                                                                                        _('area icon'))
-            
-            
+
+
         return mark_safe(u'<button type="button"%s>%s %s</button>' % (flatatt(final_attrs),
                                                                       symbol,
                                                                       label))
-    
+
 class NumberElement(Widget):
     """
     The NumberElement represents a number input with a label
@@ -53,7 +54,7 @@ class NumberElement(Widget):
                                           NumberInput().render(name,
                                                                value,
                                                                attrs = attrs))
-     
+
 class RangeElement(Widget):
     """
     The RangeElement represents a range input with a question, min and max labels to be
@@ -75,7 +76,7 @@ class TextElement(Widget):
     def render(self, label, name, value, attrs={}):
         return u'<label>%s %s</label>' % (label,
                                           TextInput().render(name, value))
-    
+
 class TextareaElement(Widget):
     """
     This widget is a question requiring a text area.
@@ -83,7 +84,7 @@ class TextareaElement(Widget):
     def render(self, label, name, value, attrs={}):
         return u'<label>%s %s</label>' % (label,
                                           Textarea().render(name, value))
-    
+
 class RadiobuttonElement(Widget):
     """
     This element presents a radiobutton with a label
@@ -93,7 +94,7 @@ class RadiobuttonElement(Widget):
                                                                value,
                                                                attrs),
                                           label)
-    
+
 class CheckboxElement(Widget):
     """
     This element presents a radiobutton with a label
@@ -102,25 +103,32 @@ class CheckboxElement(Widget):
         return u'<label>%s %s</label>' % (Checkbox().render(name, value, attrs),
                                           label)
 
+class OptionElement(Widget):
+    """
+    This element presents one option in select element
+    """
+    def render(self, label, value, attrs={}):
+        return format_html(u'<option value="{0}"{1} >{2}</option>', value, flatatt(attrs), label)
+
 #admin widgets
 class TranslationWidget(MultiWidget):
     """
     This widget separates a value into translations
     fields.
     """
-    
+
     def __init__(self, widget_class = TextInput, attrs=None):
         widget_list = ()
-        
+
         widget_list = (widget_class(),) * len(settings.LANGUAGES)
-            
+
         super(TranslationWidget, self).__init__(widget_list, attrs)
-    
-    
+
+
     def decompress(self, value):
         return [None] * len(settings.LANGUAGES)
-    
-    
+
+
     def format_output(self, rendered_widgets):
         rendered_with_labels = []
         for i, lang in enumerate(settings.LANGUAGES):
@@ -129,5 +137,5 @@ class TranslationWidget(MultiWidget):
                                                                        rendered_widgets[i]))
 
         return ''.join(rendered_with_labels)
-    
+
 #widgets with javascript css and stuff
