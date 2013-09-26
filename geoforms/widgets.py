@@ -103,12 +103,6 @@ class CheckboxElement(Widget):
         return u'<label>%s %s</label>' % (Checkbox().render(name, value, attrs),
                                           label)
 
-class OptionElement(Widget):
-    """
-    This element presents one option in select element
-    """
-    def render(self, label, value, attrs={}):
-        return format_html(u'<option value="{0}"{1} >{2}</option>', value, flatatt(attrs), label)
 
 #admin widgets
 class TranslationWidget(MultiWidget):
