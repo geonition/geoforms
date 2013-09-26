@@ -1,3 +1,10 @@
+.span_left {
+    width: 370px;
+}
+.span_right {
+    left: 370px;
+}
+
 /* Legacy styles for range elements, to be removed */
 .rangetext {
   width: 250px;
