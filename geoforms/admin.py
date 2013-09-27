@@ -392,10 +392,13 @@ class SelectElementAdmin(GeoformElementAdmin):
                     question_data['randomize'] = True
                 options = soup.find_all('option')
                 for j, option in enumerate(options):
+                    # Don't add empty values
+                    if option.text == '':
+                        continue
                     if i == 0:
                         initial_data.append({u'label': [option.text.strip()]})
                     else:
-                        initial_data[j]['label'].append(option.text.strip())
+                        initial_data[j-1]['label'].append(option.text.strip())
 
             return super(SelectElementAdmin, self).change_view(request,
                                                               object_id,
