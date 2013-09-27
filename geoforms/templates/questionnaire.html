@@ -326,6 +326,20 @@ gnt.questionnaire.create_extra_layers = function(){
                     layer : layer
                     });
                 map.addLayer(layer);
+
+                if (data.hasOwnProperty('selectable')){
+                    /*  If your geojson features have id, OpenLayers makes for each feature a property fid based on that.
+                        Name your geojson popups as geojsonpopup_fid, for example geojsonpopup_24 */
+                    //var layerSelect = new OpenLayers.Control.SelectFeature(layer, {'name': name + '_select'});
+                    var control_layers = map.getControl('selectcontrol').layers;
+                    control_layers.push(layer);
+                    map.getControl('selectcontrol').setLayer(control_layers);
+
+                    layer.events.on({
+                                        "featureselected": gnt.questionnaire.geojson_select,
+                                        "featureunselected": gnt.questionnaire.geojson_unselect
+                                    });
+                }
             }, 'json');
 
         });

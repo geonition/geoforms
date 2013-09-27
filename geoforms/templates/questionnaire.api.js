@@ -534,8 +534,11 @@ This function handles the on feature select
 where it shows the popup with the correct
 values from the feature attributes.
 */
-gnt.questionnaire.on_feature_select_handler = function(evt) {
-    gnt.questionnaire.show_popup_for_feature(evt);
+gnt.questionnaire.on_feature_select_handler = function(feature) {
+    if (feature.hasOwnProperty('is_geojson_feature')) {
+        return;
+    }
+    gnt.questionnaire.show_popup_for_feature(feature);
 }
 
 /*
@@ -548,6 +551,79 @@ gnt.questionnaire.on_feature_unselect_handler = function(evt) {
     gnt.questionnaire.popup = undefined;
 }
 
+gnt.questionnaire.property_change_handler = function(evt) {
+    if (gnt.questionnaire.wait_time === undefined){
+        gnt.questionnaire.wait_time = 5000;
+    } else {
+        gnt.questionnaire.wait_time = 0;
+    }
+    setTimeout(function(){
+    var new_value = evt.currentTarget.value;
+    if(evt.currentTarget.type === 'checkbox') {
+        new_value = [];
+        $('[name=' + evt.currentTarget.name + ']:checkbox:checked').each(function() {
+            new_value.push($(this).attr('value'));
+        });
+    }
+    var property = {};
+    property[evt.currentTarget.name] = new_value;
+    if(new_value === '' || new_value === []) {
+        delete gnt.questionnaire.npvalues[evt.currentTarget.name];
+    } else {
+        gnt.questionnaire.npvalues[evt.currentTarget.name] = new_value;
+    }
+
+    if(gnt.questionnaire.property_id === undefined) {
+        gnt.geo.create_property('@me',
+                                data_group,
+                                '@null',
+                                property,
+                                {'success': function(data) {
+                                    gnt.questionnaire.property_id = data.id;
+                                }});
+    } else {
+        property.id = gnt.questionnaire.property_id;
+        gnt.geo.update_property('@me',
+                                data_group,
+                                '@null',
+                                property);
+    }
+    }, gnt.questionnaire.wait_time);
+};
+gnt.questionnaire.set_values_to_input_elements = function(data,css_selector) {
+    if (typeof css_selector === 'undefined'){
+        css_selector = '#forms :input:not(button)';
+    }
+    gnt.questionnaire.property_id = data.id;
+    $(css_selector).each(function(i) {
+        //if many results use the last one
+        if(data['totalResults'] !== undefined) {
+            var nr = data['totalResults'];
+            data = data['entry'][nr - 1];
+        }
+        if(data[this.name] !== undefined) {
+            if(this.type === 'radio') {
+                if(this.value === data[this.name]) {
+                    $(this).attr('checked', true);
+                }
+            } else if(this.type === 'textarea') {
+                $(this).text(data[this.name]);
+            } else if(this.type === 'checkbox') {
+                for(var j = 0; j < data[this.name].length; j++) {
+                    if($(this).attr('value') === data[this.name][j]) {
+                        $(this).attr('checked', true);
+                    }
+                }
+            } else {
+                this.value = data[this.name];
+            }
+        }
+        gnt.questionnaire.npvalues = data;
+        delete gnt.questionnaire.npvalues['user'];
+        delete gnt.questionnaire.npvalues['time'];
+        delete gnt.questionnaire.npvalues['group'];
+    });
+};
 gnt.questionnaire.gnt_getters = [];
 gnt.questionnaire.gnt_getters.push(function(){
     //get the properties and set them to the inputs
@@ -555,79 +631,10 @@ gnt.questionnaire.gnt_getters.push(function(){
                            data_group,
                            '@null',
                            '@all',
-                           {'success': function(data) {
-                                gnt.questionnaire.property_id = data.id;
-                                $('#forms :input:not(button)').each(function(i) {
-                                    //if many results use the last one
-                                    if(data['totalResults'] !== undefined) {
-                                        var nr = data['totalResults'];
-                                        data = data['entry'][nr - 1];
-                                    }
-                                    if(data[this.name] !== undefined) {
-                                        if(this.type === 'radio') {
-                                            if(this.value === data[this.name]) {
-                                                $(this).attr('checked', true);
-                                            }
-                                        } else if(this.type === 'textarea') {
-                                            $(this).text(data[this.name]);
-                                        } else if(this.type === 'checkbox') {
-                                            for(var j = 0; j < data[this.name].length; j++) {
-                                                if($(this).attr('value') === data[this.name][j]) {
-                                                    $(this).attr('checked', 'checked');
-                                                }
-                                            }
-                                        } else {
-                                            this.value = data[this.name];
-                                        }
-                                    }
-                                    gnt.questionnaire.npvalues = data;
-                                    delete gnt.questionnaire.npvalues['user'];
-                                    delete gnt.questionnaire.npvalues['time'];
-                                    delete gnt.questionnaire.npvalues['id'];
-                                    delete gnt.questionnaire.npvalues['group'];
-                                });
-                           },
+                           {'success': function(data){gnt.questionnaire.set_values_to_input_elements(data);},
                            'complete': function() {
                                 //bind on value change to save the values
-                                $('#forms :input:not(button)').change(function(evt) {
-                                    if (gnt.questionnaire.wait_time === undefined){
-                                        gnt.questionnaire.wait_time = 5000;
-                                    } else {
-                                        gnt.questionnaire.wait_time = 0;
-                                    }
-                                    setTimeout(function(){
-                                    var new_value = evt.currentTarget.value;
-                                    if(evt.currentTarget.type === 'checkbox') {
-                                        new_value = [];
-                                        $('[name=' + evt.currentTarget.name + ']:checkbox:checked').each(function() {
-                                            new_value.push($(this).attr('value'));
-                                        });
-                                    }
-                                    var property = {};
-                                    property[evt.currentTarget.name] = new_value;
-                                    if(new_value === '' || new_value === []) {
-                                        delete gnt.questionnaire.npvalues[evt.currentTarget.name];
-                                    } else {
-                                        gnt.questionnaire.npvalues[evt.currentTarget.name] = new_value;
-                                    }
-
-                                    if(gnt.questionnaire.property_id === undefined) {
-                                        gnt.geo.create_property('@me',
-                                                                data_group,
-                                                                '@null',
-                                                                property,
-                                                                {'success': function(data) {
-                                                                    gnt.questionnaire.property_id = data.id;
-                                                                }});
-                                    } else {
-                                        property.id = gnt.questionnaire.property_id;
-                                        gnt.geo.update_property('@me',
-                                                                data_group,
-                                                                '@null',
-                                                                property);
-                                    }
-                                    }, gnt.questionnaire.wait_time);
-                                });
+                                $('#forms :input:not(button)').change(gnt.questionnaire.property_change_handler);
                             }});
 });
 gnt.questionnaire.gnt_getters.push(function(){
@@ -1013,4 +1020,28 @@ gnt.questionnaire.create_widgets = function(css_selector) {
         });
     }
 };
+
+gnt.questionnaire.geojson_select = function(e){
+    $( '.olFramedCloudPopupContent .geojsonpopupform').remove();
+    var css_selector = '.olFramedCloudPopupContent .geojsonpopupform :input:not(button)';
+    var popup_name = 'geojsonpopup_' + e.feature.fid.toString();
+    var popup = new OpenLayers.Popup.FramedCloud(e.feature.id,
+                            e.feature.geometry.getBounds().getCenterLonLat(),
+                            new OpenLayers.Size(100,100),
+                            $('#'+popup_name).html(),
+                            null, true);
+    e.feature.popup = popup;
+    e.feature.is_geojson_feature = true;
+    map.addPopup(popup);
+    gnt.questionnaire.set_values_to_input_elements(gnt.questionnaire.npvalues, css_selector);
+    $(css_selector).change(gnt.questionnaire.property_change_handler);
+
+}
+gnt.questionnaire.geojson_unselect = function(e){
+    if(e.feature.popup) {
+        map.removePopup(e.feature.popup);
+        e.feature.popup.destroy();
+        delete e.feature.popup;
+    }   
+}
 
