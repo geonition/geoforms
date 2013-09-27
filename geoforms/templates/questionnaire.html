@@ -157,6 +157,42 @@ Your input is important to us! One more way you can help is to share this survey
         </div>
     {% endfor %}
 </div>
+
+<div id="geojsonpopups">
+    {% for form in geojsonpopup_forms %}
+        <div id="{{ form.name }}">
+
+            <form name="{{ form.slug }}" method="post" action="#" class="geojsonpopupform">
+                {% for key, value in elements.items %}
+                    {% if key == form.slug %}
+                        {% for element in value %}
+                            {% if not forloop.last %}
+                            <div class="form_element" data-element-type="{{element.element_type}}">
+                            {% else %}
+                            <div class="form_element last" data-element-type="{{element.element_type}}">
+                            {% endif %}
+                            {% if element.element_type == 'checkbox' or element.element_type == 'radio' %}
+                                {{ element.html|randomize_cb_rb:user|safe }}
+                            {% else %}
+                                {{ element.html|safe }}
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endfor %}
+                <div class="padding">&nbsp;</div>
+            </form>
+            <div class="geojsonpopup_buttons">
+                <button type="button" class="remove">
+                    {% trans 'Remove' %}
+                </button>
+                <button type="button" class="save">
+                    {% trans 'Save' %}
+                </button>
+            </div>
+        </div>
+    {% endfor %}
+</div>
 {% endblock content %}
 
 {% block javascript %}
@@ -272,7 +308,7 @@ gnt.questionnaire.create_extra_layers = function(){
         //var sld_getter = make_sld_getter();
         var geojson_format = new OpenLayers.Format.GeoJSON();
         $('[data-element-type="geojson-layer"]').each(function() {
-                       
+
             var name = $(this).children().first().attr('data-layer-name');
             var long_name = $(this).children().first().attr('data-layer-long-name');
             var url = $(this).children().first().attr('data-layer-url');
@@ -281,7 +317,7 @@ gnt.questionnaire.create_extra_layers = function(){
                 var layer = new OpenLayers.Layer.Vector(
                     name,
                     {styleMap: new OpenLayers.StyleMap( { 'default': data.style }) });
-                       
+
                 layer.addFeatures(geojson_format.read(data.geojson));
                 layer.setVisibility(true);
                 gnt.questionnaire.extra_layers.push({
@@ -349,7 +385,7 @@ function makeWMSLayerSwitcher(page_number) {
             }
         }
     }
-    
+
     if ($('ul.wms-layerswitcher').children().length > 0) {
         $('#wms-layerswitcher-container').show();
     } else {

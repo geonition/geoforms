@@ -34,6 +34,7 @@ from geoforms.models import TextareaModel
 from geoforms.models import RangeElementModel
 from geoforms.models import PopupModel
 from geoforms.models import PageModel
+from geoforms.models import GeoJSONPopupModel
 from geoforms.models import Lottery
 from modeltranslation.admin import TranslationAdmin
 from modeltranslation.admin import TranslationTabularInline
@@ -89,6 +90,15 @@ class PopupAdmin(GeoformAdmin):
         return self.model.objects.filter(page_type = 'popup')
 
 admin.site.register(PopupModel, PopupAdmin)
+
+class GeoJSONPopupAdmin(GeoformAdmin):
+    """
+    GeoJSONPopup admin
+    """
+    def queryset(self, request):
+        return self.model.objects.filter(page_type = 'gpop')
+
+admin.site.register(GeoJSONPopupModel, GeoJSONPopupAdmin)
 
 class QuestionnaireFormAdmin(admin.ModelAdmin):
     ordering = ['questionnaire', 'order']

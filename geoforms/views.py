@@ -38,7 +38,7 @@ def questionnaire(request, questionnaire_id, template=''):
     This view creates the whole questionnaire html.
     By default response of this view is cached in Django.
     To turn cache off comment line 94.
-    If you want to use the cache choose cache backend of your choice, 
+    If you want to use the cache choose cache backend of your choice,
     see Django documentation.
     """
 
@@ -58,6 +58,7 @@ def questionnaire(request, questionnaire_id, template=''):
     #popup_set = set(Geoform.objects.filter(page_type = 'popup').values_list('id', flat=True))
     popup_set = set()
     bigcontent_forms = set()
+    geojsonpopup_forms = form_list.filter(page_type = 'gpop')
     for form in form_list:
         popup_elements = form.elements.filter(element_type = 'drawbutton').values_list('html', flat=True)
         wms_elements = form.elements.filter(element_type = 'wms-layer')
@@ -87,6 +88,7 @@ def questionnaire(request, questionnaire_id, template=''):
                              {'form_list': form_list,
                               'popup_list': popup_list,
                               'bigcontent_forms': bigcontent_forms,
+                              'geojsonpopup_forms': geojsonpopup_forms,
                               'elements': elements,
                               'questionnaire': quest,
                               'map_slug': 'questionnaire-map',

@@ -120,6 +120,9 @@
   bottom: 5px;
 }
 /* end elements in popup forms */
+#geojsonpopups {
+  display: none;
+}
 #popups {
   display: none;
 }

@@ -199,7 +199,8 @@ class Geoform(models.Model):
     page_type = models.CharField(max_length = 5,
                                  choices = (
                                     ('popup', 'popup'),
-                                    ('form','form')),
+                                    ('form','form'),
+                                    ('gpop', 'gpop')),
                                  default = 'form',
                                  editable = False,
                                  verbose_name = _('page type'))
@@ -257,6 +258,21 @@ class PageModel(Geoform):
         verbose_name = _('page')
         verbose_name_plural = _('pages')
 
+class GeoJSONPopupModel(Geoform):
+    """
+    Proxy model for geoform discuised as a
+    GeoJSONpopup.
+    """
+
+    def save(self, *args, **kwargs):
+        self.page_type = 'gpop'
+
+        super(GeoJSONPopupModel, self).save(*args, **kwargs)
+
+    class Meta:
+        proxy = True
+        verbose_name = _('geoJSON layer popup')
+        verbose_name_plural = _('geoJSON layer popups')
 
 class FormElement(models.Model):
     """
