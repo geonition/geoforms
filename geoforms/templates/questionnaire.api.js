@@ -52,7 +52,7 @@ active_class: the class to use when a button is activated
                 }
             },
             _create: function() {
-                this.element.addClass( this.options.classes )
+                this.element.addClass( this.options.classes );
                 this.element.bind('click',
                           this.toggle_active);
                 var label = this.element.html();
@@ -121,7 +121,7 @@ active_class: the class to use when a button is activated
                         $(".tooltip").css('top', evt.clientY + 5);
                         $(".tooltip").css('left', evt.clientX + 5);
                     }
-                })
+                });
                 }
                 $(".tooltip").hide();
 
@@ -241,7 +241,7 @@ gnt.questionnaire.get_popup_lonlat = function(geometry) {
                         geometry.components[0].components[0].y);
     }
     return lonlat;
-}
+};
 
 /*
  popup save feature event handler
@@ -342,7 +342,7 @@ gnt.questionnaire.save_handler = function(evt) {
         $('body').addClass('main');
     }
 
-}
+};
 
 /*
  popup remove feature event handler,
@@ -373,7 +373,7 @@ gnt.questionnaire.remove_handler = function(evt) {
         gnt.questionnaire.popup = undefined;
     }
     $('#mobile-popup').remove();
-}
+};
 
 /*
 This function makes the popup and shows it for the feature given.
@@ -430,7 +430,7 @@ gnt.questionnaire.show_popup_for_feature = function(feature, popup_name) {
             //reserved inputs like private and other feature root values
             if( $(this).attr('name') === 'private' ) { //should be a checkbox
 
-                $(this).attr( 'checked', !feature['private'] )
+                $(this).attr( 'checked', !feature['private'] );
             }
 
             for(var i = 0; i < feature.attributes.form_values.length; i++) {
@@ -477,7 +477,7 @@ gnt.questionnaire.show_popup_for_feature = function(feature, popup_name) {
         return false;
 
     }
-}
+};
 
 /*
  confirm and save the feature
@@ -527,7 +527,7 @@ gnt.questionnaire.feature_added = function(evt) {
         .drawButton( 'deactivate' );
 
     evt.layer.redraw();
-}
+};
 
 /*
 This function handles the on feature select
@@ -539,7 +539,7 @@ gnt.questionnaire.on_feature_select_handler = function(feature) {
         return;
     }
     gnt.questionnaire.show_popup_for_feature(feature);
-}
+};
 
 /*
 This function handles the on feature unselect
@@ -549,7 +549,7 @@ gnt.questionnaire.on_feature_unselect_handler = function(evt) {
     //remove popup from map
     map.removePopup(gnt.questionnaire.popup);
     gnt.questionnaire.popup = undefined;
-}
+};
 
 gnt.questionnaire.property_change_handler = function(evt) {
     if (gnt.questionnaire.wait_time === undefined){
@@ -779,7 +779,7 @@ gnt.questionnaire.create_accordion = function(accordion){
             $( accordion ).on('accordionPageChange', accordionPageChangeHandler);
         }
     }
-}
+};
 gnt.questionnaire.create_geoform_layers = function() {
         //annotations from the questionnaire creater
         var annotationLayer = new OpenLayers.Layer.Vector(
@@ -853,11 +853,11 @@ gnt.questionnaire.create_geoform_layers = function() {
         var routecontrol = new OpenLayers.Control.DrawFeature(routeLayer,
                                     OpenLayers.Handler.Path,
                                     {'id': 'routecontrol',
-                                    'featureAdded': gnt.questionnaire.feature_added})
+                                    'featureAdded': gnt.questionnaire.feature_added});
         var areacontrol = new OpenLayers.Control.DrawFeature(areaLayer,
                                     OpenLayers.Handler.Polygon,
                                     {'id': 'areacontrol',
-                                    'featureAdded': gnt.questionnaire.feature_added})
+                                    'featureAdded': gnt.questionnaire.feature_added});
 
         //select feature control
         var select_feature_control = new OpenLayers.Control.SelectFeature(
@@ -918,10 +918,10 @@ gnt.questionnaire.create_geoform_layers = function() {
             .prepend($('<div style="font-weight:bold;"></div>')
                 .prepend($('.drawbutton[data-popup="' + $(this).attr('name') + '"]').first().find('span').text())
             );
-        })
+        });
 
 
-}
+};
 /*
  This function should be called onload to initialize a questionnaire
 
@@ -953,7 +953,7 @@ gnt.questionnaire.add_result_counter = function(){
         $('#forms').bind('accordionchangestart', function(event, ui) {
             count_results();
         });
-}
+};
 
 gnt.after_map_loaded = function() {
     gnt.questionnaire.create_geoform_layers();
@@ -968,7 +968,7 @@ gnt.after_map_loaded = function() {
             gnt.questionnaire.gnt_getters[i]();
         }
     });
-}
+};
 
 /*
 This function creates widgets for HTML5 elements for browsers that do not support them.
@@ -978,10 +978,10 @@ The parameter css_selector can be used to specify where to search for html5 inpu
 gnt.questionnaire.create_widgets = function(css_selector) {
     var i;
     if(css_selector === '') {
-        css_selector = '*'
+        css_selector = '*';
     }
     //HTML 5 fallback create a slider if no browser support
-    //if(!Modernizr.inputtypes.range) { 
+    //if(!Modernizr.inputtypes.range) {
     if(true) { // At the moment Chrome range element fires a billion change events while sliding, so let's use jquery widgets everywhere.
         var range_elements = $(css_selector).find('input[type=range]').each(function() {
         var min;
@@ -1036,12 +1036,12 @@ gnt.questionnaire.geojson_select = function(e){
     gnt.questionnaire.set_values_to_input_elements(gnt.questionnaire.npvalues, css_selector);
     $(css_selector).change(gnt.questionnaire.property_change_handler);
 
-}
+};
 gnt.questionnaire.geojson_unselect = function(e){
     if(e.feature.popup) {
         map.removePopup(e.feature.popup);
         e.feature.popup.destroy();
         delete e.feature.popup;
-    }   
-}
+    }
+};
 
