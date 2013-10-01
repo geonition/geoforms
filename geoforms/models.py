@@ -40,7 +40,7 @@ class GeoformElement(models.Model):
         if self.id is None:
             super(GeoformElement, self).save(*args, **kwargs)
 
-        self.slug = slugify("%s %s" % (self.name, self.id))[:200]
+        self.slug = slugify("%s %s" % (self.name[:195], self.id))[:200]
         super(GeoformElement, self).save(*args, **kwargs)
 
     def __unicode__(self):
@@ -212,7 +212,7 @@ class Geoform(models.Model):
         if self.id is None:
             super(Geoform, self).save(*args, **kwargs)
 
-        self.slug = slugify("%s %s" % (self.name, self.id))[:200]
+        self.slug = slugify("%s %s" % (self.name[:195], self.id))[:200]
 
         super(Geoform, self).save(*args, **kwargs)
 
