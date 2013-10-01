@@ -1036,24 +1036,35 @@ gnt.questionnaire.geojson_select = function(e){
     gnt.questionnaire.set_values_to_input_elements(gnt.questionnaire.npvalues, css_selector);
     $(css_selector).change(gnt.questionnaire.property_change_handler);
     //connect the event to the popup buttons
-    $('.olFramedCloudPopupContent #' + popup_name + ' div.geojsonpopup_buttons button').off();
-    $('.olFramedCloudPopupContent #' + popup_name + ' div.geojsonpopup_buttons button.save').click([e.feature],
-                                                           gnt.questionnaire.geojson_unselect);
-    $('.olFramedCloudPopupContent #' + popup_name + ' div.geojsonpopup_buttons button.remove').click([e.feature,
-                                                            $( '.olFramedCloudPopupContent .geojsonpopupform')],
+    $('.olFramedCloudPopupContent div.geojsonpopup_buttons button').off();
+    $('.olFramedCloudPopupContent div.geojsonpopup_buttons button.save').click([e],
+                                       gnt.questionnaire.geojson_unselect);
+    $('.olFramedCloudPopupContent div.geojsonpopup_buttons button.remove').click([e],
                                                         gnt.questionnaire.clear_geojson_form);
 
 
 };
 gnt.questionnaire.geojson_unselect = function(e){
-    if(e.feature.popup) {
-        map.removePopup(e.feature.popup);
-        e.feature.popup.destroy();
-        delete e.feature.popup;
+    var feature;
+    if (e.hasOwnProperty('feature')) {
+        feature = e.feature;
+        
+    } else {
+        feature = e.data[0].feature;
+    }
+    if(feature.popup) {
+        feature.popup.destroy();
+        map.removePopup(feature.popup);
+        delete feature.popup;
     }
 };
-gnt.questionnaire.clear_geojson_form = function(e, form) {
-    form.reset();
+gnt.questionnaire.clear_geojson_form = function(e) {
+    $(':input','.olFramedCloudPopupContent .geojsonpopupform')
+        .not(':button, :submit, :reset, :hidden')
+        .val('')
+        .removeAttr('checked')
+        .removeAttr('selected')
+        .change();
     gnt.questionnaire.geojson_unselect(e);
 
 };
