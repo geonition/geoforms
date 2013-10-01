@@ -54,6 +54,7 @@
 .form_element[data-element-type="radio"] p,
 .form_element[data-element-type="select"] p,
 .form_element[data-element-type="textarea"] label,
+.form_element[data-element-type="number"] label,
 .form_element[data-element-type="text"] label {
   font-weight: bold;
 }
