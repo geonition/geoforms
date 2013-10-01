@@ -52,6 +52,7 @@
 .form_element[data-element-type="range"] p,
 .form_element[data-element-type="checkbox"] p,
 .form_element[data-element-type="radio"] p,
+.form_element[data-element-type="select"] p,
 .form_element[data-element-type="textarea"] label,
 .form_element[data-element-type="text"] label {
   font-weight: bold;
@@ -149,11 +150,12 @@
   text-align: left;
 }
 .form_element label input[type="text"],
-.form_element label input[type="number"]{
+.form_element label input[type="number"],
+.form_element select {
   max-width: 170px;
   display: block;
   margin-top: 3px;
-  margin-left: 15px;
+  margin-left: 16px;
 }
 .form_element label textarea {
   width: 320px;
