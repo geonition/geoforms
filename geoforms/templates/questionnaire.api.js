@@ -1035,6 +1035,14 @@ gnt.questionnaire.geojson_select = function(e){
     map.addPopup(popup);
     gnt.questionnaire.set_values_to_input_elements(gnt.questionnaire.npvalues, css_selector);
     $(css_selector).change(gnt.questionnaire.property_change_handler);
+    //connect the event to the popup buttons
+    $('.olFramedCloudPopupContent #' + popup_name + ' div.geojsonpopup_buttons button').off();
+    $('.olFramedCloudPopupContent #' + popup_name + ' div.geojsonpopup_buttons button.save').click([e.feature],
+                                                           gnt.questionnaire.geojson_unselect);
+    $('.olFramedCloudPopupContent #' + popup_name + ' div.geojsonpopup_buttons button.remove').click([e.feature,
+                                                            $( '.olFramedCloudPopupContent .geojsonpopupform')],
+                                                        gnt.questionnaire.clear_geojson_form);
+
 
 };
 gnt.questionnaire.geojson_unselect = function(e){
@@ -1043,5 +1051,10 @@ gnt.questionnaire.geojson_unselect = function(e){
         e.feature.popup.destroy();
         delete e.feature.popup;
     }
+};
+gnt.questionnaire.clear_geojson_form = function(e, form) {
+    form.reset();
+    gnt.questionnaire.geojson_unselect(e);
+
 };
 
