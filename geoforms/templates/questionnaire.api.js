@@ -546,6 +546,9 @@ This function handles the on feature unselect
 where it closes the popup.
 */
 gnt.questionnaire.on_feature_unselect_handler = function(evt) {
+    if (feature.hasOwnProperty('is_geojson_feature')) {
+        return;
+    }
     //remove popup from map
     map.removePopup(gnt.questionnaire.popup);
     gnt.questionnaire.popup = undefined;
