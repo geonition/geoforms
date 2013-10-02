@@ -407,3 +407,12 @@ ul.question-level-ctrl {
   padding: 0 0 0 20px;
   margin: 0;
 }
+.geojsonpopupform {
+  overflow-x: hidden;
+}
+.geojsonpopupform label textarea {
+  max-width: 300px;
+}
+.geojsonpopupform .form_element {
+  max-width: 340px;
+}
