@@ -1022,9 +1022,15 @@ gnt.questionnaire.create_widgets = function(css_selector) {
 };
 
 gnt.questionnaire.geojson_select = function(e){
+    var fid;
+    if (e.feature.hasOwnProperty('fid')){
+        fid = e.feature.fid;
+    } else {
+        fid = e.feature.data.id;
+    }
     $( '.olFramedCloudPopupContent .geojsonpopupform').remove();
     var css_selector = '.olFramedCloudPopupContent .geojsonpopupform :input:not(button)';
-    var popup_name = 'geojsonpopup_' + e.feature.fid.toString();
+    var popup_name = 'geojsonpopup_' + fid.toString();
     var popup = new OpenLayers.Popup.FramedCloud(e.feature.id,
                             e.feature.geometry.getBounds().getCenterLonLat(),
                             new OpenLayers.Size(100,100),
