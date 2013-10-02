@@ -95,8 +95,9 @@ def questionnaire(request, questionnaire_id, template=''):
                               'lottery' : lottery},
                              context_instance = RequestContext(request))
     # Cache the response. To turn cache off comment the following line
-    if not template:
-        cache.set(cache_id, resp, 1800, version=q_id)
+    if template != 'questionnaire_feedback.html': #template is not None only in "show responses view"
+        if not request.user.is_authenticated():
+            cache.set(cache_id, resp, 1800, version=q_id)
     return resp
 
 def get_active_questionnaires(request):
