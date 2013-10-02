@@ -545,7 +545,7 @@ gnt.questionnaire.on_feature_select_handler = function(feature) {
 This function handles the on feature unselect
 where it closes the popup.
 */
-gnt.questionnaire.on_feature_unselect_handler = function(evt) {
+gnt.questionnaire.on_feature_unselect_handler = function(feature) {
     if (feature.hasOwnProperty('is_geojson_feature')) {
         return;
     }
