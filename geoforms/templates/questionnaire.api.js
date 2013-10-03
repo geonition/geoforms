@@ -875,6 +875,10 @@ gnt.questionnaire.create_geoform_layers = function() {
                 multiple: false,
                 hover: false
                 });
+        //Allown map panning over selectable features
+        if (typeof(select_feature_control.handlers) != "undefined") {
+            select_feature_control.handlers.feature.stopDown = false;
+        }
 
         map.addControls([select_feature_control,
                          pointcontrol,
@@ -1058,7 +1062,7 @@ gnt.questionnaire.geojson_unselect = function(e){
     var feature;
     if (e.hasOwnProperty('feature')) {
         feature = e.feature;
-        
+
     } else {
         feature = e.data[0].feature;
     }
