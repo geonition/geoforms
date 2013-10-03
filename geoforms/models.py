@@ -360,7 +360,9 @@ class Questionnaire(models.Model):
         if self.id is None:
             super(Questionnaire, self).save(*args, **kwargs)
 
-        self.slug = slugify("%s %s" % (self.name[:30], self.id))[:200]
+        lang = getattr(settings,'LANGUAGE_CODE')
+        name = getattr(self,'name_'+lang,'en')
+        self.slug = slugify("%s %s" % (name[:30], self.id))[:200]
 
         super(Questionnaire, self).save(*args, **kwargs)
 
