@@ -583,6 +583,7 @@ gnt.questionnaire.property_change_handler = function(evt) {
                                 property,
                                 {'success': function(data) {
                                     gnt.questionnaire.property_id = data.id;
+                                    gnt.questionnaire.npvalues.id = data.id;
                                 }});
     } else {
         property.id = gnt.questionnaire.property_id;
