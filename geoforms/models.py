@@ -313,7 +313,7 @@ class Questionnaire(models.Model):
                                  help_text = _('This is the initial area which will be visible on the questionnaire map. The map tools are on the up right corner of the map. To choose a tool you have to click on it so that the tool turnes yellow. To draw choose the drawing tool and start drawing. To stop drawing you have to doubleclick the map. It is also possible to modify the area by choosing the modify tool. Modification works by dragging the vertexes of the area to the new modified places.'))
     show_area = models.BooleanField(verbose_name = _('show area'),
                                     help_text = _('Check the box to show the area to the user. Otherwise leave the checkbox unchecked.'))
-    scale_visible_area = models.IntegerField(verbose_name = _('scale the visible area'),
+    scale_visible_area = models.FloatField(verbose_name = _('scale the visible area'),
                                              default = 1,
                                              help_text = _('This number will be used to set the initial map extent. The map extent is counted by drawn area times this number.'))
     site = models.ForeignKey(Site,

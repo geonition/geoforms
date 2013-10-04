@@ -221,7 +221,7 @@ var questionnaire = {
     'data_group': 'Q-{{ questionnaire.slug }}',
     'questionnaire_area': {{ questionnaire.area.json|safe }},
     'show_area': {{ questionnaire.show_area|lower }},
-    'scale_visible_area': {{ questionnaire.scale_visible_area }}
+    'scale_visible_area': {{ questionnaire.scale_visible_area|safe }}
 }
 // add crs to area
 questionnaire.questionnaire_area['crs'] = {"type": "name",
