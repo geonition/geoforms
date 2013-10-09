@@ -1,0 +1,496 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# sellonen <sakari.ellonen@mapita.fi>, 2013
+# sellonen <sakari.ellonen@mapita.fi>, 2013
+msgid ""
+msgstr ""
+"Project-Id-Version: geonition\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-10-09 03:04-0500\n"
+"PO-Revision-Date: 2013-10-09 08:10+0000\n"
+"Last-Translator: sellonen <sakari.ellonen@mapita.fi>\n"
+"Language-Team: Persian (Iran) (http://www.transifex.com/projects/p/geonition/language/fa_IR/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: fa_IR\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: admin.py:129 admin.py:181 admin.py:203
+msgid "Advanced options"
+msgstr ""
+
+#: forms.py:45 forms.py:213 forms.py:604
+msgid "question"
+msgstr ""
+
+#: forms.py:134 forms.py:217
+msgid "minimum value"
+msgstr ""
+
+#: forms.py:135 forms.py:218
+msgid "maximum value"
+msgstr ""
+
+#: forms.py:136 forms.py:219
+msgid "size for one step"
+msgstr ""
+
+#: forms.py:214
+msgid "label for minimum choice"
+msgstr ""
+
+#: forms.py:215
+msgid "label for maximum choice"
+msgstr ""
+
+#: forms.py:216
+msgid "initial value"
+msgstr ""
+
+#: forms.py:328 forms.py:368 forms.py:405
+msgid "option"
+msgstr ""
+
+#: forms.py:451
+msgid "place"
+msgstr ""
+
+#: forms.py:452
+msgid "route"
+msgstr ""
+
+#: forms.py:453
+msgid "area"
+msgstr ""
+
+#: forms.py:454
+msgid "geometry type"
+msgstr ""
+
+#: forms.py:455
+msgid "button text"
+msgstr ""
+
+#: forms.py:458
+msgid "color"
+msgstr ""
+
+#: forms.py:459
+msgid ""
+"The color of the feature to be drawn. The color is given as hexadecimal "
+"color e.g. #ffffff --> white, #000000 --> black, #ff0000 --> red, #00ff00 "
+"--> green, #0000ff --> blue."
+msgstr ""
+
+#: forms.py:461
+msgid "popup for the place, route or area"
+msgstr ""
+
+#: forms.py:462 forms.py:481
+msgid "Choose the popup to use for the place, route, or area."
+msgstr ""
+
+#: forms.py:466
+msgid "max amount of answers"
+msgstr ""
+
+#: forms.py:467
+msgid ""
+"This is the maximum number of allowed places/routes/areas that can be drawn "
+"by this drawbutton."
+msgstr ""
+
+#: forms.py:547
+msgid "text for the paragraph"
+msgstr ""
+
+#: forms.py:548
+msgid ""
+"This field takes as input any html tags. This enables you to style the text "
+"in any way you want. Here is a list of tags that can be used <a "
+"href=\"http://dev.w3.org/html5/spec/single-page.html#usage-summary\">html5 "
+"tags</a>"
+msgstr ""
+
+#: forms.py:606
+msgid "randomize the order of the options"
+msgstr ""
+
+#: models.py:29 models.py:196 models.py:306
+msgid "slug"
+msgstr ""
+
+#: models.py:32 models.py:198
+msgid "name"
+msgstr ""
+
+#: models.py:35
+msgid "element type"
+msgstr ""
+
+#: models.py:37
+msgid "html"
+msgstr ""
+
+#: models.py:52
+msgid "questionnaire page element"
+msgstr ""
+
+#: models.py:53
+msgid "questionnaire page elements"
+msgstr ""
+
+#: models.py:69
+msgid "text input"
+msgstr ""
+
+#: models.py:70
+msgid "text inputs"
+msgstr ""
+
+#: models.py:83
+msgid "text area"
+msgstr ""
+
+#: models.py:84
+msgid "text areas"
+msgstr ""
+
+#: models.py:97
+msgid "number input"
+msgstr ""
+
+#: models.py:98
+msgid "number inputs"
+msgstr ""
+
+#: models.py:111
+msgid "range input"
+msgstr ""
+
+#: models.py:112
+msgid "range inputs"
+msgstr ""
+
+#: models.py:125
+msgid "paragraph"
+msgstr ""
+
+#: models.py:126
+msgid "paragraphs"
+msgstr ""
+
+#: models.py:139 models.py:140
+msgid "Select one"
+msgstr ""
+
+#: models.py:153 models.py:154
+msgid "Select multiple"
+msgstr ""
+
+#: models.py:167
+msgid "Dropdown"
+msgstr ""
+
+#: models.py:168
+msgid "Dropdowns"
+msgstr ""
+
+#: models.py:181
+msgid "Draw button"
+msgstr ""
+
+#: models.py:182
+msgid "Draw buttons"
+msgstr ""
+
+#: models.py:206
+msgid "page type"
+msgstr ""
+
+#: models.py:209
+msgid "elements"
+msgstr ""
+
+#: models.py:224 models.py:396
+msgid "questionnaire page"
+msgstr ""
+
+#: models.py:225 models.py:397
+msgid "questionnaire pages"
+msgstr ""
+
+#: models.py:242
+msgid "popup"
+msgstr ""
+
+#: models.py:243
+msgid "popups"
+msgstr ""
+
+#: models.py:258 models.py:283 models.py:388
+msgid "page"
+msgstr ""
+
+#: models.py:259 models.py:300
+msgid "pages"
+msgstr ""
+
+#: models.py:274
+msgid "geoJSON layer popup"
+msgstr ""
+
+#: models.py:275
+msgid "geoJSON layer popups"
+msgstr ""
+
+#: models.py:285
+msgid "element"
+msgstr ""
+
+#: models.py:287 models.py:390
+msgid "order"
+msgstr ""
+
+#: models.py:290
+msgid "page element"
+msgstr ""
+
+#: models.py:291
+msgid "page elements"
+msgstr ""
+
+#: models.py:301
+msgid "name of questionnaire"
+msgstr ""
+
+#: models.py:308
+msgid "description"
+msgstr ""
+
+#: models.py:309
+msgid "area of questionnaire"
+msgstr ""
+
+#: models.py:313
+msgid ""
+"This is the initial area which will be visible on the questionnaire map. The"
+" map tools are on the up right corner of the map. To choose a tool you have "
+"to click on it so that the tool turnes yellow. To draw choose the drawing "
+"tool and start drawing. To stop drawing you have to doubleclick the map. It "
+"is also possible to modify the area by choosing the modify tool. "
+"Modification works by dragging the vertexes of the area to the new modified "
+"places."
+msgstr ""
+
+#: models.py:314
+msgid "show area"
+msgstr ""
+
+#: models.py:315
+msgid ""
+"Check the box to show the area to the user. Otherwise leave the checkbox "
+"unchecked."
+msgstr ""
+
+#: models.py:316
+msgid "scale the visible area"
+msgstr ""
+
+#: models.py:318
+msgid ""
+"This number will be used to set the initial map extent. The map extent is "
+"counted by drawn area times this number."
+msgstr ""
+
+#: models.py:320
+msgid "site"
+msgstr ""
+
+#: models.py:327
+msgid "questionnaire start date"
+msgstr ""
+
+#: models.py:330
+msgid "questionnaire end date"
+msgstr ""
+
+#: models.py:334
+msgid "map"
+msgstr ""
+
+#: models.py:336
+msgid "detailed areas"
+msgstr ""
+
+#: models.py:342
+msgid "These detailed focus areas of the questionnaire."
+msgstr ""
+
+#: models.py:344
+msgid "show detailed areas"
+msgstr ""
+
+#: models.py:345
+msgid ""
+"Check the box to show the detailed areas to the user. Otherwise leave the "
+"checkbox unchecked."
+msgstr ""
+
+#: models.py:374 models.py:386 models.py:401 models.py:407
+msgid "questionnaire"
+msgstr ""
+
+#: models.py:375
+msgid "questionnaires"
+msgstr ""
+
+#: models.py:402
+msgid "Description of lottery"
+msgstr ""
+
+#: models.py:403
+msgid "Thank you message"
+msgstr ""
+
+#: widgets.py:35
+msgid "place icon"
+msgstr ""
+
+#: widgets.py:38
+msgid "route icon"
+msgstr ""
+
+#: widgets.py:41
+msgid "area icon"
+msgstr ""
+
+#: templates/jstranslations.txt:5
+msgid "Click on the map to draw the point"
+msgstr "‫براي ترسيم وشاوٍ بر ريي وقشٍ كليك كىيد‬"
+
+#: templates/jstranslations.txt:6
+msgid "Click on the map to start drawing the route and doubleclick to finnish"
+msgstr "‫ ديبار كليك كىيد‬،ٍ‫براي شريع ترسيم ريي وقشٍ كليك كىيد ي براي خاتم‬"
+
+#: templates/jstranslations.txt:7
+msgid "Click on the map to start drawing the area and doubleclick to finnish"
+msgstr "‫ ديبار كليك كىيد‬،ٍ‫براي شريع ترسيم ريي وقشٍ كليك كىيد ي براي خاتم‬"
+
+#: templates/jstranslations.txt:10
+msgid "Annotations"
+msgstr ""
+
+#: templates/questionnaire.html:56 templates/questionnaire.html.py:59
+msgid "Next"
+msgstr "‫بعدي‬"
+
+#: templates/questionnaire.html:58 templates/questionnaire.html.py:116
+msgid "Previous"
+msgstr "‫قبلي‬"
+
+#: templates/questionnaire.html:69
+msgid "Your answers and finish"
+msgstr "‫با تشكر از مشاركت شما‬"
+
+#: templates/questionnaire.html:105
+msgid ""
+"This is the end of the questionnaire and your answers has been saved. Thank "
+"you for your answers! You can still continue modifying your answers by "
+"clicking the previous buttons. Quit the questionnaire by clicking the 'quit "
+"and go to home page' button."
+msgstr ""
+
+#: templates/questionnaire.html:117
+msgid "Quit and go to home page"
+msgstr "‫خريج ي بازگشت بٍ صفحٍ اصلي‬"
+
+#: templates/questionnaire.html:151 templates/questionnaire.html.py:186
+msgid "Remove"
+msgstr ""
+
+#: templates/questionnaire.html:154 templates/questionnaire.html.py:189
+#: templates/admin/geoforms/geoformelement/create_element.html:42
+msgid "Save"
+msgstr ""
+
+#: templates/questionnaire.html:244
+msgid "You marked one place"
+msgstr ""
+
+#: templates/questionnaire.html:246
+msgid "You marked"
+msgstr " ‫شما‬"
+
+#: templates/questionnaire.html:246
+msgid "places"
+msgstr "ٍ‫مكان را وشان داديد ي ب‬"
+
+#: templates/questionnaire.html:252
+msgid "and answered one question"
+msgstr ""
+
+#: templates/questionnaire.html:254
+msgid "and answered"
+msgstr "‫ پرسش پاسخ داديد‬"
+
+#: templates/questionnaire.html:254 templates/questionnaire.html.py:259
+msgid "questions"
+msgstr ""
+
+#: templates/questionnaire.html:257
+msgid "You answered one question"
+msgstr ""
+
+#: templates/questionnaire.html:259
+msgid "You answered"
+msgstr ""
+
+#: templates/questionnaire.html:298
+msgid "Choose Layers to show"
+msgstr ""
+
+#: templates/questionnaire_feedback.html:12
+msgid "Touch a feature with your mouse to see the comments!"
+msgstr ""
+
+#: templates/questionnaire_feedback.html:18
+msgid ""
+"Features originating from the same drawbutton are colored alike. Touch them "
+"with your mouse to see the comments! Filtering on long answers is not "
+"supported."
+msgstr ""
+
+#: templates/admin/geoforms/geoformelement/create_element.html:8
+msgid "Home"
+msgstr ""
+
+#: templates/admin/geoforms/geoformelement/create_element.html:11
+msgid "Create element"
+msgstr ""
+
+#: templates/admin/geoforms/geoformelement/create_element.html:30
+msgid "remove"
+msgstr ""
+
+#: templates/admin/geoforms/geoformelement/create_element.html:35
+msgid "add"
+msgstr ""
+
+#: templates/help/geoform_element_html.html:2
+msgid ""
+"\n"
+"This is the HTML that represents the element widget.\n"
+msgstr ""
+
+#: templates/help/geoform_element_name.html:2
+msgid ""
+"\n"
+"This is the name of the element. The element name should be unique\n"
+"throughout the application so there cannot be two elements with the\n"
+"same name.\n"
+msgstr ""
