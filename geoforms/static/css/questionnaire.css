@@ -21,6 +21,9 @@
     }
 }
 
+#content .application-name h3 {
+  margin-top: 10px;
+}
 
 /* Legacy styles for range elements, to be removed */
 .rangetext {
