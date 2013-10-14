@@ -248,6 +248,7 @@ gnt.questionnaire.get_popup_lonlat = function(geometry) {
  connected to the save button in the popup form
 */
 gnt.questionnaire.save_handler = function(evt) {
+    if (!gnt.do_not_save_questionnaire_answers){
 
     //get the form data
     var popup_values = $('form.popupform.active').serializeArray();
@@ -322,6 +323,7 @@ gnt.questionnaire.save_handler = function(evt) {
                                data_group,
                                geojson,
                                undefined);
+    }
     }
 
     //unselect feature
@@ -555,6 +557,9 @@ gnt.questionnaire.on_feature_unselect_handler = function(feature) {
 };
 
 gnt.questionnaire.property_change_handler = function(evt) {
+    if (gnt.do_not_save_questionnaire_answers){
+        return;
+    }
     if (gnt.questionnaire.wait_time === undefined){
         gnt.questionnaire.wait_time = 5000;
     } else {
@@ -595,6 +600,9 @@ gnt.questionnaire.property_change_handler = function(evt) {
     }, gnt.questionnaire.wait_time);
 };
 gnt.questionnaire.set_values_to_input_elements = function(data,css_selector) {
+    if (gnt.do_not_save_questionnaire_answers){
+        return;
+    }
     if (typeof css_selector === 'undefined'){
         css_selector = '#forms :input:not(button)';
     }
@@ -966,10 +974,13 @@ gnt.questionnaire.add_result_counter = function(){
 gnt.after_map_loaded = function() {
     gnt.questionnaire.create_geoform_layers();
     gnt.questionnaire.create_extra_layers();
-    gnt.questionnaire.add_result_counter();
 
     gnt.questionnaire.create_widgets('#forms');
 
+    if (gnt.do_not_save_questionnaire_answers){
+        return;
+    }
+    gnt.questionnaire.add_result_counter();
     //create a session for the anonymoususer
     gnt.auth.create_session(function(){
         for(var i=0;i<gnt.questionnaire.gnt_getters.length;i++){

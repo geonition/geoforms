@@ -268,8 +268,14 @@ function count_results() {
 
 {% block questionnaire_init %}
 
+
 jQuery(document).ready(function() {
     gnt.questionnaire.init('', '#forms', questionnaire_area, data_group);
+    {% if no_save != "" %}
+    gnt.do_not_save_questionnaire_answers = true;
+    {% else %}
+    gnt.do_not_save_questionnaire_answers = false;
+    {% endif %}
 
     {% if lottery %}
     addLotteryForm(window.location.href + 'lottery', "{{lottery.thank_you_msg}}");

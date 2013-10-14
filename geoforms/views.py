@@ -33,7 +33,7 @@ def lottery(request, questionnaire_id):
 
 
 @ensure_csrf_cookie
-def questionnaire(request, questionnaire_id, template=''):
+def questionnaire(request, questionnaire_id, template='', no_save=''):
     """
     This view creates the whole questionnaire html.
     By default response of this view is cached in Django.
@@ -50,7 +50,10 @@ def questionnaire(request, questionnaire_id, template=''):
     # Check if cached version is available
     lang = to_locale(get_language()).lower() #
     cache_id = 'questionnaire_resp_{0}_{1}'.format(request.META['HTTP_HOST'],lang)
-    if not template and cache.get(cache_id, version=q_id) is not None:
+    use_cache = False
+    if no_save == '' and template == '' and not request.user.is_authenticated():
+        use_cache = True
+    if use_cache and cache.get(cache_id, version=q_id) is not None:
         return cache.get(cache_id, version=q_id)
 
     form_list = quest.geoforms.all().order_by('questionnaireform__order')
@@ -92,12 +95,12 @@ def questionnaire(request, questionnaire_id, template=''):
                               'elements': elements,
                               'questionnaire': quest,
                               'map_slug': 'questionnaire-map',
+                              'no_save' : no_save,
                               'lottery' : lottery},
                              context_instance = RequestContext(request))
     # Cache the response. To turn cache off comment the following line
-    if template != 'questionnaire_feedback.html': #template is not None only in "show responses view"
-        if not request.user.is_authenticated():
-            cache.set(cache_id, resp, 1800, version=q_id)
+    if use_cache:
+        cache.set(cache_id, resp, 1800, version=q_id)
     return resp
 
 def get_active_questionnaires(request):
@@ -123,8 +126,11 @@ def get_active_questionnaires(request):
 
     return HttpResponse(json.dumps({'projectType': 'questionnaires',
                                     'content': questionnaires}))
-#    return HttpResponse(json.dumps(questionnaires))
 
+
+def no_save(request, questionnaire_id):
+    return questionnaire(request, questionnaire_id,'','no_save')
 
 def feedback(request, questionnaire_id):
     return questionnaire(request, questionnaire_id, 'questionnaire_feedback.html')
+
