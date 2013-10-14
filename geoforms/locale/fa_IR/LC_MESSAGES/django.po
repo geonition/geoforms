@@ -3,24 +3,25 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# 2michal3 <mczepkiewicz@yahoo.pl>, 2012-2013
+# sellonen <sakari.ellonen@mapita.fi>, 2013
+# sellonen <sakari.ellonen@mapita.fi>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: geonition\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-09 03:04-0500\n"
-"PO-Revision-Date: 2013-09-28 00:00+0000\n"
-"Last-Translator: ksnabb <kristoffer.snabb@geonition.org>\n"
-"Language-Team: Polish (http://www.transifex.com/projects/p/geonition/language/pl/)\n"
+"PO-Revision-Date: 2013-10-09 08:10+0000\n"
+"Last-Translator: sellonen <sakari.ellonen@mapita.fi>\n"
+"Language-Team: Persian (Iran) (http://www.transifex.com/projects/p/geonition/language/fa_IR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: pl\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Language: fa_IR\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #: admin.py:129 admin.py:181 admin.py:203
 msgid "Advanced options"
-msgstr "Opcje zaawansowane"
+msgstr ""
 
 #: forms.py:45 forms.py:213 forms.py:604
 msgid "question"
@@ -56,15 +57,15 @@ msgstr ""
 
 #: forms.py:451
 msgid "place"
-msgstr "Punkt"
+msgstr ""
 
 #: forms.py:452
 msgid "route"
-msgstr "Linia"
+msgstr ""
 
 #: forms.py:453
 msgid "area"
-msgstr "Obszar"
+msgstr ""
 
 #: forms.py:454
 msgid "geometry type"
@@ -370,15 +371,15 @@ msgstr ""
 
 #: templates/jstranslations.txt:5
 msgid "Click on the map to draw the point"
-msgstr "Kliknij na mapie by zaznaczyć punkt"
+msgstr "‫براي ترسيم وشاوٍ بر ريي وقشٍ كليك كىيد‬"
 
 #: templates/jstranslations.txt:6
 msgid "Click on the map to start drawing the route and doubleclick to finnish"
-msgstr "Kliknij na mapie by zacząć rysować linię. Kliknij dwukrotnie by zakończyć"
+msgstr "‫ ديبار كليك كىيد‬،ٍ‫براي شريع ترسيم ريي وقشٍ كليك كىيد ي براي خاتم‬"
 
 #: templates/jstranslations.txt:7
 msgid "Click on the map to start drawing the area and doubleclick to finnish"
-msgstr "Kliknij na mapie by zacząć rysować obszar. Kliknij dwukrotnie by zakończyć"
+msgstr "‫ ديبار كليك كىيد‬،ٍ‫براي شريع ترسيم ريي وقشٍ كليك كىيد ي براي خاتم‬"
 
 #: templates/jstranslations.txt:10
 msgid "Annotations"
@@ -386,15 +387,15 @@ msgstr ""
 
 #: templates/questionnaire.html:56 templates/questionnaire.html.py:59
 msgid "Next"
-msgstr "Następne"
+msgstr "‫بعدي‬"
 
 #: templates/questionnaire.html:58 templates/questionnaire.html.py:116
 msgid "Previous"
-msgstr "Poprzednie"
+msgstr "‫قبلي‬"
 
 #: templates/questionnaire.html:69
 msgid "Your answers and finish"
-msgstr "odpowiedzi i zakończ"
+msgstr "‫با تشكر از مشاركت شما‬"
 
 #: templates/questionnaire.html:105
 msgid ""
@@ -402,52 +403,52 @@ msgid ""
 "you for your answers! You can still continue modifying your answers by "
 "clicking the previous buttons. Quit the questionnaire by clicking the 'quit "
 "and go to home page' button."
-msgstr "To jest koniec ankiety. Dziękujemy za jej wypełnienie! Twoje odpowiedzi zostały zapisane. W dalszym ciągu możesz je modyfikować, klikając na przycisk \"Poprzednie\". Żeby wyjść z ankiety kliknij na przycisk \"Wyjdź i wróć do strony głównej\""
+msgstr ""
 
 #: templates/questionnaire.html:117
 msgid "Quit and go to home page"
-msgstr "Wyjdź i wróć do strony głównej"
+msgstr "‫خريج ي بازگشت بٍ صفحٍ اصلي‬"
 
 #: templates/questionnaire.html:151 templates/questionnaire.html.py:186
 msgid "Remove"
-msgstr "Usuń"
+msgstr ""
 
 #: templates/questionnaire.html:154 templates/questionnaire.html.py:189
 #: templates/admin/geoforms/geoformelement/create_element.html:42
 msgid "Save"
-msgstr "Zapisz"
+msgstr ""
 
 #: templates/questionnaire.html:244
 msgid "You marked one place"
-msgstr "Zaznaczyłeś/aś jedno miejsce"
+msgstr ""
 
 #: templates/questionnaire.html:246
 msgid "You marked"
-msgstr "Zaznaczyłeś/aś"
+msgstr " ‫شما‬"
 
 #: templates/questionnaire.html:246
 msgid "places"
-msgstr "miejsc"
+msgstr "ٍ‫مكان را وشان داديد ي ب‬"
 
 #: templates/questionnaire.html:252
 msgid "and answered one question"
-msgstr "i odpowiedziałeś/aś na jedno pytanie"
+msgstr ""
 
 #: templates/questionnaire.html:254
 msgid "and answered"
-msgstr "i odpowiedziałeś/aś"
+msgstr "‫ پرسش پاسخ داديد‬"
 
 #: templates/questionnaire.html:254 templates/questionnaire.html.py:259
 msgid "questions"
-msgstr "pytań"
+msgstr ""
 
 #: templates/questionnaire.html:257
 msgid "You answered one question"
-msgstr "Odpowiedziałeś/aś na jedno pytanie"
+msgstr ""
 
 #: templates/questionnaire.html:259
 msgid "You answered"
-msgstr "Odpowiedziałeś/aś"
+msgstr ""
 
 #: templates/questionnaire.html:298
 msgid "Choose Layers to show"
