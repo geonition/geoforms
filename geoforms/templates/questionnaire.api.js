@@ -773,6 +773,7 @@ gnt.questionnaire.create_accordion = function(accordion){
         });
 
         $( window ).bind( 'hashchange', function(event) {
+            $('.application-name').remove();
             var newHash = location.hash.split( '#' )[1];
             var newActive = newHash.slice(5) - 1;
             var curActive = $( accordion ).accordion( 'option', 'active' );
