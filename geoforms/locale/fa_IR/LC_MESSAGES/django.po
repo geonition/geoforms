@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Translators:
 # sellonen <sakari.ellonen@mapita.fi>, 2013
 # sellonen <sakari.ellonen@mapita.fi>, 2013
@@ -9,15 +9,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geonition\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-16 04:27-0500\n"
+"POT-Creation-Date: 2013-10-09 03:04-0500\n"
 "PO-Revision-Date: 2013-10-09 08:10+0000\n"
 "Last-Translator: sellonen <sakari.ellonen@mapita.fi>\n"
-"Language-Team: Persian (Iran) (http://www.transifex.com/projects/p/geonition/"
-"language/fa_IR/)\n"
-"Language: fa_IR\n"
+"Language-Team: Persian (Iran) (http://www.transifex.com/projects/p/geonition/language/fa_IR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: fa_IR\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: admin.py:129 admin.py:181 admin.py:203
@@ -83,8 +82,8 @@ msgstr ""
 #: forms.py:459
 msgid ""
 "The color of the feature to be drawn. The color is given as hexadecimal "
-"color e.g. #ffffff --> white, #000000 --> black, #ff0000 --> red, #00ff00 --"
-"> green, #0000ff --> blue."
+"color e.g. #ffffff --> white, #000000 --> black, #ff0000 --> red, #00ff00 "
+"--> green, #0000ff --> blue."
 msgstr ""
 
 #: forms.py:461
@@ -112,9 +111,9 @@ msgstr ""
 #: forms.py:548
 msgid ""
 "This field takes as input any html tags. This enables you to style the text "
-"in any way you want. Here is a list of tags that can be used <a href="
-"\"http://dev.w3.org/html5/spec/single-page.html#usage-summary\">html5 tags</"
-"a>"
+"in any way you want. Here is a list of tags that can be used <a "
+"href=\"http://dev.w3.org/html5/spec/single-page.html#usage-summary\">html5 "
+"tags</a>"
 msgstr ""
 
 #: forms.py:606
@@ -279,8 +278,8 @@ msgstr ""
 
 #: models.py:313
 msgid ""
-"This is the initial area which will be visible on the questionnaire map. The "
-"map tools are on the up right corner of the map. To choose a tool you have "
+"This is the initial area which will be visible on the questionnaire map. The"
+" map tools are on the up right corner of the map. To choose a tool you have "
 "to click on it so that the tool turnes yellow. To draw choose the drawing "
 "tool and start drawing. To stop drawing you have to doubleclick the map. It "
 "is also possible to modify the area by choosing the modify tool. "
@@ -451,11 +450,7 @@ msgstr ""
 msgid "You answered"
 msgstr ""
 
-#: templates/questionnaire.html:316
-msgid "Zoom to district"
-msgstr ""
-
-#: templates/questionnaire.html:339
+#: templates/questionnaire.html:298
 msgid "Choose Layers to show"
 msgstr ""
 
