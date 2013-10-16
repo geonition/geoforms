@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geonition\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-16 04:27-0500\n"
+"POT-Creation-Date: 2013-10-16 11:46+0300\n"
 "PO-Revision-Date: 2013-09-28 00:00+0000\n"
 "Last-Translator: ksnabb <kristoffer.snabb@geonition.org>\n"
 "Language-Team: Swedish (http://www.transifex.com/projects/p/geonition/"
@@ -475,9 +475,9 @@ msgstr "Du svara"
 
 #: templates/questionnaire.html:316
 msgid "Zoom to district"
-msgstr ""
+msgstr "Centrera kartan till stadsdelen"
 
-#: templates/questionnaire.html:339
+#: templates/questionnaire.html:340
 msgid "Choose Layers to show"
 msgstr ""
 
