@@ -315,8 +315,10 @@ gnt.questionnaire.create_extra_layers = function(){
                 .attr('id', 'kaupunginosat')
                 .prepend('<strong>{% trans "Zoom to district" %}</strong>')
                 .append($('<select name="districts"></select>')
+                    .append($('<option value=""></option>'))
                     .css('margin-left','5px')
                     .on('change',function(){
+                        if (this.value === ""){return;}
                         var new_center = (new OpenLayers.LonLat(
                                 districts[this.value][0],
                                 districts[this.value][1])).transform(source_proj, target_proj);
