@@ -279,11 +279,11 @@ class RangeElementForm(forms.ModelForm):
 
             if not question:
                 question = ['']* len(settings.LANGUAGES)
-                name = slugify("%sT%s" % (min_label[0][:200],
-                                          str(datetime.utcnow())))
+                name = slugify("%s-%s" % (min_label[0][:194],
+                                          str(self.id)))
             else:
-                name = slugify("%sT%s" % (question[0][:200],
-                                          str(datetime.utcnow())))
+                name = slugify("%sT%s" % (question[0][:194],
+                                          str(self.id)))
 
             value = ''
             for i, lang in enumerate(settings.LANGUAGES):
