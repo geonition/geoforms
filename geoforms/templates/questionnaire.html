@@ -203,6 +203,9 @@ Your input is important to us! One more way you can help is to share this survey
 {% if request.META.HTTP_HOST == "oregonstateparks.maptionnaire.com" %}
     <script type="text/javascript" src="{{ STATIC_URL }}js/parks.js"></script>
 {% endif %}
+{% if CITIES_WITH_ZOOMABLE_DISTRICTS != "" %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/make_district_selector.js"></script>
+{% endif %}
 {% endblock extra_js %}
 <script type="text/javascript" src="{{ STATIC_URL }}js/libs/proj4js-gnt.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/libs/OpenLayers-gnt.js"></script>
@@ -297,42 +300,8 @@ jQuery(document).ready(function() {
 {% endblock questionnaire_init %}
 
 gnt.questionnaire.create_extra_layers = function(){
-        {% if request.META.HTTP_HOST == "helsinki.asiatkartalle.fi" %}
-        district_list = ["Alppiharju", "Eira", "Haaga", "Hermanni", "Herttoniemi", "Kaarela", "Kaartinkaupunki", "Kaivopuisto", "Kallio", "Kamppi", "Katajanokka", "Kluuvi", "Konala", "Koskela", "Kruununhaka", "Kulosaari", "Kumpula", "K\u00e4pyl\u00e4", "Laajasalo", "Laakso", "Lauttasaari", "L\u00e4nsisatama", "Malmi", "Meilahti", "Mellunkyl\u00e4", "Munkkiniemi", "Oulunkyl\u00e4", "Pakila", "Pasila", "Pit\u00e4j\u00e4nm\u00e4ki", "Pukinm\u00e4ki", "Punavuori", "Ruskeasuo", "Santahamina", "Suomenlinna", "Suurmets\u00e4", "Suutarila", "S\u00f6rn\u00e4inen", "Tammisalo", "Tapaninkyl\u00e4", "Toukola", "Tuomarinkyl\u00e4", "T\u00f6\u00f6l\u00f6", "Ulkosaaret", "Ullanlinna", "Ultuna", "Vallila", "Vanhakaupunki", "Vartiokyl\u00e4", "Vartiosaari", "Viikki", "Vuosaari", "\u00d6stersundom"];
-        var districts = {"Vuosaari": [25.1437314, 60.2087898], "Pukinm\u00e4ki": [24.9890412, 60.24496019999999], "Kruununhaka": [24.962933, 60.1720966], "Viikki": [25.0200552, 60.2251453], "Tapaninkyl\u00e4": [25.011075, 60.262225], "Tammisalo": [25.0620623, 60.191407], "Koskela": [24.9662791, 60.2182623], "Kamppi": [24.9316667, 60.1675], "Kluuvi": [24.942339, 60.17325439999999], "Kulosaari": [25.0089651, 60.1866226], "Laakso": [24.9129367, 60.1935612], "Toukola": [24.9730071, 60.2060382], "Kaivopuisto": [24.9600255, 60.15839759999999], "Laajasalo": [25.0501221, 60.1732399], "Suurmets\u00e4": [25.0791798, 60.2656071], "Meilahti": [24.8910552, 60.1828289], "Lauttasaari": [24.8772532, 60.1573302], "Eira": [24.9383908, 60.15566979999999], "Malmi": [25.0105626, 60.2510217], "Munkkiniemi": [24.8759887, 60.19827029999999], "Kaarela": [24.8813374, 60.25123], "Pit\u00e4j\u00e4nm\u00e4ki": [24.8620622, 60.2229798], "Suomenlinna": [24.9881401, 60.14539999999999], "Ultuna": [25.1951684, 60.2785644], "Vartiosaari": [25.078121, 60.1850757], "Ullanlinna": [24.9471992, 60.1580102], "Punavuori": [24.9363712, 60.16214], "Alppiharju": [24.9410248, 60.17332440000001], "Vanhakaupunki": [24.9788064, 60.2161554], "Pakila": [24.9481287, 60.24418129999999], "Mellunkyl\u00e4": [25.1020846, 60.23363449999999], "Vallila": [24.9570247, 60.19443539999999], "Haaga": [24.8961944, 60.2218635], "\u00d6stersundom": [25.1737421, 60.2514015], "Santahamina": [25.0481967, 60.14929350000001], "Herttoniemi": [25.0326173, 60.19473499999999], "Kallio": [24.9492727, 60.18428689999999], "Ruskeasuo": [24.9041068, 60.20266830000001], "Oulunkyl\u00e4": [24.9634243, 60.2290821], "Pasila": [24.9328451, 60.1989806], "Tuomarinkyl\u00e4": [24.9668239, 60.2563651], "Konala": [24.8449883, 60.2369883], "Suutarila": [25.0109522, 60.2809154], "Vartiokyl\u00e4": [25.0955809, 60.21722839999999], "L\u00e4nsisatama": [24.9168469, 60.15319159999999], "Ulkosaaret": [24.9410248, 60.17332440000001], "Kumpula": [24.9647354, 60.2091078], "Kaartinkaupunki": [24.9498332, 60.1650854], "K\u00e4pyl\u00e4": [24.950781, 60.21416300000001], "Katajanokka": [24.9759256, 60.1665782], "T\u00f6\u00f6l\u00f6": [24.9152702, 60.18032239999999], "Hermanni": [24.9667755, 60.1950971], "S\u00f6rn\u00e4inen": [24.9689708, 60.1864219]};
-        var source_proj = new OpenLayers.Projection('EPSG:4326');
-        var target_proj = new OpenLayers.Projection('EPSG:3067');
-
-        $('#map').append(
-                $('<div></div>')
-                .css('position','absolute')
-                .css('top','0')
-                .css('left','50px')
-                .css('padding','6px')
-                .css('background','white')
-                .css('border','1px solid black')
-                .css('z-index','3000')
-                .attr('id', 'kaupunginosat')
-                .prepend('<strong>{% trans "Zoom to district" %}</strong>')
-                .append($('<select name="districts"></select>')
-                    .append($('<option value=""></option>'))
-                    .css('margin-left','5px')
-                    .on('change',function(){
-                        if (this.value === ""){return;}
-                        var new_center = (new OpenLayers.LonLat(
-                                districts[this.value][0],
-                                districts[this.value][1])).transform(source_proj, target_proj);
-                        console.log(new_center);
-                        map.setCenter(new_center, 11);
-                        }))
-                );
-
-        for (var ind=0;ind<district_list.length;ind++){
-            var dist = district_list[ind];
-            $('select[name="districts"]')
-                .append($('<option value="' + dist + '">' + dist + '</option>'));
-        }
-
+        {% if CITIES_WITH_ZOOMABLE_DISTRICTS != "" %}
+        make_district_selector('{% trans "Zoom to district" %}',{{CITIES_WITH_ZOOMABLE_DISTRICTS|safe}});
         {% endif %}
         gnt.questionnaire.extra_layers = Array();
         $('#map').append(

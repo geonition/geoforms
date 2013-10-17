@@ -15,6 +15,7 @@ from django.utils.translation import ugettext as _
 from django.utils.translation import get_language
 from django.utils.translation import to_locale
 from django.core.cache import cache
+from django.conf import settings
 
 
 @ensure_csrf_cookie
@@ -96,6 +97,7 @@ def questionnaire(request, questionnaire_id, template='', no_save=''):
                               'questionnaire': quest,
                               'map_slug': 'questionnaire-map',
                               'no_save' : no_save,
+                              'CITIES_WITH_ZOOMABLE_DISTRICTS' : getattr(settings,'CITIES_WITH_ZOOMABLE_DISTRICTS',''),
                               'lottery' : lottery},
                              context_instance = RequestContext(request))
     # Cache the response. To turn cache off comment the following line
