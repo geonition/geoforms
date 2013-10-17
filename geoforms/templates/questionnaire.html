@@ -273,7 +273,26 @@ function count_results() {
 
 
 jQuery(document).ready(function() {
+    {% if ADD_CANNOT_SAY_TO_RANGE_ELEMENTS %}
+    // this function has to be called before gnt.questionnaire.property_change_handler
+    function add_cannot_say_to_range_elements(translation){
+        $('.form_element[data-element-type="range"]').each(function(){
+            $(this).find('.range-container').css('display','inline-block');
+            $(this).append(
+                $('<label>' + translation + '</label>')
+                .css('display','inline-block')
+                .prepend($('<input type="checkbox" name="gnt-cannot-say" value="' + $(this).find('input[type="range"]').first().attr('name') + '">')
+                    .css('margin-right','4px')
+                    .change(function(){
+                        $(this).closest('.form_element').find('.slider').slider('option','disabled',this.checked);
+                    })));
+        });
+    }
+    add_cannot_say_to_range_elements('{% trans "Cannot say" %}');
+    {% endif %}
+
     gnt.questionnaire.init('', '#forms', questionnaire_area, data_group);
+
     {% if no_save != "" %}
     gnt.do_not_save_questionnaire_answers = true;
     {% else %}
@@ -283,6 +302,7 @@ jQuery(document).ready(function() {
     {% if lottery %}
     addLotteryForm(window.location.href + 'lottery', "{{lottery.thank_you_msg}}");
     {% endif %}
+
 
 
     {% if request.META.HTTP_HOST == "oregonstateparks.maptionnaire.com" %}
