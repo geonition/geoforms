@@ -561,9 +561,11 @@ gnt.questionnaire.property_change_handler = function(evt) {
         return;
     }
     // exclude lottery from the data
-    for(var k=0;k<evt.srcElement.classList.length;k++){
-        if (evt.srcElement.classList[k] === 'gnt-lottery') {
-            return;
+    if (evt.hasOwnProperty('srcElement')){
+        for(var k=0;k<evt.srcElement.classList.length;k++){
+            if (evt.srcElement.classList[k] === 'gnt-lottery') {
+                return;
+            }
         }
     }
     // Without the wait time, it may happen that two properties are posted simultaneously,
