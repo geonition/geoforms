@@ -560,6 +560,14 @@ gnt.questionnaire.property_change_handler = function(evt) {
     if (gnt.do_not_save_questionnaire_answers){
         return;
     }
+    // exclude lottery from the data
+    for(var k=0;k<evt.srcElement.classList.length;k++){
+        if (evt.srcElement.classList[k] === 'gnt-lottery') {
+            return;
+        }
+    }
+    // Without the wait time, it may happen that two properties are posted simultaneously,
+    // for example if the user first fills a a text area question and then a checkbox.
     if (gnt.questionnaire.wait_time === undefined){
         gnt.questionnaire.wait_time = 5000;
     } else {

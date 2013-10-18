@@ -19,30 +19,19 @@ function addLotteryForm(url, thank_you_msg) {
             xhr.setRequestHeader("X-CSRFToken", csrftoken);
         };
 
-    $.ajax({
-        url: url,
-        beforeSend: beforeSend
-    }).done(
-        function(data) {
-            var empty_form = $(data.msg); 
-            $('.lottery')
-                .append($('<a href="http://ayk.asiatkartalle.fi/static/rekisteriseloste_ayk.doc">Rekisteriseloste</a><br /><br />'))
-                .append(empty_form
-                    .append($('<button></button>')
-                        .text('Save')
-                        .click(function(){
-                            $.ajax({
-                                url: url,
-                                type: 'POST',
-                                data: $('.lottery input#id_email').val(),
-                                beforeSend: beforeSend
-                            }).done(function(data){
-                                        if (data.msg === 'success'){
-                                            $('.lottery').html($('<p>' + thank_you_msg + '</p>'));
-                                        }
-                            });
+    $('.lottery input#id_email').addClass('gnt-lottery');
+    $('.lottery button')
+        .click(function(){
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: $('.lottery input#id_email').val(),
+                beforeSend: beforeSend
+            }).done(function(data){
+                        if (data.msg === 'success'){
+                            $('.lottery').html($('<p>' + thank_you_msg + '</p>'));
+                        }
+            });
 
-                        })
-            ));
-    });
+        });
 }

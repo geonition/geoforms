@@ -71,9 +71,11 @@
         <div>
                 {% if lottery %}
                 <p>
-                {{lottery.description}}
+                {{lottery.description|safe}}
                 </p>
                 <div class="lottery">
+                    {{lottery_form}}
+                    <button>{% trans "Save" %}</button>
                 </div>
                 {% endif %}
 
@@ -300,7 +302,7 @@ jQuery(document).ready(function() {
     {% endif %}
 
     {% if lottery %}
-    addLotteryForm(window.location.href + 'lottery', "{{lottery.thank_you_msg}}");
+    addLotteryForm('{{questionnaire.get_absolute_url}}' + 'lottery', "{{lottery.thank_you_msg}}");
     {% endif %}
 
 
