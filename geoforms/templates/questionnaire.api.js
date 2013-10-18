@@ -561,7 +561,7 @@ gnt.questionnaire.property_change_handler = function(evt) {
         return;
     }
     // exclude lottery from the data
-    if (evt.hasOwnProperty('srcElement')){
+    if (evt.hasOwnProperty('srcElement') && typeof(evt.srcElement) !== 'undefined'){
         for(var k=0;k<evt.srcElement.classList.length;k++){
             if (evt.srcElement.classList[k] === 'gnt-lottery') {
                 return;
