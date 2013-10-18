@@ -205,9 +205,6 @@ Your input is important to us! One more way you can help is to share this survey
 {% if request.META.HTTP_HOST == "oregonstateparks.maptionnaire.com" %}
     <script type="text/javascript" src="{{ STATIC_URL }}js/parks.js"></script>
 {% endif %}
-{% if CITIES_WITH_ZOOMABLE_DISTRICTS != "" %}
-    <script type="text/javascript" src="{{ STATIC_URL }}js/make_district_selector.js"></script>
-{% endif %}
 {% endblock extra_js %}
 <script type="text/javascript" src="{{ STATIC_URL }}js/libs/proj4js-gnt.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/libs/OpenLayers-gnt.js"></script>
@@ -323,7 +320,7 @@ jQuery(document).ready(function() {
 
 gnt.questionnaire.create_extra_layers = function(){
         {% if CITIES_WITH_ZOOMABLE_DISTRICTS != "" %}
-        make_district_selector('{% trans "Zoom to district" %}',{{CITIES_WITH_ZOOMABLE_DISTRICTS|safe}});
+        gnt.questionnaire.make_district_selector('{% trans "Zoom to district" %}',{{CITIES_WITH_ZOOMABLE_DISTRICTS|safe}});
         {% endif %}
         gnt.questionnaire.extra_layers = Array();
         $('#map').append(

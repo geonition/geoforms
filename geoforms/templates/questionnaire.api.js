@@ -1104,4 +1104,52 @@ gnt.questionnaire.clear_geojson_form = function(e) {
     gnt.questionnaire.geojson_unselect(e);
 
 };
+gnt.questionnaire.make_district_selector = function(translated_zoom_to_district,city_names) {
+    function make_callback(name){
+        var city_name = name;
+        var f = function(data){
+            for (var district_name in data.district_coordinates){
+                gnt.districts[district_name] = data.district_coordinates[district_name];
+            }
+            var district_list = data.district_names_ordered;
+            var temp_s = '<optgroup label="' + city_name + '">';
+
+            for (var ind=0;ind<district_list.length;ind++){
+                temp_s += '<option value="' + district_list[ind] + '">' + district_list[ind] + '</option>';
+            }
+            temp_s += '</optgroup>';
+            $('select[name="zoomable-districts"]')
+                .append($(temp_s));
+        };
+        return f;
+    }
+    gnt.districts = {}; // longitude-latitudes, for example gnt.districts["Eira"] = [4.0, 3.2]
+    var source_proj = new OpenLayers.Projection('EPSG:4326');
+    var target_proj = new OpenLayers.Projection('EPSG:3067');
+    $('#map').append(
+            $('<div></div>')
+            .css('position','absolute')
+            .css('top','0')
+            .css('left','50px')
+            .css('padding','6px')
+            .css('background','white')
+            .css('border','1px solid black')
+            .css('z-index','3000')
+            .attr('id', 'zoomable-districts')
+            .prepend('<strong>' + translated_zoom_to_district + '</strong>')
+            .append($('<select name="zoomable-districts"></select>')
+                .append($('<option value=""></option>'))
+                .css('margin-left','5px')
+                .on('change',function(){
+                    if (this.value === ""){return;}
+                    var new_center = (new OpenLayers.LonLat(
+                            gnt.districts[this.value][0],
+                            gnt.districts[this.value][1])).transform(source_proj, target_proj);
+                    map.setCenter(new_center, 11);
+                    }))
+            );
+    for (var ci=0;ci<city_names.length;ci++){
+        $.get('/static/json/kaupunginosat_' + city_names[ci] + '.json',make_callback(city_names[ci]));
+    }
+};
 
