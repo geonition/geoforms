@@ -657,6 +657,7 @@ gnt.questionnaire.gnt_getters.push(function(){
                            'complete': function() {
                                 //bind on value change to save the values
                                 $('#forms :input:not(button)').change(gnt.questionnaire.property_change_handler);
+                                $('#user-language').change(); // this call has to be made after binding property_change_handler.
                             }});
 });
 gnt.questionnaire.gnt_getters.push(function(){
@@ -982,23 +983,6 @@ gnt.questionnaire.add_result_counter = function(){
         });
 };
 
-gnt.after_map_loaded = function() {
-    gnt.questionnaire.create_geoform_layers();
-    gnt.questionnaire.create_extra_layers();
-
-    gnt.questionnaire.create_widgets('#forms');
-
-    if (gnt.do_not_save_questionnaire_answers){
-        return;
-    }
-    gnt.questionnaire.add_result_counter();
-    //create a session for the anonymoususer
-    gnt.auth.create_session(function(){
-        for(var i=0;i<gnt.questionnaire.gnt_getters.length;i++){
-            gnt.questionnaire.gnt_getters[i]();
-        }
-    });
-};
 
 /*
 This function creates widgets for HTML5 elements for browsers that do not support them.

@@ -69,6 +69,7 @@
             {% trans "Your answers and finish" %} {{ forloop.counter|add:1 }}/{{ form_list|length|add:1 }}
         </h3>
         <div>
+            <input type="text" id="user-language" name="user-language" style="display:none;" value="{{LANGUAGE_CODE}}">
                 {% if lottery %}
                 <p>
                 {{lottery.description|safe}}
@@ -267,13 +268,34 @@ function count_results() {
         $( 'span.number_of_properties' ).append('.');
     }
 }
+// after_map_loaded() is in the template in order to have site specific changes to it more easily.
+gnt.after_map_loaded = function() {
+    gnt.questionnaire.create_geoform_layers();
+    gnt.questionnaire.create_extra_layers();
+
+    gnt.questionnaire.create_widgets('#forms');
+
+    if (gnt.do_not_save_questionnaire_answers){
+        return;
+    }
+    gnt.questionnaire.add_result_counter();
+    //create a session for the anonymoususer
+    gnt.auth.create_session(function(){
+        for(var i=0;i<gnt.questionnaire.gnt_getters.length;i++){
+            gnt.questionnaire.gnt_getters[i]();
+        }
+    });
+    {% if CITIES_WITH_ZOOMABLE_DISTRICTS != "" %}
+    gnt.questionnaire.make_district_selector('{% trans "Zoom to district" %}',{{CITIES_WITH_ZOOMABLE_DISTRICTS|safe}});
+    {% endif %}
+};
 
 {% block questionnaire_init %}
 
 
 jQuery(document).ready(function() {
     {% if ADD_CANNOT_SAY_TO_RANGE_ELEMENTS %}
-    // this function has to be called before gnt.questionnaire.property_change_handler
+    // this function has to be called before gnt.questionnaire.property_change_handler, otherwise the checkbox will not be bound to "change" event.
     function add_cannot_say_to_range_elements(translation){
         $('.form_element[data-element-type="range"]').each(function(){
             $(this).find('.range-container').css('display','inline-block');
@@ -319,9 +341,6 @@ jQuery(document).ready(function() {
 {% endblock questionnaire_init %}
 
 gnt.questionnaire.create_extra_layers = function(){
-        {% if CITIES_WITH_ZOOMABLE_DISTRICTS != "" %}
-        gnt.questionnaire.make_district_selector('{% trans "Zoom to district" %}',{{CITIES_WITH_ZOOMABLE_DISTRICTS|safe}});
-        {% endif %}
         gnt.questionnaire.extra_layers = Array();
         $('#map').append(
                 $('<div></div>')
