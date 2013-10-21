@@ -982,6 +982,11 @@ This function creates widgets for HTML5 elements for browsers that do not suppor
 The parameter css_selector can be used to specify where to search for html5 input elements
 */
 gnt.questionnaire.create_widgets = function(css_selector) {
+    $('body').append($('<div id="slider-tooltip"></div>')
+            .css('position','absolute')
+            .css('background','white')
+            .css('z-index','3000')
+            .css('display','none'));
     var i;
     if(css_selector === '') {
         css_selector = '*';
@@ -1020,6 +1025,22 @@ gnt.questionnaire.create_widgets = function(css_selector) {
             'change': function(event, ui) {
                 $($(this).slider( "option", "input_element")).attr('value', String(ui.value * step + Number(min)));
                 $($(this).slider( "option", "input_element")).change();
+            },
+            'start': function(event, ui) {
+                $('#slider-tooltip')
+                    .text(String(ui.value * step + Number(min)).substr(0,4))
+                    .css('left',$(ui.handle).offset().left)
+                    .css('top',$(ui.handle).offset().top - 22)
+                    .fadeIn('fast');
+            },
+            'stop': function(event, ui) {
+                $('#slider-tooltip').fadeOut('fast');
+            },
+            'slide': function(event, ui) {
+                $('#slider-tooltip')
+                    .text(String(ui.value * step + Number(min)).substr(0,4))
+                    .css('left',$(ui.handle).offset().left)
+                    .css('top',$(ui.handle).offset().top - 22);
             }
         });
 
