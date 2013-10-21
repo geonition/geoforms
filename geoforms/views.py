@@ -104,7 +104,7 @@ def questionnaire(request, questionnaire_id, template='', no_save=''):
                              context_instance = RequestContext(request))
     # Cache the response. To turn cache off comment the following line
     if use_cache:
-        cache.set(cache_id, resp, 1800, version=q_id)
+        cache.set(cache_id, resp, 300, version=q_id)
     return resp
 
 def get_active_questionnaires(request):
