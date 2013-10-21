@@ -560,14 +560,6 @@ gnt.questionnaire.property_change_handler = function(evt) {
     if (gnt.do_not_save_questionnaire_answers){
         return;
     }
-    // exclude lottery from the data
-    if (evt.hasOwnProperty('srcElement') && typeof(evt.srcElement) !== 'undefined'){
-        for(var k=0;k<evt.srcElement.classList.length;k++){
-            if (evt.srcElement.classList[k] === 'gnt-lottery') {
-                return;
-            }
-        }
-    }
     // Without the wait time, it may happen that two properties are posted simultaneously,
     // for example if the user first fills a a text area question and then a checkbox.
     if (gnt.questionnaire.wait_time === undefined){
@@ -656,7 +648,7 @@ gnt.questionnaire.gnt_getters.push(function(){
                            {'success': function(data){gnt.questionnaire.set_values_to_input_elements(data);},
                            'complete': function() {
                                 //bind on value change to save the values
-                                $('#forms :input:not(button)').change(gnt.questionnaire.property_change_handler);
+                                $('#forms :input:not(button)').not('.gnt-lottery').change(gnt.questionnaire.property_change_handler);
                                 $('#user-language').change(); // this call has to be made after binding property_change_handler.
                             }});
 });
