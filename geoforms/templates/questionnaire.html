@@ -241,6 +241,7 @@ function count_results() {
     var number_of_areas = map.getLayersByName('Area Layer')[0].features.length;
     var number_of_features = number_of_places + number_of_routes + number_of_areas;
 
+    {% if LANGUAGE_CODE != 'fa_IR' %}
     if( number_of_features === 0 ) {
         $('span.number_of_features').html("");
     } else if( number_of_features === 1) {
@@ -267,6 +268,7 @@ function count_results() {
     } else if ( number_of_properties !== 0 ) {
         $( 'span.number_of_properties' ).append('.');
     }
+    {% endif %}
 }
 // after_map_loaded() is in the template in order to have site specific changes to it more easily.
 gnt.after_map_loaded = function() {
