@@ -54,8 +54,9 @@ def questionnaire(request, questionnaire_id, template='', no_save=''):
     use_cache = False
     if not getattr(settings,'DEBUG',False) and no_save == '' and template != 'questionnaire_feedback.html' and not request.user.is_authenticated():
         use_cache = True
-    if use_cache and cache.get(cache_id, version=q_id) is not None:
-        return cache.get(cache_id, version=q_id)
+    cache_resp = cache.get(cache_id, version=q_id)
+    if use_cache and cache_resp:
+        return cache_resp
 
     form_list = quest.geoforms.all().order_by('questionnaireform__order')
     elements = {}
@@ -96,7 +97,7 @@ def questionnaire(request, questionnaire_id, template='', no_save=''):
                               'elements': elements,
                               'questionnaire': quest,
                               'map_slug': 'questionnaire-map',
-                              'USE_CACHE': use_cache,
+                              'USE_CACHE': use_cache and cache_resp,
                               'no_save' : no_save,
                               'CITIES_WITH_ZOOMABLE_DISTRICTS' : getattr(settings,'CITIES_WITH_ZOOMABLE_DISTRICTS',''),
                               'ADD_CANNOT_SAY_TO_RANGE_ELEMENTS' : getattr(settings,'ADD_CANNOT_SAY_TO_RANGE_ELEMENTS',False),
