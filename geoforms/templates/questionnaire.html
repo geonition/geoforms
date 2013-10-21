@@ -322,6 +322,12 @@ jQuery(document).ready(function() {
     gnt.do_not_save_questionnaire_answers = false;
     {% endif %}
 
+    {% if USE_CACHE %}
+    gnt.questionnaire.use_cache = true;
+    {% else %}
+    gnt.questionnaire.use_cache = false;
+    {% endif %}
+
     {% if lottery %}
     addLotteryForm('{{questionnaire.get_absolute_url}}' + 'lottery', "{{lottery.thank_you_msg}}");
     {% endif %}
