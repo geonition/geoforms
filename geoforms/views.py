@@ -52,7 +52,13 @@ def questionnaire(request, questionnaire_id, template='', no_save=''):
     lang = to_locale(get_language()).lower() #
     cache_id = 'questionnaire_resp_{0}_{1}'.format(request.META['HTTP_HOST'],lang)
     use_cache = False
-    if not getattr(settings,'DEBUG',False) and no_save == '' and template != 'questionnaire_feedback.html' and not request.user.is_authenticated():
+    use_cache_conditions = [
+            not getattr(settings,'DEBUG',False),
+            no_save == '',
+            template != 'questionnaire_feedback.html',
+            not request.user.is_staff
+            ]
+    if all(use_cache_conditions):
         use_cache = True
     cache_resp = cache.get(cache_id, version=q_id)
     if use_cache and cache_resp:
