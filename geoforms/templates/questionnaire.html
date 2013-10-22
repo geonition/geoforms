@@ -202,9 +202,8 @@ Your input is important to us! One more way you can help is to share this survey
 
 {% block javascript %}
 {% block extra_js %}
+{% if SHOW_ANALYSIS_TOOL %}
 <script type="text/javascript" src="{{ STATIC_URL }}js/feedback.js"></script>
-{% if lottery %}
-<script type="text/javascript" src="{{ STATIC_URL }}js/lottery.js"></script>
 {% endif %}
 {% if request.META.HTTP_HOST == "oregonstateparks.maptionnaire.com" %}
     <script type="text/javascript" src="{{ STATIC_URL }}js/parks.js"></script>
@@ -332,7 +331,7 @@ jQuery(document).ready(function() {
     {% endif %}
 
     {% if lottery %}
-    addLotteryForm('{{questionnaire.get_absolute_url}}' + 'lottery', "{{lottery.thank_you_msg}}");
+    gnt.questionnaire.addLotteryForm('{{questionnaire.get_absolute_url}}' + 'lottery', "{{lottery.thank_you_msg}}");
     {% endif %}
 
 
