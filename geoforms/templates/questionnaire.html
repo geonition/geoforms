@@ -2,9 +2,12 @@
 {% load url from future %}
 {% load i18n %}
 {% load geoforms_extra %}
+{% load compress %}
 
 {% block stylesheet %}
+{% compress css %}
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/questionnaire.css" />
+{% endcompress %}
 {% endblock %}
 
 
