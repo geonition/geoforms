@@ -341,6 +341,7 @@ class RadioElementFormSet(BaseFormSet):
         qform = QuestionForm(self.data)
         model_values = {}
         name = ''
+        randomize = False
         if qform.is_valid():
             name = slugify(qform.cleaned_data['question'][0])
             randomize = qform.cleaned_data['randomize']
