@@ -433,8 +433,7 @@ msgid ""
 "clicking the previous buttons. Quit the questionnaire by clicking the 'quit "
 "and go to home page' button."
 msgstr ""
-"Voit halutessasi siirtyä etusivun kautta vastaamaan muihin kyselyihin tai "
-"palata muokkaamaan vastauksiasi painikkeella \"edellinen\"."
+"Vastauksesi ovat tallentuneet kyselyä täyttäessäsi, mutta voit palata vielä muokkaamaan niitä."
 
 #: templates/questionnaire.html:117
 msgid "Quit and go to home page"
