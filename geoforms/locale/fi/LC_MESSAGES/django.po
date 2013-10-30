@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Translators:
 # ksnabb <kristoffer.snabb@geonition.org>, 2012
 # ksnabb <kristoffer.snabb@geonition.org>, 2012
@@ -14,15 +14,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geonition\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-17 14:30+0300\n"
+"POT-Creation-Date: 2013-10-09 03:04-0500\n"
 "PO-Revision-Date: 2013-09-28 00:00+0000\n"
 "Last-Translator: ksnabb <kristoffer.snabb@geonition.org>\n"
-"Language-Team: Finnish (http://www.transifex.com/projects/p/geonition/"
-"language/fi/)\n"
-"Language: fi\n"
+"Language-Team: Finnish (http://www.transifex.com/projects/p/geonition/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: fi\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: admin.py:129 admin.py:181 admin.py:203
@@ -88,12 +87,9 @@ msgstr "väri"
 #: forms.py:459
 msgid ""
 "The color of the feature to be drawn. The color is given as hexadecimal "
-"color e.g. #ffffff --> white, #000000 --> black, #ff0000 --> red, #00ff00 --"
-"> green, #0000ff --> blue."
-msgstr ""
-"Käyttäjän piirtämän paikannuksen väri. Väri syötetään heksadesimaali "
-"muodossa esim. #ffffff (valkoinen), #000000 (musta), #ff0000 (punainen), "
-"#00ff00 (vihreä), #0000ff (sininen) "
+"color e.g. #ffffff --> white, #000000 --> black, #ff0000 --> red, #00ff00 "
+"--> green, #0000ff --> blue."
+msgstr "Käyttäjän piirtämän paikannuksen väri. Väri syötetään heksadesimaali muodossa esim. #ffffff (valkoinen), #000000 (musta), #ff0000 (punainen), #00ff00 (vihreä), #0000ff (sininen) "
 
 #: forms.py:461
 msgid "popup for the place, route or area"
@@ -101,9 +97,7 @@ msgstr "paikan, reitin tai alueen ponnahdusikkuna "
 
 #: forms.py:462 forms.py:481
 msgid "Choose the popup to use for the place, route, or area."
-msgstr ""
-"Valitse ponnahdusikkuna jonka käyttäjä näkee sen jälkeen kun hän on "
-"piirtänyt paikannuksen."
+msgstr "Valitse ponnahdusikkuna jonka käyttäjä näkee sen jälkeen kun hän on piirtänyt paikannuksen."
 
 #: forms.py:466
 msgid "max amount of answers"
@@ -113,9 +107,7 @@ msgstr "vastausten maksimimäärä"
 msgid ""
 "This is the maximum number of allowed places/routes/areas that can be drawn "
 "by this drawbutton."
-msgstr ""
-"Tämä on suurin sallittu paikannusten määrä, joita tällä piirtonapilla voi "
-"piirtää."
+msgstr "Tämä on suurin sallittu paikannusten määrä, joita tällä piirtonapilla voi piirtää."
 
 #: forms.py:547
 msgid "text for the paragraph"
@@ -124,13 +116,10 @@ msgstr "kappaleen teksti"
 #: forms.py:548
 msgid ""
 "This field takes as input any html tags. This enables you to style the text "
-"in any way you want. Here is a list of tags that can be used <a href="
-"\"http://dev.w3.org/html5/spec/single-page.html#usage-summary\">html5 tags</"
-"a>"
-msgstr ""
-"Tähän kenttään voi kirjoittaa HTML koodia. Tämä mahdollistaa tekstin "
-"tyylittelyä esim. <a href=\"http://dev.w3.org/html5/spec/single-page."
-"html#usage-summary\">html5 tags</a>"
+"in any way you want. Here is a list of tags that can be used <a "
+"href=\"http://dev.w3.org/html5/spec/single-page.html#usage-summary\">html5 "
+"tags</a>"
+msgstr "Tähän kenttään voi kirjoittaa HTML koodia. Tämä mahdollistaa tekstin tyylittelyä esim. <a href=\"http://dev.w3.org/html5/spec/single-page.html#usage-summary\">html5 tags</a>"
 
 #: forms.py:606
 msgid "randomize the order of the options"
@@ -294,21 +283,14 @@ msgstr "kyselyn alue"
 
 #: models.py:313
 msgid ""
-"This is the initial area which will be visible on the questionnaire map. The "
-"map tools are on the up right corner of the map. To choose a tool you have "
+"This is the initial area which will be visible on the questionnaire map. The"
+" map tools are on the up right corner of the map. To choose a tool you have "
 "to click on it so that the tool turnes yellow. To draw choose the drawing "
 "tool and start drawing. To stop drawing you have to doubleclick the map. It "
 "is also possible to modify the area by choosing the modify tool. "
 "Modification works by dragging the vertexes of the area to the new modified "
 "places."
-msgstr ""
-"Tämä on alue johon kysely kohdistuu. Kartan piirtotyökalut ovat kartan "
-"oikeassa yläkulmassa. Valitse työkalu napsauttamalla työkalua siten, että se "
-"muuttuu keltaiseksi. Piirtääksesi alueen valitse alue työkalu ja napsauta "
-"karttaa alueen reunalla kunnes alue on täysin merkitty. Piirto lopetetaan "
-"tuplaklikkauksella. Voit myös myöhemmin muokata aluetta valitsemalla alueen "
-"muokkaustyökalun. Voit muokkaustyökalun avulla raahata alueen kulmia siten, "
-"että alue on oikein merkitty."
+msgstr "Tämä on alue johon kysely kohdistuu. Kartan piirtotyökalut ovat kartan oikeassa yläkulmassa. Valitse työkalu napsauttamalla työkalua siten, että se muuttuu keltaiseksi. Piirtääksesi alueen valitse alue työkalu ja napsauta karttaa alueen reunalla kunnes alue on täysin merkitty. Piirto lopetetaan tuplaklikkauksella. Voit myös myöhemmin muokata aluetta valitsemalla alueen muokkaustyökalun. Voit muokkaustyökalun avulla raahata alueen kulmia siten, että alue on oikein merkitty."
 
 #: models.py:314
 msgid "show area"
@@ -328,9 +310,7 @@ msgstr "skaalaa näkyvään alueeseen"
 msgid ""
 "This number will be used to set the initial map extent. The map extent is "
 "counted by drawn area times this number."
-msgstr ""
-"Tätä numeroa käytetään laskemaan kartan aloitusnäkymä. Aloitusnäkymä "
-"lasketaan merkityn alueen koko kertaa tämä numero. "
+msgstr "Tätä numeroa käytetään laskemaan kartan aloitusnäkymä. Aloitusnäkymä lasketaan merkityn alueen koko kertaa tämä numero. "
 
 #: models.py:320
 msgid "site"
@@ -400,15 +380,11 @@ msgstr "Napsauta karttaa piirtääksesi pisteen"
 
 #: templates/jstranslations.txt:6
 msgid "Click on the map to start drawing the route and doubleclick to finnish"
-msgstr ""
-"Napsauta karttaa aloittaaksesi reitin piirtämistä ja tuplanapsauta "
-"lopettaaksesi piirron"
+msgstr "Napsauta karttaa aloittaaksesi reitin piirtämistä ja tuplanapsauta lopettaaksesi piirron"
 
 #: templates/jstranslations.txt:7
 msgid "Click on the map to start drawing the area and doubleclick to finnish"
-msgstr ""
-"Napsauta karttaa aloittaaksesi alueen piirtämistä ja tuplanapsauta "
-"lopettaaksesi piirron"
+msgstr "Napsauta karttaa aloittaaksesi alueen piirtämistä ja tuplanapsauta lopettaaksesi piirron"
 
 #: templates/jstranslations.txt:10
 msgid "Annotations"
@@ -432,8 +408,8 @@ msgid ""
 "you for your answers! You can still continue modifying your answers by "
 "clicking the previous buttons. Quit the questionnaire by clicking the 'quit "
 "and go to home page' button."
-msgstr ""
-"Vastauksesi ovat tallentuneet kyselyä täyttäessäsi, mutta voit palata vielä muokkaamaan niitä."
+msgstr "Vastauksesi ovat tallentuneet kyselyä täyttäessäsi, mutta voit palata vielä muokkaamaan niitä."
+
 
 #: templates/questionnaire.html:117
 msgid "Quit and go to home page"
@@ -448,47 +424,39 @@ msgstr "Poista"
 msgid "Save"
 msgstr "Tallenna"
 
-#: templates/questionnaire.html:247
+#: templates/questionnaire.html:244
 msgid "You marked one place"
 msgstr "Olet merkinnyt yhden paikan"
 
-#: templates/questionnaire.html:249
+#: templates/questionnaire.html:246
 msgid "You marked"
 msgstr "Olet merkinnyt"
 
-#: templates/questionnaire.html:249
+#: templates/questionnaire.html:246
 msgid "places"
 msgstr "paikkaa"
 
-#: templates/questionnaire.html:255
+#: templates/questionnaire.html:252
 msgid "and answered one question"
 msgstr "ja vastannut yhteen kysymykseen"
 
-#: templates/questionnaire.html:257
+#: templates/questionnaire.html:254
 msgid "and answered"
 msgstr "ja antanut"
 
-#: templates/questionnaire.html:257 templates/questionnaire.html.py:262
+#: templates/questionnaire.html:254 templates/questionnaire.html.py:259
 msgid "questions"
 msgstr "vastausta"
 
-#: templates/questionnaire.html:260
+#: templates/questionnaire.html:257
 msgid "You answered one question"
 msgstr "Olet vastannut yhteen kysymykseen"
 
-#: templates/questionnaire.html:262
+#: templates/questionnaire.html:259
 msgid "You answered"
 msgstr "Olet antanut"
 
-#: templates/questionnaire.html:291
-msgid "Cannot say"
-msgstr "En osaa sanoa"
-
-#: templates/questionnaire.html:324
-msgid "Zoom to district"
-msgstr "Keskitä kartta kaupunginosaan"
-
-#: templates/questionnaire.html:330
+#: templates/questionnaire.html:298
 msgid "Choose Layers to show"
 msgstr "Valitse näkyvät karttatasot"
 
@@ -523,9 +491,7 @@ msgstr "lisää"
 msgid ""
 "\n"
 "This is the HTML that represents the element widget.\n"
-msgstr ""
-"\n"
-" Tämä HTML esittää yhden kysely elementin \n"
+msgstr "\n Tämä HTML esittää yhden kysely elementin \n"
 
 #: templates/help/geoform_element_name.html:2
 msgid ""
@@ -533,7 +499,4 @@ msgid ""
 "This is the name of the element. The element name should be unique\n"
 "throughout the application so there cannot be two elements with the\n"
 "same name.\n"
-msgstr ""
-"\n"
-"Tämä on kysely elementin nimi. Nimen tulisi olla uniikki koko ohjelmassa "
-"eikä kaksi samannimistä elementtiä voi tehdä.\n"
+msgstr "\nTämä on kysely elementin nimi. Nimen tulisi olla uniikki koko ohjelmassa eikä kaksi samannimistä elementtiä voi tehdä.\n"
