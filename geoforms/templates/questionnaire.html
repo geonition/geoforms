@@ -113,10 +113,12 @@ Your input is important to us! One more way you can help is to share this survey
 
                 {% endif %}
             </div>
+            {% comment %}
             <div class="form_element">
                 <span class="number_of_features">X</span>
                 <span class="number_of_properties">X</span>
             </div>
+            {% endcomment %}
             <div class="form_element">
                 <div class="prev_next_controls">
                     <a class="previous" href="#page_{{ forloop.counter }}">&larr;{% trans 'Previous' %}</a>
@@ -233,6 +235,7 @@ questionnaire.questionnaire_area['crs'] = {"type": "name",
                                            "properties": {
                                                 "code": "EPSG:{{ questionnaire.area.srid|safe }}"}};
 
+    {% comment %}
 function count_results() {
     var number_of_properties = 0;
     for(var val in gnt.questionnaire.npvalues) {
@@ -243,7 +246,6 @@ function count_results() {
     var number_of_areas = map.getLayersByName('Area Layer')[0].features.length;
     var number_of_features = number_of_places + number_of_routes + number_of_areas;
 
-    {% if LANGUAGE_CODE != 'fa_IR' %}
     if( number_of_features === 0 ) {
         $('span.number_of_features').html("");
     } else if( number_of_features === 1) {
@@ -270,8 +272,8 @@ function count_results() {
     } else if ( number_of_properties !== 0 ) {
         $( 'span.number_of_properties' ).append('.');
     }
-    {% endif %}
 }
+    {% endcomment %}
 // after_map_loaded() is in the template in order to have site specific changes to it more easily.
 gnt.after_map_loaded = function() {
     gnt.questionnaire.create_geoform_layers();
@@ -282,7 +284,7 @@ gnt.after_map_loaded = function() {
     if (gnt.do_not_save_questionnaire_answers){
         return;
     }
-    gnt.questionnaire.add_result_counter();
+    //gnt.questionnaire.add_result_counter();
     //create a session for the anonymoususer
     gnt.auth.create_session(function(){
         for(var i=0;i<gnt.questionnaire.gnt_getters.length;i++){
