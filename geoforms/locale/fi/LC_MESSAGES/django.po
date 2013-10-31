@@ -456,7 +456,7 @@ msgstr "Kohdenna kaupunginosaan"
 
 #: templates/questionnaire.html:320
 msgid "Cannot say"
-msgstr ""
+msgstr "En osaa sanoa"
 
 #: templates/questionnaire.html:362
 msgid "Choose Layers to show"

@@ -448,7 +448,7 @@ msgstr "Centrera till stadsdelen"
 
 #: templates/questionnaire.html:320
 msgid "Cannot say"
-msgstr ""
+msgstr "Kan inte säga"
 
 #: templates/questionnaire.html:362
 msgid "Choose Layers to show"
