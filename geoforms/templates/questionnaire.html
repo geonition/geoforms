@@ -294,6 +294,15 @@ gnt.after_map_loaded = function() {
     {% if CITIES_WITH_ZOOMABLE_DISTRICTS != "" %}
     gnt.questionnaire.make_district_selector('{% trans "Zoom to district" %}',{{CITIES_WITH_ZOOMABLE_DISTRICTS|safe}});
     {% endif %}
+    {% if SHOW_FEATURE_COUNT %}
+    gnt.questionnaire.count_features = function(){
+        $.get('/api/geojson/featurecount/' + questionnaire.data_group, function(data){
+                $('#number-of-features').html(data);
+                });
+    }
+    $('header .span_right').prepend($('<div></div>').css('max-width','200px').css('float','left').addClass('countfeatures').append($('<span>Total markings made</span>')).append($('<span></span>').attr('id','number-of-features').css('padding-left','5px')));
+    gnt.questionnaire.count_features();
+    {% endif %}
 };
 
 {% block questionnaire_init %}

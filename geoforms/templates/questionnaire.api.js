@@ -313,6 +313,9 @@ gnt.questionnaire.save_handler = function(evt) {
                    amount >= max) {
                     $('button[name=' + new_feature.attributes.name + ']').drawButton('disable');
                 }
+                if(typeof(gnt.questionnaire.count_features) !== "undefined"){
+                    gnt.questionnaire.count_features();
+                }
 
             }
         });
