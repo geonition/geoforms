@@ -1137,6 +1137,7 @@ gnt.questionnaire.make_district_selector = function(translated_zoom_to_district,
             .append($('<select name="zoomable-districts"></select>')
                 .append($('<option value=""></option>'))
                 .css('margin-left','5px')
+                .css('min-width','200px')
                 .on('change',function(){
                     if (this.value === ""){return;}
                     var new_center = (new OpenLayers.LonLat(
