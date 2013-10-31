@@ -300,7 +300,7 @@ gnt.after_map_loaded = function() {
                 $('#number-of-features').html(data);
                 });
     }
-    $('header .span_right').prepend($('<div></div>').css('max-width','200px').css('float','left').addClass('countfeatures').append($('<span>Total markings made</span>')).append($('<span></span>').attr('id','number-of-features').css('padding-left','5px')));
+    $('header .span_right').prepend($('<div></div>').css('max-width','200px').css('float','left').addClass('countfeatures').append($('<span>{% trans "Total markings made" %}</span>')).append($('<span></span>').attr('id','number-of-features').css('padding-left','5px')));
     gnt.questionnaire.count_features();
     {% endif %}
 };

@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geonition\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-31 11:18+0200\n"
+"POT-Creation-Date: 2013-10-31 17:43+0200\n"
 "PO-Revision-Date: 2013-09-28 00:00+0000\n"
 "Last-Translator: ksnabb <kristoffer.snabb@geonition.org>\n"
 "Language-Team: Finnish (http://www.transifex.com/projects/p/geonition/"
@@ -454,11 +454,15 @@ msgstr "Poista"
 msgid "Zoom to district"
 msgstr "Kohdenna kaupunginosaan"
 
-#: templates/questionnaire.html:320
+#: templates/questionnaire.html:305
+msgid "Total markings made"
+msgstr "Paikannuksia yhteensä"
+
+#: templates/questionnaire.html:329
 msgid "Cannot say"
 msgstr "En osaa sanoa"
 
-#: templates/questionnaire.html:362
+#: templates/questionnaire.html:371
 msgid "Choose Layers to show"
 msgstr "Valitse näkyvät karttatasot"
 
