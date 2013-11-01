@@ -470,6 +470,7 @@ gnt.questionnaire.show_popup_for_feature = function(feature, popup_name) {
 
         //connect the event to the infowindow buttons
         $('form[name="' + popup_name + '"] + div.popup_feature_buttons button').off();
+        $('form[name="' + popup_name + '"] + div.popup_feature_buttons button').click(function(){$('#zoomable-districts').show();});
         $('form[name="' + popup_name + '"] + div.popup_feature_buttons button.save').click([feature],
                                                                gnt.questionnaire.save_handler);
         $('form[name="' + popup_name + '"] + div.popup_feature_buttons button.remove').click([feature],
@@ -565,12 +566,13 @@ gnt.questionnaire.property_change_handler = function(evt) {
     }
     // Without the wait time, it may happen that two properties are posted simultaneously,
     // for example if the user first fills a a text area question and then a checkbox.
-    if (gnt.questionnaire.wait_time === undefined){
+    // This is no longer needed, because the user language gets sent immeadiately.
+    /*if (gnt.questionnaire.wait_time === undefined){
         gnt.questionnaire.wait_time = 5000;
     } else {
         gnt.questionnaire.wait_time = 0;
     }
-    setTimeout(function(){
+    setTimeout(function(){*/
     var new_value = evt.currentTarget.value;
     if(evt.currentTarget.type === 'checkbox') {
         new_value = [];
@@ -602,7 +604,7 @@ gnt.questionnaire.property_change_handler = function(evt) {
                                 '@null',
                                 property);
     }
-    }, gnt.questionnaire.wait_time);
+    //}, gnt.questionnaire.wait_time); // setTimeout
 };
 gnt.questionnaire.set_values_to_input_elements = function(data,css_selector) {
     if (gnt.do_not_save_questionnaire_answers){

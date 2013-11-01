@@ -293,6 +293,7 @@ gnt.after_map_loaded = function() {
     });
     {% if CITIES_WITH_ZOOMABLE_DISTRICTS != "" %}
     gnt.questionnaire.make_district_selector('{% trans "Zoom to district" %}',{{CITIES_WITH_ZOOMABLE_DISTRICTS|safe}});
+    $('.form_element .drawbutton').click(function(){$('#zoomable-districts').hide();});
     {% endif %}
     {% if SHOW_FEATURE_COUNT %}
     gnt.questionnaire.count_features = function(){
