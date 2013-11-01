@@ -241,10 +241,10 @@ button.drawbutton.second {
   color: #333333;
 }
 .prev_next_controls a.previous img {
-  margin-right: 5px;
+  margin-right: 20px;
 }
 .prev_next_controls a.next img {
-  margin-left: 5px;
+  margin-left: 20px;
 }
 .popupform .form_element label {
   max-width: 300px;

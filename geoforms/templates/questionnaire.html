@@ -56,7 +56,7 @@
             <div class="form_element">
                 <div class="prev_next_controls">
                 {% if forloop.first %}
-                    <a class="next base_bgcolor" href="#page_{{ forloop.counter|add:'1' }}">{% trans 'Next' %}&rarr;</a>
+                    <a class="next base_bgcolor" href="#page_{{ forloop.counter|add:'1' }}">{% trans 'Next' %}<img src="{{STATIC_URL}}img/arrow_next_11x21.png" height=21 width=11 /></a>
                 {% else %}
                 <a class="previous" href="#page_{{ forloop.counter|add:'-1' }}"><img src="{{STATIC_URL}}img/arrow_previous_11x21.png" height=21 width=11 />{% trans 'Previous' %}</a>
                     <a class="next base_bgcolor" href="#page_{{ forloop.counter|add:'1' }}">{% trans 'Next' %}<img src="{{STATIC_URL}}img/arrow_next_11x21.png" height=21 width=11 /></a>
@@ -121,7 +121,7 @@ Your input is important to us! One more way you can help is to share this survey
             {% endcomment %}
             <div class="form_element">
                 <div class="prev_next_controls">
-                    <a class="previous" href="#page_{{ forloop.counter }}">&larr;{% trans 'Previous' %}</a>
+                    <a class="previous" href="#page_{{ forloop.counter }}"><img src="{{STATIC_URL}}img/arrow_previous_11x21.png" height=21 width=11 />{% trans 'Previous' %}</a>
                     <a class="previous" href="{% url 'dashboard' %}">{% trans 'Quit and go to home page' %}</a>
                 </div>
             </div>
