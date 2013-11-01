@@ -245,7 +245,7 @@ button.drawbutton.second {
   margin: 5px 5px 5px 30px;
 }
 .prev_next_controls a.previous {
-  margin: 5px 30px 5px 5px;
+  margin: 25px 0px 5px 5px;
   padding: 5px 13px 5px 5px;
   color: #333333;
 }
