@@ -241,12 +241,12 @@ button.drawbutton.second {
 }
 .prev_next_controls a.next {
   color: #fff;
-  padding: 5px 5px 5px 9px;
+  padding: 5px 5px 5px 13px;
   margin: 5px 5px 5px 30px;
 }
 .prev_next_controls a.previous {
   margin: 5px 30px 5px 5px;
-  padding: 5px 9px 5px 5px;
+  padding: 5px 13px 5px 5px;
   color: #333333;
 }
 .prev_next_controls a.previous img {
