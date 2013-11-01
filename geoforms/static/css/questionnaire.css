@@ -4,6 +4,15 @@
 .span_right {
     left: 370px;
 }
+@media screen and (max-width:767px) {
+    .span_left {
+        float: none;
+        width: 100%;
+    }
+    .span_right {
+        width: 100%;
+    }
+}
 @media (min-width: 1110px) and (max-width:1536px) {
     .span_left {
         width: 33.33%;
