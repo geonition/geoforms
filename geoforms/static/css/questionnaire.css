@@ -224,16 +224,27 @@ button.drawbutton.second {
   display: inline-block;
   text-decoration: none;
   text-transform: lowercase;
-  padding: 9px;
-  border-radius: 4px;
+  border-radius: 17px;
   box-shadow: 0 0 3px 3px #dad5d5;
+}
+.prev_next_controls a:hover {
+  text-decoration: underline;
 }
 .prev_next_controls a.next {
   color: #fff;
+  padding: 5px 5px 5px 9px;
   margin: 5px 5px 5px 30px;
 }
 .prev_next_controls a.previous {
   margin: 5px 30px 5px 5px;
+  padding: 5px 9px 5px 5px;
+  color: #333333;
+}
+.prev_next_controls a.previous img {
+  margin-right: 5px;
+}
+.prev_next_controls a.next img {
+  margin-left: 5px;
 }
 .popupform .form_element label {
   max-width: 300px;
