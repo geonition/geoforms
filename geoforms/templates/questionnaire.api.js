@@ -192,7 +192,10 @@ active_class: the class to use when a button is activated
                 } else if (this.options.geography_type === "area") {
                     $(".tooltip").html(help.area[0]);
                 }
+                
+                if (!gnt.questionnaire.is_mobile_user){
                 $(".tooltip").show();
+                }
             },
             disable: function() {
                 this.element.removeClass( this.options['active_class'] );
