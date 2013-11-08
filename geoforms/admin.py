@@ -269,9 +269,9 @@ class CheckboxElementAdmin(GeoformElementAdmin):
             question_data = {'question': []}
             checkboxelement = CheckboxElementModel.objects.get(id = object_id)
             for i, lang in enumerate(settings.LANGUAGES):
-                html = getattr(checkboxelement,
-                               'html_%s' % lang[0],
-                               '')
+                html = getattr(checkboxelement,'html_%s' % lang[0])
+                if html == None:
+                    html = getattr(checkboxelement,'html_%s' % settings.LANGUAGES[0][0])
                 soup = BeautifulSoup(html)
                 question_data['question'].append(soup.p.text.strip())
                 if soup.find(attrs={'data-random': 'true'}):
@@ -331,9 +331,9 @@ class RadioElementAdmin(GeoformElementAdmin):
             radioelement = RadioElementModel.objects.get(id = object_id)
 
             for i, lang in enumerate(settings.LANGUAGES):
-                html = getattr(radioelement,
-                               'html_%s' % lang[0],
-                               '')
+                html = getattr(radioelement,'html_%s' % lang[0])
+                if html == None:
+                    html = getattr(radioelement,'html_%s' % settings.LANGUAGES[0][0])
                 soup = BeautifulSoup(html)
                 question_data['question'].append(soup.p.text)
                 if soup.find(attrs={'data-random': 'true'}):
@@ -393,9 +393,9 @@ class SelectElementAdmin(GeoformElementAdmin):
             selectelement = SelectElementModel.objects.get(id = object_id)
 
             for i, lang in enumerate(settings.LANGUAGES):
-                html = getattr(selectelement,
-                               'html_%s' % lang[0],
-                               '')
+                html = getattr(selectelement,'html_%s' % lang[0])
+                if html == None:
+                    html = getattr(selectelement,'html_%s' % settings.LANGUAGES[0][0])
                 soup = BeautifulSoup(html)
                 question_data['question'].append(soup.p.contents[0])
                 if soup.find(attrs={'data-random': 'true'}):
