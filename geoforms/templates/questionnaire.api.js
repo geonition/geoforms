@@ -1036,7 +1036,7 @@ gnt.questionnaire.create_widgets = function(css_selector) {
             },
             'start': function(event, ui) {
                 $('#slider-tooltip')
-                    .text(String(ui.value * step + Number(min)).substr(0,4))
+                    .text(String(ui.value * step + Number(min)).split('.')[0])
                     .css('left',$(ui.handle).offset().left)
                     .css('top',$(ui.handle).offset().top - 22)
                     .fadeIn('fast');
@@ -1046,7 +1046,7 @@ gnt.questionnaire.create_widgets = function(css_selector) {
             },
             'slide': function(event, ui) {
                 $('#slider-tooltip')
-                    .text(String(ui.value * step + Number(min)).substr(0,4))
+                    .text(String(ui.value * step + Number(min)).split('.')[0])
                     .css('left',$(ui.handle).offset().left)
                     .css('top',$(ui.handle).offset().top - 22);
             }
