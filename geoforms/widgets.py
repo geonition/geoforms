@@ -50,7 +50,7 @@ class NumberElement(Widget):
     The NumberElement represents a number input with a label
     """
     def render(self, label, name, value, attrs={}):
-        return u'<label>%s %s</label>' % (label,
+        return u'<label>%s%s</label>' % (label,
                                           NumberInput().render(name,
                                                                value,
                                                                attrs = attrs))
@@ -74,7 +74,7 @@ class TextElement(Widget):
     This element presents a text input with a label
     """
     def render(self, label, name, value, attrs={}):
-        return u'<label>%s %s</label>' % (label,
+        return u'<label>%s%s</label>' % (label,
                                           TextInput().render(name, value))
 
 class TextareaElement(Widget):
@@ -82,7 +82,7 @@ class TextareaElement(Widget):
     This widget is a question requiring a text area.
     """
     def render(self, label, name, value, attrs={}):
-        return u'<label>%s %s</label>' % (label,
+        return u'<label>%s%s</label>' % (label,
                                           Textarea().render(name, value))
 
 class RadiobuttonElement(Widget):
@@ -90,7 +90,7 @@ class RadiobuttonElement(Widget):
     This element presents a radiobutton with a label
     """
     def render(self, label, name, value, attrs={}):
-        return u'<label>%s %s</label>' % (Radiobutton().render(name,
+        return u'<label>%s%s</label>' % (Radiobutton().render(name,
                                                                value,
                                                                attrs),
                                           label)
@@ -100,7 +100,7 @@ class CheckboxElement(Widget):
     This element presents a radiobutton with a label
     """
     def render(self, label, name, value, attrs={}):
-        return u'<label>%s %s</label>' % (Checkbox().render(name, value, attrs),
+        return u'<label>%s%s</label>' % (Checkbox().render(name, value, attrs),
                                           label)
 
 
