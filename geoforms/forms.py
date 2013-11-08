@@ -57,8 +57,10 @@ class ElementForm(forms.ModelForm):
         if kwargs.has_key('instance'):
             initial_values = []
             for lang in settings.LANGUAGES:
-                soup = BeautifulSoup(getattr(kwargs['instance'],
-                                             'html_%s' % lang[0]))
+                html = getattr(kwargs['instance'],'html_%s' % lang[0])
+                if html == None:
+                    html = getattr(kwargs['instance'],'html_%s' % settings.LANGUAGES[0][0])
+                soup = BeautifulSoup(html)
                 initial_values.append(soup.label.text)
 
             self.initial['question'] = initial_values
@@ -150,8 +152,10 @@ class NumberElementForm(ElementForm):
             max_value = 1000
             step = 1
             for lang in settings.LANGUAGES:
-                soup = BeautifulSoup(getattr(kwargs['instance'],
-                                             'html_%s' % lang[0]))
+                html = getattr(kwargs['instance'],'html_%s' % lang[0])
+                if html == None:
+                    html = getattr(kwargs['instance'],'html_%s' % settings.LANGUAGES[0][0])
+                soup = BeautifulSoup(html)
                 question.append(soup.label.text)
 
                 min_value = soup.input.get('min', 0)
@@ -236,8 +240,10 @@ class RangeElementForm(forms.ModelForm):
             max_value = 100
             step = 0.01
             for lang in settings.LANGUAGES:
-                soup = BeautifulSoup(getattr(kwargs['instance'],
-                                             'html_%s' % lang[0]))
+                html = getattr(kwargs['instance'],'html_%s' % lang[0])
+                if html == None:
+                    html = getattr(kwargs['instance'],'html_%s' % settings.LANGUAGES[0][0])
+                soup = BeautifulSoup(html)
                 if soup.p:
                     question.append(soup.p.text)
                 else:
@@ -487,11 +493,9 @@ class DrawbuttonForm(forms.ModelForm):
             popup = u''
             max_amount = u'10'
             for lang in settings.LANGUAGES:
-                lang_html = getattr(kwargs['instance'],
-                                    'html_%s' % lang[0])
+                lang_html = getattr(kwargs['instance'],'html_%s' % lang[0])
                 if lang_html == None:
-                    continue
-
+                    lang_html = getattr(kwargs['instance'],'html_%s' % settings.LANGUAGES[0][0])
                 soup = BeautifulSoup(lang_html)
                 label.append(soup.button.text.strip())
                 if lang[0] == settings.LANGUAGE_CODE:
@@ -554,8 +558,10 @@ class ParagraphForm(forms.ModelForm):
         if kwargs.has_key('instance'):
             initial_values = []
             for lang in settings.LANGUAGES:
-                soup = BeautifulSoup(getattr(kwargs['instance'],
-                                             'html_%s' % lang[0]))
+                lang_html = getattr(kwargs['instance'],'html_%s' % lang[0])
+                if lang_html == None:
+                    lang_html = getattr(kwargs['instance'],'html_%s' % settings.LANGUAGES[0][0])
+                soup = BeautifulSoup(lang_html)
                 if soup.html is not None:
                     soup.html.unwrap()
                 if soup.body is not None:
