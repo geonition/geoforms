@@ -617,7 +617,7 @@ gnt.questionnaire.set_values_to_input_elements = function(data,css_selector) {
         css_selector = '#forms :input:not(button)';
     }
     gnt.questionnaire.property_id = data.id;
-    $(css_selector).each(function(i) {
+    $(css_selector).not('#user-language').each(function(i) {
         //if many results use the last one
         if(data['totalResults'] !== undefined) {
             var nr = data['totalResults'];
