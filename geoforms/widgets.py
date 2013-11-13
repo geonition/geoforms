@@ -22,26 +22,26 @@ class Drawbutton(Widget):
     """
     This is a html button
     """
-    def render(self, label, geometry_type, color, popup, max_amount, attrs={}):
+    def render(self, default_lang_label, label, geometry_type, color, popup, max_amount, attrs={}):
         final_attrs = {'data-color': color,
                        'data-popup': popup,
                        'data-max': max_amount,
-                       'name': slugify(label),
+                       'name': slugify(default_lang_label),
                        'class': 'drawbutton %s' % geometry_type}
         final_attrs.update(attrs)
         symbol = ''
         if geometry_type == 'point':
             symbol = '<img src="/images/svg/place_marker.svg?color=%s" alt="%s" />' % (color[1:],
-                                                                                       _('place icon'))
+                                                                                       'place icon')
         elif geometry_type == 'route':
             symbol = '<img src="/images/svg/route_marker.svg?color=%s" alt="%s" />' % (color[1:],
-                                                                                       _('route icon'))
+                                                                                       'route icon')
         elif geometry_type == 'area':
             symbol = '<img src="/images/svg/area_marker.svg?color=%s" alt="%s" />' % (color[1:],
-                                                                                       _('area icon'))
+                                                                                       'area icon')
 
 
-        return mark_safe(u'<button type="button"%s>%s %s</button>' % (flatatt(final_attrs),
+        return mark_safe(u'<button type="button"%s>%s%s</button>' % (flatatt(final_attrs),
                                                                       symbol,
                                                                       label))
 

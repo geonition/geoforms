@@ -72,10 +72,12 @@ class ElementForm(forms.ModelForm):
         model = super(ElementForm, self).save(commit=False)
 
         if self.is_valid():
-            name = self.cleaned_data['question'][0].replace(' ', '-')[:200]
+            name = self.cleaned_data['question'][0].replace(' ', '-')[:190]
 
             for i, lang in enumerate(settings.LANGUAGES):
                 question = self.cleaned_data['question'][i]
+                if not question:
+                    question = self.cleaned_data['question'][0]
                 gen_html = self.render(question,
                                        name,
                                        '')
@@ -181,12 +183,14 @@ class NumberElementForm(ElementForm):
         if self.is_valid():
             question = self.cleaned_data['question']
 
-            name = slugify("%sT%s" % (question[0][:200],
-                                      str(datetime.utcnow())))
+            name = slugify("number-" + question[0][:190])
 
             value = ''
             for i, lang in enumerate(settings.LANGUAGES):
-                gen_html = NumberElement().render(question[i],
+                lang_q = question[i]
+                if not lang_q:
+                    lang_q = question[0]
+                gen_html = NumberElement().render(lang_q,
                                                   name,
                                                   value,
                                                   attrs = {
@@ -199,7 +203,7 @@ class NumberElementForm(ElementForm):
                         gen_html)
                 setattr(model,
                         'name_%s' % lang[0],
-                        question[i][:200])
+                        lang_q[:190])
 
         if commit:
             model.save()
@@ -285,15 +289,25 @@ class RangeElementForm(forms.ModelForm):
 
             if not question:
                 question = ['']* len(settings.LANGUAGES)
-                name = slugify('min-' + min_label[0][:190])
+                name = slugify('range-min-' + min_label[0][:190])
             else:
-                name = slugify(question[0][:190])
+                name = slugify('range-' + question[0][:190])
 
             value = ''
             for i, lang in enumerate(settings.LANGUAGES):
-                gen_html = RangeElement().render(question[i],
-                                                 min_label[i],
-                                                 max_label[i],
+                lang_question = question[i]
+                lang_min_label = min_label[i]
+                lang_max_label = max_label[i]
+                if not lang_min_label:
+                    lang_min_label = min_label[0]
+                if not lang_max_label:
+                    lang_max_label = max_label[0]
+                if not lang_question:
+                    if question[0]: # question can be empty for range elements
+                        lang_question = question[0]
+                gen_html = RangeElement().render(lang_question,
+                                                 lang_min_label,
+                                                 lang_max_label,
                                                  name,
                                                  value,
                                                  attrs = {
@@ -352,17 +366,24 @@ class RadioElementFormSet(BaseFormSet):
             name = slugify(qform.cleaned_data['question'][0])
             randomize = qform.cleaned_data['randomize']
             for i, lang in enumerate(settings.LANGUAGES):
-                model_values['html_%s' % lang[0]] = '<p>%s</p>' % qform.cleaned_data['question'][i]
-                model_values['name_%s' % lang[0]] = qform.cleaned_data['question'][i]
+                lang_question = qform.cleaned_data['question'][i]
+                if not lang_question:
+                    lang_question = qform.cleaned_data['question'][0]
+                model_values['html_%s' % lang[0]] = '<p>%s</p>' % lang_question
+                model_values['name_%s' % lang[0]] = lang_question
 
         attrs = {'data-random': 'true'} if randomize else {}
         for form in self.forms:
+            default_lang_label = form.cleaned_data['label'][0]
 
             if form.is_valid():
                 for i, lang in enumerate(settings.LANGUAGES):
-                    model_values['html_%s' % lang[0]] += RadiobuttonElement().render(form.cleaned_data['label'][i],
+                    lang_label = form.cleaned_data['label'][i]
+                    if not lang_label:
+                        lang_label = default_lang_label
+                    model_values['html_%s' % lang[0]] += RadiobuttonElement().render(lang_label,
                                                                                      name,
-                                                                                     slugify(form.cleaned_data['label'][i]),
+                                                                                     slugify(default_lang_label),
                                                                                      attrs)
         if self.data.has_key('id'):
             model_values['id'] = self.data['id']
@@ -390,16 +411,23 @@ class CheckboxElementFormSet(BaseFormSet):
             name = slugify(qform.cleaned_data['question'][0])
             randomize = qform.cleaned_data['randomize']
             for i, lang in enumerate(settings.LANGUAGES):
-                model_values['html_%s' % lang[0]] = '<p>%s</p>' % qform.cleaned_data['question'][i]
-                model_values['name_%s' % lang[0]] = qform.cleaned_data['question'][i]
+                lang_question = qform.cleaned_data['question'][i]
+                if not lang_question:
+                    lang_question = qform.cleaned_data['question'][0]
+                model_values['html_%s' % lang[0]] = '<p>%s</p>' % lang_question
+                model_values['name_%s' % lang[0]] = lang_question
         attrs = {'data-random': 'true'} if randomize else {}
         for form in self.forms:
+            default_lang_label = form.cleaned_data['label'][0]
 
             if form.is_valid():
                 for i, lang in enumerate(settings.LANGUAGES):
-                    model_values['html_%s' % lang[0]] += CheckboxElement().render(form.cleaned_data['label'][i],
+                    lang_label = form.cleaned_data['label'][i]
+                    if not lang_label:
+                        lang_label = default_lang_label
+                    model_values['html_%s' % lang[0]] += CheckboxElement().render(lang_label,
                                                                                   name,
-                                                                                  slugify(form.cleaned_data['label'][i]),
+                                                                                  slugify(default_lang_label),
                                                                                   attrs)
         if self.data.has_key('id'):
             model_values['id'] = self.data['id']
@@ -429,21 +457,28 @@ class SelectElementFormSet(BaseFormSet):
             name = slugify(qform.cleaned_data['question'][0])
             randomize = qform.cleaned_data['randomize']
             for i, lang in enumerate(settings.LANGUAGES):
-                model_values['name_%s' % lang[0]] = qform.cleaned_data['question'][i]
-                model_values['html_%s' % lang[0]] = u'<p>{0}'.format(qform.cleaned_data['question'][i])
+                lang_question = qform.cleaned_data['question'][i]
+                if not lang_question:
+                    lang_question = qform.cleaned_data['question'][0]
+                model_values['name_%s' % lang[0]] = lang_question
+                model_values['html_%s' % lang[0]] = u'<p>{0}'.format(lang_question)
 
         attrs = {'data-random': 'true'} if randomize else {}
         forms_count = len(self.forms)
-        choises = {}
+        choices = {}
         for i, form in enumerate(self.forms):
             if form.is_valid():
+                default_lang_label = form.cleaned_data['label'][0]
                 for j, lang in enumerate(settings.LANGUAGES):
-                    if not choises.has_key(lang[0]):
-                        choises[lang[0]] =[('','',)]
+                    lang_label = form.cleaned_data['label'][j]
+                    if not lang_label:
+                        lang_label = default_lang_label
+                    if not choices.has_key(lang[0]): # there has to be an empty option
+                        choices[lang[0]] =[('','',)]
 
-                    choises[lang[0]].append((slugify(form.cleaned_data['label'][j]), form.cleaned_data['label'][j]))
+                    choices[lang[0]].append((slugify(default_lang_label), lang_label))
                     if i+1 == forms_count:
-                        model_values['html_%s' % lang[0]] += Select().render(name, '', attrs, choises[lang[0]])
+                        model_values['html_%s' % lang[0]] += Select().render(name, '', attrs, choices[lang[0]])
                         model_values['html_%s' % lang[0]] += '</p>'
 
         if self.data.has_key('id'):
@@ -520,9 +555,12 @@ class DrawbuttonForm(forms.ModelForm):
             popup = self.cleaned_data['popup']
             color = self.cleaned_data['color']
             max_amount = self.cleaned_data['max_amount']
+            default_lang_label = self.cleaned_data['label'][0]
             for i, lang in enumerate(settings.LANGUAGES):
                 label = self.cleaned_data['label'][i]
-                gen_html = Drawbutton().render(label, geometry_type, color, popup, max_amount)
+                if not label:
+                    label = default_lang_label
+                gen_html = Drawbutton().render(default_lang_label, label, geometry_type, color, popup, max_amount)
                 setattr(model,
                         'html_%s' % lang[0],
                         gen_html)
@@ -582,6 +620,8 @@ class ParagraphForm(forms.ModelForm):
 
             for i, lang in enumerate(settings.LANGUAGES):
                 question = self.cleaned_data['text'][i]
+                if not question:
+                    question = self.cleaned_data['text'][0]
                 gen_html = '<p>%s</p>' % question
                 setattr(model, 'html_%s' % lang[0],
                         gen_html)
