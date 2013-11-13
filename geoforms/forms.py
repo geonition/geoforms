@@ -374,9 +374,9 @@ class RadioElementFormSet(BaseFormSet):
 
         attrs = {'data-random': 'true'} if randomize else {}
         for form in self.forms:
-            default_lang_label = form.cleaned_data['label'][0]
 
             if form.is_valid():
+                default_lang_label = form.cleaned_data['label'][0]
                 for i, lang in enumerate(settings.LANGUAGES):
                     lang_label = form.cleaned_data['label'][i]
                     if not lang_label:
@@ -418,9 +418,9 @@ class CheckboxElementFormSet(BaseFormSet):
                 model_values['name_%s' % lang[0]] = lang_question
         attrs = {'data-random': 'true'} if randomize else {}
         for form in self.forms:
-            default_lang_label = form.cleaned_data['label'][0]
 
             if form.is_valid():
+                default_lang_label = form.cleaned_data['label'][0]
                 for i, lang in enumerate(settings.LANGUAGES):
                     lang_label = form.cleaned_data['label'][i]
                     if not lang_label:
