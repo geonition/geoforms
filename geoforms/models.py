@@ -407,6 +407,9 @@ class LotteryParticipant(models.Model):
                                       verbose_name = _('questionnaire'))
     email = models.EmailField()
 
+class HiddenLanguages(models.Model):
+    questionnaire = models.OneToOneField(Questionnaire, primary_key=True)
+    hidden_lang_codes = models.CharField(max_length = 200)
 
 
 
