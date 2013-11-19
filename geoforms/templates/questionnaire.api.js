@@ -16,7 +16,7 @@ gnt.questionnaire.is_mobile_user = false;
 gnt.map_loaded = false;
 
 //fix for OpenLayers 2.12 RC5 check 29.5.2012 should be null and automatic
-OpenLayers.Popup.FramedCloud.prototype.maxSize = new OpenLayers.Size(450, 350);
+OpenLayers.Popup.FramedCloud.prototype.maxSize = new OpenLayers.Size(450, 450);
 OpenLayers.Popup.FramedCloud.prototype.minSize = new OpenLayers.Size(320, 140);
 
 /*
