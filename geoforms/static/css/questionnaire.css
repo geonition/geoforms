@@ -57,13 +57,13 @@
 }
 #wms-layerswitcher-container {
   position: absolute;
-  top: 20px;
+  top: 0px;
   left: 50px;
   z-index: 2000;
   background: #fff;
   border: 1px solid;
   padding: 5px 5px 5px 5px;
-  margin: 2px 0 0 0;
+  margin: 0;
 }
 .wms-layerswitcher {
   padding: 0;

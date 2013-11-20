@@ -1135,7 +1135,7 @@ gnt.questionnaire.make_district_selector = function(translated_zoom_to_district,
             $('<div></div>')
             .css('position','absolute')
             .css('top','0')
-            .css('left','50px')
+            .css('left','250px')
             .css('padding','6px')
             .css('background','white')
             .css('border','1px solid black')
