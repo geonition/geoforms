@@ -276,6 +276,13 @@ function count_results() {
     {% endcomment %}
 // after_map_loaded() is in the template in order to have site specific changes to it more easily.
 gnt.after_map_loaded = function() {
+    $('#map').append($('<div></div>')
+            .css('position','absolute')
+            .css('top','0')
+            .css('left','50px')
+            .css('z-index','750')
+            .css('background','transparent')
+            .attr('id', 'gnt-map-control'));
     gnt.questionnaire.create_geoform_layers();
     gnt.questionnaire.create_extra_layers();
 
@@ -366,7 +373,7 @@ jQuery(document).ready(function() {
 
 gnt.questionnaire.create_extra_layers = function(){
         gnt.questionnaire.extra_layers = Array();
-        $('#map').append(
+        $('#gnt-map-control').append(
                 $('<div></div>')
                 .attr('id', 'wms-layerswitcher-container')
                 .append('<strong>{% trans "Choose Layers to show" %}</strong>')

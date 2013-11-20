@@ -1131,15 +1131,8 @@ gnt.questionnaire.make_district_selector = function(translated_zoom_to_district,
     gnt.districts = {}; // longitude-latitudes, for example gnt.districts["Eira"] = [4.0, 3.2]
     var source_proj = new OpenLayers.Projection('EPSG:4326');
     var target_proj = new OpenLayers.Projection('EPSG:3067');
-    $('#map').append(
+    $('#gnt-map-control').append(
             $('<div></div>')
-            .css('position','absolute')
-            .css('top','0')
-            .css('left','250px')
-            .css('padding','6px')
-            .css('background','white')
-            .css('border','1px solid black')
-            .css('z-index','3000')
             .attr('id', 'zoomable-districts')
             .prepend('<strong>' + translated_zoom_to_district + '</strong>')
             .append($('<select name="zoomable-districts"></select>')

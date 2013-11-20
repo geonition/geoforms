@@ -55,10 +55,9 @@
   filter: Alpha(50) !important;
   background-color: #323232 !important;
 }
-#wms-layerswitcher-container {
-  position: absolute;
-  top: 0px;
-  left: 50px;
+#wms-layerswitcher-container,#zoomable-districts {
+  display: inline-block;
+  vertical-align: top;
   z-index: 2000;
   background: #fff;
   border: 1px solid;
