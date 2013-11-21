@@ -225,6 +225,7 @@ questionnaire_area['crs'] = {"type": "name",
 // instead of using global varibles start using this object
 
 var questionnaire = {
+    'q_id': {{ questionnaire.id }},
     'data_group': 'Q-{{ questionnaire.slug }}',
     'questionnaire_area': {{ questionnaire.area.json|safe }},
     'show_area': {{ questionnaire.show_area|lower }},
