@@ -337,6 +337,10 @@ jQuery(document).ready(function() {
     }
     add_cannot_say_to_range_elements('{% trans "Cannot say" %}');
     {% endif %}
+    {% if ADD_FEATURE_MIN_ZOOM_LEVEL != 0 %}
+    gnt.questionnaire.addFeatureMinZoomLevel = {{ADD_FEATURE_MIN_ZOOM_LEVEL}};
+    gnt.questionnaire.addFeatureMinZoomLevelAlertMsg = '{% trans "Please zoom closer to draw on the map" %}';
+    {% endif %}
 
     gnt.questionnaire.init('', '#forms', questionnaire_area, data_group);
 

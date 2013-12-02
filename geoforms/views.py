@@ -109,6 +109,7 @@ def questionnaire(request, questionnaire_id, template='', no_save=''):
                               'CITIES_WITH_ZOOMABLE_DISTRICTS' : getattr(settings,'CITIES_WITH_ZOOMABLE_DISTRICTS',''),
                               'ADD_CANNOT_SAY_TO_RANGE_ELEMENTS' : getattr(settings,'ADD_CANNOT_SAY_TO_RANGE_ELEMENTS',False),
                               'SHOW_FEATURE_COUNT' : getattr(settings,'SHOW_FEATURE_COUNT',False),
+                              'ADD_FEATURE_MIN_ZOOM_LEVEL' : getattr(settings,'ADD_FEATURE_MIN_ZOOM_LEVEL',0),
                               'lottery' : lottery,
                               'lottery_form' : LotteryForm()},
                              context_instance = RequestContext(request))

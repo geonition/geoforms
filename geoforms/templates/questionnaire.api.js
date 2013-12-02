@@ -498,6 +498,13 @@ gnt.questionnaire.show_popup_for_feature = function(feature, popup_name) {
  to be shown as the content in popup.
 */
 gnt.questionnaire.feature_added = function(evt) {
+    if (typeof(gnt.questionnaire.addFeatureMinZoomLevel) !== 'undefined'){
+        if (map.getZoom() < gnt.questionnaire.addFeatureMinZoomLevel){
+            alert(gnt.questionnaire.addFeatureMinZoomLevelAlertMsg);
+            return;
+        }
+    }
+
 
     //get the right lonlat for the popup position
     evt.lonlat = gnt.questionnaire.get_popup_lonlat(evt.geometry);

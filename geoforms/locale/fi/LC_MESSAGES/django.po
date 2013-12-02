@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geonition\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-31 17:43+0200\n"
+"POT-Creation-Date: 2013-12-02 12:55+0200\n"
 "PO-Revision-Date: 2013-09-28 00:00+0000\n"
 "Last-Translator: ksnabb <kristoffer.snabb@geonition.org>\n"
 "Language-Team: Finnish (http://www.transifex.com/projects/p/geonition/"
@@ -29,63 +29,63 @@ msgstr ""
 msgid "Advanced options"
 msgstr "Lisäasetukset"
 
-#: forms.py:45 forms.py:213 forms.py:603
+#: forms.py:45 forms.py:221 forms.py:649
 msgid "question"
 msgstr "kysymys"
 
-#: forms.py:134 forms.py:217
+#: forms.py:138 forms.py:225
 msgid "minimum value"
 msgstr "minimiarvo"
 
-#: forms.py:135 forms.py:218
+#: forms.py:139 forms.py:226
 msgid "maximum value"
 msgstr "maksimiarvo"
 
-#: forms.py:136 forms.py:219
+#: forms.py:140 forms.py:227
 msgid "size for one step"
 msgstr "asteikon väli"
 
-#: forms.py:214
+#: forms.py:222
 msgid "label for minimum choice"
 msgstr "minimi otsikko"
 
-#: forms.py:215
+#: forms.py:223
 msgid "label for maximum choice"
 msgstr "maximi otsikko"
 
-#: forms.py:216
+#: forms.py:224
 msgid "initial value"
 msgstr "alkuarvo"
 
-#: forms.py:326 forms.py:367 forms.py:404
+#: forms.py:346 forms.py:394 forms.py:438
 msgid "option"
 msgstr "valinta"
 
-#: forms.py:450
+#: forms.py:491
 msgid "place"
 msgstr "paikan"
 
-#: forms.py:451
+#: forms.py:492
 msgid "route"
 msgstr "reitti"
 
-#: forms.py:452
+#: forms.py:493
 msgid "area"
 msgstr "alue"
 
-#: forms.py:453
+#: forms.py:494
 msgid "geometry type"
 msgstr "geometrian typpi"
 
-#: forms.py:454
+#: forms.py:495
 msgid "button text"
 msgstr "napin teksti"
 
-#: forms.py:457
+#: forms.py:498
 msgid "color"
 msgstr "väri"
 
-#: forms.py:458
+#: forms.py:499
 msgid ""
 "The color of the feature to be drawn. The color is given as hexadecimal "
 "color e.g. #ffffff --> white, #000000 --> black, #ff0000 --> red, #00ff00 --"
@@ -95,21 +95,21 @@ msgstr ""
 "muodossa esim. #ffffff (valkoinen), #000000 (musta), #ff0000 (punainen), "
 "#00ff00 (vihreä), #0000ff (sininen) "
 
-#: forms.py:460
+#: forms.py:501
 msgid "popup for the place, route or area"
 msgstr "paikan, reitin tai alueen ponnahdusikkuna "
 
-#: forms.py:461 forms.py:480
+#: forms.py:502 forms.py:521
 msgid "Choose the popup to use for the place, route, or area."
 msgstr ""
 "Valitse ponnahdusikkuna jonka käyttäjä näkee sen jälkeen kun hän on "
 "piirtänyt paikannuksen."
 
-#: forms.py:465
+#: forms.py:506
 msgid "max amount of answers"
 msgstr "vastausten maksimimäärä"
 
-#: forms.py:466
+#: forms.py:507
 msgid ""
 "This is the maximum number of allowed places/routes/areas that can be drawn "
 "by this drawbutton."
@@ -117,11 +117,11 @@ msgstr ""
 "Tämä on suurin sallittu paikannusten määrä, joita tällä piirtonapilla voi "
 "piirtää."
 
-#: forms.py:546
+#: forms.py:588
 msgid "text for the paragraph"
 msgstr "kappaleen teksti"
 
-#: forms.py:547
+#: forms.py:589
 msgid ""
 "This field takes as input any html tags. This enables you to style the text "
 "in any way you want. Here is a list of tags that can be used <a href="
@@ -132,7 +132,7 @@ msgstr ""
 "tyylittelyä esim. <a href=\"http://dev.w3.org/html5/spec/single-page."
 "html#usage-summary\">html5 tags</a>"
 
-#: forms.py:605
+#: forms.py:651
 msgid "randomize the order of the options"
 msgstr ""
 
@@ -382,18 +382,6 @@ msgstr ""
 msgid "Thank you message"
 msgstr ""
 
-#: widgets.py:35
-msgid "place icon"
-msgstr "Paikka ikoni"
-
-#: widgets.py:38
-msgid "route icon"
-msgstr "Reitti ikoni"
-
-#: widgets.py:41
-msgid "area icon"
-msgstr "Alue ikoni"
-
 #: templates/jstranslations.txt:5
 msgid "Click on the map to draw the point"
 msgstr "Napsauta karttaa piirtääksesi pisteen"
@@ -450,19 +438,23 @@ msgstr "Lopeta ja siirry etusivulle"
 msgid "Remove"
 msgstr "Poista"
 
-#: templates/questionnaire.html:297
+#: templates/questionnaire.html:305
 msgid "Zoom to district"
 msgstr "Kohdenna kaupunginosaan"
 
-#: templates/questionnaire.html:305
+#: templates/questionnaire.html:316
 msgid "Total markings made"
 msgstr "Paikannuksia yhteensä"
 
-#: templates/questionnaire.html:329
+#: templates/questionnaire.html:340
 msgid "Cannot say"
 msgstr "En osaa sanoa"
 
-#: templates/questionnaire.html:371
+#: templates/questionnaire.html:344
+msgid "Please zoom closer to draw on the map"
+msgstr "Voit tehdä merkinnän vasta, kun olet zoomannut lähemmäksi kartalla. Käytä hiiren rullaa tai vasemman yläkulman plus-nappia."
+
+#: templates/questionnaire.html:386
 msgid "Choose Layers to show"
 msgstr "Valitse näkyvät karttatasot"
 
@@ -511,6 +503,15 @@ msgstr ""
 "\n"
 "Tämä on kysely elementin nimi. Nimen tulisi olla uniikki koko ohjelmassa "
 "eikä kaksi samannimistä elementtiä voi tehdä.\n"
+
+#~ msgid "place icon"
+#~ msgstr "Paikka ikoni"
+
+#~ msgid "route icon"
+#~ msgstr "Reitti ikoni"
+
+#~ msgid "area icon"
+#~ msgstr "Alue ikoni"
 
 #~ msgid "You marked one place"
 #~ msgstr "Olet merkinnyt yhden paikan"
