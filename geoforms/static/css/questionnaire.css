@@ -372,8 +372,8 @@ phones
   padding: 0 0 0 10px;
   margin-bottom: 20px;
 }
-#feature-ctrl {
-  border-left: 1px solid;
+input.feature-level-ctrl {
+  margin-right: 4px;
 }
 #property-ctrl,
 #feature-ctrl {
