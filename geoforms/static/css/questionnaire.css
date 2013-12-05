@@ -366,17 +366,18 @@ phones
 }
 #property-ctrl,
 #feature-ctrl {
-  display: inline-block;
+/*  display: inline-block;
   width: 260px;
-  vertical-align: top;
+  vertical-align: top;*/
   padding: 0 0 0 10px;
+  margin-bottom: 20px;
 }
 #feature-ctrl {
   border-left: 1px solid;
 }
 #property-ctrl,
 #feature-ctrl {
-  font-size: 12px;
+  font-size: 13px;
 }
 #property-ctrl input,
 #feature-ctrl input {
@@ -406,25 +407,25 @@ ul.question-level-ctrl {
 }
 .property-ctrl-andor,
 .feature-ctrl-andor {
-  margin-bottom: 3px;
+  margin: 3px 0px;
 }
 .property-ctrl-andor label,
 .feature-ctrl-andor label {
   margin-left: 3px;
 }
 .feature_comments {
-  right: 270px;
+  right: 301px;
+  width: 240px;
 }
 .user_info {
-  right: 5px;
+  right: 0px;
+  width: 280px;
 }
 .analysis_popup {
   top: 0;
-  font-size: 10px;
+  font-size: 11px;
   position: absolute;
   z-index: 9999;
-  width: 240px;
-  padding: 0;
   background-color: #555;
   color: #fff;
   padding: 10px;
@@ -442,9 +443,16 @@ ul.question-level-ctrl {
 .analysis_popup .attribute-name {
   color: #fff;
 }
+.popup-property {
+  margin: 3px 0px;
+}
 .analysis_popup ul {
   padding: 0 0 0 20px;
   margin: 0;
+}
+.analysis-headline {
+  margin: 5px 0px;
+  font-size: 150%;
 }
 .geojsonpopupform {
   overflow-x: hidden;

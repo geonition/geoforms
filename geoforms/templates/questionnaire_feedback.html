@@ -18,7 +18,20 @@
 {% trans "Features originating from the same drawbutton are colored alike. Touch them with your mouse to see the comments! Filtering on long answers is not supported." %}
 </p>
 
+<div id="feature-ctrl">
+    <div class="analysis-headline">Choose markings to show</div>
+    <div class="feature-ctrl-general" style="margin-bottom:7px">
+    <form class="feature-ctrl-andor">
+        <span><strong>Apply popup question filters as:</strong></span>
+            <label><input type="radio" name="andor" value="and">AND</label>
+            <label><input type="radio" name="andor" value="or">OR</label>
+    </form>
+    </div>
+<ul class="feature-ctrl-main">
+</ul>
+</div>
 <div id="property-ctrl">
+    <div class="analysis-headline">Filter respondents</div>
     <div class="property-ctrl-general" style="margin-bottom:7px">
         <form class="property-ctrl-andor">
             <span><strong>Apply filters as:</strong></span>
@@ -28,15 +41,6 @@
     </div>
 <ul class="property-ctrl-main">
 </ul>
-</div>
-<div id="feature-ctrl">
-    <div class="feature-ctrl-general" style="margin-bottom:7px">
-<form class="feature-ctrl-andor">
-    <span><strong>Apply attribute filters as:</strong></span>
-        <label><input type="radio" name="andor" value="and">AND</label>
-        <label><input type="radio" name="andor" value="or">OR</label>
-</form>
-    </div>
 </div>
 {% comment %}
 <div class="instructions">
