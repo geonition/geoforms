@@ -55,12 +55,13 @@
   filter: Alpha(50) !important;
   background-color: #323232 !important;
 }
-#wms-layerswitcher-container,#zoomable-districts {
+#wms-layerswitcher-container,#zoomable-districts,#analysis-box-select {
   display: inline-block;
   vertical-align: top;
   z-index: 2000;
   background: #fff;
   border: 1px solid;
+  min-height: 26px;
   padding: 5px 5px 5px 5px;
   margin: 0;
 }
@@ -425,7 +426,7 @@ ul.question-level-ctrl {
   top: 0;
   font-size: 11px;
   position: absolute;
-  z-index: 9999;
+  z-index: 8999;
   background-color: #555;
   color: #fff;
   padding: 10px;
@@ -453,6 +454,31 @@ ul.question-level-ctrl {
 .analysis-headline {
   margin: 5px 0px;
   font-size: 150%;
+}
+#analysis-select-popup .feature-container {
+  border-bottom: 1px solid #333;
+}
+#analysis-select-popup h4 {
+  font-size:120%;
+  font-weight:bold;
+  text-transform: none;
+  padding-left: 0;
+  margin: 10px 0px;
+}
+#analysis-select-popup {
+  overflow: auto;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 20%;
+  display: none;
+  font-size: 11px;
+  position: absolute;
+  z-index: 9999;
+  background-color: #fff;
+  color: #333;
+  padding: 10px;
+  border-left: 1px solid #333;
 }
 .geojsonpopupform {
   overflow-x: hidden;
