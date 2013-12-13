@@ -106,6 +106,7 @@ def questionnaire(request, questionnaire_id, template='', no_save=''):
                               'USE_CACHE': use_cache, #in fact this means that cache might be used next time
                               'SHOW_ANALYSIS_TOOL' : template == 'questionnaire_feedback.html',
                               'no_save' : no_save,
+                              'DEBUG' : False,#getattr(settings,'DEBUG',False),
                               'CITIES_WITH_ZOOMABLE_DISTRICTS' : getattr(settings,'CITIES_WITH_ZOOMABLE_DISTRICTS',''),
                               'ADD_CANNOT_SAY_TO_RANGE_ELEMENTS' : getattr(settings,'ADD_CANNOT_SAY_TO_RANGE_ELEMENTS',False),
                               'SHOW_FEATURE_COUNT' : getattr(settings,'SHOW_FEATURE_COUNT',False),

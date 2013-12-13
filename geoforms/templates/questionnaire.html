@@ -212,7 +212,11 @@ Your input is important to us! One more way you can help is to share this survey
 {% endif %}
 {% endblock extra_js %}
 <script type="text/javascript" src="{{ STATIC_URL }}js/libs/proj4js-gnt.js"></script>
+{% if DEBUG %}
+<script type="text/javascript" src="{{ STATIC_URL }}js/libs/OpenLayers.js"></script>
+{% else %}
 <script type="text/javascript" src="{{ STATIC_URL }}js/libs/OpenLayers-gnt.js"></script>
+{% endif %}
 <script type="text/javascript" src="{% url 'api_javascript' %}"></script>
 <script type="text/javascript" src="{% url 'map_js' map_slug_name=map_slug %}"></script>
 <script type="text/javascript">
