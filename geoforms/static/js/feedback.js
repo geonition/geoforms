@@ -1,1 +1,857 @@
-!function(){this.show_feedback=function(){var e,t,r,n,a,i,l,o,s,u,p,c,d,f,h,m,y,b,g,v,k,C,x,w,_,L,q,S,O,P,N,A,z,R,B,M,F,V,D,j,T,I,W,E,U,G;return e={user:!0,time:!0,id:!0,group:!0},p=function(e){var t,r;t=0;for(r in e)e.hasOwnProperty(r)&&++t;return t},u=function(e){var t,r;t={};for(r in e)e.hasOwnProperty(r)&&(t[r]=e[r]);return t},y=function(e){var t,r,n;n=function(e,t){var r;return r=0,r="0:"===e.slice(0,3)?9999:"0:"===t.slice(0,3)?-9999:e.length-t.length},t=[];for(r in e)e.hasOwnProperty(r)&&t.push(r);return t.sort(n)},b=function(e){var t;return"undefined"==typeof e&&(e=s.pop()),t={strokeWidth:3,strokeColor:e,fillColor:e,cursor:"pointer",fillOpacity:1,pointRadius:4}},m=function(e){return s.push(e)},q=function(){var e,t,r;return t=0,r={},e=["#1f77b4","#ff7f0e","#2ca02c","#d62728","#9467bd","#8c564b","#e377c2","#7f7f7f","#bcbd22","#17becf","#9edae5","#98df8a","#aec7e8","#ffbb78","#ff9896","#c5b0d5","#c49c94","#f7b6d2","#c7c7c7","#dbdb8d"],function(n){return n in r||(r[n]=e[t++%20]),{strokeWidth:5,strokeColor:r[n],fillColor:"black",cursor:"pointer",fillOpacity:.1,pointRadius:6}}},x=function(){var e;return e=new OpenLayers.Control.SelectFeature(map.getLayersByName("Visualization Layer")[0],{id:"visualization_hover",hover:!0,highlightOnly:!0,multiple:!0,renderIntent:"highlight",eventListeners:{featurehighlighted:B,featureunhighlighted:g}})},w=function(){var e;return e=new OpenLayers.Control.SelectFeature(map.getLayersByName("Visualization Layer")[0],{id:"visualization_select",box:!0,clickout:!0,hover:!1,toggle:!0,multiple:!0,selectStyle:{strokeWidth:3,strokeColor:"#333",cursor:"pointer",fillColor:"#fff",fillOpacity:1,pointRadius:8},onSelect:z,onUnselect:T})},M=function(e){var t,r,n;if(e in F)return F[e];if(r=0,t=void 0,0===e.length)return r;for(n=0;n<e.length;)t=e.charCodeAt(n),r=(r<<5)-r+t,r&=r,n++;for(r=Math.abs(r);r in N;)r++;return N[r]=e,r=r.toString(),F[e]=r,r},i=function(e,t){var r;return r=$("<li></li>").addClass("feature-level-ctrl").append($('<input type="checkbox">').addClass("feature-level-ctrl").attr("id",e).attr("value",e).prop("checked",!1).change(V)).append($("<label></label>").addClass("feedback-bold").text(t.attributes.original_name).attr("for",e)),t.attributes.popup_has_multiple_choice_questions&&r.append($("<ul></ul>").addClass("mini-questionnaire").addClass(e).hide()),$("ul.feature-ctrl-main").append(r)},r=function(e,t){var r;return r=questionnaire.metadata.elements,r.hasOwnProperty(t)&&r[t].hasOwnProperty("question")&&(t=r[t].question),$("ul.property-ctrl-main").append($("<li></li>").html($("<div></div>").css("padding",0).addClass("feedback-bold").html(t)).append($("<ul></ul>").addClass("question-level-ctrl").addClass(e)))},V=function(e,t){var r,n,a,i,l,o,s,p,f,h,y,g,v;for("undefined"==typeof t&&(t=!1),r=e.target.checked?"checked":"none",o=function(){var t,r,n,i;for(n=c[e.target.id],i=[],t=0,r=n.length;r>t;t++)a=n[t],i.push(G[a]);return i}(),"none"===r?(t||(m($('label[for="'+e.target.id+'"]').css("color")),$('label[for="'+e.target.id+'"]').css("color","")),l={}):t?l=b($('label[for="'+e.target.id+'"]').css("color")):(l=b(),$('label[for="'+e.target.id+'"]').css("color",l.strokeColor)),l.display=r,p=0,y=o.length;y>p;p++)n=o[p],n.style=u(l);for(f=0,g=o.length;g>f;f++)n=o[f],E[n.attributes.user]===!1&&(n.style.display="none");for(h=0,v=o.length;v>h;h++)n=o[h],d[n.attributes.id]===!1&&(n.style.display="none");i=$(e.target).closest("li.feature-level-ctrl").find(".mini-questionnaire"),"none"===r?i.hide():i.show(),map.getLayersByName("Visualization Layer")[0].redraw(),s=0;for(n in G)"none"!==G[n].style.display&&s++;return $("#visible-feature-count .currently-visible").text(s)},j=function(e){var t,r,n,a,i,l,o;if(r={},0===e.length)return r;for(a=0,l=e.length;l>a;a++)for(t=e[a],i=0,o=t.length;o>i;i++)n=t[i],r[n]=!0;return r},k=function(e){var t,r,n,a,i,l,o,s,u,p,c,d;if(r={},0===e.length)return r;for(p=e[0],a=0,o=p.length;o>a;a++)n=p[a],r[n]=!0;if(1===e.length)return r;for(c=e[0],i=0,s=c.length;s>i;i++)for(n=c[i],d=e.slice(1),l=0,u=d.length;u>l;l++)if(t=d[l],-1===t.indexOf(n)){delete r[n];break}return r},f=function(e){var t,r,n,a,i,l;for(r=[],$(e.target).closest(".mini-questionnaire").find('input[type="checkbox"].attribute-level-ctrl').each(function(){return this.checked?r.push(o[this.value]):void 0}),n=$('.feature-ctrl-andor input[value="and"]').first().prop("checked")?k(r):j(r),l=c[$(e.target).closest("li.feature-level-ctrl").find("input.feature-level-ctrl").attr("id")],a=0,i=l.length;i>a;a++)t=l[a],d[t]=t in n?!0:!1;return $(e.target).closest("li.feature-level-ctrl").find("input.feature-level-ctrl").trigger("change",[!0])},h=function(){var e,t,r,n,a,i,o;o=[],$("input.property-ctrl-boolean").each(function(){return this.checked?o.push(l[this.value]):void 0}),r=$('.property-ctrl-andor input[value="and"]').first().prop("checked")?k(o):j(o),n={},$("input.property-ctrl-min").each(function(){return n[this.name]=[parseInt(this.value)]}),$("input.property-ctrl-max").each(function(){return n[this.name].push(parseInt(this.value))});for(i in r)for(a in n)if(t=$("input#exclude-"+a).first().prop("checked"),i in I){if(!(a in I[i])){if(!t)continue;delete r[i]}e=I[i][a],e>=n[a][0]&&e<=n[a][1]||delete r[i]}else{if(!t)continue;delete r[i]}$("#visible-user-count .currently-visible").text(p(r));for(i in E)E[i]=i in r?!0:!1;return $("input.feature-level-ctrl").trigger("change",[!0])},n=function(e,t,r,n){return e.options.hasOwnProperty(r)?$("ul."+t).append($("<li></li>").append($("<label></label>").attr("for",n).append($("<input>").addClass("property-ctrl-boolean").attr("type","checkbox").attr("id",n).val(n).attr("checked","checked")).change(h).append(e.options[r]))):void 0},a=function(e,t){return $("ul."+t).append($("<li></li>").append($("<label></label>").attr("for","min-"+t).append("Min:").append($("<input>").addClass("property-ctrl-min").attr("type","text").attr("id","min-"+t).attr("name",t)).change(h))).append($("<li></li>").append($("<label></label>").attr("for","max-"+t).append("Max:").append($("<input>").addClass("property-ctrl-max").attr("type","text").attr("id","max-"+t).attr("name",t)).change(h))).append($("<li></li>").append($("<label></label>").attr("for","exclude-"+t).append($("<input>").addClass("property-ctrl-exclude").attr("type","checkbox").attr("id","exclude-"+t).attr("name",t)).change(h).append("Exclude people who did not answer")))},L=function(t){var i,o,s,u,c,d,f,h,m,y,b,g,v,k,C;if(o=function(){var e,t,r,o,s,u,p,g,v,$,k,C;if(questionnaire.metadata.elements.hasOwnProperty(f)){if(r=questionnaire.metadata.elements[f],"checkbox"===(v=r.element_type)||"select"===v||"radio"===v){for(k=[],o=0,u=i.length;u>o;o++)e=i[o],t=M(f+"-AND-"+e),t in y||(n(r,d,e,t),y[t]=!0),null==l[t]&&(l[t]=Array()),k.push(l[t].push(c.user));return k}if("range"===($=r.element_type)||"number"===$){for(C=[],s=0,p=i.length;p>s;s++)e=i[s],d in b||a(r,d),e=parseInt(e),null==I[g=c.user]&&(I[g]={}),I[c.user][d]=e,null==h[d]&&(h[d]=e),e>h[d]&&(h[d]=e),null==m[d]&&(m[d]=e),e<m[d]?C.push(m[d]=e):C.push(void 0);return C}}},t.entry){for(b={},y={},h={},m={},C=t.entry,g=0,v=C.length;v>g;g++)if(c=C[g],!("form_values"in c)){c=P(c),null==W[k=c.user]&&(W[k]={});for(f in c)i=c[f],f in e||(d=M(f),d in b||r(d,f),i instanceof Array||(i=[i]),W[c.user][f]=i,o(),b[d]=!0)}for(f in h)s=h[f],$('input.property-ctrl-max[name="'+f+'"]').val(s);for(f in m)u=m[f],$('input.property-ctrl-min[name="'+f+'"]').val(u);return $("ul.property-ctrl-main ul").filter(function(){return $(this).find("li").length<2}).parent().remove(),$("#property-ctrl .loading").remove(),$(".property-ctrl-general").prepend($("<div>/</div>").attr("id","visible-user-count").append($("<span></span>").addClass("total")).prepend($("<span></span>").addClass("currently-visible")).append($("<span> respondents match your current filter</span>"))),$("#visible-user-count .currently-visible").text(p(W)),$("#visible-user-count .total").text(p(W))}},P=function(t){var r,n,a,i;for(n in t)i=t[n],n in e||(a=n,r=questionnaire.metadata.elements,n in r&&("question"in r[n]?a=r[n].question:"range"===r[n].element_type&&(a="0: "+r[n].min_label+"<br />100: "+r[n].max_label),r[a]=r[n],"range"===r[n].element_type&&(t[n]=Math.round(i)),t[a]=t[n],delete t[n]));return t},_=function(e){var r,n,a,l,s,u,h,m,y,b,g,v,k,C,x;if(e.features){for(C=map.getLayersByName("Visualization Layer")[0],m=new OpenLayers.Format.GeoJSON,v=new OpenLayers.Projection(e.crs.properties.code),k=new OpenLayers.Projection(map.getProjection()),g={},y=0;y<e.features.length;)if(h=m.parseFeature(e.features[y]),u=h.attributes.name,u in questionnaire.metadata.drawbuttons){h.geometry.transform(v,k),h.lonlat=gnt.questionnaire.get_popup_lonlat(h.geometry),h.style={},h.style.display="none",h.attributes.id=y,h=O(h),G[y]=h,E[h.attributes.user]=!0,u in c||(c[u]=Array(),i(u,h)),c[u].push(y),b=questionnaire.metadata.drawbuttons[u].elements;for(r in h.attributes.form_values)if("checkbox"===(x=b[r].element_type)||"radio"===x||"select"===x){s=M([u,r].join("-AND-")),s in g||(g[s]=!0,$("."+u).append($("<li></li>").addClass("attr-ctrl").append($("<div></div>").html(r)).append($("<ul></ul>").addClass(s))));for(a in h.attributes.form_values[r])n=M([u,r,a].join("-AND-")),n in o||(o[n]=Array(),$("."+s).append($("<li></li>").append($('<input type="checkbox">').addClass("attribute-level-ctrl").attr("id",n).attr("value",n).attr("checked","checked").change(f)).append($("<label></label>").text(a).attr("for",n)))),o[n].push(y)}C.addFeatures(h),y+=1}else y++;for(l in G)d[l]=!0;return t(),$(".attr-ctrl").filter(function(){return $(this).find("li").length<2}).remove(),$('.feature-ctrl-andor input[value="or"]').prop("checked",!0),$(".feature-ctrl-andor input").change(D),$("#feature-ctrl .loading").remove(),$(".feature-ctrl-general").prepend($("<div>/</div>").attr("id","visible-feature-count").append($("<span></span>").addClass("total")).prepend($("<span></span>").addClass("currently-visible")).append($("<span> markings match your current filter</span>"))),$("#visible-feature-count .total").text(p(d)),$("#gnt-map-control").prepend($('<div id="analysis-box-select"></div>').append($('<label for="box-select-toggle">Select multiple markings</label>')).prepend($('<input type="checkbox" id="box-select-toggle">').change(function(e){var t,r;return r=map.getControlsBy("id","visualization_select")[0],t=map.getControlsBy("id","visualization_hover")[0],e.target.checked?($(".userinfo").add(".feature_comments").hide(),t.deactivate(),r.activate(),$("#analysis-select-popup").show()):(r.unselectAll(),$("#analysis-select-popup").hide(),r.deactivate(),t.activate())})))}},D=function(){return $("li.feature-level-ctrl").each(function(){return $(this).find("input.attribute-level-ctrl").first().change()})},C=function(e){return-1===e.indexOf(" ")&&e.charCodeAt(0)>="a".charCodeAt(0)&&e.charCodeAt(0)<="z".charCodeAt(0)?!0:!1},T=function(e){return delete R[e.id],$("#analysis-select-popup #"+e.id).remove()},z=function(e){return R[e.id]=e,S("#analysis-select-popup",e)},g=function(){return $("div.analysis_popup").hide()},B=function(e){var t,r,n,a,i,l;for($(".analysis_popup").html("").hide(),$(".feature_comments").append('<div class="name">'+e.feature.attributes.original_name+"</div>"),n=e.feature.attributes.user,S(".feature_comments",e.feature),$(".user_info").prepend($("<div>Responses to other questions</div>").addClass("username")),$(".user_info").append($("<ul></ul>")),l=y(W[n]),a=0,i=l.length;i>a;a++)r=l[a],t=W[n][r],$(".user_info ul").append($('<li class="popup-property"><span class="attribute-name">'+r+" </span></li>").append(t.join(", ")));return $(".analysis_popup").show()},S=function(e,t){var r,n,a,i,l;r=$("<div></div>").attr("id",t.id).addClass("feature-container"),n=t.attributes.form_values;for(a in n){r.append('<div class="attribute-name">'+a+"</div>"),i=$("<ul></ul>");for(l in n[a])i.append($("<li></li>").html(l));r.append(i)}return $(e).append(r)},O=function(e){var t,r,n,a,i,l,o,s,u,p,c,d,f,h,m,y,b;if(i=e.attributes.name,t={},i in questionnaire.metadata.drawbuttons?(t=questionnaire.metadata.drawbuttons[i],s=t.question.trim(),questionnaire.metadata.drawbuttons[s]=questionnaire.metadata.drawbuttons[i]):s=i,e.attributes.original_name=s,u=!1,"elements"in t){m=t.elements;for(n in m)r=m[n],("checkbox"===(y=r.element_type)||"radio"===y||"select"===y)&&(u=!0)}for(e.attributes.popup_has_multiple_choice_questions=u,o={},l=e.attributes.form_values,f=0,h=l.length;h>f;f++)p=l[f],c=p.name,d=p.value,"elements"in t&&p.name in t.elements&&(a=t.elements[p.name],c=a.question,t.elements[c]=t.elements[p.name],("checkbox"===(b=a.element_type)||"radio"===b||"select"===b)&&"options"in a&&p.value in a.options&&(d=a.options[p.value]),"range"===a.element_type&&(d=Math.round(p.value))),null==o[c]&&(o[c]={}),o[c][d]=!0;return e.attributes.form_values=o,e},t=function(){return $(".mini-questionnaire").prepend($("<label>Check all</label>").css("font-weight","bold").prepend($('<input type="checkbox">').css("margin-right","3px").prop("checked",!0).change(function(e){return $(e.target).closest(".mini-questionnaire").find('input[type="checkbox"]').prop("checked",e.target.checked),$(e.target).closest(".mini-questionnaire").find('input[type="checkbox"].attribute-level-ctrl').last().trigger("change",[!0])}))),$(".property-ctrl-general").append($("<label>Check all</label>").css("font-weight","bold").prepend($('<input type="checkbox">').css("margin-right","3px").prop("checked",!0).change(function(e){return $("input.property-ctrl-boolean").prop("checked",e.target.checked),h()})))},R={},E={},d={},c={},G={},o={},l={},I={},W={},s=["#dbdb8d","#c7c7c7","#f7b6d2","#c49c94","#c5b0d5","#ff9896","#ffbb78","#aec7e8","#98df8a","#9edae5","#17becf","#bcbd22","#7f7f7f","#e377c2","#8c564b","#9467bd","#d62728","#2ca02c","#ff7f0e","#1f77b4"],N={},F={},$(".property-ctrl-andor input").change(h),$('.property-ctrl-andor input[value="or"]').first().prop("checked",!0),map.updateSize(),$("a#feedback").hide(),map.getLayersByName("Route Layer")[0].setVisibility(!1),map.getLayersByName("Point Layer")[0].setVisibility(!1),map.getLayersByName("Area Layer")[0].setVisibility(!1),U=new OpenLayers.Layer.Vector("Visualization Layer",{styleMap:new OpenLayers.StyleMap({"default":{strokeWidth:3,strokeColor:"red",cursor:"pointer",fillColor:"#aaaaff",fillOpacity:.3,pointRadius:5},highlight:{strokeWidth:3,strokeColor:"#555555",cursor:"pointer",fillColor:"#555555",fillOpacity:.3,pointRadius:5}})}),map.addLayer(U),$("#property-ctrl").prepend('<div class="loading">Loading data... please wait</div>'),$("#feature-ctrl").prepend('<div class="loading">Loading data... please wait</div>'),$.get("/questionnaire_admin/meta/"+questionnaire.q_id,function(e){return questionnaire.metadata=e,gnt.geo.get_features("@all",data_group,"",{success:_}),gnt.geo.get_properties("@all",data_group,"@null","@all",{success:L})}),v=x(),map.addControl(v),v.activate(),A=w(),map.addControl(A)},this.make_sld_getter=function(){var e,t,r,n;return t=0,r={},e=["#1f77b4","#ff7f0e","#2ca02c","#d62728","#9467bd","#8c564b","#e377c2","#7f7f7f","#bcbd22","#17becf"],n='<?xml version="1.0" encoding="ISO-8859-1"?><StyledLayerDescriptor version="1.0.0" xsi:schemaLocation="http://www.opengis.net/sld StyledLayerDescriptor.xsd" xmlns="http://www.opengis.net/sld" xmlns:ogc="http://www.opengis.net/ogc" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"> <NamedLayer> <Name>NAME</Name> <UserStyle> <Title>SLD Cook Book: Line w2th border</Title> <FeatureTypeStyle> <Rule> <LineSymbolizer> <Stroke> <CssParameter name="stroke">#333333</CssParameter> <CssParameter name="stroke-width">7</CssParameter> <CssParameter name="stroke-linecap">round</CssParameter> </Stroke> </LineSymbolizer> </Rule> </FeatureTypeStyle> <FeatureTypeStyle> <Rule> <LineSymbolizer> <Stroke> <CssParameter name="stroke">COLOR</CssParameter> <CssParameter name="stroke-width">5</CssParameter> <CssParameter name="stroke-linecap">round</CssParameter> </Stroke> </LineSymbolizer> </Rule> </FeatureTypeStyle> </UserStyle> </NamedLayer></StyledLayerDescriptor>',function(a){var i,l;return i="",a in r?i=r[a]:(i=e[t++%10],r[a]=i),l=n.replace("NAME",a),l.replace("COLOR",i)}}}.call(this);
+// Generated by CoffeeScript 1.6.3
+(function() {
+  this.show_feedback = function() {
+    var NON_QUESTIONS, add_check_all_elements, add_checkpoint, add_ctrl_for_property_question, add_multiple_choice_property_ctrl, add_number_property_ctrl, add_toggle_ctrl_for_feature, answer2user_list, assign_feature_color, attribute2id_list, colors_free, copyObj, countKeys, feature_name2color, feature_name2id_list, feature_visible, filter_by_number_answers, filter_visible_features, filter_visible_users, getOrderedKeys, hide_feature_popup, intersection, is_multiple_choice, makeHighlightCtrl, makeSelectCtrl, make_styles, parse_features, parse_properties, render_form_values, restyle_form_values, restyle_property, seen_hashes, select_feature, selected_features, show_feature_popup, simple_hash, str2hash, toggleVisibility, trigger_filtering_by_attributes, unassign_feature_color, union, unselect_feature, user2num_answer, user2properties, user_visible, vizu, vizuLayer, vizu_features;
+    NON_QUESTIONS = {
+      'user': true,
+      'time': true,
+      'id': true,
+      'group': true
+    };
+    countKeys = function(obj) {
+      var count, prop;
+      count = 0;
+      for (prop in obj) {
+        if (obj.hasOwnProperty(prop)) {
+          ++count;
+        }
+      }
+      return count;
+    };
+    copyObj = function(obj) {
+      var nobj, prop;
+      nobj = {};
+      for (prop in obj) {
+        if (obj.hasOwnProperty(prop)) {
+          nobj[prop] = obj[prop];
+        }
+      }
+      return nobj;
+    };
+    getOrderedKeys = function(obj) {
+      var l, prop, sortf;
+      sortf = function(a, b) {
+        var r_val;
+        r_val = 0;
+        if (a.slice(0, 3) === '0:') {
+          r_val = 9999;
+        } else if (b.slice(0, 3) === '0:') {
+          r_val = -9999;
+        } else {
+          r_val = a.length - b.length;
+        }
+        return r_val;
+      };
+      l = [];
+      for (prop in obj) {
+        if (obj.hasOwnProperty(prop)) {
+          l.push(prop);
+        }
+      }
+      return l.sort(sortf);
+    };
+    make_styles = function() {
+      var color, style, _i, _len;
+      vizu.styles = {
+        "default": {
+          strokeWidth: 3,
+          strokeColor: "red",
+          cursor: "pointer",
+          fillColor: "#aaaaff",
+          fillOpacity: 0.3,
+          pointRadius: 5
+        },
+        hidden: {
+          display: 'none'
+        },
+        multiselect: {
+          fillColor: "#fff",
+          strokeColor: "#333",
+          cursor: "pointer",
+          strokeWidth: 3,
+          fillOpacity: 1,
+          pointRadius: 6
+        },
+        multiselectFlash: {
+          fillColor: "#333",
+          strokeColor: "#333",
+          cursor: "pointer",
+          strokeWidth: 5,
+          fillOpacity: 1,
+          pointRadius: 8
+        }
+      };
+      for (_i = 0, _len = colors_free.length; _i < _len; _i++) {
+        color = colors_free[_i];
+        style = {
+          strokeWidth: 3,
+          strokeColor: color,
+          fillColor: color,
+          cursor: "pointer",
+          fillOpacity: 1,
+          pointRadius: 4
+        };
+        vizu.styles['color_' + color] = style;
+      }
+      return vizu.styles;
+    };
+    makeHighlightCtrl = function() {
+      var hctrl;
+      hctrl = new OpenLayers.Control.SelectFeature(map.getLayersByName("Visualization Layer")[0], {
+        id: 'visualization_hover',
+        hover: true,
+        highlightOnly: true,
+        multiple: true,
+        eventListeners: {
+          featurehighlighted: show_feature_popup,
+          featureunhighlighted: hide_feature_popup
+        }
+      });
+      map.addControl(hctrl);
+      hctrl.activate();
+      return hctrl;
+    };
+    makeSelectCtrl = function() {
+      var layer, sctrl;
+      layer = map.getLayersByName("Visualization Layer")[0];
+      sctrl = new OpenLayers.Control.SelectFeature(layer, {
+        id: 'visualization_select',
+        box: true,
+        clickout: true,
+        hover: false,
+        toggle: true,
+        multiple: true,
+        onSelect: select_feature,
+        onUnselect: unselect_feature
+      });
+      map.addControl(sctrl);
+      return sctrl;
+    };
+    simple_hash = function(s) {
+      var c, hash, i;
+      if (s in str2hash) {
+        return str2hash[s];
+      }
+      hash = 0;
+      c = void 0;
+      if (s.length === 0) {
+        return hash;
+      }
+      i = 0;
+      while (i < s.length) {
+        c = s.charCodeAt(i);
+        hash = ((hash << 5) - hash) + c;
+        hash = hash & hash;
+        i++;
+      }
+      hash = Math.abs(hash);
+      while (hash in seen_hashes) {
+        hash++;
+      }
+      seen_hashes[hash] = s;
+      hash = hash.toString();
+      str2hash[s] = hash;
+      return hash;
+    };
+    add_toggle_ctrl_for_feature = function(f_name, feature) {
+      var temp_var;
+      temp_var = $('<li></li>').addClass('feature-level-ctrl').append($('<input type="checkbox">').addClass('feature-level-ctrl').attr('id', f_name).attr('value', f_name).prop('checked', false).change(toggleVisibility)).append($('<label></label>').addClass('feedback-bold').text(feature.attributes.original_name).attr('for', f_name));
+      if (feature.attributes.popup_has_multiple_choice_questions) {
+        temp_var.append($('<ul></ul>').addClass('mini-questionnaire').addClass(f_name).hide());
+      }
+      return $('ul.feature-ctrl-main').append(temp_var);
+    };
+    add_ctrl_for_property_question = function(question, question_long) {
+      var t;
+      t = questionnaire.metadata.elements;
+      if (t.hasOwnProperty(question_long)) {
+        if (t[question_long].hasOwnProperty('question')) {
+          question_long = t[question_long].question;
+        }
+      }
+      return $('ul.property-ctrl-main').append($('<li></li>').html($('<div></div>').css('padding', 0).addClass('feedback-bold').html(question_long)).append($('<ul></ul>').addClass('question-level-ctrl').addClass(question)));
+    };
+    assign_feature_color = function(e) {
+      var color;
+      color = colors_free.pop();
+      feature_name2color[e.target.id] = color;
+      return $('label[for="' + e.target.id + '"]').css('color', color);
+    };
+    unassign_feature_color = function(e) {
+      colors_free.push(feature_name2color[e.target.id]);
+      delete feature_name2color[e.target.id];
+      return $('label[for="' + e.target.id + '"]').css('color', '');
+    };
+    add_checkpoint = function(s) {
+      var t;
+      if (s == null) {
+        s = '';
+      }
+      t = Date.now();
+      if (s !== '' && typeof window.checkpoint !== 'undefined') {
+        console.log(("time elapsed: " + s + " ") + (t - window.checkpoint));
+      } else {
+        console.log('initiate at: ' + t);
+      }
+      return window.checkpoint = t;
+    };
+    toggleVisibility = function(e, originates_from_feature_level_ctrl_click) {
+      var display, f, f_id, miniquiz, style, toggled_features, total_visible, vizu_layer, _i, _j, _k, _l, _len, _len1, _len2, _len3;
+      if (originates_from_feature_level_ctrl_click == null) {
+        originates_from_feature_level_ctrl_click = true;
+      }
+      add_checkpoint();
+      display = e.target.checked;
+      if (originates_from_feature_level_ctrl_click) {
+        if (display) {
+          assign_feature_color(e);
+        } else {
+          unassign_feature_color(e);
+        }
+      }
+      toggled_features = (function() {
+        var _i, _len, _ref, _results;
+        _ref = feature_name2id_list[e.target.id];
+        _results = [];
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          f_id = _ref[_i];
+          _results.push(vizu_features[f_id]);
+        }
+        return _results;
+      })();
+      vizu_layer = map.getLayersByName("Visualization Layer")[0];
+      if (display && !(e.target.id in feature_name2color)) {
+        throw 'no color assigned';
+      }
+      if (display) {
+        style = vizu.styles['color_' + feature_name2color[e.target.id]];
+      } else {
+        style = vizu.styles.hidden;
+      }
+      for (_i = 0, _len = toggled_features.length; _i < _len; _i++) {
+        f = toggled_features[_i];
+        f.style = style;
+      }
+      for (_j = 0, _len1 = toggled_features.length; _j < _len1; _j++) {
+        f = toggled_features[_j];
+        if (user_visible[f.attributes.user] === false) {
+          f.style = vizu.styles.hidden;
+        }
+      }
+      for (_k = 0, _len2 = toggled_features.length; _k < _len2; _k++) {
+        f = toggled_features[_k];
+        if (feature_visible[f.attributes.id] === false) {
+          f.style = vizu.styles.hidden;
+        }
+      }
+      add_checkpoint('styles given');
+      for (_l = 0, _len3 = toggled_features.length; _l < _len3; _l++) {
+        f = toggled_features[_l];
+        vizu_layer.drawFeature(f);
+      }
+      add_checkpoint(toggled_features.length + ' features redrawn');
+      miniquiz = $(e.target).closest('li.feature-level-ctrl').find('.mini-questionnaire');
+      if (!display) {
+        miniquiz.hide();
+      } else {
+        miniquiz.show();
+      }
+      total_visible = 0;
+      for (f in vizu_features) {
+        if (vizu_features[f].renderIntent !== 'hidden') {
+          total_visible++;
+        }
+      }
+      return $('#visible-feature-count .currently-visible').text(total_visible);
+    };
+    union = function(list_of_arrays) {
+      var a, r, x, _i, _j, _len, _len1;
+      r = {};
+      if (list_of_arrays.length === 0) {
+        return r;
+      }
+      for (_i = 0, _len = list_of_arrays.length; _i < _len; _i++) {
+        a = list_of_arrays[_i];
+        for (_j = 0, _len1 = a.length; _j < _len1; _j++) {
+          x = a[_j];
+          r[x] = true;
+        }
+      }
+      return r;
+    };
+    intersection = function(list_of_arrays) {
+      var a, r, x, _i, _j, _k, _len, _len1, _len2, _ref, _ref1, _ref2;
+      r = {};
+      if (list_of_arrays.length === 0) {
+        return r;
+      }
+      _ref = list_of_arrays[0];
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        x = _ref[_i];
+        r[x] = true;
+      }
+      if (list_of_arrays.length === 1) {
+        return r;
+      }
+      _ref1 = list_of_arrays[0];
+      for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
+        x = _ref1[_j];
+        _ref2 = list_of_arrays.slice(1);
+        for (_k = 0, _len2 = _ref2.length; _k < _len2; _k++) {
+          a = _ref2[_k];
+          if ((a.indexOf(x)) === -1) {
+            delete r[x];
+            break;
+          }
+        }
+      }
+      return r;
+    };
+    filter_visible_features = function(e) {
+      var feature, feature_lists, filtered_features, _i, _len, _ref;
+      add_checkpoint();
+      feature_lists = [];
+      $(e.target).closest('.mini-questionnaire').find('input[type="checkbox"].attribute-level-ctrl').each(function() {
+        if (this.checked) {
+          return feature_lists.push(attribute2id_list[this.value]);
+        }
+      });
+      add_checkpoint('feature lists made');
+      if ($('.feature-ctrl-andor input[value="and"]').first().prop('checked')) {
+        filtered_features = intersection(feature_lists);
+      } else {
+        filtered_features = union(feature_lists);
+      }
+      add_checkpoint('filtered features done');
+      _ref = feature_name2id_list[$(e.target).closest('li.feature-level-ctrl').find('input.feature-level-ctrl').attr('id')];
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        feature = _ref[_i];
+        feature_visible[feature] = feature in filtered_features ? true : false;
+      }
+      add_checkpoint('ready to trigger');
+      return $(e.target).closest('li.feature-level-ctrl').find('input.feature-level-ctrl').trigger('change', [false]);
+    };
+    filter_by_number_answers = function(filtered_users) {
+      var answer, exclude, minmax, num_answers, question, user;
+      num_answers = {};
+      $('input.property-ctrl-min').each(function() {
+        return num_answers[this.name] = [Number.MIN_VALUE, Number.MAX_VALUE];
+      });
+      $('input.property-ctrl-min').each(function() {
+        if (this.value !== '') {
+          return num_answers[this.name][0] = parseInt(this.value);
+        }
+      });
+      $('input.property-ctrl-max').each(function() {
+        if (this.value !== '') {
+          return num_answers[this.name][1] = parseInt(this.value);
+        }
+      });
+      for (question in num_answers) {
+        minmax = num_answers[question];
+        if (minmax[0] === Number.MIN_VALUE && minmax[1] === Number.MAX_VALUE) {
+          delete num_answers[question];
+        }
+      }
+      for (user in filtered_users) {
+        for (question in num_answers) {
+          exclude = $('input#exclude-' + question).first().prop('checked');
+          if (!(user in user2num_answer)) {
+            if (exclude) {
+              delete filtered_users[user];
+            } else {
+              continue;
+            }
+            continue;
+          }
+          if (!(question in user2num_answer[user])) {
+            if (exclude) {
+              delete filtered_users[user];
+            } else {
+              continue;
+            }
+          }
+          answer = user2num_answer[user][question];
+          if (!(answer >= num_answers[question][0] && answer <= num_answers[question][1])) {
+            delete filtered_users[user];
+          }
+        }
+      }
+      return filtered_users;
+    };
+    filter_visible_users = function(e) {
+      var filtered_users, user, user_lists;
+      add_checkpoint();
+      user_lists = [];
+      $('input.property-ctrl-boolean').each(function() {
+        if (this.checked) {
+          return user_lists.push(answer2user_list[this.value]);
+        }
+      });
+      add_checkpoint('user lists made');
+      if ($('.property-ctrl-andor input[value="and"]').first().prop('checked')) {
+        filtered_users = intersection(user_lists);
+      } else {
+        filtered_users = union(user_lists);
+      }
+      add_checkpoint('filtered users done');
+      filtered_users = filter_by_number_answers(filtered_users);
+      $('#visible-user-count .currently-visible').text(countKeys(filtered_users));
+      for (user in user_visible) {
+        user_visible[user] = user in filtered_users ? true : false;
+      }
+      add_checkpoint('ready to trigger');
+      return $('input.feature-level-ctrl').trigger('change', [false]);
+    };
+    add_multiple_choice_property_ctrl = function(meta, question, answ, answ_key) {
+      if (meta.options.hasOwnProperty(answ)) {
+        return $('ul.' + question).append($('<li></li>').append($('<label></label>').attr('for', answ_key).append($('<input>').addClass('property-ctrl-boolean').attr('type', 'checkbox').attr('id', answ_key).val(answ_key).attr('checked', 'checked')).change(filter_visible_users).append(meta.options[answ])));
+      }
+    };
+    add_number_property_ctrl = function(meta, question) {
+      return $('ul.' + question).append($('<li></li>').append($('<label></label>').attr('for', 'min-' + question).append('Min:').append($('<input>').addClass('property-ctrl-min').attr('type', 'text').attr('id', 'min-' + question).attr('name', question)).change(filter_visible_users))).append($('<li></li>').append($('<label></label>').attr('for', 'max-' + question).append('Max:').append($('<input>').addClass('property-ctrl-max').attr('type', 'text').attr('id', 'max-' + question).attr('name', question)).change(filter_visible_users))).append($('<li></li>').append($('<label></label>').attr('for', 'exclude-' + question).append($('<input>').addClass('property-ctrl-exclude').attr('type', 'checkbox').attr('id', 'exclude-' + question).attr('name', question)).change(filter_visible_users).append('Exclude people who did not answer')));
+    };
+    parse_properties = function(data) {
+      var answers, make_property_ctrl, property, q_hash, question, seen_answers, seen_questions, _i, _len, _name, _ref;
+      make_property_ctrl = function() {
+        var answ, answ_key, meta, _i, _j, _len, _len1, _name, _ref, _ref1, _results, _results1;
+        if (!questionnaire.metadata.elements.hasOwnProperty(question)) {
+          return;
+        }
+        meta = questionnaire.metadata.elements[question];
+        if ((_ref = meta.element_type) === 'checkbox' || _ref === 'select' || _ref === 'radio') {
+          _results = [];
+          for (_i = 0, _len = answers.length; _i < _len; _i++) {
+            answ = answers[_i];
+            answ_key = simple_hash(question + '-AND-' + answ);
+            if (!(answ_key in seen_answers)) {
+              add_multiple_choice_property_ctrl(meta, q_hash, answ, answ_key);
+              seen_answers[answ_key] = true;
+            }
+            if (answer2user_list[answ_key] == null) {
+              answer2user_list[answ_key] = Array();
+            }
+            _results.push(answer2user_list[answ_key].push(property.user));
+          }
+          return _results;
+        } else if ((_ref1 = meta.element_type) === 'range' || _ref1 === 'number') {
+          _results1 = [];
+          for (_j = 0, _len1 = answers.length; _j < _len1; _j++) {
+            answ = answers[_j];
+            if (!(q_hash in seen_questions)) {
+              add_number_property_ctrl(meta, q_hash);
+            }
+            answ = parseInt(answ);
+            if (user2num_answer[_name = property.user] == null) {
+              user2num_answer[_name] = {};
+            }
+            _results1.push(user2num_answer[property.user][q_hash] = answ);
+          }
+          return _results1;
+        }
+      };
+      if (data.entry) {
+        seen_questions = {};
+        seen_answers = {};
+        _ref = data.entry;
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          property = _ref[_i];
+          if ('form_values' in property) {
+            continue;
+          }
+          property = restyle_property(property);
+          if (user2properties[_name = property.user] == null) {
+            user2properties[_name] = {};
+          }
+          for (question in property) {
+            answers = property[question];
+            if (!(question in NON_QUESTIONS)) {
+              q_hash = simple_hash(question);
+              if (!(q_hash in seen_questions)) {
+                add_ctrl_for_property_question(q_hash, question);
+              }
+              if (!(answers instanceof Array)) {
+                answers = [answers];
+              }
+              user2properties[property.user][question] = answers;
+              make_property_ctrl();
+              seen_questions[q_hash] = true;
+            }
+          }
+        }
+        $("ul.property-ctrl-main ul").filter(function() {
+          return $(this).find("li").length < 2;
+        }).parent().remove();
+        $('#property-ctrl .loading').remove();
+        $('.property-ctrl-general').prepend($('<div>/</div>').attr('id', 'visible-user-count').append($('<span></span>').addClass('total')).prepend($('<span></span>').addClass('currently-visible')).append($('<span> respondents match your current filter</span>')));
+        $('#visible-user-count .currently-visible').text(countKeys(user2properties));
+        return $('#visible-user-count .total').text(countKeys(user2properties));
+      }
+    };
+    restyle_property = function(prop) {
+      var elems, name, original_name, value;
+      for (name in prop) {
+        value = prop[name];
+        if (!(name in NON_QUESTIONS)) {
+          original_name = name;
+          elems = questionnaire.metadata.elements;
+          if (name in elems) {
+            if ('question' in elems[name]) {
+              original_name = elems[name].question;
+            } else if (elems[name].element_type === 'range') {
+              original_name = "0: " + elems[name].min_label + "<br />100: " + elems[name].max_label;
+            }
+            elems[original_name] = elems[name];
+            if (elems[name].element_type === 'range') {
+              prop[name] = Math.round(value);
+            }
+            prop[original_name] = prop[name];
+            delete prop[name];
+          }
+        }
+      }
+      return prop;
+    };
+    parse_features = function(data) {
+      var a_name, a_v_key, a_value, f, f_a_key, f_name, feature, gf, i, meta, seen_f_a_keys, source_proj, target_proj, vizuLayer, _ref;
+      if (data.features) {
+        vizuLayer = map.getLayersByName("Visualization Layer")[0];
+        gf = new OpenLayers.Format.GeoJSON();
+        source_proj = new OpenLayers.Projection(data.crs.properties.code);
+        target_proj = new OpenLayers.Projection(map.getProjection());
+        seen_f_a_keys = {};
+        i = 0;
+        while (i < data.features.length) {
+          feature = gf.parseFeature(data.features[i]);
+          f_name = feature.attributes.name;
+          if (!(f_name in questionnaire.metadata.drawbuttons)) {
+            i++;
+            continue;
+          }
+          feature.geometry.transform(source_proj, target_proj);
+          feature.lonlat = gnt.questionnaire.get_popup_lonlat(feature.geometry);
+          feature.attributes.id = i;
+          feature.style = vizu.styles.hidden;
+          feature = restyle_form_values(feature);
+          vizu_features[i] = feature;
+          user_visible[feature.attributes.user] = true;
+          if (!(f_name in feature_name2id_list)) {
+            feature_name2id_list[f_name] = Array();
+            add_toggle_ctrl_for_feature(f_name, feature);
+          }
+          feature_name2id_list[f_name].push(i);
+          meta = questionnaire.metadata.drawbuttons[f_name].elements;
+          for (a_name in feature.attributes.form_values) {
+            if (!((_ref = meta[a_name].element_type) === 'checkbox' || _ref === 'radio' || _ref === 'select')) {
+              continue;
+            }
+            f_a_key = simple_hash([f_name, a_name].join("-AND-"));
+            if (!(f_a_key in seen_f_a_keys)) {
+              seen_f_a_keys[f_a_key] = true;
+              $('.' + f_name).append($('<li></li>').addClass('attr-ctrl').append($('<div></div>').html(a_name)).append($('<ul></ul>').addClass(f_a_key)));
+            }
+            for (a_value in feature.attributes.form_values[a_name]) {
+              a_v_key = simple_hash([f_name, a_name, a_value].join("-AND-"));
+              if (!(a_v_key in attribute2id_list)) {
+                attribute2id_list[a_v_key] = Array();
+                $('.' + f_a_key).append($('<li></li>').append($('<input type="checkbox">').addClass('attribute-level-ctrl').attr('id', a_v_key).attr('value', a_v_key).attr('checked', 'checked').change(filter_visible_features)).append($('<label></label>').text(a_value).attr('for', a_v_key)));
+              }
+              attribute2id_list[a_v_key].push(i);
+            }
+          }
+          vizuLayer.addFeatures(feature);
+          i += 1;
+        }
+        for (f in vizu_features) {
+          feature_visible[f] = true;
+        }
+        add_check_all_elements();
+        $(".attr-ctrl").filter(function() {
+          return $(this).find("li").length < 2;
+        }).remove();
+        $('.feature-ctrl-andor input[value="or"]').prop('checked', true);
+        $('.feature-ctrl-andor input').change(trigger_filtering_by_attributes);
+        $('#feature-ctrl .loading').remove();
+        $('.feature-ctrl-general').prepend($('<div>/</div>').attr('id', 'visible-feature-count').append($('<span></span>').addClass('total')).prepend($('<span></span>').addClass('currently-visible')).append($('<span> markings match your current filter</span>')));
+        $('#visible-feature-count .total').text(countKeys(feature_visible));
+        return $('#gnt-map-control').prepend($('<div id="analysis-box-select"></div>').append($('<label for="box-select-toggle">Select multiple markings</label>')).prepend($('<input type="checkbox" id="box-select-toggle">').change(function(e) {
+          var hctrl, sctrl;
+          sctrl = map.getControlsBy('id', 'visualization_select')[0];
+          hctrl = map.getControlsBy('id', 'visualization_hover')[0];
+          if (e.target.checked) {
+            $('.userinfo').add('.feature_comments').hide();
+            hctrl.deactivate();
+            sctrl.activate();
+            $('button#charts-selected').button();
+            $('#analysis-select-popup').show();
+            return $('#charts-selected').click(function() {
+              var s, selectedFeatures, usernames;
+              selectedFeatures = map.getLayersByName("Visualization Layer")[0].selectedFeatures;
+              usernames = (function() {
+                var _i, _len, _results;
+                _results = [];
+                for (_i = 0, _len = selectedFeatures.length; _i < _len; _i++) {
+                  s = selectedFeatures[_i];
+                  _results.push(s.attributes.user);
+                }
+                return _results;
+              })();
+              return $.ajax({
+                type: 'POST',
+                data: JSON.stringify({
+                  'usernames': usernames
+                }),
+                url: '/questionnaire_admin/cacheusernames/',
+                success: function(data) {
+                  var chart_url, dialog, dialog_close, dialog_settings, iframe;
+                  chart_url = 'http://' + window.location.host + '/questionnaire_admin/plot/' + questionnaire.q_id.toString() + '/template/order_by_size/' + data.cache_key + '/';
+                  iframe = $('<iframe class="chart-dialog-iframe" src="' + chart_url + '" border="0"></iframe>');
+                  dialog_close = function() {
+                    $.ajax({
+                      type: 'DELETE',
+                      data: JSON.stringify({
+                        'cache_key': data.cache_key
+                      }),
+                      url: '/questionnaire_admin/cacheusernames/'
+                    });
+                    return $('.ui-dialog').remove();
+                  };
+                  dialog_settings = {
+                    autoOpen: false,
+                    modal: true,
+                    width: window.innerWidth - 150,
+                    height: window.innerHeight - 50,
+                    close: dialog_close,
+                    buttons: {
+                      Close: function() {
+                        return $(this).dialog("close");
+                      }
+                    },
+                    resizable: false
+                  };
+                  dialog = $('<div></div>').attr('id', 'chart-dialog').attr('title', 'Respondent charts').append(iframe).appendTo('body').dialog(dialog_settings);
+                  dialog.dialog('open');
+                  $('.ui-dialog').css('z-index', $('#analysis-select-popup').css('z-index') + '0');
+                  return $('.chart-dialog-iframe').css('width', '98%').css('height', '98%');
+                }
+              });
+            });
+          } else {
+            sctrl.unselectAll();
+            $('#analysis-select-popup').hide();
+            sctrl.deactivate();
+            return hctrl.activate();
+          }
+        })));
+      }
+    };
+    trigger_filtering_by_attributes = function() {
+      return $('li.feature-level-ctrl').each(function() {
+        return $(this).find('input.attribute-level-ctrl').first().change();
+      });
+    };
+    is_multiple_choice = function(answer) {
+      if ((answer.indexOf(" ") === -1) && (answer.charCodeAt(0) >= "a".charCodeAt(0) && answer.charCodeAt(0) <= "z".charCodeAt(0))) {
+        return true;
+      }
+      return false;
+    };
+    unselect_feature = function(f) {
+      var color, vizu_layer;
+      vizu_layer = map.getLayersByName("Visualization Layer")[0];
+      color = feature_name2color[f.attributes.name];
+      f.style = vizu.styles['color_' + color];
+      vizu_layer.drawFeature(f);
+      $('#analysis-select-popup #' + f.id).remove();
+      delete selected_features[f.id];
+      return $('.number-of-selected-features').text(countKeys(selected_features));
+    };
+    select_feature = function(f) {
+      var make_hover_enter, make_hover_exit, vizu_layer;
+      selected_features[f.id] = f;
+      $('.number-of-selected-features').text(countKeys(selected_features));
+      render_form_values('#analysis-select-popup', f);
+      vizu_layer = map.getLayersByName("Visualization Layer")[0];
+      f.style = vizu.styles.multiselect;
+      vizu_layer.drawFeature(f);
+      make_hover_enter = function() {
+        var layer, sf;
+        sf = f;
+        layer = vizu_layer;
+        return function(e) {
+          $(e.delegateTarget).css('background-color', '#ccc');
+          return layer.drawFeature(sf, vizu.styles.multiselectFlash);
+        };
+      };
+      make_hover_exit = function() {
+        var layer, sf;
+        sf = f;
+        layer = vizu_layer;
+        return function(e) {
+          $(e.delegateTarget).css('background-color', '');
+          return layer.drawFeature(sf, vizu.styles.multiselect);
+        };
+      };
+      return $('#analysis-select-popup div#' + f.id).hover(make_hover_enter(), make_hover_exit());
+    };
+    hide_feature_popup = function() {
+      return $("div.analysis_popup").hide();
+    };
+    show_feature_popup = function(e) {
+      var answers, question, user, _i, _len, _ref;
+      $(".analysis_popup").html("").hide();
+      $(".feature_comments").append("<div class=\"name\">" + e.feature.attributes.original_name + "</div>");
+      user = e.feature.attributes.user;
+      render_form_values('.feature_comments', e.feature);
+      $('.user_info').prepend($("<div>Responses to other questions</div>").addClass('username'));
+      $('.user_info').append($('<ul></ul>'));
+      _ref = getOrderedKeys(user2properties[user]);
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        question = _ref[_i];
+        answers = user2properties[user][question];
+        $('.user_info ul').append($('<li class="popup-property"><span class="attribute-name">' + question + ' </span></li>').append(answers.join(', ')));
+      }
+      return $(".analysis_popup").show();
+    };
+    render_form_values = function(container_selector, feature) {
+      var feature_container, form_values, name, ul, value;
+      feature_container = $('<div></div>').attr('id', feature.id).addClass('feature-container');
+      form_values = feature.attributes.form_values;
+      for (name in form_values) {
+        feature_container.append("<div class=\"attribute-name\">" + name + "</div>");
+        ul = $("<ul></ul>");
+        for (value in form_values[name]) {
+          ul.append($("<li></li>").html(value));
+        }
+        feature_container.append(ul);
+      }
+      return $(container_selector).append(feature_container);
+    };
+    restyle_form_values = function(feature) {
+      var buttonmeta, ele, ele_name, elemeta, f_name, form_values, new_vals, original_name, popup_has_multiple_choice_questions, v, v_name, v_value, _i, _len, _ref, _ref1, _ref2;
+      f_name = feature.attributes.name;
+      buttonmeta = {};
+      if (f_name in questionnaire.metadata.drawbuttons) {
+        buttonmeta = questionnaire.metadata.drawbuttons[f_name];
+        original_name = buttonmeta.question.trim();
+        questionnaire.metadata.drawbuttons[original_name] = questionnaire.metadata.drawbuttons[f_name];
+      } else {
+        original_name = f_name;
+      }
+      feature.attributes.original_name = original_name;
+      popup_has_multiple_choice_questions = false;
+      if ('elements' in buttonmeta) {
+        _ref = buttonmeta.elements;
+        for (ele_name in _ref) {
+          ele = _ref[ele_name];
+          if ((_ref1 = ele.element_type) === 'checkbox' || _ref1 === 'radio' || _ref1 === 'select') {
+            popup_has_multiple_choice_questions = true;
+          }
+        }
+      }
+      feature.attributes.popup_has_multiple_choice_questions = popup_has_multiple_choice_questions;
+      new_vals = {};
+      form_values = feature.attributes.form_values;
+      for (_i = 0, _len = form_values.length; _i < _len; _i++) {
+        v = form_values[_i];
+        v_name = v.name;
+        v_value = v.value;
+        if ('elements' in buttonmeta) {
+          if (v.name in buttonmeta.elements) {
+            elemeta = buttonmeta.elements[v.name];
+            v_name = elemeta.question;
+            buttonmeta.elements[v_name] = buttonmeta.elements[v.name];
+            if ((_ref2 = elemeta.element_type) === 'checkbox' || _ref2 === 'radio' || _ref2 === 'select') {
+              if ('options' in elemeta) {
+                if (v.value in elemeta.options) {
+                  v_value = elemeta.options[v.value];
+                }
+              }
+            }
+            if (elemeta.element_type === 'range') {
+              v_value = Math.round(v.value);
+            }
+          }
+        }
+        if (new_vals[v_name] == null) {
+          new_vals[v_name] = {};
+        }
+        new_vals[v_name][v_value] = true;
+      }
+      feature.attributes.form_values = new_vals;
+      return feature;
+    };
+    add_check_all_elements = function() {
+      $('.mini-questionnaire').prepend($('<label>Check all</label>').css('font-weight', 'bold').prepend($('<input type="checkbox">').css('margin-right', '3px').prop('checked', true).change(function(e) {
+        $(e.target).closest('.mini-questionnaire').find('input[type="checkbox"]').prop('checked', e.target.checked);
+        return $(e.target).closest('.mini-questionnaire').find('input[type="checkbox"].attribute-level-ctrl').last().trigger('change', [false]);
+      })));
+      return $('.property-ctrl-general').append($('<label>Check all</label>').css('font-weight', 'bold').prepend($('<input type="checkbox">').css('margin-right', '3px').prop('checked', true).change(function(e) {
+        $('input.property-ctrl-boolean').prop('checked', e.target.checked);
+        return filter_visible_users();
+      })));
+    };
+    vizu = {};
+    selected_features = {};
+    user_visible = {};
+    feature_visible = {};
+    feature_name2id_list = {};
+    feature_name2color = {};
+    vizu_features = {};
+    attribute2id_list = {};
+    answer2user_list = {};
+    user2num_answer = {};
+    user2properties = {};
+    colors_free = ['#dbdb8d', '#c7c7c7', '#f7b6d2', '#c49c94', '#c5b0d5', '#ff9896', '#ffbb78', '#aec7e8', '#98df8a', '#9edae5', '#17becf', '#bcbd22', '#7f7f7f', '#e377c2', '#8c564b', '#9467bd', '#d62728', '#2ca02c', '#ff7f0e', '#1f77b4'];
+    seen_hashes = {};
+    str2hash = {};
+    $('.property-ctrl-andor input').change(filter_visible_users);
+    $('.property-ctrl-andor input[value="or"]').first().prop('checked', true);
+    map.updateSize();
+    $('a#feedback').hide();
+    map.getLayersByName("Route Layer")[0].setVisibility(false);
+    map.getLayersByName("Point Layer")[0].setVisibility(false);
+    map.getLayersByName("Area Layer")[0].setVisibility(false);
+    vizuLayer = new OpenLayers.Layer.Vector("Visualization Layer", {
+      rendererOptions: {
+        zIndexing: false
+      }
+    });
+    map.addLayer(vizuLayer);
+    $("#property-ctrl").prepend('<div class="loading">Loading data... please wait</div>');
+    $("#feature-ctrl").prepend('<div class="loading">Loading data... please wait</div>');
+    $.get('/questionnaire_admin/meta/' + questionnaire.q_id, function(metadata) {
+      questionnaire.metadata = metadata;
+      gnt.geo.get_features("@all", data_group, "", {
+        success: parse_features
+      });
+      return gnt.geo.get_properties("@all", data_group, '@null', '@all', {
+        success: parse_properties
+      });
+    });
+    make_styles();
+    makeHighlightCtrl();
+    return makeSelectCtrl();
+  };
+
+  this.make_sld_getter = function() {
+    var colorlist, current, name2color, sld;
+    current = 0;
+    name2color = {};
+    colorlist = ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf"];
+    sld = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?><StyledLayerDescriptor version=\"1.0.0\" xsi:schemaLocation=\"http://www.opengis.net/sld StyledLayerDescriptor.xsd\" xmlns=\"http://www.opengis.net/sld\" xmlns:ogc=\"http://www.opengis.net/ogc\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"> <NamedLayer> <Name>NAME</Name> <UserStyle> <Title>SLD Cook Book: Line w2th border</Title> <FeatureTypeStyle> <Rule> <LineSymbolizer> <Stroke> <CssParameter name=\"stroke\">#333333</CssParameter> <CssParameter name=\"stroke-width\">7</CssParameter> <CssParameter name=\"stroke-linecap\">round</CssParameter> </Stroke> </LineSymbolizer> </Rule> </FeatureTypeStyle> <FeatureTypeStyle> <Rule> <LineSymbolizer> <Stroke> <CssParameter name=\"stroke\">COLOR</CssParameter> <CssParameter name=\"stroke-width\">5</CssParameter> <CssParameter name=\"stroke-linecap\">round</CssParameter> </Stroke> </LineSymbolizer> </Rule> </FeatureTypeStyle> </UserStyle> </NamedLayer></StyledLayerDescriptor>";
+    return function(name) {
+      var color, mysld;
+      color = "";
+      if (!(name in name2color)) {
+        color = colorlist[current++ % 10];
+        name2color[name] = color;
+      } else {
+        color = name2color[name];
+      }
+      mysld = sld.replace("NAME", name);
+      return mysld.replace("COLOR", color);
+    };
+  };
+
+}).call(this);
