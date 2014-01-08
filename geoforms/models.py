@@ -10,6 +10,9 @@ from django.utils.translation import ugettext_lazy as _
 from django.core.cache import cache
 #from bs4 import BeautifulSoup
 
+if getattr(settings, 'USE_UNICODE_SLUGS',False):
+    from geoforms.utils import unicode_slugify as slugify
+
 class GeoformElement(models.Model):
     """
     This is one input element in a
