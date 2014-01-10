@@ -366,6 +366,8 @@ class Questionnaire(models.Model):
         lang = getattr(settings,'LANGUAGE_CODE')
         name = getattr(self,'name_'+lang,'en')
         self.slug = slugify("%s %s" % (name[:30], self.id))[:200]
+        if getattr(settings, 'USE_UNICODE_SLUGS',False):
+            self.slug = str(self.id)
 
         super(Questionnaire, self).save(*args, **kwargs)
 
