@@ -33,6 +33,8 @@ from geoforms.widgets import RangeElement
 from django.forms.widgets import Select
 from django.forms import BooleanField
 from geoforms.models import LotteryParticipant
+if getattr(settings, 'USE_UNICODE_SLUGS',False):
+    from geoforms.utils import unicode_slugify as slugify
 
 
 #element admin forms
