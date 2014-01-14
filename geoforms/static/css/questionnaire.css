@@ -497,3 +497,11 @@ ul.question-level-ctrl {
 .geojsonpopupform .form_element {
   max-width: 340px;
 }
+
+.grid p {
+    font-weight: bold;
+}
+
+.grid input[value="0"] {
+    margin-left: 20px;
+}
