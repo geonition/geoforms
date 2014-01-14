@@ -122,7 +122,13 @@ Your input is important to us! One more way you can help is to share this survey
             <div class="form_element">
                 <div class="prev_next_controls">
                     <a class="previous" href="#page_{{ forloop.counter }}"><img src="{{STATIC_URL}}img/arrow_previous_11x21.png" height=21 width=11 />{% trans 'Previous' %}</a>
-                    <a class="next base_bgcolor" href="{% url 'dashboard' %}">{% trans 'Quit and go to home page' %}<img src="{{STATIC_URL}}img/arrow_next_11x21.png" height=21 width=11 /></a>
+                    {% if questionnaire.slug == "kansalaiskysely-tunturi-lapin-2" %}
+                    <a class="next base_bgcolor" href="http://www.metsa.fi/ylimuonio">
+                    {% else %}
+                    <a class="next base_bgcolor" href="{% url 'dashboard' %}">
+                    {% endif %}
+                        {% trans 'Quit and go to home page' %}<img src="{{STATIC_URL}}img/arrow_next_11x21.png" height=21 width=11 />
+                    </a>
                 </div>
             </div>
         </div>
