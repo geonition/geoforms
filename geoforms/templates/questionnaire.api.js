@@ -64,7 +64,8 @@ active_class: the class to use when a button is activated
 
                 //add rule to layer for prefered rendering
                 var color = $(this.element).data('color');
-                var max = $(this.element).data('max');
+                //var max = $(this.element).data('max');
+                var max = 100;
                 var name = $(this.element).attr('name');
                 //add styling rules
                 if(!this.options.rule_added) {
