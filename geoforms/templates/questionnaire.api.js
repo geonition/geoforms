@@ -359,11 +359,12 @@ gnt.questionnaire.save_handler = function(evt) {
 gnt.questionnaire.remove_handler = function(evt) {
 
     //enable drawbutton if amount of feature under max
+    /*
     var max = $('button[name=' + evt.data[0].attributes.name + ']').data('max');
     var amount = evt.data[0].layer.getFeaturesByAttribute('name', evt.data[0].attributes.name).length - 1;
     if(amount < max) {
         $('button[name=' + evt.data[0].attributes.name + ']').drawButton('enable');
-    }
+    }*/
     evt.data[0].layer.removeFeatures([evt.data[0]]);
     //unselect feature
     map.getControlsByClass( 'OpenLayers.Control.SelectFeature' )[0].unselectAll();
@@ -721,6 +722,7 @@ gnt.questionnaire.gnt_getters.push(function(){
                         }
 
                         //disable drawbuttons that has max number of features
+                        /*
                         $('button.drawbutton.point').each(function(index, element) {
                             var amount = pl.getFeaturesByAttribute('name', $(element).attr('name')).length;
                             var max = $(element).data('max');
@@ -744,7 +746,7 @@ gnt.questionnaire.gnt_getters.push(function(){
                                amount >= max) {
                                 $('button[name=' + $(element).attr('name') + ']').drawButton('disable');
                             }
-                        });
+                        });*/
                     }
                 }
             });
