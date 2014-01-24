@@ -45,7 +45,7 @@ active_class: the class to use when a button is activated
                 active_class: "ui-state-active",
                 disable_class: "ui-button-disabled ui-state-disabled",
                 rule_added: false,
-                max: 3, //the maximum amount of points/routes/areas that can be drawn with this button
+                max: 100, //the maximum amount of points/routes/areas that can be drawn with this button
                 icons: {
                     primary: undefined,
                     secondary: undefined
@@ -64,8 +64,6 @@ active_class: the class to use when a button is activated
 
                 //add rule to layer for prefered rendering
                 var color = $(this.element).data('color');
-                //var max = $(this.element).data('max');
-                var max = 100;
                 var name = $(this.element).attr('name');
                 //add styling rules
                 if(!this.options.rule_added) {
@@ -312,11 +310,12 @@ gnt.questionnaire.save_handler = function(evt) {
                 new_feature.fid = data.id;
 
                 //disable the button if max amount of features has been drawn
+                /*
                 var max = $('button[name=' + new_feature.attributes.name + ']').data('max');
                 if(max !== undefined &&
                    amount >= max) {
                     $('button[name=' + new_feature.attributes.name + ']').drawButton('disable');
-                }
+                }*/
                 if(typeof(gnt.questionnaire.count_features) !== "undefined"){
                     gnt.questionnaire.count_features();
                 }
