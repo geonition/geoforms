@@ -304,11 +304,15 @@ gnt.after_map_loaded = function() {
     }
     //gnt.questionnaire.add_result_counter();
     //create a session for the anonymoususer
+    {% if SHOW_ANALYSIS_TOOL or questionnaire.slug == 'mita-ajattelet-tulevaisuuden-k-1'%}
+    // no session
+    {% else %}
     gnt.auth.create_session(function(){
         for(var i=0;i<gnt.questionnaire.gnt_getters.length;i++){
             gnt.questionnaire.gnt_getters[i]();
         }
     });
+    {% endif %}
     {% if CITIES_WITH_ZOOMABLE_DISTRICTS != "" %}
     gnt.questionnaire.make_district_selector('{% trans "Zoom to district" %}',{{CITIES_WITH_ZOOMABLE_DISTRICTS|safe}});
     if (!gnt.questionnaire.is_mobile_user){
