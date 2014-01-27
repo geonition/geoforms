@@ -490,8 +490,8 @@ gnt.layerToggler = function() {
         chosenLayers[$(this).val()] = false;
         });
     for (var i=0; i < gnt.questionnaire.extra_layers.length; i++) {
-        if (layer.name in chosenLayers){
-            var layer = gnt.questionnaire.extra_layers[i];
+        var layer = gnt.questionnaire.extra_layers[i];
+        if (chosenLayers[layer.name] != null){
             layer.layer.setVisibility(chosenLayers[layer.name]);
         }
     }
