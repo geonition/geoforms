@@ -489,10 +489,11 @@ gnt.layerToggler = function() {
     $('#wms-layerswitcher-container input').not(':checked').each(function(){
         chosenLayers[$(this).val()] = false;
         });
-    console.log('chosen', chosenLayers);
     for (var i=0; i < gnt.questionnaire.extra_layers.length; i++) {
-        var layer = gnt.questionnaire.extra_layers[i]
-        layer.layer.setVisibility(chosenLayers[layer.name]);
+        if (layer.name in chosenLayers){
+            var layer = gnt.questionnaire.extra_layers[i];
+            layer.layer.setVisibility(chosenLayers[layer.name]);
+        }
     }
 };
 function makeWMSLayerSwitcher(page_number) {
