@@ -522,6 +522,8 @@ function makeWMSLayerSwitcher(page_number) {
                                 .append(layer.long_name)));
                         
                 }
+            } else {
+                layer.layer.setVisibility(true);
             }
         }
     }
