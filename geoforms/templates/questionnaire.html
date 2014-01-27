@@ -446,6 +446,7 @@ gnt.questionnaire.create_extra_layers = function(){
             var name = $(this).children().first().attr('data-layer-name');
             var long_name = $(this).children().first().attr('data-layer-long-name');
             var url = $(this).children().first().attr('data-layer-url');
+            var mutex_group = $(this).children().first().attr('data-mutex-group');
             var page = parseInt($(this).closest('[data-page]').attr('data-page'));
             var layer = new OpenLayers.Layer.WMS(
                 "extra_layer",
@@ -460,8 +461,11 @@ gnt.questionnaire.create_extra_layers = function(){
             gnt.questionnaire.extra_layers.push({
                 page_number : page,
                 long_name : long_name,
-                layer : layer
+                name : name,
+                layer : layer,
+                mutex_group : mutex_group
                 });
+            layer.setVisibility(false);
             map.addLayer(layer);
         });
         makeWMSLayerSwitcher(1);
@@ -477,30 +481,54 @@ function makeLayerToggler(layer) {
     }
     return myFunc;
 }
+gnt.layerToggler = function() {
+    var chosenLayers = {};
+    $('#wms-layerswitcher-container input:checked').each(function(){
+        chosenLayers[$(this).val()] = true;
+        });
+    $('#wms-layerswitcher-container input').not(':checked').each(function(){
+        chosenLayers[$(this).val()] = false;
+        });
+    console.log('chosen', chosenLayers);
+    for (var i=0; i < gnt.questionnaire.extra_layers.length; i++) {
+        var layer = gnt.questionnaire.extra_layers[i]
+        layer.layer.setVisibility(chosenLayers[layer.name]);
+    }
+};
 function makeWMSLayerSwitcher(page_number) {
     $('#wms-layerswitcher-container ul').html('');
     for (var i=0; i < gnt.questionnaire.extra_layers.length; i++) {
         var layer = gnt.questionnaire.extra_layers[i];
         if (page_number !== layer.page_number) {
-           layer.layer.setVisibility(false);
         }
         else {
-            layer.layer.setVisibility(true);
 
             if (typeof layer.long_name != 'undefined'){
-                $('#wms-layerswitcher-container ul').append(
-                        $('<li></li>')
-                        .append($('<input type="checkbox">')
-                            .attr('checked', true)
-                            .change(makeLayerToggler(layer.layer)))
-                        .append(layer.long_name)
-                    );
+                if (typeof layer.mutex_group != 'undefined'){
+                    $('#wms-layerswitcher-container ul').append(
+                            $('<li></li>')
+                            .append($('<label></label>')
+                                .append($('<input type="radio" name="' + layer.mutex_group + '" value="' + layer.name + '">')
+                                    .attr('name', layer.mutex_group)
+                                    .change(gnt.layerToggler))
+                                .append(layer.long_name)));
+                        
+                } else {
+                    $('#wms-layerswitcher-container ul').append(
+                            $('<li></li>')
+                            .append($('<label></label>')
+                                .append($('<input type="checkbox" name="wms-checkbox" value="' + layer.name + '">')
+                                    .change(gnt.layerToggler))
+                                .append(layer.long_name)));
+                        
+                }
             }
         }
     }
 
     if ($('ul.wms-layerswitcher').children().length > 0) {
         $('#wms-layerswitcher-container').show();
+        $('#wms-layerswitcher-container input').first().attr('checked',true).change();
     } else {
         $('#wms-layerswitcher-container').hide();
     }
