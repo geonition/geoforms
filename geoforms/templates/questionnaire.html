@@ -501,6 +501,7 @@ function makeWMSLayerSwitcher(page_number) {
     for (var i=0; i < gnt.questionnaire.extra_layers.length; i++) {
         var layer = gnt.questionnaire.extra_layers[i];
         if (page_number !== layer.page_number) {
+            layer.layer.setVisibility(false);
         }
         else {
 
