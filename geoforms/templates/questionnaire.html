@@ -404,7 +404,6 @@ gnt.questionnaire.create_extra_layers = function(){
         {% if request.META.HTTP_HOST == "oregonstateparks.maptionnaire.com" %}
         $('#wms-layerswitcher-container').hide();
         {% endif %}
-        //var sld_getter = make_sld_getter();
         var geojson_format = new OpenLayers.Format.GeoJSON();
         $('[data-element-type="geojson-layer"]').each(function() {
 
@@ -439,9 +438,12 @@ gnt.questionnaire.create_extra_layers = function(){
                                         "featureunselected": gnt.questionnaire.geojson_unselect
                                     });
                 }
+                makeWMSLayerSwitcher(1);
             }, 'json');
 
         });
+
+
         $('[data-element-type="wms-layer"]').each(function() {
             var name = $(this).children().first().attr('data-layer-name');
             var long_name = $(this).children().first().attr('data-layer-long-name');
@@ -468,7 +470,9 @@ gnt.questionnaire.create_extra_layers = function(){
             layer.setVisibility(false);
             map.addLayer(layer);
         });
-        makeWMSLayerSwitcher(1);
+        if ($('[data-element-type="geojson-layer"]').length == 0){
+            makeWMSLayerSwitcher(1); // otherwise it's called when the geojson has loaded
+        }
 }
 
 function accordionPageChangeHandler(event) {
