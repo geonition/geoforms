@@ -414,7 +414,7 @@ gnt.questionnaire.create_extra_layers = function(){
             $.get(url, {}, function(data){
                 var layer = new OpenLayers.Layer.Vector(
                     name,
-                    {styleMap: new OpenLayers.StyleMap( { 'default': data.style }) });
+                    {styleMap: new OpenLayers.StyleMap( { 'default': data.style, 'highlight' : data.highlight_style }) });
 
                 layer.addFeatures(geojson_format.read(data.geojson));
                 layer.setVisibility(false);
