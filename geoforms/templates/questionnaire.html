@@ -418,6 +418,7 @@ gnt.questionnaire.create_extra_layers = function(){
 
                 layer.addFeatures(geojson_format.read(data.geojson));
                 var hctrl = new OpenLayers.Control.SelectFeature(layer,{
+                    'renderIntent' : 'highlight',
                     'hover': true,
                     'highlightOnly': true});
                 map.addControl(hctrl);
