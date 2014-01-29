@@ -421,6 +421,7 @@ gnt.questionnaire.create_extra_layers = function(){
                     'hover': true,
                     'highlightOnly': true});
                 map.addControl(hctrl);
+                hctrl.activate();
 
                 layer.setVisibility(false);
                 gnt.questionnaire.extra_layers.push({
