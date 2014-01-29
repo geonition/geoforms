@@ -417,6 +417,10 @@ gnt.questionnaire.create_extra_layers = function(){
                     {styleMap: new OpenLayers.StyleMap( { 'default': data.style, 'highlight' : data.highlight_style }) });
 
                 layer.addFeatures(geojson_format.read(data.geojson));
+                var hctrl = new OpenLayers.Control.SelectFeature(layer,{
+                    'hover': true,
+                    'highlightOnly': true});
+
                 layer.setVisibility(false);
                 gnt.questionnaire.extra_layers.push({
                     page_number : page,
