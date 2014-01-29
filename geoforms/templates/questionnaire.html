@@ -420,7 +420,7 @@ gnt.questionnaire.create_extra_layers = function(){
                 var hctrl = new OpenLayers.Control.SelectFeature(layer,{
                     'hover': true,
                     'highlightOnly': true});
-                map.add(hctrl);
+                map.addControl(hctrl);
 
                 layer.setVisibility(false);
                 gnt.questionnaire.extra_layers.push({
