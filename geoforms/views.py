@@ -95,6 +95,8 @@ def questionnaire(request, questionnaire_id, template='', no_save=''):
     lottery = Lottery.objects.filter(questionnaire=quest)
     if lottery.exists():
         lottery = lottery[0]
+    if not getattr(settings,'SHOW_LAST_PAGE',True):
+        template = 'questionnaire-no-last-page.html'
     resp =  render_to_response(template,
                              {'form_list': form_list,
                               'popup_list': popup_list,

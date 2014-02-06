@@ -1,0 +1,501 @@
+{% extends "base_map.html" %}
+{% load url from future %}
+{% load i18n %}
+{% load geoforms_extra %}
+{% load compress %}
+
+{% block stylesheet %}
+{% compress css %}
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/questionnaire.css" />
+{% endcompress %}
+{% endblock %}
+
+
+{% block content %}
+
+{% comment %}
+<ul class="breadcrumb">
+    <li class="disk hover base_bgcolor" onclick="window.location = '{% url "dashboard" %}'">
+        <a href="{% url 'dashboard' %}">
+            <h3>
+            {% trans 'Questionnaires' %}
+            </h3>
+        </a>
+    </li>
+    <li class="separator base_bgcolor"></li>
+</ul>
+{% endcomment %}
+<div class="application-name base_textcolor">
+        <h3>
+            {{ questionnaire.name }}
+        </h3>
+</div>
+
+<div id="forms">
+    {% for form in form_list %}
+        <h3 id="page_{{ forloop.counter }}" class="page_{{ forloop.counter }} {% if form.name in bigcontent_forms %}bigcontent{% else %}smallcontent{% endif %}">
+            {{ forloop.counter }}/{{ form_list|length }} {{ form.name }}
+        </h3>
+        <div data-page="{{ forloop.counter}}">
+            <form name="{{ form.slug }}" method="post" action="#">
+                {% for key, value in elements.items %}
+                    {% if key == form.slug %}
+                        {% for element in value %}
+                        <div class="form_element" data-element-type="{{element.element_type}}">
+                            {% if element.element_type == 'checkbox' or element.element_type == 'radio' %}
+                                {{ element.html|randomize_cb_rb:user|safe }}
+                            {% else %}
+                                {{ element.html|safe }}
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endfor %}
+
+
+            <div class="form_element">
+                <div class="prev_next_controls">
+                {% if forloop.first %}
+                    <a class="next base_bgcolor" href="#page_{{ forloop.counter|add:'1' }}">{% trans 'Next' %}<img src="{{STATIC_URL}}img/arrow_next_11x21.png" height=21 width=11 /></a>
+                {% else %}
+                <a class="previous" href="#page_{{ forloop.counter|add:'-1' }}"><img src="{{STATIC_URL}}img/arrow_previous_11x21.png" height=21 width=11 />{% trans 'Previous' %}</a>
+                    {% if not forloop.last %}
+                    <a class="next base_bgcolor" href="#page_{{ forloop.counter|add:'1' }}">{% trans 'Next' %}<img src="{{STATIC_URL}}img/arrow_next_11x21.png" height=21 width=11 /></a>
+                    {% endif %}
+                {% endif %}
+                </div>
+            </div>
+
+            </form>
+        </div>
+    {% endfor %}
+</div>
+
+<div id="popups">
+    {% for form in popup_list %}
+        <div id="{{ form.slug }}">
+
+            <form name="{{ form.slug }}" method="post" action="#" class="popupform">
+                {% for key, value in elements.items %}
+                    {% if key == form.slug %}
+                        {% for element in value %}
+                            {% if not forloop.last %}
+                            <div class="form_element" data-element-type="{{element.element_type}}">
+                            {% else %}
+                            <div class="form_element last" data-element-type="{{element.element_type}}">
+                            {% endif %}
+                            {% if element.element_type == 'checkbox' or element.element_type == 'radio' %}
+                                {{ element.html|randomize_cb_rb:user|safe }}
+                            {% else %}
+                                {{ element.html|safe }}
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endfor %}
+                <div class="padding">&nbsp;</div>
+            </form>
+            <div class="popup_feature_buttons">
+                <button type="button" class="remove">
+                    {% trans 'Remove' %}
+                </button>
+                <button type="button" class="save">
+                    {% trans 'Save' %}
+                </button>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+<div id="geojsonpopups">
+    {% for form in geojsonpopup_forms %}
+        <div id="{{ form.name }}">
+
+            <form name="{{ form.slug }}" method="post" action="#" class="geojsonpopupform">
+                {% for key, value in elements.items %}
+                    {% if key == form.slug %}
+                        {% for element in value %}
+                            {% if not forloop.last %}
+                            <div class="form_element" data-element-type="{{element.element_type}}">
+                            {% else %}
+                            <div class="form_element last" data-element-type="{{element.element_type}}">
+                            {% endif %}
+                            {% if element.element_type == 'checkbox' or element.element_type == 'radio' %}
+                                {{ element.html|randomize_cb_rb:user|safe }}
+                            {% else %}
+                                {{ element.html|safe }}
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endfor %}
+            </form>
+            <div class="geojsonpopup_buttons">
+                <button type="button" class="remove">
+                    {% trans 'Remove' %}
+                </button>
+                <button type="button" class="save">
+                    {% trans 'Save' %}
+                </button>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock content %}
+
+{% block javascript %}
+{% block extra_js %}
+{% if SHOW_ANALYSIS_TOOL %}
+<script type="text/javascript" src="{{ STATIC_URL }}js/feedback.js"></script>
+{% endif %}
+{% if request.META.HTTP_HOST == "oregonstateparks.maptionnaire.com" %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/parks.js"></script>
+{% endif %}
+{% endblock extra_js %}
+<script type="text/javascript" src="{{ STATIC_URL }}js/libs/proj4js-gnt.js"></script>
+{% if DEBUG %}
+<script type="text/javascript" src="{{ STATIC_URL }}js/libs/OpenLayers.js"></script>
+{% else %}
+<script type="text/javascript" src="{{ STATIC_URL }}js/libs/OpenLayers-gnt.js"></script>
+{% endif %}
+<script type="text/javascript" src="{% url 'api_javascript' %}"></script>
+<script type="text/javascript" src="{% url 'map_js' map_slug_name=map_slug %}"></script>
+<script type="text/javascript">
+var data_group = 'Q-{{ questionnaire.slug }}';
+var questionnaire_area = {{ questionnaire.area.json|safe }};
+// add crs to area
+questionnaire_area['crs'] = {"type": "name",
+                             "properties": {
+                                 "code": "EPSG:{{ questionnaire.area.srid|safe }}"}};
+// instead of using global varibles start using this object
+
+var questionnaire = {
+    'q_id': {{ questionnaire.id }},
+    'data_group': 'Q-{{ questionnaire.slug }}',
+    'questionnaire_area': {{ questionnaire.area.json|safe }},
+    'show_area': {{ questionnaire.show_area|lower }},
+    'scale_visible_area': {{ questionnaire.scale_visible_area|safe }}
+}
+// add crs to area
+questionnaire.questionnaire_area['crs'] = {"type": "name",
+                                           "properties": {
+                                                "code": "EPSG:{{ questionnaire.area.srid|safe }}"}};
+
+    {% comment %}
+function count_results() {
+    var number_of_properties = 0;
+    for(var val in gnt.questionnaire.npvalues) {
+        number_of_properties++;
+    }
+    var number_of_places = map.getLayersByName('Point Layer')[0].features.length;
+    var number_of_routes = map.getLayersByName('Route Layer')[0].features.length;
+    var number_of_areas = map.getLayersByName('Area Layer')[0].features.length;
+    var number_of_features = number_of_places + number_of_routes + number_of_areas;
+
+    if( number_of_features === 0 ) {
+        $('span.number_of_features').html("");
+    } else if( number_of_features === 1) {
+        $('span.number_of_features').html('{% trans "You marked one place" %}');
+    } else {
+        $('span.number_of_features').html('{% trans "You marked" %} ' + number_of_features + ' {% trans "places" %}');
+    }
+    if( number_of_properties === 0 ) {
+        $('span.number_of_properties').html("");
+    } else if( number_of_features !== 0) {
+        if( number_of_properties === 1) {
+            $('span.number_of_properties').html('{% trans "and answered one question" %}');
+        } else {
+            $('span.number_of_properties').html('{% trans "and answered" %} ' + number_of_properties + ' {% trans "questions" %}');
+        }
+    } else if ( number_of_properties === 1) {
+        $('span.number_of_properties').html('{% trans "You answered one question" %}');
+    } else {
+        $('span.number_of_properties').html('{% trans "You answered" %} ' + number_of_properties + ' {% trans "questions" %}');
+    }
+
+    if ( number_of_properties === 0 && number_of_features !== 0 ) {
+        $( 'span.number_of_features' ).append('.');
+    } else if ( number_of_properties !== 0 ) {
+        $( 'span.number_of_properties' ).append('.');
+    }
+}
+    {% endcomment %}
+// after_map_loaded() is in the template in order to have site specific changes to it more easily.
+gnt.after_map_loaded = function() {
+    $('#map').append($('<div></div>')
+            .css('position','absolute')
+            .css('top','0')
+            .css('left','50px')
+            .css('z-index','750')
+            .css('background','transparent')
+            .attr('id', 'gnt-map-control'));
+    gnt.questionnaire.create_geoform_layers();
+    gnt.questionnaire.create_extra_layers();
+
+    gnt.questionnaire.create_widgets('#forms');
+
+    if (gnt.do_not_save_questionnaire_answers){
+        return;
+    }
+    //gnt.questionnaire.add_result_counter();
+    //create a session for the anonymoususer
+    {% if SHOW_ANALYSIS_TOOL or questionnaire.slug == 'mita-ajattelet-tulevaisuuden-k-1'%}
+    // no session
+    {% else %}
+    gnt.auth.create_session(function(){
+        for(var i=0;i<gnt.questionnaire.gnt_getters.length;i++){
+            gnt.questionnaire.gnt_getters[i]();
+        }
+    });
+    {% endif %}
+    {% if CITIES_WITH_ZOOMABLE_DISTRICTS != "" %}
+    gnt.questionnaire.make_district_selector('{% trans "Zoom to district" %}',{{CITIES_WITH_ZOOMABLE_DISTRICTS|safe}});
+    if (!gnt.questionnaire.is_mobile_user){
+        $('.form_element .drawbutton').click(function(){$('#zoomable-districts').hide();});
+    }
+    {% endif %}
+    {% if SHOW_FEATURE_COUNT %}
+    gnt.questionnaire.count_features = function(){
+        $.get('/api/geojson/featurecount/' + questionnaire.data_group, function(data){
+                $('#number-of-features').html(data);
+                });
+    }
+    $('header .span_right').prepend($('<div></div>').css('max-width','200px').css('float','left').addClass('countfeatures').append($('<span>{% trans "Total markings made" %}:</span>')).append($('<span></span>').attr('id','number-of-features').css('padding-left','5px')));
+    gnt.questionnaire.count_features();
+    {% endif %}
+};
+
+{% block questionnaire_init %}
+
+
+jQuery(document).ready(function() {
+    {% if ADD_CANNOT_SAY_TO_RANGE_ELEMENTS %}
+    // this function has to be called before gnt.questionnaire.property_change_handler, otherwise the checkbox will not be bound to "change" event.
+    function add_cannot_say_to_range_elements(translation){
+        $('form').not('.popupform').find('.form_element[data-element-type="range"]').each(function(){
+            $(this).find('.range-container').css('display','inline-block');
+            $(this).append(
+                $('<label>' + translation + '</label>')
+                .css('display','inline-block')
+                .prepend($('<input type="checkbox" name="gnt-cannot-say" value="' + $(this).find('input[type="range"]').first().attr('name') + '">')
+                    .css('margin-right','4px')
+                    .change(function(){
+                        $(this).closest('.form_element').find('.slider').slider('option','disabled',this.checked);
+                    })));
+        });
+    }
+    add_cannot_say_to_range_elements('{% trans "Cannot say" %}');
+    {% endif %}
+    {% if ADD_FEATURE_MIN_ZOOM_LEVEL != 0 %}
+    gnt.questionnaire.addFeatureMinZoomLevel = {{ADD_FEATURE_MIN_ZOOM_LEVEL}};
+    gnt.questionnaire.addFeatureMinZoomLevelAlertMsg = '{% trans "Please zoom closer to draw on the map" %}';
+    {% endif %}
+
+    gnt.questionnaire.init('', '#forms', questionnaire_area, data_group);
+
+    {% if no_save != "" %}
+    gnt.do_not_save_questionnaire_answers = true;
+    {% else %}
+    gnt.do_not_save_questionnaire_answers = false;
+    {% endif %}
+
+    {% if USE_CACHE %}
+    gnt.questionnaire.use_cache = true;
+    {% else %}
+    gnt.questionnaire.use_cache = false;
+    {% endif %}
+
+    {% if lottery %}
+    gnt.questionnaire.addLotteryForm('{{questionnaire.get_absolute_url}}' + 'lottery', "{{lottery.thank_you_msg}}");
+    {% endif %}
+
+
+
+    {% if request.META.HTTP_HOST == "oregonstateparks.maptionnaire.com" %}
+    function check_map_loaded(){
+        if (gnt.map_loaded){
+            addParks();
+        } else {
+            setTimeout(check_map_loaded,200);
+        }
+    }
+    check_map_loaded();
+    {% endif %}
+});
+
+{% endblock questionnaire_init %}
+
+gnt.questionnaire.create_extra_layers = function(){
+        gnt.questionnaire.extra_layers = Array();
+        $('#gnt-map-control').append(
+                $('<div></div>')
+                .attr('id', 'wms-layerswitcher-container')
+                .append('<strong>{% trans "Choose Layers to show" %}</strong>')
+                .append(
+                    $('<ul></ul>')
+                    .addClass('wms-layerswitcher')
+                    )
+                );
+        {% if request.META.HTTP_HOST == "oregonstateparks.maptionnaire.com" %}
+        $('#wms-layerswitcher-container').hide();
+        {% endif %}
+        var geojson_format = new OpenLayers.Format.GeoJSON();
+        $('[data-element-type="geojson-layer"]').each(function() {
+
+            var name = $(this).children().first().attr('data-layer-name');
+            var long_name = $(this).children().first().attr('data-layer-long-name');
+            var url = $(this).children().first().attr('data-layer-url');
+            var page = parseInt($(this).closest('[data-page]').attr('data-page'));
+            $.get(url, {}, function(data){
+                var layer = new OpenLayers.Layer.Vector(
+                    name,
+                    {styleMap: new OpenLayers.StyleMap( { 'default': data.style, 'highlight' : data.highlight_style }) });
+
+                layer.addFeatures(geojson_format.read(data.geojson));
+                var hctrl = new OpenLayers.Control.SelectFeature(layer,{
+                    'renderIntent' : 'highlight',
+                    'hover': true,
+                    'highlightOnly': true});
+                hctrl.handlers.feature.stopDown = false;
+                map.addControl(hctrl);
+                hctrl.activate();
+
+                layer.setVisibility(false);
+                gnt.questionnaire.extra_layers.push({
+                    page_number : page,
+                    long_name : long_name,
+                    layer : layer
+                    });
+                map.addLayer(layer);
+
+                if (data.hasOwnProperty('selectable')){
+                    /*  If your geojson features have id, OpenLayers makes for each feature a property fid based on that.
+                        Name your geojson popups as geojsonpopup_fid, for example geojsonpopup_24 */
+                    //var layerSelect = new OpenLayers.Control.SelectFeature(layer, {'name': name + '_select'});
+                    var control_layers = map.getControl('selectcontrol').layers;
+                    control_layers.push(layer);
+                    map.getControl('selectcontrol').setLayer(control_layers);
+
+                    layer.events.on({
+                                        "featureselected": gnt.questionnaire.geojson_select,
+                                        "featureunselected": gnt.questionnaire.geojson_unselect
+                                    });
+                }
+                makeWMSLayerSwitcher(1);
+            }, 'json');
+
+        });
+
+
+        $('[data-element-type="wms-layer"]').each(function() {
+            var name = $(this).children().first().attr('data-layer-name');
+            var long_name = $(this).children().first().attr('data-layer-long-name');
+            var url = $(this).children().first().attr('data-layer-url');
+            var mutex_group = $(this).children().first().attr('data-mutex-group');
+            var page = parseInt($(this).closest('[data-page]').attr('data-page'));
+            var layer = new OpenLayers.Layer.WMS(
+                "extra_layer",
+                url,
+                {
+                    "layers": name,
+                    "transparent": true,
+                    "version": "1.1.1"//,
+                //    "SLD_BODY": sld_getter(name)
+                });
+
+            gnt.questionnaire.extra_layers.push({
+                page_number : page,
+                long_name : long_name,
+                name : name,
+                layer : layer,
+                mutex_group : mutex_group
+                });
+            layer.setVisibility(false);
+            map.addLayer(layer);
+        });
+        if ($('[data-element-type="geojson-layer"]').length == 0){
+            makeWMSLayerSwitcher(1); // otherwise it's called when the geojson has loaded
+        }
+}
+
+function accordionPageChangeHandler(event) {
+    makeWMSLayerSwitcher(event.page);
+}
+function makeLayerToggler(layer) {
+    var myLayer = layer;
+    function myFunc(e) {
+        myLayer.setVisibility(e.target.checked);
+    }
+    return myFunc;
+}
+gnt.layerToggler = function() {
+    var chosenLayers = {};
+    $('#wms-layerswitcher-container input:checked').each(function(){
+        chosenLayers[$(this).val()] = true;
+        });
+    $('#wms-layerswitcher-container input').not(':checked').each(function(){
+        chosenLayers[$(this).val()] = false;
+        });
+    for (var i=0; i < gnt.questionnaire.extra_layers.length; i++) {
+        var layer = gnt.questionnaire.extra_layers[i];
+        if (chosenLayers[layer.name] != null){
+            layer.layer.setVisibility(chosenLayers[layer.name]);
+        }
+    }
+};
+function makeWMSLayerSwitcher(page_number) {
+    $('#wms-layerswitcher-container ul').html('');
+    for (var i=0; i < gnt.questionnaire.extra_layers.length; i++) {
+        var layer = gnt.questionnaire.extra_layers[i];
+        if (page_number !== layer.page_number) {
+            layer.layer.setVisibility(false);
+        }
+        else {
+
+            if (typeof layer.long_name != 'undefined'){
+                if (typeof layer.mutex_group != 'undefined'){
+                    $('#wms-layerswitcher-container ul').append(
+                            $('<li></li>')
+                            .append($('<label></label>')
+                                .append($('<input type="radio" name="' + layer.mutex_group + '" value="' + layer.name + '">')
+                                    .attr('name', layer.mutex_group)
+                                    .change(gnt.layerToggler))
+                                .append(layer.long_name)));
+                        
+                } else {
+                    $('#wms-layerswitcher-container ul').append(
+                            $('<li></li>')
+                            .append($('<label></label>')
+                                .append($('<input type="checkbox" name="wms-checkbox" value="' + layer.name + '">')
+                                    .change(gnt.layerToggler))
+                                .append(layer.long_name)));
+                        
+                }
+            } else {
+                layer.layer.setVisibility(true);
+            }
+        }
+    }
+
+    if ($('ul.wms-layerswitcher').children().length > 0) {
+        $('#wms-layerswitcher-container').show();
+        $('#wms-layerswitcher-container input').first().attr('checked',true).change();
+    } else {
+        $('#wms-layerswitcher-container').hide();
+    }
+    {% if request.META.HTTP_HOST == "oregonstateparks.maptionnaire.com" %}
+    zoompage = 2;
+    $('a.next').css('visibility','visible');
+    if (page_number === zoompage){
+        map.getLayersByName('Choosables')[0].setVisibility(false);
+        map.getLayersByName('Zoomable Parks')[0].setVisibility(true);
+        $('a.next').css('visibility','hidden');
+        $('div#visited-parks').hide();
+    }
+    {% endif %}
+}
+
+
+</script>
+{% endblock javascript %}
+
