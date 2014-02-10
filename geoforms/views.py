@@ -97,6 +97,9 @@ def questionnaire(request, questionnaire_id, template='', no_save=''):
         lottery = lottery[0]
     if quest.name == 'Yleiskaavan paikkatietoanalyysi':
         template = 'questionnaire-no-last-page.html'
+    map_slug = quest.map
+    if not map_slug:
+        map_slug = 'questionnaire-map'
     resp =  render_to_response(template,
                              {'form_list': form_list,
                               'popup_list': popup_list,
@@ -104,7 +107,7 @@ def questionnaire(request, questionnaire_id, template='', no_save=''):
                               'geojsonpopup_forms': geojsonpopup_forms,
                               'elements': elements,
                               'questionnaire': quest,
-                              'map_slug': 'questionnaire-map',
+                              'map_slug': map_slug,
                               'USE_CACHE': use_cache, #in fact this means that cache might be used next time
                               'SHOW_ANALYSIS_TOOL' : template == 'questionnaire_feedback.html',
                               'no_save' : no_save,
