@@ -159,7 +159,7 @@
 }
 .form_element {
   padding: 4px;
-  text-align: center;
+  /*text-align: center;*/
   width: 100%;
 }
 .popupform .form_element {
