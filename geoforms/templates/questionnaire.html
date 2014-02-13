@@ -313,6 +313,18 @@ gnt.after_map_loaded = function() {
         }
     });
     {% endif %}
+    {% if ZOOMABLE_PLACES != "" %}
+    gnt.zoomable_places = {{ZOOMABLE_PLACES|safe}};
+    var source_proj = new OpenLayers.Projection('EPSG:4326');
+    var target_proj = map.projection;
+    $(gnt.zoomable_places.selector).change(function(){
+        if (gnt.zoomable_places.coordinates[this.value] == null){return;}
+        var new_center = (new OpenLayers.LonLat(
+                gnt.zoomable_places.coordinates[this.value][0],
+                gnt.zoomable_places.coordinates[this.value][1])).transform(source_proj, target_proj);
+        map.setCenter(new_center, 12);
+    });
+    {% endif %}
     {% if CITIES_WITH_ZOOMABLE_DISTRICTS != "" %}
     gnt.questionnaire.make_district_selector('{% trans "Zoom to district" %}',{{CITIES_WITH_ZOOMABLE_DISTRICTS|safe}});
     if (!gnt.questionnaire.is_mobile_user){
