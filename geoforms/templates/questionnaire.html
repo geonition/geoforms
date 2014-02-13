@@ -322,7 +322,7 @@ gnt.after_map_loaded = function() {
         var new_center = (new OpenLayers.LonLat(
                 gnt.zoomable_places.coordinates[this.value][0],
                 gnt.zoomable_places.coordinates[this.value][1])).transform(source_proj, target_proj);
-        map.setCenter(new_center, 12);
+        map.setCenter(new_center, gnt.zoomable_places.zoom_level);
     });
     {% endif %}
     {% if CITIES_WITH_ZOOMABLE_DISTRICTS != "" %}
