@@ -85,6 +85,7 @@
 
             <div class="form_element">
                 {% if request.META.HTTP_HOST == "turku.asiatkartalle.fi" %}
+                <p>Jaa kysely sosiaalisessa mediassa:</p>
     <div>
         <div class="g-plusone" data-size="medium" data-annotation="bubble" data-href="http{% if request.is_secure %}s{% endif %}://{{ request.get_host }}{{ request.path }}"></div>
         <script type="text/javascript">
