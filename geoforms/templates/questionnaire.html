@@ -120,8 +120,8 @@
             <div class="form_element">
                 <div class="prev_next_controls">
                     <a class="previous" href="#page_{{ forloop.counter }}"><img src="{{STATIC_URL}}img/arrow_previous_11x21.png" height=21 width=11 />{% trans 'Previous' %}</a>
-                    {% if questionnaire.slug == "kansalaiskysely-tunturi-lapin-2" %}
-                    <a class="next base_bgcolor" href="http://www.metsa.fi/ylimuonio">
+                    {% if questionnaire.slug == "Q-kunkun-parkki-5" %}
+                    <a class="next base_bgcolor" href="http://www.tampere.fi/kunkunparkki">
                     {% else %}
                     <a class="next base_bgcolor" href="{% url 'dashboard' %}">
                     {% endif %}
