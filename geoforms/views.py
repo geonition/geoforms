@@ -1,5 +1,5 @@
 from bs4 import BeautifulSoup
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, redirect
 from django.core.urlresolvers import reverse
 from django.core.exceptions import ObjectDoesNotExist
 from django.utils import simplejson as json
