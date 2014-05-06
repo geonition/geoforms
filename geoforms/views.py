@@ -35,6 +35,8 @@ def lottery(request, questionnaire_id):
 
 @ensure_csrf_cookie
 def questionnaire(request, questionnaire_id, template='', no_save=''):
+    if request.get_host() == 'metsa.asiatkartalle.fi' and int(questionnaire_id) == 5:
+        return redirect('http://maptionnaire.com/fi/95', permanent=True)
     """
     This view creates the whole questionnaire html.
     By default response of this view is cached in Django.
